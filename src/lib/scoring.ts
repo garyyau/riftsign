@@ -75,8 +75,8 @@ export const AXIS_WEIGHTS: Record<AxisId, number> = {
   'chaos-order': 1,
 }
 
-/** Fit points added to every Legend of a Champion the Player named as a favourite. */
-export const FAVOURITE_CHAMPION_BONUS = 6
+/** Fit points added to every Legend of a Champion the Player named as a favourite. Kept small: a nudge, not a thumb on the scale. */
+export const FAVOURITE_CHAMPION_BONUS = 3
 
 const MAX_DISTANCE = Math.sqrt(AXIS_IDS.reduce((sum, axis) => sum + AXIS_WEIGHTS[axis], 0))
 
@@ -139,12 +139,15 @@ export function domainLean(profile: Profile, pool: Legend[], exclude: Legend[] =
     DomainAxisId,
     DomainAxisId,
   ]
-  const poleOf = (axis: DomainAxisId): Domain =>
-    (profile[axis] < 0 ? AXES[axis].lowLabel : AXES[axis].highLabel) as Domain
-  const domains: [Domain, Domain] = [poleOf(a), poleOf(b)]
+  const poleOf = (axis: DomainAxisId): Domain[] => {
+    if (profile[axis] === 0) return []
+    return [(profile[axis] < 0 ? AXES[axis].lowLabel : AXES[axis].highLabel) as Domain]
+  }
+  const domains = [...poleOf(a), ...poleOf(b)]
   const excluded = new Set(exclude.map((l) => l.id))
-  const legends = pool.filter(
-    (l) => l.reviewed && !excluded.has(l.id) && domains.every((d) => l.domains.includes(d)),
-  )
+  const legends =
+    domains.length === 0
+      ? []
+      : pool.filter((l) => l.reviewed && !excluded.has(l.id) && domains.every((d) => l.domains.includes(d)))
   return { axes: [a, b], domains, legends }
 }

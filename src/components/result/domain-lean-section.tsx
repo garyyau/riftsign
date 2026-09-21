@@ -4,15 +4,19 @@ import type { DomainLean } from '@/lib/types'
 
 export function DomainLeanSection({ lean }: { lean: DomainLean }) {
   const s = STRINGS.result
-  const [a, b] = lean.domains
+  const body =
+    lean.domains.length === 0 ? s.leanNone : lean.legends.length ? s.leanBody(lean.domains) : s.leanEmpty(lean.domains)
   return (
     <section className="border-t py-8">
       <p className="label-mono text-muted-foreground">{s.leanTitle}</p>
-      <div className="mt-3 flex items-center gap-3">
-        <DomainBadge domain={a} className="text-foreground" />
-        <DomainBadge domain={b} className="text-foreground" />
-      </div>
-      <p className="mt-4 text-sm text-muted-foreground">{lean.legends.length ? s.leanBody(a, b) : s.leanEmpty(a, b)}</p>
+      {lean.domains.length > 0 && (
+        <div className="mt-3 flex items-center gap-3">
+          {lean.domains.map((d) => (
+            <DomainBadge key={d} domain={d} className="text-foreground" />
+          ))}
+        </div>
+      )}
+      <p className="mt-4 text-sm text-muted-foreground">{body}</p>
       {lean.legends.length > 0 && (
         <ul className="mt-4 flex flex-wrap gap-2">
           {lean.legends.map((l) => (

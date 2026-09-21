@@ -1,4 +1,4 @@
-import { PROJECT_TITLE } from '@/lib/strings'
+import { PROJECT_TITLE, STRINGS } from '@/lib/strings'
 
 export function SiteHeader({ onHome }: { onHome: () => void }) {
   return (
@@ -13,7 +13,7 @@ export function SiteHeader({ onHome }: { onHome: () => void }) {
         rel="noreferrer"
         className="label-mono text-muted-foreground transition-colors hover:text-foreground"
       >
-        Piltover Archive
+        {STRINGS.header.archive}
         <span aria-hidden className="ml-1">↗</span>
       </a>
     </header>

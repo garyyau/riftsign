@@ -49,6 +49,7 @@ describe('validateLegend', () => {
 describe('validateQuestionSet', () => {
   it('accepts a set that loads every Axis at least three times with a reverse-keyed Question each', () => {
     const set = fullCoverageSet()
+    swapReverseAnswers(set)
     expect(validateQuestionSet(set)).toEqual({ success: true, data: set })
   })
 
@@ -58,20 +59,51 @@ describe('validateQuestionSet', () => {
 
   it('rejects an Axis with no reverse-keyed Question', () => {
     const set = fullCoverageSet()
+    swapReverseAnswers(set)
     for (const q of set.questions) q.loads = q.loads.map((l) => (l.axis === 'variance' ? { ...l, reverse: false } : l))
     expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/variance.*reverse/)
   })
 
   it('rejects a Question that claims to load an Axis none of its Answers move', () => {
     const set = fullCoverageSet()
+    swapReverseAnswers(set)
     set.questions[0].loads.push({ axis: 'complexity', reverse: false })
     expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*complexity/)
   })
 
   it('rejects duplicate Question ids', () => {
     const set = fullCoverageSet()
+    swapReverseAnswers(set)
     set.questions.push({ ...set.questions[0] })
     expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*duplicate/i)
+  })
+
+  it('rejects a reverse-keyed scenario whose first Answer points high', () => {
+    const set = fullCoverageSet()
+    const q = set.questions[2] // pace-3, reverse: true, first Answer is +2
+    expect(q.loads[0].reverse).toBe(true)
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-3.*reverse/)
+  })
+
+  it('rejects a statement whose reverse flag disagrees with the sign of agreeing', () => {
+    const set = fullCoverageSet()
+    swapReverseAnswers(set)
+    set.questions.push({
+      id: 'stance-s',
+      kind: 'statement',
+      eyebrow: 'x',
+      prompt: 'x',
+      loads: [{ axis: 'stance', reverse: false }],
+      agreeMoves: [{ axis: 'stance', weight: -2 }],
+    })
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/stance-s.*reverse/)
+  })
+
+  it('counts an Axis listed twice in one Question only once', () => {
+    const set = fullCoverageSet()
+    swapReverseAnswers(set)
+    set.questions[0].loads.push({ axis: 'pace', reverse: false })
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*pace.*twice/)
   })
 
   it('rejects a scenario with a single Answer', () => {
@@ -82,7 +114,14 @@ describe('validateQuestionSet', () => {
   })
 })
 
-/** Three Questions per Axis, the third reverse-keyed. */
+/** Puts the low-pointing Answer first on every reverse-keyed scenario, as the gate requires. */
+function swapReverseAnswers(set: ReturnType<typeof fullCoverageSet>) {
+  for (const q of set.questions) {
+    if (q.kind === 'scenario' && q.loads.some((l) => l.reverse)) q.answers.reverse()
+  }
+}
+
+/** Three Questions per Axis, the third flagged reverse-keyed (Answers still high-first; see swapReverseAnswers). */
 function fullCoverageSet() {
   const questions: Question[] = []
   for (const axis of ['pace', 'stance', 'complexity', 'variance', 'fury-calm', 'mind-body', 'chaos-order'] as const) {

@@ -3,19 +3,11 @@
  * and how many Legends sit inside a central radius of normalized Axis space. Run `pnpm report`.
  * Pass --all to include unreviewed drafts.
  */
-import { readdirSync, readFileSync } from 'node:fs'
-import path from 'node:path'
 import { AXIS_IDS, normalize, type AxisId } from '../src/lib/axes'
-import { validateLegend } from '../src/lib/schemas'
-import type { Legend } from '../src/lib/types'
+import { loadLegends } from './lib/load-legends'
 
 const includeAll = process.argv.includes('--all')
-const legendDir = path.resolve(import.meta.dirname, '../src/data/legends')
-const legends: Legend[] = readdirSync(legendDir)
-  .filter((f) => f.endsWith('.json'))
-  .map((f) => validateLegend(JSON.parse(readFileSync(path.join(legendDir, f), 'utf8'))))
-  .flatMap((r) => (r.success ? [r.data] : []))
-  .filter((l) => includeAll || l.reviewed)
+const legends = loadLegends(includeAll)
 
 if (legends.length < 2) {
   console.log(`Only ${legends.length} Legend(s) in scope; nothing to correlate. Try --all.`)
@@ -59,9 +51,8 @@ console.log(
 )
 
 const CENTRAL_RADIUS = 0.25
-const centre = AXIS_IDS.map(() => 0.5)
 const central = legends.filter((l) => {
-  const d = Math.sqrt(AXIS_IDS.reduce((sum, axis, i) => sum + (normalize(axis, l.coordinates[axis]) - centre[i]) ** 2, 0))
+  const d = Math.sqrt(AXIS_IDS.reduce((sum, axis) => sum + (normalize(axis, l.coordinates[axis]) - 0.5) ** 2, 0))
   return d <= CENTRAL_RADIUS
 })
 console.log(

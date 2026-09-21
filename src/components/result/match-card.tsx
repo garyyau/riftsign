@@ -2,6 +2,7 @@ import { DomainBadge } from '@/components/domain-badge'
 import { Badge } from '@/components/ui/badge'
 import { STRINGS } from '@/lib/strings'
 import type { Match } from '@/lib/types'
+import { stepNumber } from '@/lib/utils'
 import { CardImage } from './card-image'
 
 export function MatchCard({ match, rank }: { match: Match; rank: number }) {
@@ -14,7 +15,7 @@ export function MatchCard({ match, rank }: { match: Match; rank: number }) {
       </div>
       <div className="min-w-0 md:col-span-8 lg:col-span-9">
         <p className="label-mono text-muted-foreground">
-          <span className="text-primary">{String(rank).padStart(2, '0')}</span> / {s.fit(fit)}
+          <span className="text-primary">{stepNumber(rank)}</span> / {s.fit(fit)}
         </p>
         <h3 className="display mt-3 text-3xl md:text-4xl">{legend.name}</h3>
         <div className="mt-4 flex flex-wrap items-center gap-3">

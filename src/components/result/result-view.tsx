@@ -1,5 +1,5 @@
 import { Check, Link2 } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { AXIS_IDS, DOMAIN_AXIS_IDS, PLAYSTYLE_AXIS_IDS } from '@/lib/axes'
 import { deriveArchetype, domainLean, rankLegends } from '@/lib/scoring'
@@ -26,13 +26,15 @@ interface ResultViewProps {
 }
 
 const REVEAL_STEP_MS = 380
+const COPIED_RESET_MS = 2500
 
 export function ResultView({ profile, pool, favouriteChampions, source, versionChanged, shareUrl, onRetake }: ResultViewProps) {
   const s = STRINGS.result
+  const shared = source === 'shared'
   const matches = useMemo(() => rankLegends(profile, pool, { favouriteChampions }), [profile, pool, favouriteChampions])
   const archetype = deriveArchetype(matches)
   const top = matches.slice(0, 3)
-  const lean = useMemo(() => domainLean(profile, pool, top.map((m) => m.legend)), [profile, pool, top])
+  const lean = useMemo(() => domainLean(profile, pool, matches.slice(0, 3).map((m) => m.legend)), [profile, pool, matches])
 
   // First fresh view reveals one Axis at a time; returning and shared views skip straight to the summary.
   const [revealed, setRevealed] = useState(source === 'fresh' ? 0 : AXIS_IDS.length + 1)
@@ -44,6 +46,8 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
   const settled = revealed > AXIS_IDS.length
 
   const [copied, setCopied] = useState<'idle' | 'done' | 'failed'>('idle')
+  const copiedTimer = useRef<number | undefined>(undefined)
+  useEffect(() => () => window.clearTimeout(copiedTimer.current), [])
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl(top[0]?.legend.id ?? null))
@@ -51,12 +55,15 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
     } catch {
       setCopied('failed')
     }
-    window.setTimeout(() => setCopied('idle'), 2500)
+    window.clearTimeout(copiedTimer.current)
+    copiedTimer.current = window.setTimeout(() => setCopied('idle'), COPIED_RESET_MS)
   }
+
+  const settle = (extra?: string) => cn('transition-opacity duration-700', settled ? 'opacity-100' : 'opacity-0', extra)
 
   return (
     <div className="px-6">
-      {source === 'shared' && (
+      {shared && (
         <Notice>
           {s.sharedNotice}{' '}
           <button type="button" onClick={onRetake} className="cursor-pointer underline underline-offset-4 hover:text-foreground">
@@ -64,31 +71,31 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
           </button>
         </Notice>
       )}
-      {versionChanged && <Notice>{source === 'shared' ? s.olderLinkNotice : s.versionNotice}</Notice>}
+      {versionChanged && <Notice>{shared ? s.olderLinkNotice : s.versionNotice}</Notice>}
 
       <section className="grid gap-10 py-12 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5">
           <p className="label-mono text-muted-foreground">{s.eyebrow}</p>
           {archetype ? (
-            <h1 className={cn('display mt-5 text-5xl transition-opacity duration-700 md:text-7xl', settled ? 'opacity-100' : 'opacity-0')}>
+            <h1 className={settle('display mt-5 text-5xl md:text-7xl')}>
               <span className="block text-2xl text-muted-foreground md:text-3xl">{s.archetypeLead}</span>
               <span className="glow-primary text-primary">{ARCHETYPE_COPY[archetype].name}</span>
             </h1>
           ) : (
             <h1 className="display mt-5 text-4xl md:text-5xl">{s.scoresTitle}</h1>
           )}
-          <p className={cn('mt-6 max-w-md text-base leading-relaxed text-muted-foreground transition-opacity duration-700', settled ? 'opacity-100' : 'opacity-0')}>
+          <p className={settle('mt-6 max-w-md text-base leading-relaxed text-muted-foreground')}>
             {archetype ? ARCHETYPE_COPY[archetype].description : s.noPool}
           </p>
-          <div className={cn('mt-8 flex flex-wrap gap-3 transition-opacity duration-700', settled ? 'opacity-100' : 'opacity-0')}>
-            {source !== 'shared' && (
+          <div className={settle('mt-8 flex flex-wrap gap-3')}>
+            {!shared && (
               <Button onClick={copyLink}>
                 {copied === 'done' ? <Check aria-hidden /> : <Link2 aria-hidden />}
                 {copied === 'done' ? s.shared : copied === 'failed' ? s.shareFailed : s.share}
               </Button>
             )}
             <Button variant="subtle" onClick={onRetake}>
-              {source === 'shared' ? s.takeOwn : s.retake}
+              {shared ? s.takeOwn : s.retake}
             </Button>
           </div>
         </div>
@@ -105,7 +112,7 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
       </section>
 
       {matches.length > 0 && (
-        <section className={cn('transition-opacity duration-700', settled ? 'opacity-100 rise-in' : 'opacity-0')}>
+        <section className={settle(settled ? 'rise-in' : undefined)}>
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-t pt-8 pb-2">
             <h2 className="display text-3xl">{s.matchesTitle}</h2>
             <p className="label-mono text-muted-foreground">{s.fitNote}</p>

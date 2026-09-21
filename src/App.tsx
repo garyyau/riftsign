@@ -1,38 +1,33 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Landing } from '@/components/landing'
 import { Quiz } from '@/components/quiz/quiz'
 import { ResultView, type ResultSource } from '@/components/result/result-view'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { CHAMPIONS, LEGENDS, QUESTION_SET } from '@/data'
-import { decodeProfile, encodeProfile } from '@/lib/profile-code'
+import { decodeProfile, encodeProfile, type DecodedProfile } from '@/lib/profile-code'
 import { computeProfile } from '@/lib/scoring'
 import { buildShareUrl, profileFromHash } from '@/lib/share'
 import { clearSession, emptySession, loadSession, saveSession, type Session } from '@/lib/storage'
-import type { Profile } from '@/lib/types'
 
-type View =
-  | { kind: 'landing' }
-  | { kind: 'quiz'; step: number }
-  | { kind: 'result'; profile: Profile; source: ResultSource; questionSetVersion: string }
+type View = { kind: 'landing' } | { kind: 'quiz'; step: number } | { kind: 'result'; result: DecodedProfile; source: ResultSource }
 
 const questions = QUESTION_SET.questions
 const currentVersion = QUESTION_SET.version
 
-function initialView(session: Session | null): View {
+function initialView(): View {
   const shared = profileFromHash(window.location.hash)
-  if (shared) return { kind: 'result', profile: shared.profile, source: 'shared', questionSetVersion: shared.questionSetVersion }
-  if (session?.lastProfileCode) return { kind: 'landing' }
-  return { kind: 'landing' }
+  return shared ? { kind: 'result', result: shared, source: 'shared' } : { kind: 'landing' }
 }
 
 export default function App() {
   const [session, setSession] = useState<Session>(() => loadSession() ?? emptySession(currentVersion))
-  const [view, setView] = useState<View>(() => initialView(loadSession()))
+  const [view, setView] = useState<View>(initialView)
 
-  const updateSession = useCallback((patch: Partial<Session>) => {
+  // Patches derive from the previous state so two quick taps never drop an Answer.
+  const updateSession = useCallback((patch: (prev: Session) => Partial<Session>) => {
     setSession((prev) => {
-      const next = { ...prev, ...patch }
+      const next = { ...prev, ...patch(prev) }
       saveSession(next)
       return next
     })
@@ -42,53 +37,52 @@ export default function App() {
   useEffect(() => {
     const onHash = () => {
       const shared = profileFromHash(window.location.hash)
-      if (shared) setView({ kind: 'result', profile: shared.profile, source: 'shared', questionSetVersion: shared.questionSetVersion })
+      if (shared) setView({ kind: 'result', result: shared, source: 'shared' })
     }
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
+  const show = (next: View) => {
+    setView(next)
+    window.scrollTo({ top: 0 })
+  }
+
   const goHome = () => {
     history.replaceState(null, '', window.location.pathname)
-    setView({ kind: 'landing' })
-    window.scrollTo({ top: 0 })
+    show({ kind: 'landing' })
   }
 
   const startFresh = () => {
     clearSession()
     setSession(emptySession(currentVersion))
     history.replaceState(null, '', window.location.pathname)
-    setView({ kind: 'quiz', step: 0 })
-    window.scrollTo({ top: 0 })
+    show({ kind: 'quiz', step: 0 })
   }
 
   const continueRun = () => {
+    // Answers given against an older Question set may not line up with today's Questions.
+    if (session.questionSetVersion !== currentVersion) return startFresh()
     const firstUnanswered = questions.findIndex((q) => !(q.id in session.answers))
-    setView({ kind: 'quiz', step: firstUnanswered === -1 ? questions.length : firstUnanswered })
+    show({ kind: 'quiz', step: firstUnanswered === -1 ? questions.length : firstUnanswered })
   }
 
   const showStored = () => {
     const decoded = session.lastProfileCode ? decodeProfile(session.lastProfileCode) : null
     if (!decoded) return startFresh()
-    setView({ kind: 'result', profile: decoded.profile, source: 'stored', questionSetVersion: session.questionSetVersion })
+    show({ kind: 'result', result: decoded, source: 'stored' })
   }
 
   const finish = (skipChampions: boolean) => {
-    const favourites = skipChampions ? [] : session.favouriteChampions
     const profile = computeProfile(QUESTION_SET, session.answers)
-    updateSession({ favouriteChampions: favourites, questionSetVersion: currentVersion, lastProfileCode: encodeProfile(profile, currentVersion) })
-    setView({ kind: 'result', profile, source: 'fresh', questionSetVersion: currentVersion })
-    window.scrollTo({ top: 0 })
+    // The version stays the one the Answers were given against, so the retake notice can fire later.
+    const code = encodeProfile(profile, session.questionSetVersion)
+    updateSession((prev) => ({ favouriteChampions: skipChampions ? [] : prev.favouriteChampions, lastProfileCode: code }))
+    show({ kind: 'result', result: { profile, questionSetVersion: session.questionSetVersion }, source: 'fresh' })
   }
 
   const storedIsComplete = session.lastProfileCode !== null
   const storedHasProgress = !storedIsComplete && Object.keys(session.answers).length > 0
-
-  const shareUrl = useMemo(
-    () => (profile: Profile, version: string) => (topLegendId: string | null) =>
-      buildShareUrl(window.location.origin, import.meta.env.BASE_URL, profile, version, topLegendId),
-    [],
-  )
 
   return (
     <div className="mx-auto min-h-screen max-w-[1200px] md:border-x">
@@ -111,16 +105,15 @@ export default function App() {
             favouriteChampions={session.favouriteChampions}
             step={view.step}
             onAnswer={(questionId, answerId) => {
-              updateSession({ answers: { ...session.answers, [questionId]: answerId }, lastProfileCode: null })
-              setView({ kind: 'quiz', step: Math.min(view.step + 1, questions.length) })
-              window.scrollTo({ top: 0 })
+              updateSession((prev) => ({ answers: { ...prev.answers, [questionId]: answerId }, lastProfileCode: null }))
+              show({ kind: 'quiz', step: Math.min(view.step + 1, questions.length) })
             }}
             onToggleChampion={(champion) =>
-              updateSession({
-                favouriteChampions: session.favouriteChampions.includes(champion)
-                  ? session.favouriteChampions.filter((c) => c !== champion)
-                  : [...session.favouriteChampions, champion],
-              })
+              updateSession((prev) => ({
+                favouriteChampions: prev.favouriteChampions.includes(champion)
+                  ? prev.favouriteChampions.filter((c) => c !== champion)
+                  : [...prev.favouriteChampions, champion],
+              }))
             }
             onBack={() => (view.step === 0 ? goHome() : setView({ kind: 'quiz', step: view.step - 1 }))}
             onFinish={finish}
@@ -128,12 +121,14 @@ export default function App() {
         )}
         {view.kind === 'result' && (
           <ResultView
-            profile={view.profile}
+            profile={view.result.profile}
             pool={LEGENDS}
             favouriteChampions={view.source === 'shared' ? [] : session.favouriteChampions}
             source={view.source}
-            versionChanged={view.questionSetVersion !== currentVersion}
-            shareUrl={shareUrl(view.profile, view.questionSetVersion)}
+            versionChanged={view.result.questionSetVersion !== currentVersion}
+            shareUrl={(topLegendId) =>
+              buildShareUrl(window.location.origin, import.meta.env.BASE_URL, view.result.profile, view.result.questionSetVersion, topLegendId)
+            }
             onRetake={startFresh}
           />
         )}

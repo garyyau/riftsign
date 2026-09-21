@@ -1,5 +1,5 @@
 import { DOMAIN_TEXT } from '@/components/domain-badge'
-import { AXES, bandLabel, type Domain, type DomainAxisId } from '@/lib/axes'
+import { AXES, bandLabel, normalize, type Domain, type DomainAxisId } from '@/lib/axes'
 import { cn } from '@/lib/utils'
 
 interface DomainSliderProps {
@@ -13,7 +13,7 @@ export function DomainSlider({ axis, value, shown }: DomainSliderProps) {
   const def = AXES[axis]
   const low = def.lowLabel as Domain
   const high = def.highLabel as Domain
-  const pct = ((value - def.min) / (def.max - def.min)) * 100
+  const pct = normalize(axis, value) * 100
   const signed = value > 0 ? `+${value.toFixed(1)}` : value.toFixed(1)
   return (
     <div className={cn('py-5 transition-opacity duration-500', shown ? 'opacity-100' : 'opacity-0')}>

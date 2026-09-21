@@ -69,7 +69,7 @@ export function legend(
     coordinates: { ...CENTER, ...coords },
     howItPlays: 'Plays cards. Wins games.',
     whyYou: 'You like winning.',
-    guideUrls: [],
+    guideUrls: ['https://example.test/guide'],
     cardImage: `${id}.jpg`,
     deckListUrl: `https://piltoverarchive.com/decks?legend=${id}`,
     reviewed: true,

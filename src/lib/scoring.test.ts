@@ -138,4 +138,12 @@ describe('domainLean', () => {
     const lean = domainLean({ ...CENTER, 'fury-calm': -4, 'chaos-order': 3 }, pool, [pool[0]])
     expect(lean.legends.map((l) => l.id)).toEqual(['order-fury'])
   })
+
+  it('claims no Domain for an Axis sitting exactly at the midpoint', () => {
+    expect(domainLean(CENTER, pool).domains).toEqual([])
+    expect(domainLean(CENTER, pool).legends).toEqual([])
+    const oneSided = domainLean({ ...CENTER, 'fury-calm': -2 }, pool)
+    expect(oneSided.domains).toEqual(['Fury'])
+    expect(oneSided.legends.map((l) => l.id).sort()).toEqual(['fury-chaos', 'fury-order', 'order-fury'])
+  })
 })

@@ -5,12 +5,12 @@
  * plus dist/og/default.png for the root page. Share links point at r/<id>/ so chat previews
  * resolve to the top Match while the fragment rebuilds the full result client-side.
  */
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import sharp, { type OverlayOptions } from 'sharp'
-import { validateLegend } from '../src/lib/schemas'
-import { LEGAL_DISCLAIMER, PROJECT_TITLE } from '../src/lib/strings'
+import { LEGAL_DISCLAIMER, PROJECT_TITLE, STRINGS } from '../src/lib/strings'
 import type { Legend } from '../src/lib/types'
+import { loadLegends } from './lib/load-legends'
 
 const root = path.resolve(import.meta.dirname, '..')
 const dist = path.join(root, 'dist')
@@ -22,11 +22,7 @@ if (!existsSync(path.join(dist, 'index.html'))) {
   process.exit(1)
 }
 
-const legendDir = path.join(root, 'src/data/legends')
-const legends: Legend[] = readdirSync(legendDir)
-  .filter((f) => f.endsWith('.json'))
-  .map((f) => validateLegend(JSON.parse(readFileSync(path.join(legendDir, f), 'utf8'))))
-  .flatMap((r) => (r.success && r.data.reviewed ? [r.data] : []))
+const legends: Legend[] = loadLegends()
 
 const WIDTH = 1200
 const HEIGHT = 630
@@ -65,7 +61,7 @@ function overlaySvg(title: string, subtitle: string, showRadar: boolean): Buffer
   <rect x="0" y="0" width="${WIDTH}" height="4" fill="${ACCENT}"/>
   <text x="72" y="120" font-size="22" letter-spacing="3" fill="${MUTED}" font-family="JetBrains Mono, Consolas, monospace">${escapeXml(PROJECT_TITLE.toUpperCase())} / ${escapeXml(subtitle.toUpperCase())}</text>
   ${text}
-  <text x="72" y="560" font-size="20" fill="${MUTED}">A playstyle test for Riftbound. Fit, not tier list.</text>
+  <text x="72" y="560" font-size="20" fill="${MUTED}">${escapeXml(STRINGS.og.tagline)}</text>
   ${showRadar ? radar(960, 315, 180) : ''}
 </svg>`)
 }
@@ -101,27 +97,50 @@ async function renderOg(file: string, title: string, subtitle: string, cardPath:
 
 const ogDir = path.join(dist, 'og')
 mkdirSync(ogDir, { recursive: true })
-const indexHtml = readFileSync(path.join(dist, 'index.html'), 'utf8')
+// The disclaimer must be conspicuous on every page; the SPA renders it, this keeps it in the static HTML too.
+const indexHtml = readFileSync(path.join(dist, 'index.html'), 'utf8').replace(
+  '</body>',
+  `<noscript><p>${escapeXml(LEGAL_DISCLAIMER)}</p></noscript></body>`,
+)
 
-function withMeta(html: string, legend: Legend): string {
-  const url = `${siteUrl}${base}r/${legend.id}/`
-  const image = `${siteUrl}${base}og/${legend.id}.png`
-  const title = `${PROJECT_TITLE}: ${legend.name}`
-  const description = `My Riftsign matched me with ${legend.name}. Find yours.`
-  return html
-    .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeXml(title)}" />`)
-    .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeXml(description)}" />`)
-    .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${escapeXml(image)}" /><meta property="og:url" content="${escapeXml(url)}" />`)
-    .replace(/<title>[^<]*<\/title>/, `<title>${escapeXml(title)}</title>`)
+interface PageMeta {
+  title: string
+  description: string
+  /** Path under the site base, e.g. "og/default.png" or "r/jinx/". */
+  imagePath: string
+  pagePath: string
 }
 
-await renderOg(path.join(ogDir, 'default.png'), 'Find the Legends you were made to pilot.', 'Riftbound playstyle test', null)
+/** Vite leaves <meta content> untouched, so absolute Open Graph URLs are stamped here for every page. */
+function withMeta(html: string, meta: PageMeta): string {
+  const abs = (p: string) => `${siteUrl}${base}${p}`
+  return html
+    .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeXml(meta.title)}" />`)
+    .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${escapeXml(meta.description)}" />`)
+    .replace(
+      /<meta property="og:image" content="[^"]*" \/>/,
+      `<meta property="og:image" content="${escapeXml(abs(meta.imagePath))}" /><meta property="og:url" content="${escapeXml(abs(meta.pagePath))}" />`,
+    )
+    .replace(/<title>[^<]*<\/title>/, `<title>${escapeXml(meta.title)}</title>`)
+}
+
+await renderOg(path.join(ogDir, 'default.png'), STRINGS.landing.title, STRINGS.og.defaultSubtitle, null)
+writeFileSync(
+  path.join(dist, 'index.html'),
+  withMeta(indexHtml, { title: STRINGS.og.title, description: STRINGS.og.description, imagePath: 'og/default.png', pagePath: '' }),
+)
 for (const legend of legends) {
   await renderOg(path.join(ogDir, `${legend.id}.png`), legend.name, legend.archetype, path.join(root, 'public/cards', legend.cardImage))
   const dir = path.join(dist, 'r', legend.id)
   mkdirSync(dir, { recursive: true })
-  writeFileSync(path.join(dir, 'index.html'), withMeta(indexHtml, legend))
+  writeFileSync(
+    path.join(dir, 'index.html'),
+    withMeta(indexHtml, {
+      title: STRINGS.og.legendTitle(legend.name),
+      description: STRINGS.og.legendDescription(legend.name),
+      imagePath: `og/${legend.id}.png`,
+      pagePath: `r/${legend.id}/`,
+    }),
+  )
 }
-// The disclaimer must be conspicuous on every page; the SPA renders it, this keeps it in the static HTML too.
-writeFileSync(path.join(dist, 'index.html'), indexHtml.replace('</body>', `<noscript><p>${escapeXml(LEGAL_DISCLAIMER)}</p></noscript></body>`))
 console.log(`Wrote ${legends.length} share page(s) and ${legends.length + 1} preview image(s) to dist/.`)

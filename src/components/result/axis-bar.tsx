@@ -1,4 +1,4 @@
-import { AXES, bandLabel, type AxisId } from '@/lib/axes'
+import { AXES, bandLabel, normalize, type AxisId } from '@/lib/axes'
 import { cn } from '@/lib/utils'
 
 interface AxisBarProps {
@@ -11,7 +11,7 @@ interface AxisBarProps {
 /** A playstyle Axis (0-10): horizontal bar with five band ticks, the score, and its band label. */
 export function AxisBar({ axis, value, shown }: AxisBarProps) {
   const def = AXES[axis]
-  const pct = ((value - def.min) / (def.max - def.min)) * 100
+  const pct = normalize(axis, value) * 100
   return (
     <div className={cn('py-5 transition-opacity duration-500', shown ? 'opacity-100' : 'opacity-0')}>
       <div className="flex items-baseline justify-between gap-4">

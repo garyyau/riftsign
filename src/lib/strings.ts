@@ -2,6 +2,7 @@
  * Every Player-facing string lives here so a future localization has one file to translate.
  * Game vocabulary follows CONTEXT.md; Players see "Riftsign" where the code says Profile.
  */
+import type { Domain } from './axes'
 import type { Archetype } from './types'
 
 export const PROJECT_TITLE = 'Riftsign'
@@ -9,7 +10,12 @@ export const PROJECT_TITLE = 'Riftsign'
 /** Verbatim from Riot's Legal Jibber Jabber policy, with the project title substituted. */
 export const LEGAL_DISCLAIMER = `${PROJECT_TITLE} was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.`
 
+const joinDomains = (domains: Domain[]) => domains.join(' and ')
+
 export const STRINGS = {
+  header: {
+    archive: 'Piltover Archive',
+  },
   landing: {
     eyebrow: 'A playstyle test for Riftbound',
     title: 'Find the Legends you were made to pilot.',
@@ -45,8 +51,9 @@ export const STRINGS = {
     deckLists: 'Deck lists on Piltover Archive',
     fullRanking: (n: number) => `Full ranking of all ${n} Legends`,
     leanTitle: 'Your Domain lean',
-    leanBody: (a: string, b: string) => `You lean ${a} and ${b}. Other Legends in those Domains:`,
-    leanEmpty: (a: string, b: string) => `You lean ${a} and ${b}. Your top three already cover that pair.`,
+    leanBody: (domains: Domain[]) => `You lean ${joinDomains(domains)}. Other Legends in those Domains:`,
+    leanEmpty: (domains: Domain[]) => `You lean ${joinDomains(domains)}. Your top three already cover that.`,
+    leanNone: "You sit right in the middle of every Domain pair, so no lean yet. Any Domain could be yours.",
     share: 'Copy share link',
     shared: 'Link copied',
     shareFailed: 'Could not copy. The link is in your address bar.',
@@ -59,7 +66,15 @@ export const STRINGS = {
   },
   footer: {
     about: 'Riftsign matches your playstyle to Legends. It never rates deck strength.',
-    source: 'Source',
+  },
+  /** Open Graph copy baked into the static share pages at build time. */
+  og: {
+    title: PROJECT_TITLE,
+    description: 'Find the Riftbound Legends that fit how you like to play.',
+    tagline: 'A playstyle test for Riftbound. Fit, not tier list.',
+    defaultSubtitle: 'Riftbound playstyle test',
+    legendTitle: (name: string) => `${PROJECT_TITLE}: ${name}`,
+    legendDescription: (name: string) => `My Riftsign matched me with ${name}. Find yours.`,
   },
 } as const
 

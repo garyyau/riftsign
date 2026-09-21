@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { AXIS_IDS, DOMAIN_AXIS_IDS, DOMAIN_POLES, DOMAINS, type AxisId, type Domain, type DomainAxisId } from './axes'
 import { answersOf } from './scoring'
-import { ARCHETYPES, SET_CODES, type Legend, type QuestionSet } from './types'
+import { ARCHETYPES, SET_CODES, type Legend, type Question, type QuestionSet } from './types'
 
 export const MIN_QUESTIONS_PER_AXIS = 3
 
@@ -32,7 +32,7 @@ export const legendSchema = z.object({
   coordinates: profileSchema,
   howItPlays: z.string().min(1),
   whyYou: z.string().min(1),
-  guideUrls: z.array(z.url()),
+  guideUrls: z.array(z.url()).min(1, 'at least one guide URL grounds the rating'),
   cardImage: z.string().min(1),
   deckListUrl: z.url(),
   reviewed: z.boolean(),
@@ -92,6 +92,24 @@ export function validateLegend(raw: unknown): ValidationResult<Legend> {
   return issues.length ? { success: false, issues } : { success: true, data: legend }
 }
 
+/**
+ * Reverse keying has to be real, not just declared. For a statement, agreeing must move the Axis
+ * low when reverse is true and high when it is false. For a scenario, reverse means the first
+ * listed (most "obvious") Answer moves the Axis low.
+ */
+function reverseKeyingIssue(question: Question, axis: AxisId, reverse: boolean): string | null {
+  const weightOf = (moves: { axis: AxisId; weight: number }[]) => moves.find((m) => m.axis === axis)?.weight ?? 0
+  if (question.kind === 'statement') {
+    const agree = weightOf(question.agreeMoves)
+    if (reverse && agree >= 0) return `marked reverse on ${axis} but agreeing moves it high`
+    if (!reverse && agree <= 0) return `not marked reverse on ${axis} but agreeing moves it low`
+    return null
+  }
+  const first = weightOf(question.answers[0].moves)
+  if (reverse && first >= 0) return `marked reverse on ${axis} but its first Answer does not move it low`
+  return null
+}
+
 export function validateQuestionSet(raw: unknown): ValidationResult<QuestionSet> {
   const parsed = questionSetSchema.safeParse(raw)
   if (!parsed.success) return { success: false, issues: formatZodIssues(parsed.error) }
@@ -113,11 +131,19 @@ export function validateQuestionSet(raw: unknown): ValidationResult<QuestionSet>
     if (answerIds.size !== answers.length) issues.push(`${question.id}: duplicate Answer id`)
 
     const movedAxes = new Set(answers.flatMap((a) => a.moves.map((m) => m.axis)))
+    const seenLoads = new Set<AxisId>()
     for (const load of question.loads) {
       if (!movedAxes.has(load.axis)) {
         issues.push(`${question.id}: claims to load ${load.axis} but no Answer moves it`)
         continue
       }
+      if (seenLoads.has(load.axis)) {
+        issues.push(`${question.id}: lists ${load.axis} twice in loads`)
+        continue
+      }
+      seenLoads.add(load.axis)
+      const keyingIssue = reverseKeyingIssue(question, load.axis, load.reverse)
+      if (keyingIssue) issues.push(`${question.id}: ${keyingIssue}`)
       loading[load.axis].count += 1
       if (load.reverse) loading[load.axis].reverse += 1
     }

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { stepNumber } from '@/lib/utils'
 
 interface StepRailProps {
   number: number
@@ -14,7 +15,7 @@ export function StepRail({ number, eyebrow, title, help, children }: StepRailPro
     <section className="grid gap-8 px-6 py-12 md:grid-cols-12 md:py-20">
       <div className="md:col-span-4">
         <p className="label-mono text-muted-foreground">
-          <span className="text-primary">{String(number).padStart(2, '0')}</span> / {eyebrow}
+          <span className="text-primary">{stepNumber(number)}</span> / {eyebrow}
         </p>
         <h2 className="display mt-5 text-3xl md:text-4xl">{title}</h2>
         {help && <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{help}</p>}

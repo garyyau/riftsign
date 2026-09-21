@@ -3,6 +3,7 @@ import { DomainBadge } from '@/components/domain-badge'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { STRINGS } from '@/lib/strings'
 import type { Match } from '@/lib/types'
+import { stepNumber } from '@/lib/utils'
 
 export function RankingList({ matches }: { matches: Match[] }) {
   return (
@@ -15,7 +16,7 @@ export function RankingList({ matches }: { matches: Match[] }) {
         <ol className="divide-y border-t">
           {matches.map((m, i) => (
             <li key={m.legend.id} className="grid grid-cols-[2.5rem_1fr_auto] items-center gap-3 py-3 text-sm">
-              <span className="score-mono text-muted-foreground">{String(i + 1).padStart(2, '0')}</span>
+              <span className="score-mono text-muted-foreground">{stepNumber(i + 1)}</span>
               <span className="min-w-0">
                 <span className="block truncate">{m.legend.name}</span>
                 <span className="mt-1 flex flex-wrap gap-3">

@@ -83,7 +83,9 @@ export interface Match {
 }
 
 export interface DomainLean {
+  /** The two Domain Axes with the largest magnitude, strongest first. */
   axes: [AxisId, AxisId]
-  domains: [Domain, Domain]
+  /** The Domains those Axes point to. An Axis sitting exactly at 0 contributes none. */
+  domains: Domain[]
   legends: Legend[]
 }
