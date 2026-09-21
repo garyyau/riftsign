@@ -6,7 +6,7 @@
   "packageManager": "pnpm@12.5.1",
   "scripts": {
     "dev": "vite",
-    "build": "pnpm run validate && pnpm run test -- --run && tsc -b && vite build && pnpm run postbuild:share",
+    "build": "pnpm run validate && vitest run && tsc -b && vite build && pnpm run postbuild:share",
     "postbuild:share": "tsx scripts/build-share-pages.ts",
     "validate": "tsx scripts/validate-data.ts",
     "report": "tsx scripts/report-axes.ts",

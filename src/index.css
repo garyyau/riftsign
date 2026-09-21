@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* "Signal" direction: near-black, hairline borders, one accent. Sibling of
+   riftbound-collectr-sync, not a clone: different hue, different display face, small radius. */
+:root {
+  --radius: 0.25rem;
+
+  --background: #0a0a0c;
+  --foreground: #ededed;
+  --card: #0a0a0c;
+  --card-foreground: #ededed;
+  --popover: #151517;
+  --popover-foreground: #ededed;
+
+  /* rift pink: the single accent. Archetype headline, primary action, focus ring, reveal glow. */
+  --primary: #ff4d8d;
+  --primary-foreground: #0a0a0c;
+
+  --secondary: #151517;
+  --secondary-foreground: #ededed;
+  --muted: #151517;
+  --muted-foreground: #8a8a90;
+  --accent: #1c1c1f;
+  --accent-foreground: #ededed;
+  --destructive: #ff5d5d;
+  --warning: #ffb02e;
+
+  --border: #26262a;
+  --input: #2c2c30;
+  --ring: #ff4d8d;
+
+  /* Domain colours, desaturated so six accents never compete. Badges and slider ends only. */
+  --domain-fury: #c8655a;
+  --domain-calm: #5fa8a0;
+  --domain-mind: #7b86c9;
+  --domain-body: #8faa5e;
+  --domain-chaos: #b06bbf;
+  --domain-order: #c9a85a;
+
+  --font-display: "Space Grotesk Variable", "Inter Variable", system-ui, sans-serif;
+  --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", Consolas, ui-monospace, monospace;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-domain-fury: var(--domain-fury);
+  --color-domain-calm: var(--domain-calm);
+  --color-domain-mind: var(--domain-mind);
+  --color-domain-body: var(--domain-body);
+  --color-domain-chaos: var(--domain-chaos);
+  --color-domain-order: var(--domain-order);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility score-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* The one allowed glow: the reveal moment and the Archetype headline. */
+@utility glow-primary {
+  text-shadow: 0 0 24px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility rise-in {
+  animation: rise-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
