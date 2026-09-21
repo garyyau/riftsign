@@ -1,0 +1,31 @@
+{
+  "id": "akali-rogue-assassin",
+  "name": "Akali, Rogue Assassin",
+  "champion": "Akali",
+  "domains": [
+    "Fury",
+    "Calm"
+  ],
+  "set": "VEN",
+  "starterDeck": null,
+  "archetype": "Aggro",
+  "coordinates": {
+    "pace": 8.5,
+    "stance": 8.5,
+    "complexity": 3.5,
+    "variance": 6.5,
+    "fury-calm": 0,
+    "mind-body": 0,
+    "chaos-order": 0
+  },
+  "howItPlays": "Aggro hit and run assassin. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Akali.",
+  "guideUrls": [
+    "https://riftboundguide.com/2026/07/21/riftbound-akali-champion-deck-guide/"
+  ],
+  "cardImage": "akali-rogue-assassin.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+}

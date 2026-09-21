@@ -1,0 +1,100 @@
+import { describe, expect, it } from 'vitest'
+import { domainCoordinates, validateLegend, validateQuestionSet } from './schemas'
+import { answer, legend, scenario, smallQuestionSet } from './test-fixtures'
+import type { Question } from './types'
+
+const issuesOf = (result: { success: boolean; issues?: string[] }) => (result.success ? [] : result.issues!)
+
+describe('domainCoordinates', () => {
+  it('points each Domain Axis at the Legend Domains and leaves the untouched Axis at 0', () => {
+    expect(domainCoordinates(['Fury', 'Order'])).toEqual({ 'fury-calm': -5, 'mind-body': 0, 'chaos-order': 5 })
+  })
+
+  it('sits at the midpoint when a Legend holds both Domains of one Axis', () => {
+    expect(domainCoordinates(['Mind', 'Body'])).toEqual({ 'fury-calm': 0, 'mind-body': 0, 'chaos-order': 0 })
+  })
+})
+
+describe('validateLegend', () => {
+  const good = legend('darius', 'Aggro', { pace: 8, 'fury-calm': -5, 'chaos-order': 5 }, ['Fury', 'Order'])
+
+  it('accepts a well-formed Legend', () => {
+    expect(validateLegend(good)).toEqual({ success: true, data: good })
+  })
+
+  it('rejects stored Domain coordinates that disagree with the Domains', () => {
+    const bad = { ...good, coordinates: { ...good.coordinates, 'fury-calm': 5 } }
+    expect(issuesOf(validateLegend(bad)).join('\n')).toMatch(/fury-calm.*expected -5/)
+  })
+
+  it('rejects a Legend with two identical Domains', () => {
+    expect(issuesOf(validateLegend({ ...good, domains: ['Fury', 'Fury'] })).join('\n')).toMatch(/domains/)
+  })
+
+  it('rejects a playstyle coordinate outside 0-10 and names the field', () => {
+    const bad = { ...good, coordinates: { ...good.coordinates, pace: 11 } }
+    expect(issuesOf(validateLegend(bad)).join('\n')).toMatch(/coordinates\.pace/)
+  })
+
+  it('rejects an unknown Archetype', () => {
+    expect(issuesOf(validateLegend({ ...good, archetype: 'Ramp' })).join('\n')).toMatch(/archetype/)
+  })
+
+  it('rejects a missing required field', () => {
+    const { whyYou: _dropped, ...rest } = good
+    expect(issuesOf(validateLegend(rest)).join('\n')).toMatch(/whyYou/)
+  })
+})
+
+describe('validateQuestionSet', () => {
+  it('accepts a set that loads every Axis at least three times with a reverse-keyed Question each', () => {
+    const set = fullCoverageSet()
+    expect(validateQuestionSet(set)).toEqual({ success: true, data: set })
+  })
+
+  it('rejects an Axis with fewer than three loading Questions', () => {
+    expect(issuesOf(validateQuestionSet(smallQuestionSet())).join('\n')).toMatch(/stance.*1 Question/)
+  })
+
+  it('rejects an Axis with no reverse-keyed Question', () => {
+    const set = fullCoverageSet()
+    for (const q of set.questions) q.loads = q.loads.map((l) => (l.axis === 'variance' ? { ...l, reverse: false } : l))
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/variance.*reverse/)
+  })
+
+  it('rejects a Question that claims to load an Axis none of its Answers move', () => {
+    const set = fullCoverageSet()
+    set.questions[0].loads.push({ axis: 'complexity', reverse: false })
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*complexity/)
+  })
+
+  it('rejects duplicate Question ids', () => {
+    const set = fullCoverageSet()
+    set.questions.push({ ...set.questions[0] })
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*duplicate/i)
+  })
+
+  it('rejects a scenario with a single Answer', () => {
+    const set = fullCoverageSet()
+    const q = set.questions[0]
+    if (q.kind === 'scenario') q.answers = [q.answers[0]]
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/answers/)
+  })
+})
+
+/** Three Questions per Axis, the third reverse-keyed. */
+function fullCoverageSet() {
+  const questions: Question[] = []
+  for (const axis of ['pace', 'stance', 'complexity', 'variance', 'fury-calm', 'mind-body', 'chaos-order'] as const) {
+    for (const n of [1, 2, 3]) {
+      questions.push(
+        scenario(
+          `${axis}-${n}`,
+          [answer('high', [{ axis, weight: 2 }]), answer('low', [{ axis, weight: -2 }])],
+          [{ axis, reverse: n === 3 }],
+        ),
+      )
+    }
+  }
+  return { version: 'test-1', questions }
+}

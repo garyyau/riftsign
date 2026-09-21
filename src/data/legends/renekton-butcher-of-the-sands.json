@@ -1,0 +1,31 @@
+{
+  "id": "renekton-butcher-of-the-sands",
+  "name": "Renekton, Butcher of the Sands",
+  "champion": "Renekton",
+  "domains": [
+    "Fury",
+    "Body"
+  ],
+  "set": "VEN",
+  "starterDeck": null,
+  "archetype": "Aggro",
+  "coordinates": {
+    "pace": 8.5,
+    "stance": 8.5,
+    "complexity": 2.5,
+    "variance": 5.5,
+    "fury-calm": -5,
+    "mind-body": 5,
+    "chaos-order": 0
+  },
+  "howItPlays": "Aggro beatdown. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Renekton.",
+  "guideUrls": [
+    "https://skillshotzgaming.com/riftbound-vendetta-legends-guide/"
+  ],
+  "cardImage": "renekton-butcher-of-the-sands.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+}

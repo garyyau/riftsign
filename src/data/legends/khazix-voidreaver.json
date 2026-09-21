@@ -1,0 +1,31 @@
+{
+  "id": "khazix-voidreaver",
+  "name": "Kha'Zix, Voidreaver",
+  "champion": "Kha'Zix",
+  "domains": [
+    "Body",
+    "Chaos"
+  ],
+  "set": "UNL",
+  "starterDeck": null,
+  "archetype": "Aggro",
+  "coordinates": {
+    "pace": 8.5,
+    "stance": 8.5,
+    "complexity": 3.5,
+    "variance": 5.5,
+    "fury-calm": 0,
+    "mind-body": 5,
+    "chaos-order": -5
+  },
+  "howItPlays": "Aggro hunter. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Kha'Zix.",
+  "guideUrls": [
+    "https://riftbound.gg/tier-list"
+  ],
+  "cardImage": "khazix-voidreaver.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+}

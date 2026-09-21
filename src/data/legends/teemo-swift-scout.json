@@ -1,0 +1,31 @@
+{
+  "id": "teemo-swift-scout",
+  "name": "Teemo, Swift Scout",
+  "champion": "Teemo",
+  "domains": [
+    "Mind",
+    "Chaos"
+  ],
+  "set": "OGN",
+  "starterDeck": null,
+  "archetype": "Tempo",
+  "coordinates": {
+    "pace": 7,
+    "stance": 5.5,
+    "complexity": 6.5,
+    "variance": 5,
+    "fury-calm": 0,
+    "mind-body": -5,
+    "chaos-order": -5
+  },
+  "howItPlays": "Tempo disruption. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Teemo.",
+  "guideUrls": [
+    "https://riftbound.gg/legends"
+  ],
+  "cardImage": "teemo-swift-scout.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Tempo template. Playstyle coordinates are provisional."
+}

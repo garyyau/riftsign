@@ -1,0 +1,31 @@
+{
+  "id": "ezreal-prodigal-explorer",
+  "name": "Ezreal, Prodigal Explorer",
+  "champion": "Ezreal",
+  "domains": [
+    "Mind",
+    "Chaos"
+  ],
+  "set": "SFD",
+  "starterDeck": null,
+  "archetype": "Tempo",
+  "coordinates": {
+    "pace": 7,
+    "stance": 6.5,
+    "complexity": 8,
+    "variance": 5,
+    "fury-calm": 0,
+    "mind-body": -5,
+    "chaos-order": -5
+  },
+  "howItPlays": "Tempo spell combo. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Ezreal.",
+  "guideUrls": [
+    "https://riftbound.gg/tier-list"
+  ],
+  "cardImage": "ezreal-prodigal-explorer.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Tempo template. Playstyle coordinates are provisional."
+}

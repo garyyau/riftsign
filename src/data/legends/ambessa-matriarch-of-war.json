@@ -1,0 +1,31 @@
+{
+  "id": "ambessa-matriarch-of-war",
+  "name": "Ambessa, Matriarch of War",
+  "champion": "Ambessa",
+  "domains": [
+    "Body",
+    "Order"
+  ],
+  "set": "VEN",
+  "starterDeck": null,
+  "archetype": "Midrange",
+  "coordinates": {
+    "pace": 5,
+    "stance": 5.5,
+    "complexity": 4.5,
+    "variance": 4,
+    "fury-calm": 0,
+    "mind-body": 5,
+    "chaos-order": 5
+  },
+  "howItPlays": "Midrange warlord. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Ambessa.",
+  "guideUrls": [
+    "https://skillshotzgaming.com/riftbound-vendetta-legends-guide/"
+  ],
+  "cardImage": "ambessa-matriarch-of-war.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+}

@@ -1,0 +1,31 @@
+{
+  "id": "shen-eye-of-twilight",
+  "name": "Shen, Eye of Twilight",
+  "champion": "Shen",
+  "domains": [
+    "Calm",
+    "Order"
+  ],
+  "set": "VEN",
+  "starterDeck": "Vendetta Showdown Deck",
+  "archetype": "Control",
+  "coordinates": {
+    "pace": 2.5,
+    "stance": 0.5,
+    "complexity": 6.5,
+    "variance": 3.5,
+    "fury-calm": 5,
+    "mind-body": 0,
+    "chaos-order": 5
+  },
+  "howItPlays": "Control protect and swap. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Shen.",
+  "guideUrls": [
+    "https://riftbound.gg/riftbound-vendetta-preconstructed-decks-all-products/"
+  ],
+  "cardImage": "shen-eye-of-twilight.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Control template. Playstyle coordinates are provisional."
+}

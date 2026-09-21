@@ -1,0 +1,31 @@
+{
+  "id": "rengar-pridestalker",
+  "name": "Rengar, Pridestalker",
+  "champion": "Rengar",
+  "domains": [
+    "Fury",
+    "Body"
+  ],
+  "set": "UNL",
+  "starterDeck": null,
+  "archetype": "Aggro",
+  "coordinates": {
+    "pace": 8.5,
+    "stance": 8.5,
+    "complexity": 3.5,
+    "variance": 5.5,
+    "fury-calm": -5,
+    "mind-body": 5,
+    "chaos-order": 0
+  },
+  "howItPlays": "Aggro predatory rush. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Rengar.",
+  "guideUrls": [
+    "https://riftbound.gg/tier-list"
+  ],
+  "cardImage": "rengar-pridestalker.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+}

@@ -1,0 +1,31 @@
+{
+  "id": "poppy-keeper-of-the-hammer",
+  "name": "Poppy, Keeper of the Hammer",
+  "champion": "Poppy",
+  "domains": [
+    "Body",
+    "Order"
+  ],
+  "set": "UNL",
+  "starterDeck": null,
+  "archetype": "Midrange",
+  "coordinates": {
+    "pace": 5,
+    "stance": 4,
+    "complexity": 4.5,
+    "variance": 4,
+    "fury-calm": 0,
+    "mind-body": 5,
+    "chaos-order": 5
+  },
+  "howItPlays": "Midrange defensive. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Poppy.",
+  "guideUrls": [
+    "https://riftbound.gg/legends"
+  ],
+  "cardImage": "poppy-keeper-of-the-hammer.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+}

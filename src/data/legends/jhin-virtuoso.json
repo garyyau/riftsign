@@ -1,0 +1,31 @@
+{
+  "id": "jhin-virtuoso",
+  "name": "Jhin, Virtuoso",
+  "champion": "Jhin",
+  "domains": [
+    "Fury",
+    "Mind"
+  ],
+  "set": "UNL",
+  "starterDeck": null,
+  "archetype": "Combo",
+  "coordinates": {
+    "pace": 5.5,
+    "stance": 5,
+    "complexity": 10,
+    "variance": 9,
+    "fury-calm": -5,
+    "mind-body": -5,
+    "chaos-order": 0
+  },
+  "howItPlays": "Combo/aggro burst. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Jhin.",
+  "guideUrls": [
+    "https://riftbound.gg/legends"
+  ],
+  "cardImage": "jhin-virtuoso.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Combo template. Playstyle coordinates are provisional."
+}

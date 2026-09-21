@@ -1,0 +1,31 @@
+{
+  "id": "annie-dark-child",
+  "name": "Annie, Dark Child",
+  "champion": "Annie",
+  "domains": [
+    "Fury",
+    "Chaos"
+  ],
+  "set": "OGS",
+  "starterDeck": "Proving Grounds",
+  "archetype": "Aggro",
+  "coordinates": {
+    "pace": 8.5,
+    "stance": 8.5,
+    "complexity": 3.5,
+    "variance": 7,
+    "fury-calm": -5,
+    "mind-body": 0,
+    "chaos-order": -5
+  },
+  "howItPlays": "Aggro burn. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Annie.",
+  "guideUrls": [
+    "https://riftbound.gg/legends"
+  ],
+  "cardImage": "annie-dark-child.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+}

@@ -1,0 +1,262 @@
+{
+  "version": "2026-09",
+  "questions": [
+    {
+      "id": "opening-hand",
+      "kind": "scenario",
+      "eyebrow": "Opening moves",
+      "prompt": "It's turn one. Your dream opening hand lets you...",
+      "loads": [{ "axis": "pace", "reverse": false }],
+      "answers": [
+        { "id": "pressure", "text": "Hit the board right away and start pressuring.", "moves": [{ "axis": "pace", "weight": 2 }, { "axis": "stance", "weight": 1 }] },
+        { "id": "setup", "text": "Set up something that pays off a few turns later.", "moves": [{ "axis": "pace", "weight": -2 }] },
+        { "id": "flexible", "text": "Hold flexible answers and see what they're up to.", "moves": [{ "axis": "pace", "weight": -1 }, { "axis": "stance", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "long-games",
+      "kind": "statement",
+      "eyebrow": "Game length",
+      "prompt": "I enjoy long games where the board slowly fills up and every decision matters.",
+      "loads": [{ "axis": "pace", "reverse": true }],
+      "agreeMoves": [{ "axis": "pace", "weight": -2 }, { "axis": "complexity", "weight": 1 }]
+    },
+    {
+      "id": "stabilising",
+      "kind": "scenario",
+      "eyebrow": "Mid game",
+      "prompt": "The match is running long and your opponent is starting to stabilise. You...",
+      "loads": [{ "axis": "pace", "reverse": false }],
+      "answers": [
+        { "id": "all-in", "text": "Go all in before they finish setting up.", "moves": [{ "axis": "pace", "weight": 2 }, { "axis": "variance", "weight": 1 }] },
+        { "id": "grind", "text": "Shift gears and grind it out. You're comfortable going long.", "moves": [{ "axis": "pace", "weight": -2 }] },
+        { "id": "one-swing", "text": "Look for the one big turn that flips the game.", "moves": [{ "axis": "pace", "weight": 1 }, { "axis": "variance", "weight": 1 }, { "axis": "complexity", "weight": 1 }] }
+      ]
+    },
+    {
+      "id": "which-win",
+      "kind": "scenario",
+      "eyebrow": "Favourite wins",
+      "prompt": "Which win feels better?",
+      "loads": [{ "axis": "pace", "reverse": true }],
+      "answers": [
+        { "id": "turn-nine", "text": "Winning on turn nine with everything on the table.", "moves": [{ "axis": "pace", "weight": -2 }] },
+        { "id": "turn-four", "text": "Winning on turn four before they can react.", "moves": [{ "axis": "pace", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "scary-play",
+      "kind": "scenario",
+      "eyebrow": "Their move",
+      "prompt": "Your opponent plays something scary. Your instinct is to...",
+      "loads": [{ "axis": "stance", "reverse": false }],
+      "answers": [
+        { "id": "ignore", "text": "Ignore it and push your own plan harder.", "moves": [{ "axis": "stance", "weight": 2 }] },
+        { "id": "answer", "text": "Deal with it right away. Your plan can wait.", "moves": [{ "axis": "stance", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "hand-full-of",
+      "kind": "scenario",
+      "eyebrow": "Your hand",
+      "prompt": "You'd rather be holding a hand full of...",
+      "loads": [{ "axis": "stance", "reverse": false }],
+      "answers": [
+        { "id": "threats", "text": "Threats you're dying to play.", "moves": [{ "axis": "stance", "weight": 2 }, { "axis": "pace", "weight": 1 }] },
+        { "id": "answers", "text": "Answers that punish whatever they try.", "moves": [{ "axis": "stance", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "shutting-down",
+      "kind": "statement",
+      "eyebrow": "Satisfaction",
+      "prompt": "The best feeling in a game is shutting down exactly what my opponent was trying to do.",
+      "loads": [{ "axis": "stance", "reverse": true }],
+      "agreeMoves": [{ "axis": "stance", "weight": -2 }]
+    },
+    {
+      "id": "racing",
+      "kind": "scenario",
+      "eyebrow": "The race",
+      "prompt": "When both players are racing, you want to be the one...",
+      "loads": [{ "axis": "stance", "reverse": false }],
+      "answers": [
+        { "id": "set-pace", "text": "Setting the pace they have to keep up with.", "moves": [{ "axis": "stance", "weight": 2 }] },
+        { "id": "punish", "text": "Waiting for them to overcommit, then punishing it.", "moves": [{ "axis": "stance", "weight": -2 }, { "axis": "complexity", "weight": 1 }] }
+      ]
+    },
+    {
+      "id": "reading-cards",
+      "kind": "scenario",
+      "eyebrow": "New cards",
+      "prompt": "Reading a new card, you love it when...",
+      "loads": [{ "axis": "complexity", "reverse": false }],
+      "answers": [
+        { "id": "one-thing", "text": "It does one strong thing with no fine print.", "moves": [{ "axis": "complexity", "weight": -2 }] },
+        { "id": "three-ways", "text": "It has three ways to use it and you'll find them all.", "moves": [{ "axis": "complexity", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "punishing-deck",
+      "kind": "scenario",
+      "eyebrow": "Mastery",
+      "prompt": "A deck that punishes tiny mistakes but rewards mastery sounds...",
+      "loads": [{ "axis": "complexity", "reverse": false }],
+      "answers": [
+        { "id": "exhausting", "text": "Exhausting. You want to play the game, not solve it.", "moves": [{ "axis": "complexity", "weight": -2 }] },
+        { "id": "perfect", "text": "Exactly what you want.", "moves": [{ "axis": "complexity", "weight": 2 }] },
+        { "id": "sometimes", "text": "Fine now and then, not every night.", "moves": [{ "axis": "complexity", "weight": -0.5 }] }
+      ]
+    },
+    {
+      "id": "straightforward",
+      "kind": "statement",
+      "eyebrow": "Piloting",
+      "prompt": "I'd rather play a straightforward deck perfectly than a clever deck at 80 percent.",
+      "loads": [{ "axis": "complexity", "reverse": true }],
+      "agreeMoves": [{ "axis": "complexity", "weight": -2 }]
+    },
+    {
+      "id": "favourite-turn",
+      "kind": "scenario",
+      "eyebrow": "Best turn",
+      "prompt": "Your favourite kind of turn is when...",
+      "loads": [{ "axis": "complexity", "reverse": false }],
+      "answers": [
+        { "id": "chain", "text": "You line up four cards that all set each other off.", "moves": [{ "axis": "complexity", "weight": 2 }, { "axis": "variance", "weight": 1 }] },
+        { "id": "biggest", "text": "You play the biggest thing you have and it just works.", "moves": [{ "axis": "complexity", "weight": -2 }, { "axis": "stance", "weight": 1 }] }
+      ]
+    },
+    {
+      "id": "coin-flip-card",
+      "kind": "scenario",
+      "eyebrow": "Gambles",
+      "prompt": "A card that either wins the game on the spot or does nothing at all...",
+      "loads": [{ "axis": "variance", "reverse": false }],
+      "answers": [
+        { "id": "love-it", "text": "Love it. That's the fun part.", "moves": [{ "axis": "variance", "weight": 2 }] },
+        { "id": "no-thanks", "text": "No thanks. You want cards that always do their job.", "moves": [{ "axis": "variance", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "consistency",
+      "kind": "statement",
+      "eyebrow": "Win rate",
+      "prompt": "I'd rather win 55 percent of my games steadily than 50 percent with wild swings.",
+      "loads": [{ "axis": "variance", "reverse": true }],
+      "agreeMoves": [{ "axis": "variance", "weight": -2 }]
+    },
+    {
+      "id": "game-night-story",
+      "kind": "scenario",
+      "eyebrow": "The story",
+      "prompt": "After game night, the story you tell is about...",
+      "loads": [{ "axis": "variance", "reverse": false }],
+      "answers": [
+        { "id": "top-deck", "text": "The ridiculous draw that flipped a lost game.", "moves": [{ "axis": "variance", "weight": 2 }] },
+        { "id": "controlled", "text": "The tight game you controlled from start to finish.", "moves": [{ "axis": "variance", "weight": -2 }, { "axis": "pace", "weight": -1 }] }
+      ]
+    },
+    {
+      "id": "behind-on-board",
+      "kind": "scenario",
+      "eyebrow": "Falling behind",
+      "prompt": "You're behind on board. You...",
+      "loads": [{ "axis": "variance", "reverse": false }],
+      "answers": [
+        { "id": "dig", "text": "Dig for the one card that turns it all around.", "moves": [{ "axis": "variance", "weight": 2 }] },
+        { "id": "claw-back", "text": "Trade carefully and claw it back an inch at a time.", "moves": [{ "axis": "variance", "weight": -2 }, { "axis": "pace", "weight": -1 }] }
+      ]
+    },
+    {
+      "id": "table-mood",
+      "kind": "scenario",
+      "eyebrow": "Table mood",
+      "prompt": "The mood you want at the table:",
+      "loads": [{ "axis": "fury-calm", "reverse": false }],
+      "answers": [
+        { "id": "relentless", "text": "Relentless. Keep swinging, make them sweat.", "moves": [{ "axis": "fury-calm", "weight": -2 }, { "axis": "pace", "weight": 1 }] },
+        { "id": "composed", "text": "Composed. Precise. Wait for the perfect moment.", "moves": [{ "axis": "fury-calm", "weight": 2 }, { "axis": "pace", "weight": -1 }] }
+      ]
+    },
+    {
+      "id": "fired-up",
+      "kind": "statement",
+      "eyebrow": "Your energy",
+      "prompt": "I play my best when I'm fired up and pushing hard.",
+      "loads": [{ "axis": "fury-calm", "reverse": true }],
+      "agreeMoves": [{ "axis": "fury-calm", "weight": -2 }, { "axis": "stance", "weight": 1 }]
+    },
+    {
+      "id": "battle-cry",
+      "kind": "scenario",
+      "eyebrow": "Battle cry",
+      "prompt": "Which line would you rather say out loud?",
+      "loads": [{ "axis": "fury-calm", "reverse": false }],
+      "answers": [
+        { "id": "breathe", "text": "\"Breathe. Everything in its time.\"", "moves": [{ "axis": "fury-calm", "weight": 2 }] },
+        { "id": "burn", "text": "\"Burn it all down.\"", "moves": [{ "axis": "fury-calm", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "win-because",
+      "kind": "scenario",
+      "eyebrow": "How you win",
+      "prompt": "You'd rather win because...",
+      "loads": [{ "axis": "mind-body", "reverse": false }],
+      "answers": [
+        { "id": "outsmart", "text": "You outsmarted them with tricks and knowledge.", "moves": [{ "axis": "mind-body", "weight": -2 }, { "axis": "complexity", "weight": 1 }] },
+        { "id": "bigger", "text": "Your units were simply bigger and stronger.", "moves": [{ "axis": "mind-body", "weight": 2 }, { "axis": "complexity", "weight": -1 }] }
+      ]
+    },
+    {
+      "id": "spells-over-creatures",
+      "kind": "statement",
+      "eyebrow": "Preference",
+      "prompt": "Give me spells, gadgets and clever tricks over big creatures every time.",
+      "loads": [{ "axis": "mind-body", "reverse": true }],
+      "agreeMoves": [{ "axis": "mind-body", "weight": -2 }]
+    },
+    {
+      "id": "ideal-crew",
+      "kind": "scenario",
+      "eyebrow": "Your crew",
+      "prompt": "Your ideal crew is made of...",
+      "loads": [{ "axis": "mind-body", "reverse": false }],
+      "answers": [
+        { "id": "scholars", "text": "Scholars, inventors and schemers.", "moves": [{ "axis": "mind-body", "weight": -2 }] },
+        { "id": "warriors", "text": "Warriors, beasts and brawlers.", "moves": [{ "axis": "mind-body", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "game-plan",
+      "kind": "scenario",
+      "eyebrow": "The plan",
+      "prompt": "Your plan for a game is...",
+      "loads": [{ "axis": "chaos-order", "reverse": false }],
+      "answers": [
+        { "id": "structured", "text": "A structured sequence you follow every time.", "moves": [{ "axis": "chaos-order", "weight": 2 }, { "axis": "variance", "weight": -1 }] },
+        { "id": "chaos", "text": "Whatever chaos you can create, then ride it.", "moves": [{ "axis": "chaos-order", "weight": -2 }, { "axis": "variance", "weight": 1 }] }
+      ]
+    },
+    {
+      "id": "break-the-rules",
+      "kind": "statement",
+      "eyebrow": "Rule breaking",
+      "prompt": "I like decks that bend the rules, sneak things in, and make a glorious mess.",
+      "loads": [{ "axis": "chaos-order", "reverse": true }],
+      "agreeMoves": [{ "axis": "chaos-order", "weight": -2 }, { "axis": "variance", "weight": 1 }]
+    },
+    {
+      "id": "rules-are",
+      "kind": "scenario",
+      "eyebrow": "Rules",
+      "prompt": "To you, rules are...",
+      "loads": [{ "axis": "chaos-order", "reverse": false }],
+      "answers": [
+        { "id": "framework", "text": "The framework that lets you plan.", "moves": [{ "axis": "chaos-order", "weight": 2 }] },
+        { "id": "bendable", "text": "There to be bent.", "moves": [{ "axis": "chaos-order", "weight": -2 }] }
+      ]
+    }
+  ]
+}

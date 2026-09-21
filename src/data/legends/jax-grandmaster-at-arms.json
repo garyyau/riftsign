@@ -1,0 +1,31 @@
+{
+  "id": "jax-grandmaster-at-arms",
+  "name": "Jax, Grandmaster At Arms",
+  "champion": "Jax",
+  "domains": [
+    "Calm",
+    "Body"
+  ],
+  "set": "SFD",
+  "starterDeck": null,
+  "archetype": "Midrange",
+  "coordinates": {
+    "pace": 5,
+    "stance": 5.5,
+    "complexity": 4.5,
+    "variance": 4,
+    "fury-calm": 5,
+    "mind-body": 5,
+    "chaos-order": 0
+  },
+  "howItPlays": "Midrange weaponmaster. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Jax.",
+  "guideUrls": [
+    "https://riftbound.gg/legends"
+  ],
+  "cardImage": "jax-grandmaster-at-arms.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+}

@@ -1,0 +1,31 @@
+{
+  "id": "renata-glasc-chem-baroness",
+  "name": "Renata Glasc, Chem-Baroness",
+  "champion": "Renata Glasc",
+  "domains": [
+    "Mind",
+    "Order"
+  ],
+  "set": "SFD",
+  "starterDeck": null,
+  "archetype": "Control",
+  "coordinates": {
+    "pace": 2.5,
+    "stance": 2,
+    "complexity": 8,
+    "variance": 3.5,
+    "fury-calm": 0,
+    "mind-body": -5,
+    "chaos-order": 5
+  },
+  "howItPlays": "Control manipulation. Draft only: rewrite from two or three published guides during ingestion.",
+  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Renata Glasc.",
+  "guideUrls": [
+    "https://riftbound.gg/legends"
+  ],
+  "cardImage": "renata-glasc-chem-baroness.jpg",
+  "deckListUrl": "https://www.piltoverarchive.com/decks",
+  "reviewed": false,
+  "ingestedAt": "2026-09-20",
+  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Control template. Playstyle coordinates are provisional."
+}
