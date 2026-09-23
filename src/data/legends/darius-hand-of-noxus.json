@@ -29,7 +29,7 @@
         "https://hextechanalytics.com/legends/darius",
         "https://riftstorm.gg/blog/darius-counter-riftbound-legion-tempo"
       ],
-      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "deckListUrl": "https://piltoverarchive.com/decks",
       "reviewed": true,
       "ratingNotes": "Legend ability: exhausting Darius as a reaction adds 1 energy, but only if you already played a card this turn (Legion). pace 7.5: riftstorm.gg's matchup guide says the plan is to 'close the game before a slower, card-quality deck stabilizes,' and riftbound.gg notes the Legion bonus is 'much stronger early in a match.' stance 8.5: riftstorm.gg calls Darius 'the aggressor by design' who 'hates a long, reactive game,' and hextechanalytics.com frames the plan around 'planning the next play before paying for the first.' complexity 4.5: hextechanalytics.com warns players to track that 'Legion and Trifarian do not count the same thing' - real sequencing, but not deeply intricate. variance 4: riftstorm.gg describes a repeatable engine more than a gambling deck, though it notes 'a one-cost pump can win a combat you thought you had blocked,' and riftbound.gg flags that the deck has little way to come back if its early plan is denied, which is a matchup risk more than in-game randomness. Confidence: high, three independently read sources converge tightly on shape and label (Tempo, sometimes described as bordering on beatdown). The claim that no preconstructed starter deck exists for Darius rests on search corroboration rather than a directly read page, so starterDeck is left null but reviewer may want a firmer primary source for that specific negative claim."
     }

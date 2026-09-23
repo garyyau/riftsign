@@ -8,7 +8,7 @@ export function SiteHeader({ onHome }: { onHome: () => void }) {
         {PROJECT_TITLE}
       </button>
       <a
-        href="https://www.piltoverarchive.com"
+        href="https://piltoverarchive.com"
         target="_blank"
         rel="noreferrer"
         className="label-mono text-muted-foreground transition-colors hover:text-foreground"

@@ -37,4 +37,4 @@ The 49 pre-Radiance Legends were seeded from `docs/research/2026-09-20-legend-ta
 
 Riftsign is a non-commercial fan project made under Riot Games' Legal Jibber Jabber policy. Riot Games does not endorse or sponsor this project.
 
-[Riftcodex](https://riftcodex.com) is used during ingestion, as a development tool only, to discover new Legends and confirm their Domains. It is never referenced by the site. Deck lists are linked to [Piltover Archive](https://www.piltoverarchive.com).
+[Riftcodex](https://riftcodex.com) is used during ingestion, as a development tool only, to discover new Legends and confirm their Domains. It is never referenced by the site. Deck lists are linked to [Piltover Archive](https://piltoverarchive.com).

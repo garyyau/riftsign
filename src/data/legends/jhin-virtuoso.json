@@ -28,7 +28,7 @@
         "https://riftbound.gg/jhin-virtuoso-guide/",
         "https://hextechanalytics.com/legends/jhin"
       ],
-      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "deckListUrl": "https://piltoverarchive.com/decks",
       "reviewed": true,
       "ratingNotes": "pace 3.5: hextechanalytics says 'the start of the game will be quite slow for Jhin, who wants to keep gaining runes, draw cards and simply remove opposing units' for the first three or four turns, before it 'accelerates dramatically' into its finish. stance 4: riftbound.gg calls it 'fundamentally reactive early, becoming proactive only after accumulating resources', matching hextechanalytics's 'reactive-to-proactive' description, so this sits below the midpoint. complexity 9: hextechanalytics notes 'combo decks are typically the most rigid builds' since every qualifying spell needs a minimum of 4 runes, and riftbound.gg says you're 'choosing between cheap interaction and a qualifying cast' constantly, a lot of interacting constraints to track at once. variance 6: hextechanalytics calls the deck low variance because of its 'rigid combo requirements', but riftbound.gg calls the rune draw off the payoff 'moderate-to-high' variance; since the payoff itself is a single discrete four-spell swing that either has or hasn't come together, this draft leans toward the swingier end. Ability: when you play a spell after spending 4 or more Energy on it, you may banish it under Jhin instead of trashing it; the fourth banished spell trashes all four, channels 4 runes, and draws a card. Confidence: medium-high, two guides describe the same slow-then-explosive combo shape in detail, though neither cites tournament results for how consistently it closes games."
     }

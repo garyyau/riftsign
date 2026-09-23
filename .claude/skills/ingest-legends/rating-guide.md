@@ -44,4 +44,4 @@ A Player who knows the rules but no deck-building slang reads this.
 ## Links
 
 - `guideUrls`: pages actually fetched and read that support this Build, deck pages included.
-- `deckListUrl`: the Build's most representative top list, `https://piltoverarchive.com/decks/view/<uuid>`; `https://www.piltoverarchive.com/decks` only when no list exists.
+- `deckListUrl`: the Build's most representative top list, `https://piltoverarchive.com/decks/view/<uuid>`; `https://piltoverarchive.com/decks` only when no list exists.
