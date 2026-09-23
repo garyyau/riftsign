@@ -8,26 +8,30 @@
   ],
   "set": "OGS",
   "starterDeck": "Origins Proving Grounds",
-  "archetype": "Tempo",
-  "coordinates": {
-    "pace": 7,
-    "stance": 7,
-    "complexity": 6,
-    "variance": 5,
-    "fury-calm": -5,
-    "mind-body": 0,
-    "chaos-order": -5
-  },
-  "howItPlays": "You attack every turn with cheap Fury and Chaos units while Annie readies two extra runes for you at the end of each turn, so you always have something left over to cast a spell on your opponent's turn too. You build a lead on the score track early, then chain cheap spells to move and ready your units for one last push to the finish.",
-  "whyYou": "You like putting pressure on your opponent from the very first turns and keeping it up instead of waiting for a slower plan to come together. You enjoy having a little extra in reserve too, since Annie's ready runes let you hold up a spell for their turn without slowing down your own. You don't mind a deck that asks you to line up a few small pieces at once, as long as the payoff is finishing the game quickly.",
-  "guideUrls": [
-    "https://riftbound.gg/annie-guide/",
-    "https://riftbound.gg/annie-dark-child-guide/",
-    "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-annie-dark-child-fury-chaos?changedomain"
-  ],
   "cardImage": "annie-dark-child.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "Legend ability: at the end of your turn, ready 2 runes. pace 7: riftbound.gg's Houston Regional guide frames the goal as going 'from 6 to 8 points for the win' off an early lead, and a second riftbound.gg guide calls Annie 'among the more aggressive legends in Riftbound when it comes to scoring patterns.' stance 7: the cardsrealm deck tech says the deck is 'active all the time, even during the opponent's turns' thanks to the ready-rune ability, while still being built to 'build a lead on the board and the scoreboard' - proactive with reactive backup. complexity 6: cardsrealm describes late-game sequencing that uses cheap spells to ready and move splashed units (Kai'Sa, Darius, Vi) so you can conquer every battlefield for the final point, which is more involved than the straightforward early game suggests. variance 5: sources call the deck consistent and efficient rather than swingy, but the multi-unit finishing sequence is a real all-at-once payoff turn, landing this in the middle rather than low. Confidence: high, three independently read sources (two from riftbound.gg, one cardsrealm deck tech) agree closely on shape; a fourth candidate source returned an access error and was excluded rather than trusted on an unverified summary. starterDeck: Annie is one of four Legend decks bundled in the 'Origins: Proving Grounds' starter box (confirmed against the set's own card data), not a dedicated Annie-only product, so the reviewer shouldn't expect a solo SKU."
+  "builds": [
+    {
+      "archetype": "Tempo",
+      "coordinates": {
+        "pace": 7,
+        "stance": 7,
+        "complexity": 6,
+        "variance": 5,
+        "fury-calm": -5,
+        "mind-body": 0,
+        "chaos-order": -5
+      },
+      "howItPlays": "You attack every turn with cheap Fury and Chaos units while Annie readies two extra runes for you at the end of each turn, so you always have something left over to cast a spell on your opponent's turn too. You build a lead on the score track early, then chain cheap spells to move and ready your units for one last push to the finish.",
+      "whyYou": "You like putting pressure on your opponent from the very first turns and keeping it up instead of waiting for a slower plan to come together. You enjoy having a little extra in reserve too, since Annie's ready runes let you hold up a spell for their turn without slowing down your own. You don't mind a deck that asks you to line up a few small pieces at once, as long as the payoff is finishing the game quickly.",
+      "guideUrls": [
+        "https://riftbound.gg/annie-guide/",
+        "https://riftbound.gg/annie-dark-child-guide/",
+        "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-annie-dark-child-fury-chaos?changedomain"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "Legend ability: at the end of your turn, ready 2 runes. pace 7: riftbound.gg's Houston Regional guide frames the goal as going 'from 6 to 8 points for the win' off an early lead, and a second riftbound.gg guide calls Annie 'among the more aggressive legends in Riftbound when it comes to scoring patterns.' stance 7: the cardsrealm deck tech says the deck is 'active all the time, even during the opponent's turns' thanks to the ready-rune ability, while still being built to 'build a lead on the board and the scoreboard' - proactive with reactive backup. complexity 6: cardsrealm describes late-game sequencing that uses cheap spells to ready and move splashed units (Kai'Sa, Darius, Vi) so you can conquer every battlefield for the final point, which is more involved than the straightforward early game suggests. variance 5: sources call the deck consistent and efficient rather than swingy, but the multi-unit finishing sequence is a real all-at-once payoff turn, landing this in the middle rather than low. Confidence: high, three independently read sources (two from riftbound.gg, one cardsrealm deck tech) agree closely on shape; a fourth candidate source returned an access error and was excluded rather than trusted on an unverified summary. starterDeck: Annie is one of four Legend decks bundled in the 'Origins: Proving Grounds' starter box (confirmed against the set's own card data), not a dedicated Annie-only product, so the reviewer shouldn't expect a solo SKU."
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { domainCoordinates, validateLegend, validateQuestionSet } from './schemas'
-import { answer, legend, scenario, smallQuestionSet } from './test-fixtures'
+import { answer, build, legend, scenario, smallQuestionSet } from './test-fixtures'
 import type { Question } from './types'
 
 const issuesOf = (result: { success: boolean; issues?: string[] }) => (result.success ? [] : result.issues!)
@@ -16,15 +16,31 @@ describe('domainCoordinates', () => {
 })
 
 describe('validateLegend', () => {
-  const good = legend('darius', 'Aggro', { pace: 8, 'fury-calm': -5, 'chaos-order': 5 }, ['Fury', 'Order'])
+  const furyOrder = { 'fury-calm': -5, 'chaos-order': 5 }
+  const good = legend('darius', 'Aggro', { pace: 8, ...furyOrder }, ['Fury', 'Order'])
+  const [goodBuild] = good.builds
+  const withBuild = (changes: Record<string, unknown>) => ({ ...good, builds: [{ ...goodBuild, ...changes }] })
 
   it('accepts a well-formed Legend', () => {
     expect(validateLegend(good)).toEqual({ success: true, data: good })
   })
 
-  it('rejects stored Domain coordinates that disagree with the Domains', () => {
-    const bad = { ...good, coordinates: { ...good.coordinates, 'fury-calm': 5 } }
-    expect(issuesOf(validateLegend(bad)).join('\n')).toMatch(/fury-calm.*expected -5/)
+  it('accepts up to three Builds with different Archetypes', () => {
+    const three = { ...good, builds: [goodBuild, build('Tempo', furyOrder), build('Midrange', furyOrder)] }
+    expect(validateLegend(three).success).toBe(true)
+  })
+
+  it('rejects more than three Builds, none, or two sharing an Archetype', () => {
+    const four = { ...good, builds: [goodBuild, build('Tempo', furyOrder), build('Midrange', furyOrder), build('Combo', furyOrder)] }
+    expect(issuesOf(validateLegend(four)).join('\n')).toMatch(/builds/)
+    expect(issuesOf(validateLegend({ ...good, builds: [] })).join('\n')).toMatch(/builds/)
+    const twin = { ...good, builds: [goodBuild, build('Aggro', furyOrder)] }
+    expect(issuesOf(validateLegend(twin)).join('\n')).toMatch(/different archetype/)
+  })
+
+  it('rejects stored Domain coordinates that disagree with the Domains, naming the Build', () => {
+    const bad = { ...good, builds: [goodBuild, build('Tempo', { ...furyOrder, 'fury-calm': 5 })] }
+    expect(issuesOf(validateLegend(bad)).join('\n')).toMatch(/builds\.1\.coordinates\.fury-calm.*expected -5/)
   })
 
   it('rejects a Legend with two identical Domains', () => {
@@ -32,17 +48,17 @@ describe('validateLegend', () => {
   })
 
   it('rejects a playstyle coordinate outside 0-10 and names the field', () => {
-    const bad = { ...good, coordinates: { ...good.coordinates, pace: 11 } }
+    const bad = withBuild({ coordinates: { ...goodBuild.coordinates, pace: 11 } })
     expect(issuesOf(validateLegend(bad)).join('\n')).toMatch(/coordinates\.pace/)
   })
 
   it('rejects an unknown Archetype', () => {
-    expect(issuesOf(validateLegend({ ...good, archetype: 'Ramp' })).join('\n')).toMatch(/archetype/)
+    expect(issuesOf(validateLegend(withBuild({ archetype: 'Ramp' }))).join('\n')).toMatch(/archetype/)
   })
 
   it('rejects a missing required field', () => {
-    const { whyYou: _dropped, ...rest } = good
-    expect(issuesOf(validateLegend(rest)).join('\n')).toMatch(/whyYou/)
+    const { whyYou: _dropped, ...rest } = goodBuild
+    expect(issuesOf(validateLegend({ ...good, builds: [rest] })).join('\n')).toMatch(/whyYou/)
   })
 })
 

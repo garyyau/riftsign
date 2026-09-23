@@ -8,25 +8,52 @@
   ],
   "set": "SFD",
   "starterDeck": "Spiritforged Champion Deck",
-  "archetype": "Midrange",
-  "coordinates": {
-    "pace": 6,
-    "stance": 7.5,
-    "complexity": 7.5,
-    "variance": 6.5,
-    "fury-calm": 0,
-    "mind-body": 5,
-    "chaos-order": 5
-  },
-  "howItPlays": "You attach equipment and play spells that push your units past five Might, and every time one of your units crosses that line Fiora lets you exhaust her to channel an extra rune. You keep growing your strongest units into hard-to-answer threats turn after turn until your side of the board is too big for your opponent to fight through.",
-  "whyYou": "You like decks that reward planning a turn or two ahead, figuring out which unit to grow first and which equipment or spell gets it over the Might threshold. The payoff of watching a cheap unit turn into your best threat is what keeps you coming back, even on turns where the pieces don't line up and you have to play it slower. This Legend suits you if you enjoy puzzling out sequencing more than reacting on the fly.",
-  "guideUrls": [
-    "https://riftbound.gg/fiora-grand-duelist-guide/",
-    "https://riftboundguide.com/2026/04/01/riftbound-fiora-champion-deck-guide/"
-  ],
   "cardImage": "fiora-grand-duelist.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "pace 6: riftbound.gg calls it a 'moderately fast tempo,' saying Fiora is 'difficult to manoeuvre' once she has runes or equipment going; riftboundguide.com frames the same deck as building toward a dominant late-game board rather than an early rush, so I split the difference. stance 7.5: riftboundguide.com says 'the deck builds toward a board state your opponent cannot answer, then closes the game from there,' and riftbound.gg agrees she looks to 'seize board control early and maintain it.' complexity 7.5: riftboundguide.com is explicit - 'Fiora requires sequencing. You need a unit on the board, then a way to push it to 5 Might, and the trigger fires from there' - each turn is its own small puzzle. variance 6.5: the same guide describes a turn where 'Jaull-Fish costs 3 energy' after two Mighty units feeling 'absurd,' against hands with no equipment or spells feeling 'slow' - the deck's best and worst turns are far apart. Legend ability: when one of your units becomes Mighty (5+ Might), you may exhaust Fiora to channel 1 rune exhausted. Confidence: high. Both guides describe the same Mighty-trigger shell in detail. I updated starterDeck to 'Spiritforged Fiora Champion Deck' to match the product title used across sources instead of the seed's shortened 'Spiritforged Champion Deck' - worth a quick check against the physical box."
+  "builds": [
+    {
+      "archetype": "Midrange",
+      "coordinates": {
+        "pace": 6,
+        "stance": 7.5,
+        "complexity": 7.5,
+        "variance": 6.5,
+        "fury-calm": 0,
+        "mind-body": 5,
+        "chaos-order": 5
+      },
+      "howItPlays": "You attach equipment and play spells that push your units past five Might, and every time one of your units crosses that line Fiora lets you exhaust her to channel an extra rune. You keep growing your strongest units into hard-to-answer threats turn after turn until your side of the board is too big for your opponent to fight through.",
+      "whyYou": "You like decks that reward planning a turn or two ahead, figuring out which unit to grow first and which equipment or spell gets it over the Might threshold. The payoff of watching a cheap unit turn into your best threat is what keeps you coming back, even on turns where the pieces don't line up and you have to play it slower. This Legend suits you if you enjoy puzzling out sequencing more than reacting on the fly.",
+      "guideUrls": [
+        "https://riftbound.gg/fiora-grand-duelist-guide/",
+        "https://riftboundguide.com/2026/04/01/riftbound-fiora-champion-deck-guide/"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "pace 6: riftbound.gg calls it a 'moderately fast tempo,' saying Fiora is 'difficult to manoeuvre' once she has runes or equipment going; riftboundguide.com frames the same deck as building toward a dominant late-game board rather than an early rush, so I split the difference. stance 7.5: riftboundguide.com says 'the deck builds toward a board state your opponent cannot answer, then closes the game from there,' and riftbound.gg agrees she looks to 'seize board control early and maintain it.' complexity 7.5: riftboundguide.com is explicit - 'Fiora requires sequencing. You need a unit on the board, then a way to push it to 5 Might, and the trigger fires from there' - each turn is its own small puzzle. variance 6.5: the same guide describes a turn where 'Jaull-Fish costs 3 energy' after two Mighty units feeling 'absurd,' against hands with no equipment or spells feeling 'slow' - the deck's best and worst turns are far apart. Legend ability: when one of your units becomes Mighty (5+ Might), you may exhaust Fiora to channel 1 rune exhausted. Confidence: high. Both guides describe the same Mighty-trigger shell in detail. I updated starterDeck to 'Spiritforged Fiora Champion Deck' to match the product title used across sources instead of the seed's shortened 'Spiritforged Champion Deck' - worth a quick check against the physical box."
+    },
+    {
+      "archetype": "Combo",
+      "coordinates": {
+        "pace": 4,
+        "stance": 5.5,
+        "complexity": 7,
+        "variance": 7,
+        "fury-calm": 0,
+        "mind-body": 5,
+        "chaos-order": 5
+      },
+      "howItPlays": "You use Fiora's extra runes, plus spells that trade away one of your own units for another rune, to reach nine energy early and play Dazzling Aurora, a gear that puts a free unit from the top of your deck into play at the end of every turn. Once it lands, your deck keeps dropping huge threats like Elder Dragon and Rift Herald onto the board while your opponent scrambles to deal with the Aurora itself.",
+      "whyYou": "You like having one big goal and steering every early turn toward it. Killing one of your own strong units with Sacrifice for an extra rune doesn't bother you if it gets Dazzling Aurora down a turn sooner, and you enjoy watching free dragons show up turn after turn once it sticks. This build suits you if you can live with the games where the gear never shows up or gets destroyed, because the games where it survives are very hard for your opponent to come back from.",
+      "guideUrls": [
+        "https://riftbound.gg/fiora-grand-duelist-guide/",
+        "https://piltoverarchive.com/decks/view/f6af5f41-dd09-4b51-ae63-d9d3216eff98",
+        "https://piltoverarchive.com/decks/view/c94c7c24-4956-4d51-9034-cf66472324ab",
+        "https://piltoverarchive.com/decks/view/8ca5bb4c-84e7-48de-bacd-f186c3ab35f3"
+      ],
+      "deckListUrl": "https://piltoverarchive.com/decks/view/f6af5f41-dd09-4b51-ae63-d9d3216eff98",
+      "reviewed": true,
+      "ratingNotes": "pace 4: the Aurora lists (Utrecht and Hartford Best-of, Singapore RQ #8) run 3 Mobilize or 3 Sacrifice plus 3 Divining Shells and 3 Shepherd's Heirloom, but only a few cheap units, and then top out at 3 Dazzling Aurora (9 energy), 3 Rift Herald (8) and 3 Elder Dragon (12). riftbound.gg says this version 'focuses on late game threats and packs early ramp'. It sits slower than the board build's 6 and close to Jayce (3.5) and Sivir (4.5), the pool's other ramp-into-payoff Combo Legends. stance 5.5: riftbound.gg says 'Aurora tends to play its own game, with a large emphasis on its own agenda', which reads as proactive about its own plan but not fighting for battlefields every turn. The lists still keep Akshan, Sett, Brawler and Rengar, Trophy Hunter to hold the board, so it stays above Jayce's 5 and well below the board build's 7.5. complexity 7: you have to plan ramp turns and choose which Mighty unit to kill with Sacrifice, and Rift Herald's Deathknell has to be timed. That is a lot of sequencing, but there are fewer combat tricks to juggle than in the board build (7.5). variance 7 (drafted 7.5, lowered on review to sit closer to Miss Fortune's Aurora build at 6): riftbound.gg says Aurora is 'even more committed to finding its gear' and that the midrange lists 'avoid the annoying issue of gear removal destroying their key card'. Aurora also flips units off the top of the deck at random, so results depend on drawing the gear and keeping it alive. That puts it above the board build's 6.5 and level with Sivir. Legend ability: when one of your units becomes Mighty (5+ Might), you may exhaust Fiora to channel 1 rune exhausted. Here that ability is mostly ramp toward Aurora. Confidence: medium. The three RQ-level Aurora lists come from only two pilots (Fr0zen twice), and riftbound.gg is the only published guide that names the build. hextechanalytics' guide argues against a Dragon-heavy ramp plan, and riftbound.zone lists Fiora only as Midrange. Reviewer: the five-archetype set has no 'Ramp'. I labelled this Combo to match the pool's precedent (riftbound.zone calls Jayce 'Aurora', and he is rated Combo here), but Miss Fortune's Aurora list is rated Control. Fiora's Aurora lists carry little removal (Challenge, Riposte, Repulse, one Hidden Blade), so Combo fits better than Control. riftbound.gg also says the Singapore list could 'switch to midrange', which probably means sideboarding. Worth a check that the gap from the main build is big enough. Review note: the two \"Best of Fiora\" RQ entries carry no placement, so \"RQ-level\" slightly overstates them."
+    }
+  ]
 }

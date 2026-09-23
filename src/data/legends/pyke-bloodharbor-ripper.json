@@ -8,25 +8,29 @@
   ],
   "set": "UNL",
   "starterDeck": null,
-  "archetype": "Control",
-  "coordinates": {
-    "pace": 3,
-    "stance": 4.5,
-    "complexity": 7.5,
-    "variance": 5.5,
-    "fury-calm": -5,
-    "mind-body": 0,
-    "chaos-order": -5
-  },
-  "howItPlays": "You pull your own units back from fights before they die, then spend the gold token Pyke leaves behind to pay for whatever you need from your hand. You spend the game trading away the opponent's cards through discard and bounce until they run out of good options and you take over late.",
-  "whyYou": "You like grinding a game down rather than rushing it, watching the opponent's options shrink while yours stay open. You do not mind a longer match if you are the one deciding when it ends, and you enjoy squeezing extra use out of every unit you pull back home. If reading the opponent and outlasting them appeals more than racing them, Pyke fits.",
-  "guideUrls": [
-    "https://riftbound.gg/pyke-bloodharbor-ripper-guide/",
-    "https://hextechanalytics.com/legends/pyke"
-  ],
   "cardImage": "pyke-bloodharbor-ripper.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "pace 3: riftbound.gg calls Pyke 'a slower, value-oriented strategy... without explosive turn-based wins,' and hextechanalytics separately describes 'gradual board dominance over quick kills,' so both sources reject a fast read.\nstance 4.5: riftbound.gg's own description switches by matchup, using 'removal spells and ambushed cards' to score when ahead but settling into 'a value war, discard cards from the opponent's hand while sending their bigger units back to their hand' when behind; hextechanalytics calls the deck primarily proactive but notes real reactive components, so a middling, matchup-dependent stance fits both reads.\ncomplexity 7.5: both sources agree it is high. riftbound.gg says Pyke had 'two different competitive identities' to choose between, and hextechanalytics says success needs players who 'track the trash, plan Hidden cards a turn ahead, and can preserve a holder while replaying the unit beside it.'\nvariance 5.5: riftbound.gg calls the deck 'so inconsistent' across the format's metagame, but that is a deckbuilding-identity claim rather than a per-game one; hextechanalytics reads the actual games as 'moderate variance,' arguing 'decision variance matters more than RNG swings,' which this file weights more heavily for the Variance Axis.\nLegend ability: pay 1 energy and exhaust to return a friendly unit at a battlefield to its owner's hand, then play a Gold gear token exhausted (sacrifice it later for a rainbow rune).\nConfidence: medium. Two guides read in full (riftbound.gg, hextechanalytics.com), but they disagree on archetype label (Control-leaning disruption versus Tempo/value midrange) and on how reactive the deck feels turn to turn; the seed had this Legend as Aggro, which neither source supports. A reviewer should double-check the archetype call given how split the sources are."
+  "builds": [
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 3,
+        "stance": 4.5,
+        "complexity": 7.5,
+        "variance": 5.5,
+        "fury-calm": -5,
+        "mind-body": 0,
+        "chaos-order": -5
+      },
+      "howItPlays": "You pull your own units back from fights before they die, then spend the gold token Pyke leaves behind to pay for whatever you need from your hand. You spend the game trading away the opponent's cards through discard and bounce until they run out of good options and you take over late.",
+      "whyYou": "You like grinding a game down rather than rushing it, watching the opponent's options shrink while yours stay open. You do not mind a longer match if you are the one deciding when it ends, and you enjoy squeezing extra use out of every unit you pull back home. If reading the opponent and outlasting them appeals more than racing them, Pyke fits.",
+      "guideUrls": [
+        "https://riftbound.gg/pyke-bloodharbor-ripper-guide/",
+        "https://hextechanalytics.com/legends/pyke"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "pace 3: riftbound.gg calls Pyke 'a slower, value-oriented strategy... without explosive turn-based wins,' and hextechanalytics separately describes 'gradual board dominance over quick kills,' so both sources reject a fast read.\nstance 4.5: riftbound.gg's own description switches by matchup, using 'removal spells and ambushed cards' to score when ahead but settling into 'a value war, discard cards from the opponent's hand while sending their bigger units back to their hand' when behind; hextechanalytics calls the deck primarily proactive but notes real reactive components, so a middling, matchup-dependent stance fits both reads.\ncomplexity 7.5: both sources agree it is high. riftbound.gg says Pyke had 'two different competitive identities' to choose between, and hextechanalytics says success needs players who 'track the trash, plan Hidden cards a turn ahead, and can preserve a holder while replaying the unit beside it.'\nvariance 5.5: riftbound.gg calls the deck 'so inconsistent' across the format's metagame, but that is a deckbuilding-identity claim rather than a per-game one; hextechanalytics reads the actual games as 'moderate variance,' arguing 'decision variance matters more than RNG swings,' which this file weights more heavily for the Variance Axis.\nLegend ability: pay 1 energy and exhaust to return a friendly unit at a battlefield to its owner's hand, then play a Gold gear token exhausted (sacrifice it later for a rainbow rune).\nConfidence: medium. Two guides read in full (riftbound.gg, hextechanalytics.com), but they disagree on archetype label (Control-leaning disruption versus Tempo/value midrange) and on how reactive the deck feels turn to turn; the seed had this Legend as Aggro, which neither source supports. A reviewer should double-check the archetype call given how split the sources are."
+    }
+  ]
 }

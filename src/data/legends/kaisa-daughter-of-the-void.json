@@ -8,27 +8,54 @@
   ],
   "set": "OGN",
   "starterDeck": null,
-  "archetype": "Midrange",
-  "coordinates": {
-    "pace": 5,
-    "stance": 5.5,
-    "complexity": 5,
-    "variance": 4,
-    "fury-calm": -5,
-    "mind-body": -5,
-    "chaos-order": 0
-  },
-  "howItPlays": "You lean on a small core of sticky units backed by a steady stream of cheap spells, exhausting Kai'Sa as a reaction to generate an extra rune whenever you need to cast one more. You use those spells for removal and damage to clear the way, then let your units and your card draw carry you to the win.",
-  "whyYou": "You like a deck that gives you options every turn instead of forcing one obvious line, since Kai'Sa keeps handing you extra resources for your spells. You're the type who enjoys reading a matchup and choosing whether to play it safe with removal or push forward with your units, and you don't need every game to be a straightforward race. If running out of cards worries you more than losing a big swing, this fits you well.",
-  "guideUrls": [
-    "https://riftbound.gg/kaisa-daughter-of-the-void-guide/",
-    "https://riftbound.gg/kaisa-daughter-of-the-void-deck-guide/",
-    "https://hextechanalytics.com/legends/kaisa",
-    "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-guide-kaisa-daughter-of-the-void"
-  ],
   "cardImage": "kaisa-daughter-of-the-void.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "Legend ability: exhausting Kai'Sa as a reaction adds one rune usable only to play spells. pace 5: sources disagree on speed. riftbound.cardsrealm.com frames the plan as 'getting ahead in points early on and trying to finish the game as soon as possible,' while hextechanalytics.com says Kai'Sa 'wins slowly through resource accumulation,' so 5 sits between the two readings. stance 5.5: riftbound.gg labels it a 'midrange proactive play style, supported by spells' and cardsrealm agrees it is proactive, but hextechanalytics.com calls the same Legend 'reactive... using cheap spells and removal to stabilize before deploying expensive finishers' - genuinely contested, landed near the middle. complexity 5: hextechanalytics.com flags real rules interactions to track, while cardsrealm calls the plan 'a clear and even simple game plan,' netting out to moderate. variance 4: no source called this deck swingy; cardsrealm calls it 'pretty consistent' with 'practically no bad matchups,' and hextechanalytics.com only flags a mulligan-consistency risk rather than in-game swings. Confidence: medium-high on the ability text (pulled directly from the card API), but archetype and stance are genuinely contested across four independently read sources - reviewer should treat the Midrange label and the stance score as the most debatable numbers in this batch. No preconstructed starter deck exists for Kai'Sa in the Origins Champion Deck lineup (Jinx, Lee Sin, Viktor only), confirmed against the set data, so starterDeck is null."
+  "builds": [
+    {
+      "archetype": "Midrange",
+      "coordinates": {
+        "pace": 5.5,
+        "stance": 6,
+        "complexity": 5,
+        "variance": 4,
+        "fury-calm": -5,
+        "mind-body": -5,
+        "chaos-order": 0
+      },
+      "howItPlays": "You lean on a small core of sticky units backed by a steady stream of cheap spells, exhausting Kai'Sa as a reaction to generate an extra rune whenever you need to cast one more. You use those spells for removal and damage to clear the way, then let your units and your card draw carry you to the win.",
+      "whyYou": "You like a deck that gives you options every turn instead of forcing one obvious line, since Kai'Sa keeps handing you extra resources for your spells. You're the type who enjoys reading a matchup and choosing whether to play it safe with removal or push forward with your units, and you don't need every game to be a straightforward race. If running out of cards worries you more than losing a big swing, this fits you well.",
+      "guideUrls": [
+        "https://riftbound.gg/kaisa-daughter-of-the-void-guide/",
+        "https://riftbound.gg/kaisa-daughter-of-the-void-deck-guide/",
+        "https://hextechanalytics.com/legends/kaisa",
+        "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-guide-kaisa-daughter-of-the-void"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "Legend ability: exhausting Kai'Sa as a reaction adds one rune usable only to play spells. pace 5: sources disagree on speed. riftbound.cardsrealm.com frames the plan as 'getting ahead in points early on and trying to finish the game as soon as possible,' while hextechanalytics.com says Kai'Sa 'wins slowly through resource accumulation,' so 5 sits between the two readings. stance 5.5: riftbound.gg labels it a 'midrange proactive play style, supported by spells' and cardsrealm agrees it is proactive, but hextechanalytics.com calls the same Legend 'reactive... using cheap spells and removal to stabilize before deploying expensive finishers' - genuinely contested, landed near the middle. complexity 5: hextechanalytics.com flags real rules interactions to track, while cardsrealm calls the plan 'a clear and even simple game plan,' netting out to moderate. variance 4: no source called this deck swingy; cardsrealm calls it 'pretty consistent' with 'practically no bad matchups,' and hextechanalytics.com only flags a mulligan-consistency risk rather than in-game swings. Confidence: medium-high on the ability text (pulled directly from the card API), but archetype and stance are genuinely contested across four independently read sources - reviewer should treat the Midrange label and the stance score as the most debatable numbers in this batch. No preconstructed starter deck exists for Kai'Sa in the Origins Champion Deck lineup (Jinx, Lee Sin, Viktor only), confirmed against the set data, so starterDeck is null. Re-rated 2026-09-23, pace 5 to 5.5 and stance 5.5 to 6: hextechanalytics' 'reactive... stabilize before deploying expensive finishers' reading describes the spell-heavy Time Warp list, which is now this Legend's separate Control Build. With that split out, this Build is the unit-heavy Darius/Void Seeker list (every 2025 Chinese Open winner sampled, about half of 2026 Regional Open lists), which riftbound.gg and cardsrealm both call proactive."
+    },
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 3.5,
+        "stance": 3.5,
+        "complexity": 6.5,
+        "variance": 4,
+        "fury-calm": -5,
+        "mind-body": -5,
+        "chaos-order": 0
+      },
+      "howItPlays": "You play only a handful of units and fill the rest of the deck with spells, using Kai'Sa's extra rune to answer threats with Singularity and refill your hand with Progress Day. Once the board is safe, you cast Time Warp to take a second turn in a row and score points before your opponent can respond.",
+      "whyYou": "You'd rather let your opponent commit first and then take their plan apart than race them from turn one. You're happy to spend the early game trading and drawing cards, because your big 10-cost Time Warp turn is coming later. Keeping runes unspent so you can react on your opponent's turn doesn't bore you. It's the part of the game you enjoy most, and the best finish is an opponent who has run out of threats watching you take two turns in a row.",
+      "guideUrls": [
+        "https://hextechanalytics.com/legends/kaisa",
+        "https://riftbound.zone/en/meta/kaisa/midrange/",
+        "https://piltoverarchive.com/decks/view/e2a3020c-34c9-475a-a00b-85fec78f6e2e",
+        "https://piltoverarchive.com/decks/view/d4141c07-71bc-4c02-9829-a5141310d58c"
+      ],
+      "deckListUrl": "https://piltoverarchive.com/decks/view/e2a3020c-34c9-475a-a00b-85fec78f6e2e",
+      "reviewed": true,
+      "ratingNotes": "pace 3.5: hextechanalytics.com calls current Kai'Sa a 'late-game control strategy' where players 'trade through early turns', and the lists cut down to about 15 units with 10-cost Time Warp and 6-cost Singularity/Progress Day at the top (Nanjing RO #6 runs 15 units with 3/3/3; Dalian RO #1 is looser at 17 units, 2 Time Warp, 1 Progress Day, 3 Singularity), so it is clearly slower than the Midrange build (5). It stays above Viktor/Lux (2) because it still runs 2-drops and Thousand-Tailed Watcher. stance 3.5: hextech says to avoid expensive finishers 'until securing a stable battlefield position first' and describes Watcher shrinking the enemy board before cheap damage spells finish those units. That is a reactive plan, but a bit less so than Mel (2.5) or Ezreal (3), since Time Warp turns are a proactive finish. complexity 6.5: you have to decide when to hold Kai'Sa's rune for a reaction, when to spend six runes on Singularity or Progress Day, and when to set up a Time Warp turn. That puts it level with Ezreal (6.5), above the Midrange build (5) and below Viktor/Lux (7.5). variance 4: Progress Day (draw 4) and triple Time Warp smooth out draws, and hextech flags no in-game swings, but the win still depends on finding Time Warp late, so it sits a little above steady control Legends like Mel (2.5). Legend ability: exhausting Kai'Sa as a reaction adds one rune usable only to play spells, which is why a 25-spell list works. Confidence: medium. The build appears in 6 of the 16 lists from 2026 that I checked, including a Regional Open first place and an RQ Best-of, and hextech's post-ban guide and featured deck (2026-09-11) describe it as Control. However, riftbound.zone still labels its similar spell-heavy list Midrange, and Piltover Archive has no Kai'Sa decks after 2026-06, so the post-ban split is inferred from hextech alone. Hextech's list also runs Temporal Breach, which none of the Piltover lists I sampled include; the reviewer should check that card's text if it is named in copy. Review note: the existing Midrange build's ratingNotes quote hextech's control wording, which now belongs to this build; its stance may deserve another look."
+    }
+  ]
 }

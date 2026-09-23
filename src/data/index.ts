@@ -1,4 +1,5 @@
 import { validateLegend, validateQuestionSet } from '@/lib/schemas'
+import { reviewedBuilds } from '@/lib/scoring'
 import type { Legend, QuestionSet } from '@/lib/types'
 import rawQuestions from './questions.json'
 
@@ -14,7 +15,7 @@ if (!questionResult.success) fail('src/data/questions.json', questionResult.issu
 /** The committed Question set, validated on import so a bad edit fails the build. */
 export const QUESTION_SET: QuestionSet = questionResult.data
 
-/** Every committed Legend, reviewed or not. The site only ranks reviewed ones. */
+/** Every committed Legend with all its Builds, reviewed or not. The site only ranks reviewed Builds. */
 export const ALL_LEGENDS: Legend[] = Object.entries(rawLegends)
   .map(([file, raw]) => {
     const result = validateLegend(raw)
@@ -23,7 +24,8 @@ export const ALL_LEGENDS: Legend[] = Object.entries(rawLegends)
   })
   .sort((a, b) => a.name.localeCompare(b.name))
 
-export const LEGENDS: Legend[] = ALL_LEGENDS.filter((l) => l.reviewed)
+/** Legends with at least one reviewed Build, carrying only those Builds. */
+export const LEGENDS: Legend[] = ALL_LEGENDS.map((l) => ({ ...l, builds: reviewedBuilds(l) })).filter((l) => l.builds.length > 0)
 
 /** Champion names for the optional favourites Question, drawn from the reviewed pool. */
 export const CHAMPIONS: string[] = [...new Set(LEGENDS.map((l) => l.champion))].sort()

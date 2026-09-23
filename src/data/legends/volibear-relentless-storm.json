@@ -8,26 +8,30 @@
   ],
   "set": "OGN",
   "starterDeck": null,
-  "archetype": "Control",
-  "coordinates": {
-    "pace": 2,
-    "stance": 2.5,
-    "complexity": 5,
-    "variance": 8,
-    "fury-calm": -5,
-    "mind-body": 5,
-    "chaos-order": 0
-  },
-  "howItPlays": "You hold back early, using spells to clear threats while you build up your runes, then exhaust Volibear whenever you play a unit with five or more might to unlock an extra rune. Once you land your first huge unit you keep dropping bigger ones until your opponent has no good answer left on the board.",
-  "whyYou": "You like taking your time and letting a game develop instead of pushing early damage. You don't mind a quiet start if it means eventually slamming down a unit too big for your opponent to answer, and you're comfortable holding removal spells while you wait for that moment. A bit of risk doesn't bother you either, since your best turns can also be your worst if your big units get bounced away before they matter.",
-  "guideUrls": [
-    "https://riftbound.gg/volibear-relentless-storm-guide/",
-    "https://riftstorm.gg/blog/volibear-counter-riftbound-relentless-storm",
-    "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-volibear-relentless-storm-fury-body?changedomain"
-  ],
   "cardImage": "volibear-relentless-storm.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "Legend ability: exhausting Volibear when you play a unit with 5+ might channels an extra rune. pace 2: riftstorm.gg calls Volibear 'the purest ramp legend in Riftbound' that 'wants a slow, grindy game where his ramp gets to compound' toward 'an oversized finisher.' stance 2.5: riftbound.gg's guide notes the deck 'does not aim to remove opposing units, rather, it is forced to do so in order to reach its comfort zone,' and the cardsrealm deck tech recommends playing removal spells defensively while waiting to draw the win condition. complexity 5: riftstorm.gg calls the plan 'very legible' (one recurring question: did Volibear channel a rune this turn), but the cardsrealm build adds real sequencing around ramp timing and bounce-spell risk, and riftbound.gg flags that early score management is 'crucial.' variance 8: riftstorm.gg says the deck has 'the best ceiling of any ramp legend' but is 'fragile' and 'folds hard to cheap interaction,' and the cardsrealm build is explicitly described as having 'a lot of RNG' from its payoff card. Confidence: medium-high. Three independent sources read (riftbound.gg, riftstorm.gg, a cardsrealm deck tech) converge on a slow, reactive-early, high-ceiling shape, though they differ on the exact label (ramp vs. ramp-control); Control was picked as the closest fit since this project has no Ramp archetype. A claimed 'Volibear Trial Starter Deck' surfaced only in a search snippet whose source pages returned HTTP 403 and could not be verified, so starterDeck is left null; reviewer should double check whether that product exists."
+  "builds": [
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 2,
+        "stance": 2.5,
+        "complexity": 5,
+        "variance": 8,
+        "fury-calm": -5,
+        "mind-body": 5,
+        "chaos-order": 0
+      },
+      "howItPlays": "You hold back early, using spells to clear threats while you build up your runes, then exhaust Volibear whenever you play a unit with five or more might to unlock an extra rune. Once you land your first huge unit you keep dropping bigger ones until your opponent has no good answer left on the board.",
+      "whyYou": "You like taking your time and letting a game develop instead of pushing early damage. You don't mind a quiet start if it means eventually slamming down a unit too big for your opponent to answer, and you're comfortable holding removal spells while you wait for that moment. A bit of risk doesn't bother you either, since your best turns can also be your worst if your big units get bounced away before they matter.",
+      "guideUrls": [
+        "https://riftbound.gg/volibear-relentless-storm-guide/",
+        "https://riftstorm.gg/blog/volibear-counter-riftbound-relentless-storm",
+        "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-volibear-relentless-storm-fury-body?changedomain"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "Legend ability: exhausting Volibear when you play a unit with 5+ might channels an extra rune. pace 2: riftstorm.gg calls Volibear 'the purest ramp legend in Riftbound' that 'wants a slow, grindy game where his ramp gets to compound' toward 'an oversized finisher.' stance 2.5: riftbound.gg's guide notes the deck 'does not aim to remove opposing units, rather, it is forced to do so in order to reach its comfort zone,' and the cardsrealm deck tech recommends playing removal spells defensively while waiting to draw the win condition. complexity 5: riftstorm.gg calls the plan 'very legible' (one recurring question: did Volibear channel a rune this turn), but the cardsrealm build adds real sequencing around ramp timing and bounce-spell risk, and riftbound.gg flags that early score management is 'crucial.' variance 8: riftstorm.gg says the deck has 'the best ceiling of any ramp legend' but is 'fragile' and 'folds hard to cheap interaction,' and the cardsrealm build is explicitly described as having 'a lot of RNG' from its payoff card. Confidence: medium-high. Three independent sources read (riftbound.gg, riftstorm.gg, a cardsrealm deck tech) converge on a slow, reactive-early, high-ceiling shape, though they differ on the exact label (ramp vs. ramp-control); Control was picked as the closest fit since this project has no Ramp archetype. A claimed 'Volibear Trial Starter Deck' surfaced only in a search snippet whose source pages returned HTTP 403 and could not be verified, so starterDeck is left null; reviewer should double check whether that product exists."
+    }
+  ]
 }

@@ -1,4 +1,5 @@
 import { DomainBadge } from '@/components/domain-badge'
+import { reviewedBuilds } from '@/lib/scoring'
 import { STRINGS } from '@/lib/strings'
 import type { DomainLean } from '@/lib/types'
 
@@ -22,7 +23,10 @@ export function DomainLeanSection({ lean }: { lean: DomainLean }) {
           {lean.legends.map((l) => (
             <li key={l.id} className="rounded-md border px-3 py-2 text-sm">
               {l.name}
-              <span className="label-mono ml-2 text-muted-foreground">{l.archetype}</span>
+              <span className="label-mono ml-2 text-muted-foreground">{reviewedBuilds(l)
+                  .map((b) => b.archetype)
+                  .join(' / ')}
+              </span>
             </li>
           ))}
         </ul>

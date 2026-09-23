@@ -10,7 +10,7 @@ import { computeProfile, deriveArchetype, domainLean, rankLegends } from './scor
 import type { Answers, Archetype } from './types'
 
 // The seed pool is unreviewed until Ingestion approves it; the fixtures still need to rank against it.
-const pool = ALL_LEGENDS.map((l) => ({ ...l, reviewed: true }))
+const pool = ALL_LEGENDS.map((l) => ({ ...l, builds: l.builds.map((b) => ({ ...b, reviewed: true })) }))
 
 interface Persona {
   name: string
@@ -71,9 +71,9 @@ const PERSONAS: Persona[] = [
       consistency: 'neutral',
       'game-night-story': 'top-deck',
       'behind-on-board': 'claw-back',
-      'table-mood': 'composed',
-      'fired-up': 'neutral',
-      'battle-cry': 'breathe',
+      'table-mood': 'relentless',
+      'fired-up': 'agree',
+      'battle-cry': 'burn',
       'win-because': 'outsmart',
       'spells-over-creatures': 'agree',
       'ideal-crew': 'scholars',
@@ -246,7 +246,7 @@ describe('Personas land on their expected Archetype', () => {
     it(persona.name, () => {
       const profile = computeProfile(QUESTION_SET, persona.answers)
       const matches = rankLegends(profile, pool)
-      expect(deriveArchetype(matches), `profile ${JSON.stringify(profile)}, top: ${matches.slice(0, 3).map((m) => `${m.legend.name} ${m.fit}`).join(', ')}`).toBe(
+      expect(deriveArchetype(matches), `profile ${JSON.stringify(profile)}, top: ${matches.slice(0, 3).map((m) => `${m.legend.name} (${m.build.archetype}) ${m.fit}`).join(', ')}`).toBe(
         persona.archetype,
       )
       if (persona.dominantDomainAxes) {

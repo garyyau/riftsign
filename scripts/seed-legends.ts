@@ -113,23 +113,27 @@ for (const [name, champion, d1, d2, set, starter, notes, guide] of ROWS) {
     domains: [d1, d2],
     set,
     starterDeck: starter,
-    archetype,
-    coordinates: {
-      pace: clamp(coords.pace),
-      stance: clamp(coords.stance),
-      complexity: clamp(coords.complexity),
-      variance: clamp(coords.variance),
-      ...domainCoordinates([d1, d2]),
-    },
-    howItPlays: `${notes}. Draft only: rewrite from two or three published guides during ingestion.`,
-    whyYou: `Draft only: describe in second person why a Player with this Riftsign would enjoy piloting ${champion}.`,
-    guideUrls: [guide],
     cardImage: `${id}.jpg`,
-    // Piltover Archive has no per-Legend filter URL (checked 2026-09-20); its browser filters client-side.
-    deckListUrl: 'https://www.piltoverarchive.com/decks',
-    reviewed: false,
     ingestedAt: '2026-09-20',
-    ratingNotes: `Seeded from docs/research/2026-09-20-legend-table.md with the ${archetype} template. Playstyle coordinates are provisional.`,
+    builds: [
+      {
+        archetype,
+        coordinates: {
+          pace: clamp(coords.pace),
+          stance: clamp(coords.stance),
+          complexity: clamp(coords.complexity),
+          variance: clamp(coords.variance),
+          ...domainCoordinates([d1, d2]),
+        },
+        howItPlays: `${notes}. Draft only: rewrite from two or three published guides during ingestion.`,
+        whyYou: `Draft only: describe in second person why a Player with this Riftsign would enjoy piloting ${champion}.`,
+        guideUrls: [guide],
+        // Piltover Archive has no per-Legend filter URL (checked 2026-09-20); its browser filters client-side.
+        deckListUrl: 'https://www.piltoverarchive.com/decks',
+        reviewed: false,
+        ratingNotes: `Seeded from docs/research/2026-09-20-legend-table.md with the ${archetype} template. Playstyle coordinates are provisional.`,
+      },
+    ],
   }
   writeFileSync(path.join(outDir, `${id}.json`), JSON.stringify(legend, null, 2) + '\n')
 }

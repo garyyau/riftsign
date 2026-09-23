@@ -56,6 +56,21 @@ export interface QuestionSet {
 /** questionId -> chosen answerId. Missing keys are unanswered. */
 export type Answers = Record<string, string>
 
+/** A Legend has at most this many Builds. Extra Builds are added only when players actually run them. */
+export const MAX_BUILDS = 3
+
+/** One played way of piloting a Legend: an Archetype with its own Axis position and copy. */
+export interface Build {
+  archetype: Archetype
+  coordinates: Profile
+  howItPlays: string
+  whyYou: string
+  guideUrls: string[]
+  deckListUrl: string
+  reviewed: boolean
+  ratingNotes: string
+}
+
 export interface Legend {
   id: string
   name: string
@@ -64,20 +79,16 @@ export interface Legend {
   set: SetCode
   /** Retail product name, or null when no starter deck exists. */
   starterDeck: string | null
-  archetype: Archetype
-  coordinates: Profile
-  howItPlays: string
-  whyYou: string
-  guideUrls: string[]
   cardImage: string
-  deckListUrl: string
-  reviewed: boolean
   ingestedAt: string
-  ratingNotes: string
+  /** 1 to MAX_BUILDS, each a different Archetype. */
+  builds: Build[]
 }
 
 export interface Match {
   legend: Legend
+  /** The Legend's reviewed Build closest to the Profile. */
+  build: Build
   /** 0-100. Higher is closer. */
   fit: number
 }

@@ -20,7 +20,7 @@ export function RankingList({ matches }: { matches: Match[] }) {
               <span className="min-w-0">
                 <span className="block truncate">{m.legend.name}</span>
                 <span className="mt-1 flex flex-wrap gap-3">
-                  <span className="label-mono text-muted-foreground">{m.legend.archetype}</span>
+                  <span className="label-mono text-muted-foreground">{m.build.archetype}</span>
                   {m.legend.domains.map((d) => (
                     <DomainBadge key={d} domain={d} />
                   ))}

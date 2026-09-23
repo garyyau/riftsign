@@ -8,25 +8,52 @@
   ],
   "set": "OGS",
   "starterDeck": "Origins Proving Grounds",
-  "archetype": "Midrange",
-  "coordinates": {
-    "pace": 4.5,
-    "stance": 6.5,
-    "complexity": 3.5,
-    "variance": 5,
-    "fury-calm": 0,
-    "mind-body": 5,
-    "chaos-order": 5
-  },
-  "howItPlays": "You build up a wide army of Body units on your side of the board and choose when to swing them at a battlefield together, aiming for four or more units there so Garen's Legend ability draws you two cards when you conquer. You keep adding units, protecting your strongest ones from bad trades, and turning those extra cards into more units until your opponent can't match your numbers.",
-  "whyYou": "You want a deck that teaches you the fundamentals without asking you to track a dozen moving pieces at once. You like building a bigger army than your opponent, picking your moment to attack, and getting rewarded with extra cards for playing patiently. This Legend suits you if you'd rather outnumber your opponent than outtrick them, and you don't mind a plan that takes a couple of turns to come together.",
-  "guideUrls": [
-    "https://riftbound.gg/garen-might-of-demacia-guide/",
-    "https://hextechanalytics.com/legends/garen"
-  ],
   "cardImage": "garen-might-of-demacia.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "pace 4.5: hextechanalytics calls it a 'measured, proactive tempo' that 'builds a board deliberately before committing to fights,' and riftbound.gg agrees the deck is neither an early rush nor a drawn-out game. stance 6.5: riftbound.gg says the deck 'cares mostly about units and winning the good old-fashioned way,' developing its own units instead of answering the opponent's, though it isn't as relentlessly proactive as the fastest Legends. complexity 3.5: riftbound.gg calls the gameplan 'fairly simple' and beginner-friendly; hextechanalytics pushes back a bit, saying success 'requires counting surviving units mid-combat' and that 'the mistake is treating the draw-two trigger as an obligation' - I split the difference since one source is describing the starter deck specifically and the other the wider Legend. variance 5: hextechanalytics notes 'removal that takes the fourth unit out before the conquest can deny the cards even when you still win,' a real but setup-dependent swing rather than a random one. Legend ability: when you conquer, if you have 4+ units at that battlefield, draw 2. Confidence: high. Two guides independently describe the same shape of deck; they disagree somewhat on complexity because one covers the Proving Grounds starter deck and the other the Legend in general, which a reviewer should weigh given this file is for the starter version."
+  "builds": [
+    {
+      "archetype": "Midrange",
+      "coordinates": {
+        "pace": 4.5,
+        "stance": 6.5,
+        "complexity": 3.5,
+        "variance": 5,
+        "fury-calm": 0,
+        "mind-body": 5,
+        "chaos-order": 5
+      },
+      "howItPlays": "You build up a wide army of Body units on your side of the board and choose when to swing them at a battlefield together, aiming for four or more units there so Garen's Legend ability draws you two cards when you conquer. You keep adding units, protecting your strongest ones from bad trades, and turning those extra cards into more units until your opponent can't match your numbers.",
+      "whyYou": "You want a deck that teaches you the fundamentals without asking you to track a dozen moving pieces at once. You like building a bigger army than your opponent, picking your moment to attack, and getting rewarded with extra cards for playing patiently. This Legend suits you if you'd rather outnumber your opponent than outtrick them, and you don't mind a plan that takes a couple of turns to come together.",
+      "guideUrls": [
+        "https://riftbound.gg/garen-might-of-demacia-guide/",
+        "https://hextechanalytics.com/legends/garen"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "pace 4.5: hextechanalytics calls it a 'measured, proactive tempo' that 'builds a board deliberately before committing to fights,' and riftbound.gg agrees the deck is neither an early rush nor a drawn-out game. stance 6.5: riftbound.gg says the deck 'cares mostly about units and winning the good old-fashioned way,' developing its own units instead of answering the opponent's, though it isn't as relentlessly proactive as the fastest Legends. complexity 3.5: riftbound.gg calls the gameplan 'fairly simple' and beginner-friendly; hextechanalytics pushes back a bit, saying success 'requires counting surviving units mid-combat' and that 'the mistake is treating the draw-two trigger as an obligation' - I split the difference since one source is describing the starter deck specifically and the other the wider Legend. variance 5: hextechanalytics notes 'removal that takes the fourth unit out before the conquest can deny the cards even when you still win,' a real but setup-dependent swing rather than a random one. Legend ability: when you conquer, if you have 4+ units at that battlefield, draw 2. Confidence: high. Two guides independently describe the same shape of deck; they disagree somewhat on complexity because one covers the Proving Grounds starter deck and the other the Legend in general, which a reviewer should weigh given this file is for the starter version."
+    },
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 2.5,
+        "stance": 4,
+        "complexity": 5.5,
+        "variance": 6,
+        "fury-calm": 0,
+        "mind-body": 5,
+        "chaos-order": 5
+      },
+      "howItPlays": "You spend your early turns on spells like Mobilize and Catalyst of Aeons that give you extra runes, while cheap answers like Flurry of Blades and Hidden Blade clear away whatever your opponent plays. Once you can afford Dazzling Aurora, it plays the next unit from the top of your deck for free at the end of each of your turns, usually one of your Dragons, until your opponent can't keep up.",
+      "whyYou": "You'd rather survive the early turns than race, and you like knowing that every turn you survive puts another free unit on the board. You don't mind answering your opponent's plays for a while as long as a big payoff is waiting at the end. This version of Garen suits you if watching a free Dragon land every turn sounds better than lining up four small units for a card draw.",
+      "guideUrls": [
+        "https://piltoverarchive.com/decks/view/4120b9ce-e86a-40ea-b218-16602874ca69",
+        "https://piltoverarchive.com/decks/view/0ce1b16b-7ec2-4717-8d15-731b48f01fe7",
+        "https://piltoverarchive.com/decks/view/9ecc15c1-fab8-4187-a19f-ccf07faa40e7",
+        "https://playriftbound.com/en-us/news/announcements/from-garen-to-annie-rq-houstons-top-decks/"
+      ],
+      "deckListUrl": "https://piltoverarchive.com/decks/view/0ce1b16b-7ec2-4717-8d15-731b48f01fe7",
+      "reviewed": true,
+      "ratingNotes": "pace 2.5: the Utrecht and Hartford RQ lists each run 6 rune-ramp spells (3 Mobilize, 3 Catalyst of Aeons) and build toward a 9-cost Dazzling Aurora and a 12-cost Elder Dragon. hextechanalytics' 2026-09-22 snapshot says of the same Aurora engine in Jayce that 'spending early turns on ramp still leaves a gap before Aurora produces a scorer.' I rated it slower than the Midrange build's 4.5 and a touch faster than Poppy (2) and Nasus (1). stance 4 (drafted 3.5, raised on review because the Utrecht list also runs Rally the Troops, Forge of the Future, Vanguard Armory and Confront, so it builds some board): the lists carry a heavy reactive suite (Flurry of Blades, Repulse, Disposal Order, Tactical Retreat, Unyielding Spirit at Utrecht; Hidden Blade, Cull the Weak, Divine Judgment in the City Challenge lists). The Utrecht list has only 5 non-token units, so the early game is mostly answering, and I put it alongside Poppy (3) and Nasus (3.5). complexity 5.5: players have to time their ramp spells, hold instant-speed answers and decide when to commit to a 9-cost gear. That is more than the go-wide build (3.5) but it has no multi-card loop like Jayce (7.5). variance 6: Aurora reveals the top of the deck until it hits a unit. The Utrecht list keeps that steady by running only Dragons, while the City Challenge lists with more units get more mixed results. The build also depends on surviving until Aurora lands, and I rated it close to Sivir-style finishers but below Sivir's 7.5. Legend ability: when you conquer, if you have 4+ units at that battlefield, draw 2. In this build the ability is a side bonus that Forge of the Future and Vanguard Armory tokens set up, not the main plan. Confidence: medium. Deck evidence is strong (23 of 36 Garen tournament lists, both RQ Best-of lists, and mobalytics search results naming Vancouver and Houston RQ Best-of Aurora lists that I could not open). I couldn't read a Garen-specific guide for this build. The Tacter 'Garen Aurora' guide 404'd and mobalytics is blocked, so the axis ratings rest on the card lists and on hextech's general description of Aurora decks. The reviewer should also decide whether Control or Combo fits better. The pool labels Poppy's Aurora build Control and Jayce's Aurora build Combo. I chose Control because Garen has no engine that readies or repeats cards, and the lists win by removal plus inevitable big units. The official playriftbound.com Houston RQ article describes RiftboundTee's Best-Of Garen as ramp plus board control with 3 Catalyst, 3 Aurora, 3 Hidden Blade and 3 Mobilize."
+    }
+  ]
 }

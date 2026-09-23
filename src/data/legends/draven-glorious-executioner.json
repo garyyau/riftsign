@@ -8,28 +8,34 @@
   ],
   "set": "SFD",
   "starterDeck": null,
-  "archetype": "Midrange",
-  "coordinates": {
-    "pace": 5,
-    "stance": 4,
-    "complexity": 7,
-    "variance": 6.5,
-    "fury-calm": -5,
-    "mind-body": 0,
-    "chaos-order": -5
-  },
-  "howItPlays": "You attach Spinning Axes and other gear to your units, pick fights you can win, and draw a card every time you win a combat to keep your hand full. You use that steady card draw to keep replacing your attackers until your bigger units take over the game.",
-  "whyYou": "You like combat math and want every attack to be a real decision about gear, positioning, and what your opponent can answer with. You're fine with a slower start if it means your card draw snowballs once your key units start winning fights, and you don't mind that a few matchups punish you hard if you fall behind early. If you'd rather out-think an opponent turn by turn than just race them, Draven gives you plenty to chew on.",
-  "guideUrls": [
-    "https://riftbound.gg/draven-glorious-executioner-guide/",
-    "https://riftbound.gg/tier-list",
-    "https://hextechanalytics.com/legends/draven",
-    "https://magicalmeta.ink/riftbound/articles/Draven-Glorious-Executioner-Spiritforged-Deck-Guide",
-    "https://riftboundguide.com/2026/03/03/budget-draven-deck-riftbound/"
-  ],
   "cardImage": "draven-glorious-executioner.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "Legend ability: when you win a combat, draw 1 card. pace 5: riftbound.gg's guide says the deck 'snowballs' once key units stick and 'doesn't fare well when forced to play from behind,' pointing to a midgame plan rather than an early rush; riftboundguide.com separately describes a faster 'Miracle' combo variant built around cost-reduction cards, so this number reflects the more common standard build. stance 4: riftbound.gg frames the deck as 'a control, reactive environment with a few large units to deal with eventually,' though hextechanalytics.com pushes back that it wants to 'establish the first battlefield' proactively - landed on the reactive side since more sources describe it that way. complexity 7: hextechanalytics.com is explicit that players must count the defender's actual might before committing an axe and track hidden-card setup, and magicalmeta.ink calls the deck 'not the easiest to play but very rewarding.' variance 6.5: hextechanalytics.com calls the deck 'moderately high variance' tied to hidden-card mechanics and equipment-dependent combat, and riftboundguide.com's separate Miracle build adds explosive cost-reduction turns on top of that. Confidence: medium-high, five distinct sources read (a riftbound.gg strategy guide, the riftbound.gg tier list confirming a real Tier 3 placement, hextechanalytics.com, magicalmeta.ink, and riftboundguide.com); they genuinely disagree on the archetype label (reactive midrange vs. tempo vs. aggro-combo), most likely because two different real decklists exist for this Legend, so reviewer should treat archetype as the least certain field here. riftboundguide.com explicitly states 'Draven is not available as a pre-built champion deck,' so starterDeck is null."
+  "builds": [
+    {
+      "archetype": "Midrange",
+      "coordinates": {
+        "pace": 5,
+        "stance": 5.5,
+        "complexity": 7,
+        "variance": 6.5,
+        "fury-calm": -5,
+        "mind-body": 0,
+        "chaos-order": -5
+      },
+      "howItPlays": "You fight over battlefields with cheap units and swing those fights with cards like Spinning Axe, a piece of gear you can play even in the middle of a fight that attaches to a unit and gives it +3 Might. Every combat you win, attacking or defending, draws you a card as long as one of your units survives, and Draven, Showboat grows stronger with every point you score.",
+      "whyYou": "You like combat math and want every fight to be a real decision: which unit gets the Axe, what you keep face down, and what your opponent can still answer with. You're happy to trade blows for a few turns, knowing each fight you win refills your hand and each point you score makes Showboat scarier. You accept that some fast decks will run you over if you fall behind early. If you'd rather out-think an opponent one combat at a time than race them, Draven gives you plenty to chew on.",
+      "guideUrls": [
+        "https://hextechanalytics.com/legends/draven",
+        "https://hextechanalytics.com/meta/snapshots/2026-09-22",
+        "https://riftbound.zone/en/meta/draven/midrange/",
+        "https://riftbound.gg/draven-glorious-executioner-guide/",
+        "https://piltoverarchive.com/decks/view/a4cc19aa-2272-4674-8c7e-f8e70d1a6002",
+        "https://piltoverarchive.com/decks/view/336e5057-dc29-4f59-ab21-9be7db754ecf",
+        "https://piltoverarchive.com/decks/view/3b24e43b-ce66-4898-a221-cd01913ae8f1"
+      ],
+      "deckListUrl": "https://piltoverarchive.com/decks/view/a4cc19aa-2272-4674-8c7e-f8e70d1a6002",
+      "reviewed": true,
+      "ratingNotes": "pace 5: the hextech guide says to 'use cheap units to establish the first battlefield', but Showboat only becomes a threat as your points climb, and riftbound.gg says he needs 4 points to matter and the deck struggles when behind. That is a middle-game plan, level with Jax (5/6/7/5.5) and Kha'Zix (5/6/7/6.5). stance 5.5 (was 4): hextech's legend guide calls the deck proactive, and the Legend draws on any combat win, attacking or defending, if a friendly unit survives. The RQ lists attack with Noxus Hopeful, Kai'Sa and Evelynn's pull, but they also run defensive tools: Overzealous Fan returns an attacker to base, Tideturner swaps from Hidden, and 2-3 Rebuke. That puts the deck a little under the proactive Midrange Builds (Akali 6, Jax 6) and above reactive Leona (3). complexity 7: hextech walks through Quick-Draw timing, Hidden setup at controlled battlefields, and sacrificing Fan while keeping a second defender. Kept level with Jax and Kha'Zix at 7. variance 6.5: Hidden cards and cards played mid-combat decide fights, and hextech Snapshot #7 says the engine needs an actual fight and the deck is less self-sufficient during setup. Losing Stacked Deck's card selection keeps variance from dropping, level with Kha'Zix 6.5 and below LeBlanc 7. Legend ability: when you win a combat, draw 1 card (a friendly unit must survive). Confidence: high on the label, medium on the coordinates. Change 2026-09-23: stance moved from 4 to 5.5. The old reading leaned on riftbound.gg's 'a control, reactive environment' line, which can be read as the field Draven does well in rather than how Draven plays, and hextech calls the deck proactive. The budget Miracle variant behind the old variance and label notes shows up in no top list after the March ban. The other axes and the label are unchanged. hextech's legend page leans toward calling the deck aggressive and tempo-focused, but riftbound.gg, riftbound.zone and the RQ lists agree on Midrange, so the label stays. Reviewer check: the deckListUrl (Singapore RQ, 2026-09-10) still runs 3 Stacked Deck, banned 2026-09-18. Replace it with a post-ban list after the Los Angeles RQ (starts about 2026-09-25). riftbound.zone's list also runs 3 Stacked Deck. No tournament Draven list since 2026-09-18 has been published yet."
+    }
+  ]
 }

@@ -1,5 +1,5 @@
 import { AXES, AXIS_IDS, DOMAIN_AXIS_IDS, normalize, type AxisId, type Domain, type DomainAxisId } from './axes'
-import type { Answer, Answers, Archetype, DomainLean, Legend, Match, Profile, Question, QuestionSet } from './types'
+import type { Answer, Answers, Archetype, Build, DomainLean, Legend, Match, Profile, Question, QuestionSet } from './types'
 
 export const STATEMENT_POINTS = [
   { id: 'strongly-disagree', text: 'Strongly disagree', factor: -1 },
@@ -93,17 +93,22 @@ export interface RankOptions {
   favouriteChampions?: string[]
 }
 
+/** Only reviewed Builds can appear in a Match. A Legend with none is not in the pool. */
+export const reviewedBuilds = (legend: Legend): Build[] => legend.builds.filter((b) => b.reviewed)
+
+/** One Match per Legend, scored on whichever of its reviewed Builds sits closest to the Profile. */
 export function rankLegends(profile: Profile, pool: Legend[], options: RankOptions = {}): Match[] {
   const favourites = new Set(options.favouriteChampions ?? [])
   return pool
-    .filter((l) => l.reviewed)
-    .map((legend) => {
-      const base = (1 - distance(profile, legend.coordinates) / MAX_DISTANCE) * 100
+    .flatMap((legend) => {
+      const scored = reviewedBuilds(legend).map((build) => ({ build, d: distance(profile, build.coordinates) }))
+      if (!scored.length) return []
+      const { build, d } = scored.reduce((best, s) => (s.d < best.d ? s : best))
       const bonus = favourites.has(legend.champion) ? FAVOURITE_CHAMPION_BONUS : 0
-      return { legend, score: Math.min(100, base + bonus) }
+      return [{ legend, build, score: Math.min(100, (1 - d / MAX_DISTANCE) * 100 + bonus) }]
     })
     .sort((a, b) => b.score - a.score || a.legend.name.localeCompare(b.legend.name))
-    .map(({ legend, score }) => ({ legend, fit: Math.round(score) }))
+    .map(({ legend, build, score }) => ({ legend, build, fit: Math.round(score) }))
 }
 
 /** Top two Matches within this many fit points of each other count as a tie for the headline. */
@@ -117,17 +122,17 @@ export const ARCHETYPE_TIE_MARGIN = 3
 export function deriveArchetype(matches: Match[]): Archetype | null {
   const [first, second] = matches
   if (!first) return null
-  if (!second || first.legend.archetype === second.legend.archetype) return first.legend.archetype
-  if (first.fit - second.fit > ARCHETYPE_TIE_MARGIN) return first.legend.archetype
+  if (!second || first.build.archetype === second.build.archetype) return first.build.archetype
+  if (first.fit - second.fit > ARCHETYPE_TIE_MARGIN) return first.build.archetype
 
   const topFive = matches.slice(0, 5)
   const meanFit = (archetype: Archetype) => {
-    const fits = topFive.filter((m) => m.legend.archetype === archetype).map((m) => m.fit)
+    const fits = topFive.filter((m) => m.build.archetype === archetype).map((m) => m.fit)
     return fits.reduce((a, b) => a + b, 0) / fits.length
   }
-  return meanFit(second.legend.archetype) > meanFit(first.legend.archetype)
-    ? second.legend.archetype
-    : first.legend.archetype
+  return meanFit(second.build.archetype) > meanFit(first.build.archetype)
+    ? second.build.archetype
+    : first.build.archetype
 }
 
 /**
@@ -148,6 +153,6 @@ export function domainLean(profile: Profile, pool: Legend[], exclude: Legend[] =
   const legends =
     domains.length === 0
       ? []
-      : pool.filter((l) => l.reviewed && !excluded.has(l.id) && domains.every((d) => l.domains.includes(d)))
+      : pool.filter((l) => reviewedBuilds(l).length > 0 && !excluded.has(l.id) && domains.every((d) => l.domains.includes(d)))
   return { axes: [a, b], domains, legends }
 }

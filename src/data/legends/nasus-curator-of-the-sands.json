@@ -8,26 +8,30 @@
   ],
   "set": "VEN",
   "starterDeck": null,
-  "archetype": "Control",
-  "coordinates": {
-    "pace": 1,
-    "stance": 3.5,
-    "complexity": 5.5,
-    "variance": 6.5,
-    "fury-calm": 5,
-    "mind-body": -5,
-    "chaos-order": 0
-  },
-  "howItPlays": "You spend the early turns surviving with cheap spells and small units while you build toward your big plays. Once you can afford a unit, gear, or ability that costs seven energy or more, you exhaust Nasus to ready two runes and immediately follow it up with another huge play the same turn.",
-  "whyYou": "You like games that start slow and end with your side of the table doing something huge. You're willing to take some hits early and hold the line, trusting that your expensive cards will pay off once you get there. If watching the game turn in your favor around turn eight or nine feels better than winning fast, Nasus rewards that patience.",
-  "guideUrls": [
-    "https://riftbound.gg/nasus-curator-of-the-sands-guide/",
-    "https://riftboundguide.com/2026/07/23/riftbound-nasus-champion-deck-guide/",
-    "https://skillshotzgaming.com/riftbound-vendetta-legends-guide/"
-  ],
   "cardImage": "nasus-curator-of-the-sands.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "pace 1: riftboundguide.com says Nasus 'does nothing until turn three or four' and is 'a patient, value-generating deck, not an early aggressor.' stance 3.5: riftbound.gg says the deck is reactive early ('once Nasus manages to wrestle the board back') before becoming proactive once its engine is online; riftboundguide.com agrees it survives early and only takes over the game later. complexity 5.5: riftboundguide.com says 'Nasus is not the easiest deck to pick up if you want quick, obvious plays every turn. It rewards sequencing and patience,' while skillshotzgaming.com rates its complexity 'Medium.' variance 6.5: riftboundguide.com describes chaining expensive plays so 'turn eight feels unstoppable specifically because you survived to turn eight,' a genuine big-turn effect once the engine goes off. Legend ability: exhaust Nasus to ready up to two runes whenever you play a unit, gear, or activated ability costing seven energy or more. Confidence: high, three sources (riftbound.gg, riftboundguide.com, skillshotzgaming.com) agree closely on the slow-to-snowball shape. Reviewer should double-check starterDeck: riftboundguide.com states Nasus has no pre-built Champion Deck and is 'singles-only,' so it stays null; confirm that's still true if a Champion Deck ships later."
+  "builds": [
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 1,
+        "stance": 3.5,
+        "complexity": 5.5,
+        "variance": 6.5,
+        "fury-calm": 5,
+        "mind-body": -5,
+        "chaos-order": 0
+      },
+      "howItPlays": "You spend the early turns surviving with cheap spells and small units while you build toward your big plays. Once you can afford a unit, gear, or ability that costs seven energy or more, you exhaust Nasus to ready two runes and immediately follow it up with another huge play the same turn.",
+      "whyYou": "You like games that start slow and end with your side of the table doing something huge. You're willing to take some hits early and hold the line, trusting that your expensive cards will pay off once you get there. If watching the game turn in your favor around turn eight or nine feels better than winning fast, Nasus rewards that patience.",
+      "guideUrls": [
+        "https://riftbound.gg/nasus-curator-of-the-sands-guide/",
+        "https://riftboundguide.com/2026/07/23/riftbound-nasus-champion-deck-guide/",
+        "https://skillshotzgaming.com/riftbound-vendetta-legends-guide/"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "pace 1: riftboundguide.com says Nasus 'does nothing until turn three or four' and is 'a patient, value-generating deck, not an early aggressor.' stance 3.5: riftbound.gg says the deck is reactive early ('once Nasus manages to wrestle the board back') before becoming proactive once its engine is online; riftboundguide.com agrees it survives early and only takes over the game later. complexity 5.5: riftboundguide.com says 'Nasus is not the easiest deck to pick up if you want quick, obvious plays every turn. It rewards sequencing and patience,' while skillshotzgaming.com rates its complexity 'Medium.' variance 6.5: riftboundguide.com describes chaining expensive plays so 'turn eight feels unstoppable specifically because you survived to turn eight,' a genuine big-turn effect once the engine goes off. Legend ability: exhaust Nasus to ready up to two runes whenever you play a unit, gear, or activated ability costing seven energy or more. Confidence: high, three sources (riftbound.gg, riftboundguide.com, skillshotzgaming.com) agree closely on the slow-to-snowball shape. Reviewer should double-check starterDeck: riftboundguide.com states Nasus has no pre-built Champion Deck and is 'singles-only,' so it stays null; confirm that's still true if a Champion Deck ships later."
+    }
+  ]
 }

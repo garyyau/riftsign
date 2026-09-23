@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { ARCHETYPE_TIE_MARGIN, computeProfile, deriveArchetype, domainLean, rankLegends } from './scoring'
 import type { Archetype, Profile } from './types'
-import { CENTER, legend, smallQuestionSet } from './test-fixtures'
+import { build, CENTER, legend, smallQuestionSet } from './test-fixtures'
 
 describe('computeProfile', () => {
   it('lands at the midpoint of every Axis when nothing is answered', () => {
@@ -87,9 +87,23 @@ describe('rankLegends', () => {
     expect(ranked[0].fit).toBe(100)
   })
 
-  it('leaves unreviewed Legends out of the ranking', () => {
-    const ranked = rankLegends(fastProactive, [...pool, legend('draft', 'Aggro', { pace: 10, stance: 10 }, undefined, { reviewed: false })])
-    expect(ranked.map((m) => m.legend.id)).not.toContain('draft')
+  it('leaves Legends with no reviewed Build out of the ranking', () => {
+    const draft = legend('draft', 'Aggro', {}, undefined, { builds: [build('Aggro', { pace: 10, stance: 10 }, { reviewed: false })] })
+    expect(rankLegends(fastProactive, [...pool, draft]).map((m) => m.legend.id)).not.toContain('draft')
+  })
+
+  it('matches each Legend once, on its closest reviewed Build', () => {
+    const lux = legend('lux', 'Control', {}, undefined, {
+      builds: [
+        build('Control', { pace: 1, stance: 1 }),
+        build('Combo', { pace: 9, stance: 9 }),
+        build('Aggro', { pace: 10, stance: 10 }, { reviewed: false }),
+      ],
+    })
+    const fast = rankLegends(fastProactive, [lux])
+    expect(fast).toHaveLength(1)
+    expect(fast[0].build.archetype).toBe('Combo')
+    expect(rankLegends({ ...CENTER, pace: 0, stance: 0 }, [lux])[0].build.archetype).toBe('Control')
   })
 })
 
@@ -137,6 +151,12 @@ describe('domainLean', () => {
   it('leaves out Legends already shown in the top three', () => {
     const lean = domainLean({ ...CENTER, 'fury-calm': -4, 'chaos-order': 3 }, pool, [pool[0]])
     expect(lean.legends.map((l) => l.id)).toEqual(['order-fury'])
+  })
+
+  it('leaves out Legends with no reviewed Build', () => {
+    const draft = legend('draft', 'Aggro', {}, ['Fury', 'Order'], { builds: [build('Aggro', {}, { reviewed: false })] })
+    const lean = domainLean({ ...CENTER, 'fury-calm': -4, 'chaos-order': 3 }, [...pool, draft])
+    expect(lean.legends.map((l) => l.id)).not.toContain('draft')
   })
 
   it('claims no Domain for an Axis sitting exactly at the midpoint', () => {

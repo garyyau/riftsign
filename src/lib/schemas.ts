@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { AXIS_IDS, DOMAIN_AXIS_IDS, DOMAIN_POLES, DOMAINS, type AxisId, type Domain, type DomainAxisId } from './axes'
 import { answersOf } from './scoring'
-import { ARCHETYPES, SET_CODES, type Legend, type Question, type QuestionSet } from './types'
+import { ARCHETYPES, MAX_BUILDS, SET_CODES, type Legend, type Question, type QuestionSet } from './types'
 
 export const MIN_QUESTIONS_PER_AXIS = 3
 
@@ -21,6 +21,17 @@ export const profileSchema = z.object({
   'chaos-order': domainScore,
 })
 
+export const buildSchema = z.object({
+  archetype: z.enum(ARCHETYPES),
+  coordinates: profileSchema,
+  howItPlays: z.string().min(1),
+  whyYou: z.string().min(1),
+  guideUrls: z.array(z.url()).min(1, 'at least one guide URL grounds the rating'),
+  deckListUrl: z.url(),
+  reviewed: z.boolean(),
+  ratingNotes: z.string(),
+})
+
 export const legendSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/, 'kebab-case id'),
   name: z.string().min(1),
@@ -28,16 +39,13 @@ export const legendSchema = z.object({
   domains: z.tuple([domain, domain]).refine(([a, b]) => a !== b, 'domains must differ'),
   set: z.enum(SET_CODES),
   starterDeck: z.string().min(1).nullable(),
-  archetype: z.enum(ARCHETYPES),
-  coordinates: profileSchema,
-  howItPlays: z.string().min(1),
-  whyYou: z.string().min(1),
-  guideUrls: z.array(z.url()).min(1, 'at least one guide URL grounds the rating'),
   cardImage: z.string().min(1),
-  deckListUrl: z.url(),
-  reviewed: z.boolean(),
   ingestedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'YYYY-MM-DD'),
-  ratingNotes: z.string(),
+  builds: z
+    .array(buildSchema)
+    .min(1)
+    .max(MAX_BUILDS)
+    .refine((bs) => new Set(bs.map((b) => b.archetype)).size === bs.length, 'each Build needs a different archetype'),
 })
 
 const axisMove = z.object({ axis: axisId, weight: z.number() })
@@ -82,13 +90,15 @@ export function validateLegend(raw: unknown): ValidationResult<Legend> {
   const legend = parsed.data
   const issues: string[] = []
   const expected = domainCoordinates(legend.domains)
-  for (const axis of DOMAIN_AXIS_IDS) {
-    if (legend.coordinates[axis] !== expected[axis]) {
-      issues.push(
-        `coordinates.${axis}: stored ${legend.coordinates[axis]} but Domains ${legend.domains.join('/')} expected ${expected[axis]}`,
-      )
+  legend.builds.forEach((build, i) => {
+    for (const axis of DOMAIN_AXIS_IDS) {
+      if (build.coordinates[axis] !== expected[axis]) {
+        issues.push(
+          `builds.${i}.coordinates.${axis}: stored ${build.coordinates[axis]} but Domains ${legend.domains.join('/')} expected ${expected[axis]}`,
+        )
+      }
     }
-  }
+  })
   return issues.length ? { success: false, issues } : { success: true, data: legend }
 }
 

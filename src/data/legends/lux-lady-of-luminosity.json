@@ -8,26 +8,30 @@
   ],
   "set": "OGS",
   "starterDeck": "Origins Proving Grounds",
-  "archetype": "Control",
-  "coordinates": {
-    "pace": 2,
-    "stance": 3,
-    "complexity": 7.5,
-    "variance": 5,
-    "fury-calm": 0,
-    "mind-body": -5,
-    "chaos-order": 5
-  },
-  "howItPlays": "You open with a couple of cheap units to hold a battlefield, then spend the rest of the game holding big spells like Singularity and Final Spark for the moment your opponent overextends. Every expensive spell you cast refills your hand, so you can keep answering threats without ever running dry.",
-  "whyYou": "You like sitting back and letting your opponent make the first move, then punishing it with a spell that swings the fight decisively. You're comfortable planning several turns ahead and keeping track of which big spell you're saving for which threat. If a long game where you always seem to have the answer sounds satisfying, Lux fits you well.",
-  "guideUrls": [
-    "https://riftbound.gg/lux-lady-of-luminosity-guide/",
-    "https://hextechanalytics.com/legends/lux",
-    "https://riftbound.gg/origins-proving-grounds/"
-  ],
   "cardImage": "lux-lady-of-luminosity.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "pace 2: hextechanalytics frames Lux's resource pieces as needing time to repay, and riftbound.gg's guide to the pure control build (the one we're rating here, not the newer one-turn-kill tech) says 'you're trying to play a long game here, keep your opponents in check, then reap the rewards.' stance 3: the deck opens with a couple of early proactive plays (Daring Poro, Ravenbloom Student) to hold a battlefield, then shifts into holding removal like Singularity and Final Spark for the opponent's move; hextechanalytics labels the overall shape 'Reactive/Control'. complexity 7.5: hextechanalytics rates it 'High', citing the balance between Energy and Power runes and sequencing which big spell to hold; genuinely demanding even before any combo tech. variance 5: hextechanalytics calls it 'Moderate/Swingy', since games depend on drawing into the expensive spells that trigger the Legend's draw ability. Legend ability: whenever you play a spell that costs Energy 5 or more, draw 1. Confidence: medium. riftbound.gg's current guide actually leads with a one-turn-kill combo build ('Lux is one of the only combo legends in Riftbound') and treats the pure control list as a superseded, lower-finishing approach from an earlier regional; per instructions we rated the normal control deck, not the OTK build, so the reviewer should confirm that's still the intended default before this ships, since the guide itself now recommends the combo list."
+  "builds": [
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 2,
+        "stance": 3,
+        "complexity": 7.5,
+        "variance": 5,
+        "fury-calm": 0,
+        "mind-body": -5,
+        "chaos-order": 5
+      },
+      "howItPlays": "You open with a couple of cheap units to hold a battlefield, then spend the rest of the game holding big spells like Singularity and Final Spark for the moment your opponent overextends. Every expensive spell you cast refills your hand, so you can keep answering threats without ever running dry.",
+      "whyYou": "You like sitting back and letting your opponent make the first move, then punishing it with a spell that swings the fight decisively. You're comfortable planning several turns ahead and keeping track of which big spell you're saving for which threat. If a long game where you always seem to have the answer sounds satisfying, Lux fits you well.",
+      "guideUrls": [
+        "https://riftbound.gg/lux-lady-of-luminosity-guide/",
+        "https://hextechanalytics.com/legends/lux",
+        "https://riftbound.gg/origins-proving-grounds/"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "pace 2: hextechanalytics frames Lux's resource pieces as needing time to repay, and riftbound.gg's guide to the pure control build (the one we're rating here, not the newer one-turn-kill tech) says 'you're trying to play a long game here, keep your opponents in check, then reap the rewards.' stance 3: the deck opens with a couple of early proactive plays (Daring Poro, Ravenbloom Student) to hold a battlefield, then shifts into holding removal like Singularity and Final Spark for the opponent's move; hextechanalytics labels the overall shape 'Reactive/Control'. complexity 7.5: hextechanalytics rates it 'High', citing the balance between Energy and Power runes and sequencing which big spell to hold; genuinely demanding even before any combo tech. variance 5: hextechanalytics calls it 'Moderate/Swingy', since games depend on drawing into the expensive spells that trigger the Legend's draw ability. Legend ability: whenever you play a spell that costs Energy 5 or more, draw 1. Confidence: medium. riftbound.gg's current guide actually leads with a one-turn-kill combo build ('Lux is one of the only combo legends in Riftbound') and treats the pure control list as a superseded, lower-finishing approach from an earlier regional; per instructions we rated the normal control deck, not the OTK build, so the reviewer should confirm that's still the intended default before this ships, since the guide itself now recommends the combo list. Update 2026-09-23: settled in favour of Control. Ekko, Recurrent, the engine of the one-turn-kill build, was banned on 2026-09-18 (riftbound.gg ban article: 'effectively grants an extra turn and also recycles itself'), and 84 of 86 archived Lux tournament lists were already Control. No Combo Build is listed; add one only if an Ekko-free loop reaches top cuts."
+    }
+  ]
 }

@@ -130,7 +130,7 @@ writeFileSync(
   withMeta(indexHtml, { title: STRINGS.og.title, description: STRINGS.og.description, imagePath: 'og/default.png', pagePath: '' }),
 )
 for (const legend of legends) {
-  await renderOg(path.join(ogDir, `${legend.id}.png`), legend.name, legend.archetype, path.join(root, 'public/cards', legend.cardImage))
+  await renderOg(path.join(ogDir, `${legend.id}.png`), legend.name, legend.builds.map((b) => b.archetype).join(' / '), path.join(root, 'public/cards', legend.cardImage))
   const dir = path.join(dist, 'r', legend.id)
   mkdirSync(dir, { recursive: true })
   writeFileSync(

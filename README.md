@@ -22,14 +22,14 @@ Pushing to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 ## Data
 
 - `src/data/questions.json`: the Question set. Bump `version` by hand when Question content changes.
-- `src/data/legends/<id>.json`: one file per Legend. Only files with `"reviewed": true` reach the site.
+- `src/data/legends/<id>.json`: one file per Legend, holding one to three Builds (ways the Legend is played, each a different Archetype; see ADR 0003). Only Builds with `"reviewed": true` reach the site.
 - `public/cards/<id>.jpg`: one official card image per Legend.
 
-Domain coordinates are derived from the two Domains and checked at build time. Playstyle coordinates are drafted from published guides and reviewed by a person before `reviewed` is flipped.
+Domain coordinates are derived from the two Domains and checked at build time. Playstyle coordinates are drafted from published guides and reviewed by a person before each Build's `reviewed` is flipped.
 
 ## Adding Legends
 
-Run the repo-local Claude Code command `/ingest-legends` after a set release (or `/ingest-legends <Legend name>` to re-rate one). It discovers new Legends, drafts a file per Legend with `reviewed: false`, downloads the card image, and prints a review checklist. Approve each file by hand.
+Run the repo-local Claude Code skill `/ingest-legends` after a set release, `/ingest-legends <Legend name>` to re-rate one, or `/ingest-legends all` to re-rate every Legend when a ban list or tournament shifts the meta. It researches each Legend's tournament decks, drafts its Builds at `reviewed: false`, downloads card images for new Legends, and prints a review checklist. Approve each Build by hand.
 
 The 49 pre-Radiance Legends were seeded from `docs/research/2026-09-20-legend-table.md` with Archetype template coordinates and are all unreviewed. Re-rate them with the command before launch.
 

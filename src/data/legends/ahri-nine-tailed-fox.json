@@ -8,25 +8,29 @@
   ],
   "set": "OGN",
   "starterDeck": null,
-  "archetype": "Control",
-  "coordinates": {
-    "pace": 1.5,
-    "stance": 1.5,
-    "complexity": 7,
-    "variance": 3.5,
-    "fury-calm": 5,
-    "mind-body": -5,
-    "chaos-order": 0
-  },
-  "howItPlays": "You sit back and let your opponent come to you, since every unit that attacks a battlefield you're holding gets weaker the moment it swings. You use spells to shore up your units and wear the opponent down, holding onto a lead battlefield by battlefield until they run out of ways to dislodge you.",
-  "whyYou": "You like taking the slow route, letting your opponent commit first and then punishing that commitment. You enjoy protecting a lead once you have it, and you don't mind a game that takes a while to close out as long as you're steadily ahead the whole time. If holding your ground and grinding out a win feels more satisfying to you than racing for an early knockout, Ahri suits you.",
-  "guideUrls": [
-    "https://riftbound.gg/ahri-deck-guide-nine-tailed-fox-control/",
-    "https://hextechanalytics.com/legends/ahri"
-  ],
   "cardImage": "ahri-nine-tailed-fox.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "pace 1.5: hextechanalytics calls it 'a defensive control Legend' that 'starts with Inquisitive and inexpensive spells, then grows into a much larger turn' rather than racing, and the URL riftbound.gg used for this guide is literally titled nine-tailed-fox-control. stance 1.5: riftbound.gg says it 'punishes foes for attacking Battlefields under her control' and is 'a defensive deck' that uses 'a ton of spells to be able to control the boardstate' instead of initiating. complexity 7: hextechanalytics says you must 'count what you will score if this one survives' before committing units and manage a discount that 'is not waiting indefinitely for whichever card you prefer', real sequencing without being the most convoluted engine in the format. variance 3.5: riftbound.gg contrasts Ahri with 'a deck like Viktor, which lives and dies on consistency and silver bullets', saying it's 'hard to stop Ahri from being able to control the game', i.e. a steady deck that doesn't rely on drawing one specific card. Ability: whenever an enemy unit attacks a battlefield you control, it gets -1 Might that turn, to a minimum of 1 Might. Confidence: medium-high on the archetype flip from the seed's Combo guess to Control, since both sources independently and explicitly call it a control/defensive deck; the reviewer should double check this reclassification since it changes Ahri's Match pool position significantly."
+  "builds": [
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 1.5,
+        "stance": 1.5,
+        "complexity": 7,
+        "variance": 3.5,
+        "fury-calm": 5,
+        "mind-body": -5,
+        "chaos-order": 0
+      },
+      "howItPlays": "You sit back and let your opponent come to you, since every unit that attacks a battlefield you're holding gets weaker the moment it swings. You use spells to shore up your units and wear the opponent down, holding onto a lead battlefield by battlefield until they run out of ways to dislodge you.",
+      "whyYou": "You like taking the slow route, letting your opponent commit first and then punishing that commitment. You enjoy protecting a lead once you have it, and you don't mind a game that takes a while to close out as long as you're steadily ahead the whole time. If holding your ground and grinding out a win feels more satisfying to you than racing for an early knockout, Ahri suits you.",
+      "guideUrls": [
+        "https://riftbound.gg/ahri-deck-guide-nine-tailed-fox-control/",
+        "https://hextechanalytics.com/legends/ahri"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "pace 1.5: hextechanalytics calls it 'a defensive control Legend' that 'starts with Inquisitive and inexpensive spells, then grows into a much larger turn' rather than racing, and the URL riftbound.gg used for this guide is literally titled nine-tailed-fox-control. stance 1.5: riftbound.gg says it 'punishes foes for attacking Battlefields under her control' and is 'a defensive deck' that uses 'a ton of spells to be able to control the boardstate' instead of initiating. complexity 7: hextechanalytics says you must 'count what you will score if this one survives' before committing units and manage a discount that 'is not waiting indefinitely for whichever card you prefer', real sequencing without being the most convoluted engine in the format. variance 3.5: riftbound.gg contrasts Ahri with 'a deck like Viktor, which lives and dies on consistency and silver bullets', saying it's 'hard to stop Ahri from being able to control the game', i.e. a steady deck that doesn't rely on drawing one specific card. Ability: whenever an enemy unit attacks a battlefield you control, it gets -1 Might that turn, to a minimum of 1 Might. Confidence: medium-high on the archetype flip from the seed's Combo guess to Control, since both sources independently and explicitly call it a control/defensive deck; the reviewer should double check this reclassification since it changes Ahri's Match pool position significantly."
+    }
+  ]
 }

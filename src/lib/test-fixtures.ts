@@ -1,5 +1,5 @@
 import type { Domain } from './axes'
-import type { Answer, Archetype, Legend, Profile, Question, QuestionSet } from './types'
+import type { Answer, Archetype, Build, Legend, Profile, Question, QuestionSet } from './types'
 
 export function scenario(id: string, answers: Answer[], loads: Question['loads']): Question {
   return { id, kind: 'scenario', eyebrow: 'At the table', prompt: `Prompt ${id}`, loads, answers }
@@ -51,6 +51,21 @@ export const CENTER: Profile = {
   'chaos-order': 0,
 }
 
+export function build(archetype: Archetype, coords: Partial<Profile>, extra: Partial<Build> = {}): Build {
+  return {
+    archetype,
+    coordinates: { ...CENTER, ...coords },
+    howItPlays: 'Plays cards. Wins games.',
+    whyYou: 'You like winning.',
+    guideUrls: ['https://example.test/guide'],
+    deckListUrl: 'https://piltoverarchive.com/decks',
+    reviewed: true,
+    ratingNotes: '',
+    ...extra,
+  }
+}
+
+/** A Legend with one Build; pass `extra.builds` for more. */
 export function legend(
   id: string,
   archetype: Archetype,
@@ -65,16 +80,9 @@ export function legend(
     domains,
     set: 'OGN',
     starterDeck: null,
-    archetype,
-    coordinates: { ...CENTER, ...coords },
-    howItPlays: 'Plays cards. Wins games.',
-    whyYou: 'You like winning.',
-    guideUrls: ['https://example.test/guide'],
     cardImage: `${id}.jpg`,
-    deckListUrl: `https://piltoverarchive.com/decks?legend=${id}`,
-    reviewed: true,
     ingestedAt: '2026-09-20',
-    ratingNotes: '',
+    builds: [build(archetype, coords)],
     ...extra,
   }
 }

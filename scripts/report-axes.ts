@@ -1,21 +1,24 @@
 /**
- * Informational report (not a gate): inter-Axis correlation across reviewed Legend coordinates,
- * and how many Legends sit inside a central radius of normalized Axis space. Run `pnpm report`.
+ * Informational report (not a gate): inter-Axis correlation across reviewed Build coordinates,
+ * and how many Builds sit inside a central radius of normalized Axis space. Run `pnpm report`.
  * Pass --all to include unreviewed drafts.
  */
 import { AXIS_IDS, normalize, type AxisId } from '../src/lib/axes'
 import { loadLegends } from './lib/load-legends'
 
 const includeAll = process.argv.includes('--all')
-const legends = loadLegends(includeAll)
+// Each Build is its own point in Axis space.
+const points = loadLegends(includeAll).flatMap((l) =>
+  l.builds.map((b) => ({ name: `${l.name} (${b.archetype})`, coordinates: b.coordinates })),
+)
 
-if (legends.length < 2) {
-  console.log(`Only ${legends.length} Legend(s) in scope; nothing to correlate. Try --all.`)
+if (points.length < 2) {
+  console.log(`Only ${points.length} Build(s) in scope; nothing to correlate. Try --all.`)
   process.exit(0)
 }
 
 const columns = Object.fromEntries(
-  AXIS_IDS.map((axis) => [axis, legends.map((l) => normalize(axis, l.coordinates[axis]))]),
+  AXIS_IDS.map((axis) => [axis, points.map((p) => normalize(axis, p.coordinates[axis]))]),
 ) as Record<AxisId, number[]>
 
 const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length
@@ -33,7 +36,7 @@ const pearson = (xs: number[], ys: number[]) => {
   return dx === 0 || dy === 0 ? 0 : num / Math.sqrt(dx * dy)
 }
 
-console.log(`Inter-Axis correlation across ${legends.length} Legend(s)${includeAll ? ' (including unreviewed)' : ''}:\n`)
+console.log(`Inter-Axis correlation across ${points.length} Build(s)${includeAll ? ' (including unreviewed)' : ''}:\n`)
 const pad = (s: string, n = 12) => s.padStart(n)
 console.log(pad('') + AXIS_IDS.map((a) => pad(a)).join(''))
 for (const a of AXIS_IDS) {
@@ -51,11 +54,11 @@ console.log(
 )
 
 const CENTRAL_RADIUS = 0.25
-const central = legends.filter((l) => {
-  const d = Math.sqrt(AXIS_IDS.reduce((sum, axis) => sum + (normalize(axis, l.coordinates[axis]) - 0.5) ** 2, 0))
+const central = points.filter((p) => {
+  const d = Math.sqrt(AXIS_IDS.reduce((sum, axis) => sum + (normalize(axis, p.coordinates[axis]) - 0.5) ** 2, 0))
   return d <= CENTRAL_RADIUS
 })
 console.log(
-  `\n${central.length} of ${legends.length} Legends (${Math.round((100 * central.length) / legends.length)}%) sit within ${CENTRAL_RADIUS} of the centre of normalized Axis space.`,
+  `\n${central.length} of ${points.length} Builds (${Math.round((100 * central.length) / points.length)}%) sit within ${CENTRAL_RADIUS} of the centre of normalized Axis space.`,
 )
-if (central.length) console.log(`  ${central.map((l) => l.name).join(', ')}`)
+if (central.length) console.log(`  ${central.map((p) => p.name).join(', ')}`)

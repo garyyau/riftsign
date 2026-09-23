@@ -8,25 +8,29 @@
   ],
   "set": "OGN",
   "starterDeck": "Origins Champion Deck",
-  "archetype": "Midrange",
-  "coordinates": {
-    "pace": 4,
-    "stance": 6.5,
-    "complexity": 6.5,
-    "variance": 5,
-    "fury-calm": 5,
-    "mind-body": 5,
-    "chaos-order": 0
-  },
-  "howItPlays": "You spend Energy to tap Lee Sin and hand a friendly unit a lasting +1 Might buff, then protect that unit while it wins fights in your favor. Over a few turns your buffed units get big enough to take battlefields outright, closing out the game through sheer size.",
-  "whyYou": "You like games where a single unit slowly becomes a problem your opponent can't ignore. You're the kind of player who enjoys picking the right moment to commit a buff and then guarding that unit like it's precious, tracking every fight so nothing wastes the investment. If you'd rather build one threat carefully than spread your attention everywhere at once, Lee Sin rewards that patience.",
-  "guideUrls": [
-    "https://riftbound.gg/lee-sin-blind-monk-guide/",
-    "https://hextechanalytics.com/legends/lee-sin"
-  ],
   "cardImage": "lee-sin-blind-monk.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "pace 4: riftbound.gg frames the deck as 'unit-first... looking to get set on the board' before it fights, and hextechanalytics calls it a deliberate plan that 'turns a small board into a difficult fight through lasting buffs' rather than racing. stance 6.5: riftbound.gg calls it proactive, aiming to dominate showdowns with beefy units, though hextechanalytics notes it is 'reactive-to-proactive', establishing defense before pivoting to offense, so it leans proactive without being fully so. complexity 6.5: hextechanalytics says players must weigh 'whether the board needs Centered, an immediate large unit, or the Aurora investment' and that the buff 'does not stack on an already-buffed unit', real tracking, but only six main-deck units caps it short of the most intricate decks. variance 5: hextechanalytics flags 'notable variance through Dazzling Aurora's reveals' but adds the deck 'limits outcomes' with few units to find, so it lands moderate rather than swingy. Ability: pay 1 Energy and exhaust Lee Sin to give a friendly unit its first +1 Might buff. Confidence: medium, both sources agree on the buff-and-protect midrange shape but describe the proactive/reactive balance a little differently, so the stance number is a judgment call; reviewer should double check the Origins Champion Deck starter link is still current."
+  "builds": [
+    {
+      "archetype": "Midrange",
+      "coordinates": {
+        "pace": 4,
+        "stance": 6.5,
+        "complexity": 6.5,
+        "variance": 5,
+        "fury-calm": 5,
+        "mind-body": 5,
+        "chaos-order": 0
+      },
+      "howItPlays": "You spend Energy to tap Lee Sin and hand a friendly unit a lasting +1 Might buff, then protect that unit while it wins fights in your favor. Over a few turns your buffed units get big enough to take battlefields outright, closing out the game through sheer size.",
+      "whyYou": "You like games where a single unit slowly becomes a problem your opponent can't ignore. You're the kind of player who enjoys picking the right moment to commit a buff and then guarding that unit like it's precious, tracking every fight so nothing wastes the investment. If you'd rather build one threat carefully than spread your attention everywhere at once, Lee Sin rewards that patience.",
+      "guideUrls": [
+        "https://riftbound.gg/lee-sin-blind-monk-guide/",
+        "https://hextechanalytics.com/legends/lee-sin"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "pace 4: riftbound.gg frames the deck as 'unit-first... looking to get set on the board' before it fights, and hextechanalytics calls it a deliberate plan that 'turns a small board into a difficult fight through lasting buffs' rather than racing. stance 6.5: riftbound.gg calls it proactive, aiming to dominate showdowns with beefy units, though hextechanalytics notes it is 'reactive-to-proactive', establishing defense before pivoting to offense, so it leans proactive without being fully so. complexity 6.5: hextechanalytics says players must weigh 'whether the board needs Centered, an immediate large unit, or the Aurora investment' and that the buff 'does not stack on an already-buffed unit', real tracking, but only six main-deck units caps it short of the most intricate decks. variance 5: hextechanalytics flags 'notable variance through Dazzling Aurora's reveals' but adds the deck 'limits outcomes' with few units to find, so it lands moderate rather than swingy. Ability: pay 1 Energy and exhaust Lee Sin to give a friendly unit its first +1 Might buff. Confidence: medium, both sources agree on the buff-and-protect midrange shape but describe the proactive/reactive balance a little differently, so the stance number is a judgment call; reviewer should double check the Origins Champion Deck starter link is still current."
+    }
+  ]
 }

@@ -8,25 +8,29 @@
   ],
   "set": "UNL",
   "starterDeck": null,
-  "archetype": "Control",
-  "coordinates": {
-    "pace": 2,
-    "stance": 3,
-    "complexity": 6.5,
-    "variance": 4,
-    "fury-calm": 0,
-    "mind-body": 5,
-    "chaos-order": 5
-  },
-  "howItPlays": "You hold your ground at battlefields with efficient trades instead of racing, and every battlefield you hold banks Poppy XP that you cash in later to exhaust her and draw an extra card. You grind through the middle of the game protecting your position and drawing cards until you have enough units and answers stored up to take over late.",
-  "whyYou": "You like a deck that wins through patience, trading carefully, holding your ground, and letting a slow stockpile of resources turn into an edge nobody saw coming. You don't need every turn to look exciting, and you're fine playing a longer game as long as it keeps getting better for you. This Legend suits you if you'd rather grind out an advantage than gamble on one big turn.",
-  "guideUrls": [
-    "https://riftbound.cardsrealm.com/es-mx/articles/riftbound-unleashed-legends-tierlist",
-    "https://riftstorm.gg/blog/poppy-counter-riftbound-keeper-hammer"
-  ],
   "cardImage": "poppy-keeper-of-the-hammer.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "pace 2: riftstorm.gg calls the deck 'deliberately unhurried,' built on 'a slow accumulation strategy rather than explosive turns,' and describes the matchup as 'a slow attrition war.' stance 3: riftstorm.gg calls Poppy 'deceptively reactive, though fundamentally proactive,' noting 'holding is her payoff, not a pass' - she still leans toward defense and grinding rather than forcing the issue. complexity 6.5: riftstorm.gg says players must track XP thresholds, an ambush blocker's timing window, and a comeback unit's trigger condition all at once. variance 4: riftstorm.gg is explicit that 'this is not a matchup about surviving one explosive scoring turn,' though it allows some swing from surprise ambush blockers and the comeback unit; cardsrealm's tier list agrees the archetype is strong but 'should struggle in aggressive metas or metas with lots of removals,' which is more a matchup dependency than in-game swinginess. Legend ability: when you hold a battlefield, gain 1 XP; spend 3 XP and exhaust to draw 1. Confidence: medium. I only found two written sources that go deeper than a bare decklist (a tier-list writeup and a dedicated deck-profile blog) and no tournament-report-level detail, since Poppy has a lower play rate than the other Unleashed Legends; a reviewer should weigh in if a stronger primary source turns up."
+  "builds": [
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 2,
+        "stance": 3,
+        "complexity": 6.5,
+        "variance": 4,
+        "fury-calm": 0,
+        "mind-body": 5,
+        "chaos-order": 5
+      },
+      "howItPlays": "You hold your ground at battlefields with efficient trades instead of racing, and every battlefield you hold banks Poppy XP that you cash in later to exhaust her and draw an extra card. You grind through the middle of the game protecting your position and drawing cards until you have enough units and answers stored up to take over late.",
+      "whyYou": "You like a deck that wins through patience, trading carefully, holding your ground, and letting a slow stockpile of resources turn into an edge nobody saw coming. You don't need every turn to look exciting, and you're fine playing a longer game as long as it keeps getting better for you. This Legend suits you if you'd rather grind out an advantage than gamble on one big turn.",
+      "guideUrls": [
+        "https://riftbound.cardsrealm.com/es-mx/articles/riftbound-unleashed-legends-tierlist",
+        "https://riftstorm.gg/blog/poppy-counter-riftbound-keeper-hammer"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "pace 2: riftstorm.gg calls the deck 'deliberately unhurried,' built on 'a slow accumulation strategy rather than explosive turns,' and describes the matchup as 'a slow attrition war.' stance 3: riftstorm.gg calls Poppy 'deceptively reactive, though fundamentally proactive,' noting 'holding is her payoff, not a pass' - she still leans toward defense and grinding rather than forcing the issue. complexity 6.5: riftstorm.gg says players must track XP thresholds, an ambush blocker's timing window, and a comeback unit's trigger condition all at once. variance 4: riftstorm.gg is explicit that 'this is not a matchup about surviving one explosive scoring turn,' though it allows some swing from surprise ambush blockers and the comeback unit; cardsrealm's tier list agrees the archetype is strong but 'should struggle in aggressive metas or metas with lots of removals,' which is more a matchup dependency than in-game swinginess. Legend ability: when you hold a battlefield, gain 1 XP; spend 3 XP and exhaust to draw 1. Confidence: medium. I only found two written sources that go deeper than a bare decklist (a tier-list writeup and a dedicated deck-profile blog) and no tournament-report-level detail, since Poppy has a lower play rate than the other Unleashed Legends; a reviewer should weigh in if a stronger primary source turns up."
+    }
+  ]
 }

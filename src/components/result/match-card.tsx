@@ -1,13 +1,17 @@
 import { DomainBadge } from '@/components/domain-badge'
 import { Badge } from '@/components/ui/badge'
+import { reviewedBuilds } from '@/lib/scoring'
 import { STRINGS } from '@/lib/strings'
 import type { Match } from '@/lib/types'
 import { stepNumber } from '@/lib/utils'
 import { CardImage } from './card-image'
 
 export function MatchCard({ match, rank }: { match: Match; rank: number }) {
-  const { legend, fit } = match
+  const { legend, build, fit } = match
   const s = STRINGS.result
+  const otherArchetypes = reviewedBuilds(legend)
+    .filter((b) => b !== build)
+    .map((b) => b.archetype)
   return (
     <article className="grid gap-6 border-t py-8 md:grid-cols-12">
       <div className="md:col-span-4 lg:col-span-3">
@@ -19,7 +23,7 @@ export function MatchCard({ match, rank }: { match: Match; rank: number }) {
         </p>
         <h3 className="display mt-3 text-3xl md:text-4xl">{legend.name}</h3>
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <Badge variant="strong">{legend.archetype}</Badge>
+          <Badge variant="strong">{build.archetype}</Badge>
           {legend.domains.map((d) => (
             <DomainBadge key={d} domain={d} />
           ))}
@@ -27,18 +31,21 @@ export function MatchCard({ match, rank }: { match: Match; rank: number }) {
             {legend.starterDeck ? s.starter(legend.starterDeck) : s.noStarter}
           </Badge>
         </div>
+        {otherArchetypes.length > 0 && (
+          <p className="label-mono mt-3 text-muted-foreground">{s.alsoPlayed(otherArchetypes)}</p>
+        )}
         <dl className="mt-6 grid gap-5 text-sm leading-relaxed sm:grid-cols-2">
           <div>
             <dt className="label-mono text-muted-foreground">{s.howItPlays}</dt>
-            <dd className="mt-2">{legend.howItPlays}</dd>
+            <dd className="mt-2">{build.howItPlays}</dd>
           </div>
           <div>
             <dt className="label-mono text-muted-foreground">{s.whyYou}</dt>
-            <dd className="mt-2">{legend.whyYou}</dd>
+            <dd className="mt-2">{build.whyYou}</dd>
           </div>
         </dl>
         <a
-          href={legend.deckListUrl}
+          href={build.deckListUrl}
           target="_blank"
           rel="noreferrer"
           className="label-mono mt-6 inline-block text-foreground underline decoration-muted-foreground underline-offset-4 hover:decoration-primary"

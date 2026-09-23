@@ -8,25 +8,29 @@
   ],
   "set": "UNL",
   "starterDeck": null,
-  "archetype": "Midrange",
-  "coordinates": {
-    "pace": 5,
-    "stance": 5.5,
-    "complexity": 6,
-    "variance": 5.5,
-    "fury-calm": 5,
-    "mind-body": 5,
-    "chaos-order": 0
-  },
-  "howItPlays": "You play out useful units early while chasing experience, and once Master Yi reaches level six your units get stronger and at level eleven they all come back ready to fight again. You lean on that late surge to turn a close game into a win.",
-  "whyYou": "You like decks that get stronger the longer the game runs, and a slow start doesn't bother you if the payoff lands later. Tracking your experience total and timing your push around level six and eleven suits a patient, planning mindset. Falling behind early doesn't worry you much, because you know the late turns are where this deck does its work.",
-  "guideUrls": [
-    "https://riftbound.gg/master-yi-wuju-master-guide/",
-    "https://hextechanalytics.com/legends/master-yi-unleashed"
-  ],
   "cardImage": "master-yi-wuju-master.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "Ability: at level 6, your units get +1 might; at level 11, your units enter ready. Pace 5: hextechanalytics.com says the deck 'develops gradually toward power spikes at 6 and 11 XP thresholds rather than establishing early dominance,' a midgame-focused plan rather than a slow grind or an early rush. Stance 5.5: riftbound.gg notes you can't afford to be passive early since you have no legend ability yet, while hextechanalytics.com calls it 'primarily proactive, building board presence,' so it leans into building a team while still needing to react before the ability turns on. Complexity 6: hextechanalytics.com calls it 'intermediate-to-high' from sequencing decisions around the two XP thresholds. Variance 5.5: riftbound.gg flags consistency trouble from a slow start in a fast metagame, while hextechanalytics.com says multiple XP routes keep it 'reasonably consistent' but 'early unit losses significantly disrupt' the plan, so results swing on how the opening turns go. Confidence: medium, the two guides differ somewhat on how much the early game hurts this deck. Reviewer: this is a different printing of the same Champion as master-yi-wuju-bladesman; I set these numbers faster, more proactive, and more complex than that Legend since this deck plays for a midgame experience payoff instead of a slow single-battlefield hold. Double check that gap still feels right once more Unleashed results come in."
+  "builds": [
+    {
+      "archetype": "Midrange",
+      "coordinates": {
+        "pace": 5,
+        "stance": 5.5,
+        "complexity": 6,
+        "variance": 5.5,
+        "fury-calm": 5,
+        "mind-body": 5,
+        "chaos-order": 0
+      },
+      "howItPlays": "You play out useful units early while chasing experience, and once Master Yi reaches level six your units get stronger and at level eleven they all come back ready to fight again. You lean on that late surge to turn a close game into a win.",
+      "whyYou": "You like decks that get stronger the longer the game runs, and a slow start doesn't bother you if the payoff lands later. Tracking your experience total and timing your push around level six and eleven suits a patient, planning mindset. Falling behind early doesn't worry you much, because you know the late turns are where this deck does its work.",
+      "guideUrls": [
+        "https://riftbound.gg/master-yi-wuju-master-guide/",
+        "https://hextechanalytics.com/legends/master-yi-unleashed"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "Ability: at level 6, your units get +1 might; at level 11, your units enter ready. Pace 5: hextechanalytics.com says the deck 'develops gradually toward power spikes at 6 and 11 XP thresholds rather than establishing early dominance,' a midgame-focused plan rather than a slow grind or an early rush. Stance 5.5: riftbound.gg notes you can't afford to be passive early since you have no legend ability yet, while hextechanalytics.com calls it 'primarily proactive, building board presence,' so it leans into building a team while still needing to react before the ability turns on. Complexity 6: hextechanalytics.com calls it 'intermediate-to-high' from sequencing decisions around the two XP thresholds. Variance 5.5: riftbound.gg flags consistency trouble from a slow start in a fast metagame, while hextechanalytics.com says multiple XP routes keep it 'reasonably consistent' but 'early unit losses significantly disrupt' the plan, so results swing on how the opening turns go. Confidence: medium, the two guides differ somewhat on how much the early game hurts this deck. Reviewer: this is a different printing of the same Champion as master-yi-wuju-bladesman; I set these numbers faster, more proactive, and more complex than that Legend since this deck plays for a midgame experience payoff instead of a slow single-battlefield hold. Double check that gap still feels right once more Unleashed results come in."
+    }
+  ]
 }

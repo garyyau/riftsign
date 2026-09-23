@@ -48,6 +48,7 @@ export const STRINGS = {
     whyYou: 'Why you might like it',
     starter: (product: string) => `Starter deck: ${product}`,
     noStarter: 'No retail starter deck',
+    alsoPlayed: (archetypes: string[]) => `Also played as ${archetypes.join(' or ')}`,
     deckLists: 'Deck lists on Piltover Archive',
     fullRanking: (n: number) => `Full ranking of all ${n} Legends`,
     leanTitle: 'Your Domain lean',

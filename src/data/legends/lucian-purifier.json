@@ -8,25 +8,29 @@
   ],
   "set": "SFD",
   "starterDeck": null,
-  "archetype": "Tempo",
-  "coordinates": {
-    "pace": 6.5,
-    "stance": 7.5,
-    "complexity": 6.5,
-    "variance": 4.5,
-    "fury-calm": -5,
-    "mind-body": 5,
-    "chaos-order": 0
-  },
-  "howItPlays": "You put weapons and gear on your units, and every piece you attach also makes that unit hit harder while it attacks, so you fight for a battlefield and try to win it again with the same unit next turn. You keep your equipped units alive between turns so you can keep winning fights with the same threats instead of rebuilding your team from scratch.",
-  "whyYou": "You like building up one or two units into serious threats and keeping them alive turn after turn rather than losing units and replacing them. Deciding where to put your gear and which fight to pick each turn feels like a small puzzle to you. You would rather protect a good thing and keep it running than start over with something new.",
-  "guideUrls": [
-    "https://riftbound.gg/lucian-purifier-guide/",
-    "https://hextechanalytics.com/legends/lucian"
-  ],
   "cardImage": "lucian-purifier.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "Ability: your Equipment cards each grant the unit carrying them +1 might while attacking. Pace 6.5: hextechanalytics.com calls it a 'mid-speed aggressive strategy that requires early setup but accelerates through the mid-game,' faster than a grinding deck but not a first-turn rush. Stance 7.5: both riftbound.gg and hextechanalytics.com call the plan primarily proactive, fighting to win battlefields every turn rather than waiting on the opponent. Complexity 6.5: hextechanalytics.com says it 'demands careful sequencing of unit placement, equipment attachment timing, movement routes, and multi-turn attack planning.' Variance 4.5: hextechanalytics.com calls it 'relatively consistent' but notes hands needing both a unit and gear at once can underperform, so it is not fully steady. Confidence: high, the two guides agree closely on the equip-and-refight plan. Reviewer: riftbound.gg leans toward Midrange language for this deck while hextechanalytics.com leans Aggro; I settled on Tempo since the deck is proactive and fast without playing for an early knockout, but double check that call against the rest of the Fury/Body pool."
+  "builds": [
+    {
+      "archetype": "Tempo",
+      "coordinates": {
+        "pace": 6.5,
+        "stance": 7.5,
+        "complexity": 6.5,
+        "variance": 4.5,
+        "fury-calm": -5,
+        "mind-body": 5,
+        "chaos-order": 0
+      },
+      "howItPlays": "You put weapons and gear on your units, and every piece you attach also makes that unit hit harder while it attacks, so you fight for a battlefield and try to win it again with the same unit next turn. You keep your equipped units alive between turns so you can keep winning fights with the same threats instead of rebuilding your team from scratch.",
+      "whyYou": "You like building up one or two units into serious threats and keeping them alive turn after turn rather than losing units and replacing them. Deciding where to put your gear and which fight to pick each turn feels like a small puzzle to you. You would rather protect a good thing and keep it running than start over with something new.",
+      "guideUrls": [
+        "https://riftbound.gg/lucian-purifier-guide/",
+        "https://hextechanalytics.com/legends/lucian"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "Ability: your Equipment cards each grant the unit carrying them +1 might while attacking. Pace 6.5: hextechanalytics.com calls it a 'mid-speed aggressive strategy that requires early setup but accelerates through the mid-game,' faster than a grinding deck but not a first-turn rush. Stance 7.5: both riftbound.gg and hextechanalytics.com call the plan primarily proactive, fighting to win battlefields every turn rather than waiting on the opponent. Complexity 6.5: hextechanalytics.com says it 'demands careful sequencing of unit placement, equipment attachment timing, movement routes, and multi-turn attack planning.' Variance 4.5: hextechanalytics.com calls it 'relatively consistent' but notes hands needing both a unit and gear at once can underperform, so it is not fully steady. Confidence: high, the two guides agree closely on the equip-and-refight plan. Reviewer: riftbound.gg leans toward Midrange language for this deck while hextechanalytics.com leans Aggro; I settled on Tempo since the deck is proactive and fast without playing for an early knockout, but double check that call against the rest of the Fury/Body pool."
+    }
+  ]
 }

@@ -8,25 +8,29 @@
   ],
   "set": "SFD",
   "starterDeck": null,
-  "archetype": "Control",
-  "coordinates": {
-    "pace": 4,
-    "stance": 3.5,
-    "complexity": 7.5,
-    "variance": 3,
-    "fury-calm": 5,
-    "mind-body": 0,
-    "chaos-order": -5
-  },
-  "howItPlays": "You ready a friendly unit by exhausting Irelia and paying a rune whenever you need it to act again, and once you win a fight you can spend energy to ready Irelia herself and do the same trick twice in a turn. You hold spells back to protect your best units and grind out fights until those protected units take over the game.",
-  "whyYou": "You enjoy protecting a couple of strong units and finding the exact moment to use your ready effects rather than swinging in blind. You like tracking runes and energy closely and holding your answers for whatever your opponent tries next. If a well-timed save that turns a fight around is satisfying to you, Irelia suits you.",
-  "guideUrls": [
-    "https://riftbound.gg/irelia-blade-dancer-guide/",
-    "https://animealley.ca/blogs/the-synergy-lab/irelia-blade-dancer-riftbound-deck-guide"
-  ],
   "cardImage": "irelia-blade-dancer.jpg",
-  "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": true,
   "ingestedAt": "2026-09-22",
-  "ratingNotes": "Ability: you may exhaust Irelia and pay a rainbow rune to ready a chosen friendly unit; when you conquer, you may pay 1 energy to ready Irelia herself. Pace 4: both riftbound.gg and animealley.ca describe the main threats landing around turns 4-6, a midgame plan rather than an early or a very late one. Stance 3.5: animealley.ca calls the deck 'heavily reactive' and built around eleven reaction spells protecting its threats, while riftbound.gg calls it more balanced; I leaned reactive since both agree protection comes first. Complexity 7.5: animealley.ca calls it high complexity from rune management and knowing when to shift roles, and riftbound.gg agrees it needs careful sequencing and timing. Variance 3: animealley.ca credits a repeatable draw engine off unit movement for reducing variance and keeping the plan steady game to game. Confidence: high, both guides describe the same protect-and-punish plan and name the same key units. Reviewer: none major, this one reads clean."
+  "builds": [
+    {
+      "archetype": "Control",
+      "coordinates": {
+        "pace": 4,
+        "stance": 3.5,
+        "complexity": 7.5,
+        "variance": 3,
+        "fury-calm": 5,
+        "mind-body": 0,
+        "chaos-order": -5
+      },
+      "howItPlays": "You ready a friendly unit by exhausting Irelia and paying a rune whenever you need it to act again, and once you win a fight you can spend energy to ready Irelia herself and do the same trick twice in a turn. You hold spells back to protect your best units and grind out fights until those protected units take over the game.",
+      "whyYou": "You enjoy protecting a couple of strong units and finding the exact moment to use your ready effects rather than swinging in blind. You like tracking runes and energy closely and holding your answers for whatever your opponent tries next. If a well-timed save that turns a fight around is satisfying to you, Irelia suits you.",
+      "guideUrls": [
+        "https://riftbound.gg/irelia-blade-dancer-guide/",
+        "https://animealley.ca/blogs/the-synergy-lab/irelia-blade-dancer-riftbound-deck-guide"
+      ],
+      "deckListUrl": "https://www.piltoverarchive.com/decks",
+      "reviewed": true,
+      "ratingNotes": "Ability: you may exhaust Irelia and pay a rainbow rune to ready a chosen friendly unit; when you conquer, you may pay 1 energy to ready Irelia herself. Pace 4: both riftbound.gg and animealley.ca describe the main threats landing around turns 4-6, a midgame plan rather than an early or a very late one. Stance 3.5: animealley.ca calls the deck 'heavily reactive' and built around eleven reaction spells protecting its threats, while riftbound.gg calls it more balanced; I leaned reactive since both agree protection comes first. Complexity 7.5: animealley.ca calls it high complexity from rune management and knowing when to shift roles, and riftbound.gg agrees it needs careful sequencing and timing. Variance 3: animealley.ca credits a repeatable draw engine off unit movement for reducing variance and keeping the plan steady game to game. Confidence: high, both guides describe the same protect-and-punish plan and name the same key units. Reviewer: none major, this one reads clean."
+    }
+  ]
 }

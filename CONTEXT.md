@@ -22,13 +22,15 @@ Game terms below are facts about Riftbound. Project terms are decisions made in 
 
 **Profile**: The Player's position on all Axes after finishing the test. The Profile, not a label, is the Player's result. Two Players matched to the same Legend can have different Profiles. In Player-facing copy the Profile is called their **Riftsign**.
 
-**Archetype**: A named playstyle family (such as Aggro, Midrange, Control, Combo). An Archetype is a region of Axis space. Legends belong to Archetypes; Archetypes are stable across Sets while Legends come and go.
+**Archetype**: A named playstyle family (such as Aggro, Midrange, Control, Combo). An Archetype is a region of Axis space. Legends belong to Archetypes through their Builds; Archetypes are stable across Sets while Legends come and go.
 
-**Match**: A Legend recommended to a Player because its Axis position is close to the Player's Profile. A Match is ranked, not binary. A Domain lean in the Profile may also surface Legends sharing those Domains as secondary Matches.
+**Build**: One played way of piloting a Legend, with its own Archetype and Axis position (for example Lux as Control, Lux as Combo). A Legend has one to three Builds, each a different Archetype, and a Build exists only if relevant decks show players running it. See ADR 0003.
 
-**Legend rating**: The Axis position and short description assigned to a Legend when it is ingested. Drafted from published guides and card text, then reviewed by a human before it can appear as a Match.
+**Match**: A Legend recommended to a Player because one of its Builds sits close to the Player's Profile. The Match shows that closest Build. A Match is ranked, not binary. A Domain lean in the Profile may also surface Legends sharing those Domains as secondary Matches.
 
-**Ingestion**: The manual, reviewed process of adding a newly released Legend to the pool of possible Matches. Triggered per Set release. Never changes the Questions.
+**Legend rating**: The Builds (each an Archetype, Axis position and short description) assigned to a Legend when it is ingested. Drafted from published guides and card text, then reviewed by a human before it can appear as a Match.
+
+**Ingestion**: The manual, reviewed process of adding a newly released Legend to the pool of possible Matches, or re-rating an existing Legend's Builds. Triggered per Set release, and re-run on existing Legends when a ban list or tournament results shift how they are played. Never changes the Questions.
 
 **Question / Answer**: A Question is a prompt shown to the Player. Each Answer carries Axis movements, possibly on more than one Axis. Questions never name a Legend or Archetype.
 
