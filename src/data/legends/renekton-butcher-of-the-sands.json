@@ -11,21 +11,23 @@
   "archetype": "Aggro",
   "coordinates": {
     "pace": 8.5,
-    "stance": 8.5,
-    "complexity": 2.5,
-    "variance": 5.5,
+    "stance": 9,
+    "complexity": 4.5,
+    "variance": 7,
     "fury-calm": -5,
     "mind-body": 5,
     "chaos-order": 0
   },
-  "howItPlays": "Aggro beatdown. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Renekton.",
+  "howItPlays": "You play unit after unit, and whenever you would otherwise waste spare runes you exhaust Renekton to turn them into extra energy for another unit that same turn. You keep dropping bodies onto the battlefield faster than the opponent can deal with them and win by simply having more units in the fight.",
+  "whyYou": "You want to play more units than your opponent has answers for and keep the pressure constant from the first turn. You like decks that do not ask you to hold anything back, where every turn is about deploying another threat and every spare rune has a use. If a simple, aggressive plan where you always have something to do next appeals to you, Renekton is for you.",
   "guideUrls": [
-    "https://skillshotzgaming.com/riftbound-vendetta-legends-guide/"
+    "https://riftboundguide.com/2026/07/23/riftbound-renekton-champion-deck-guide/",
+    "https://riftstorm.gg/blog/riftbound-vendetta-launch-guide-decks-rules",
+    "https://riftbound.gg/vendetta-legends-guide/"
   ],
   "cardImage": "renekton-butcher-of-the-sands.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 8.5: riftboundguide.com says Renekton 'wins by putting more units on the battlefield than your opponent can answer,' and riftstorm.gg independently rates its speed 'Fast.'\nstance 9: riftboundguide.com, verbatim: 'This is not a deck for players who like to hold cards back and play reactively. Renekton wants runes recycling, units hitting the battlefield, and pressure building every turn.' riftstorm.gg agrees, rating it 'Proactive.'\ncomplexity 4.5: riftboundguide.com calls it moderate, rewarding 'tight sequencing and dense rune setups' but says the core strategy is straightforward once learned; riftstorm.gg independently rates complexity 'Medium.'\nvariance 7: riftstorm.gg rates variance 'High' and notes 'explosive resource turns can compete, but the acceleration still needs to become battlefield tempo before a slower deck stabilizes'; riftbound.gg's separate Vendetta roundup calls Renekton 'the most unbalanced legend in Vendetta,' able to cheat a 4-cost unit onto the board turn one but 'heavily dependent on high-roll draws,' which conflicts with riftboundguide.com calling the rune-recycling engine itself consistent. This file weights the two sources naming it high variance.\nLegend ability: Reaction, pay 2 rainbow runes and exhaust, to add 2 energy that can only be spent on units or unit activated abilities.\nConfidence: high. Three sources read (riftboundguide.com's dedicated guide, riftstorm.gg's Vendetta launch roundup, riftbound.gg's Vendetta legends roundup), all agreeing on Aggro, fast, proactive, and moderate complexity; variance has one dissenting source calling the engine consistent, worth a second look."
 }

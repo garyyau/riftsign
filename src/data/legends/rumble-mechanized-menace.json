@@ -10,22 +10,23 @@
   "starterDeck": "Spiritforged Champion Deck",
   "archetype": "Midrange",
   "coordinates": {
-    "pace": 5,
-    "stance": 5.5,
-    "complexity": 6,
-    "variance": 4,
+    "pace": 4.5,
+    "stance": 6,
+    "complexity": 4,
+    "variance": 3,
     "fury-calm": -5,
     "mind-body": -5,
     "chaos-order": 0
   },
-  "howItPlays": "Midrange mech synergy. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Rumble.",
+  "howItPlays": "You fill the field with Mech units, and Rumble's ability makes every one of them tougher whenever it's defending a battlefield you hold. You keep making more Mechs from several different cards at once until your opponent can't clear them all off the field.",
+  "whyYou": "You like a deck that does one clear thing well: put units down, hold your ground, and let the numbers add up. You're not looking to memorize a tricky sequence of plays, you just want to know your plan going in and execute it well each game. Rumble suits you if you'd rather build a wide, sturdy field than chase one clever combination, and it's a comfortable deck to learn Riftbound with.",
   "guideUrls": [
-    "https://riftbound.gg/spiritforged-rumble-fiora-champion-starter-decklists/"
+    "https://riftboundguide.com/2026/04/04/riftbound-rumble-champion-deck-guide/",
+    "https://hextechanalytics.com/legends/rumble"
   ],
   "cardImage": "rumble-mechanized-menace.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "Ability: your Mechs have Shield, +1 Might while they're defenders (Riftcodex, SFD-181). pace 4.5: riftboundguide describes 'board development and recycling rather than early aggression or rapid finishes,' a grinding plan rather than a fast close. stance 6: both sources call the deck proactive ('play Mechs, hold battlefields, and let the board grow'), though it also leans on Shield to defend rather than only attacking. complexity 4: riftboundguide is explicit that 'there is no sequencing puzzle to solve before you can play' and the plan is 'the same every game'; hextechanalytics rates a fully upgraded competitive build higher for attack/defend/recycle decisions, but the core loop this Legend is best known for, including in its starter product, is simple. variance 3: riftboundguide highlights 'four separate sources of Mech token generation' preventing reliance on any one card, and hextechanalytics calls it 'moderately consistent.' archetype Midrange: sources call it 'aggro-control' and 'tribal/engine-focused,' neither a clean fit; it develops and holds rather than racing, so Midrange fits better than Aggro. starterDeck 'Spiritforged Champion Deck' confirmed: riftboundguide's title ('Champion Deck Guide: What's Inside and Is It Worth Buying?') plus a separate riftmana 'Beginner Guide: Starter Spiritforged Rumble Deck' page both point to this being a real retail product built around Rumble. Confidence: high, two solid guides read, a consistent picture of the deck, and a confirmed starter product."
 }

@@ -10,22 +10,23 @@
   "starterDeck": null,
   "archetype": "Combo",
   "coordinates": {
-    "pace": 5.5,
-    "stance": 5,
-    "complexity": 10,
-    "variance": 9,
+    "pace": 3.5,
+    "stance": 4,
+    "complexity": 9,
+    "variance": 6,
     "fury-calm": -5,
     "mind-body": -5,
     "chaos-order": 0
   },
-  "howItPlays": "Combo/aggro burst. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Jhin.",
+  "howItPlays": "You spend the early turns clearing your opponent's units with spells and holding the line, and any time you spend four or more Energy on a spell you can banish it under Jhin instead of letting it go to the trash. Once four spells are banished this way you cash them all in at once for four runes and a card, turning that stockpile into the turn that ends the game.",
+  "whyYou": "You like a game with a long fuse, where you spend the early turns quietly setting up while your opponent has no idea what's coming. You enjoy tracking every spell you've spent big on, counting down to the turn everything pays off at once. If you're the sort of player who's happy to wait through a slow start for one dramatic finish, Jhin is built for you.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://riftbound.gg/jhin-virtuoso-guide/",
+    "https://hextechanalytics.com/legends/jhin"
   ],
   "cardImage": "jhin-virtuoso.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Combo template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 3.5: hextechanalytics says 'the start of the game will be quite slow for Jhin, who wants to keep gaining runes, draw cards and simply remove opposing units' for the first three or four turns, before it 'accelerates dramatically' into its finish. stance 4: riftbound.gg calls it 'fundamentally reactive early, becoming proactive only after accumulating resources', matching hextechanalytics's 'reactive-to-proactive' description, so this sits below the midpoint. complexity 9: hextechanalytics notes 'combo decks are typically the most rigid builds' since every qualifying spell needs a minimum of 4 runes, and riftbound.gg says you're 'choosing between cheap interaction and a qualifying cast' constantly, a lot of interacting constraints to track at once. variance 6: hextechanalytics calls the deck low variance because of its 'rigid combo requirements', but riftbound.gg calls the rune draw off the payoff 'moderate-to-high' variance; since the payoff itself is a single discrete four-spell swing that either has or hasn't come together, this draft leans toward the swingier end. Ability: when you play a spell after spending 4 or more Energy on it, you may banish it under Jhin instead of trashing it; the fourth banished spell trashes all four, channels 4 runes, and draws a card. Confidence: medium-high, two guides describe the same slow-then-explosive combo shape in detail, though neither cites tournament results for how consistently it closes games."
 }

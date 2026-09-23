@@ -10,22 +10,23 @@
   "starterDeck": null,
   "archetype": "Tempo",
   "coordinates": {
-    "pace": 7,
-    "stance": 6.5,
-    "complexity": 6.5,
-    "variance": 5,
+    "pace": 7.5,
+    "stance": 6,
+    "complexity": 8,
+    "variance": 5.5,
     "fury-calm": 0,
     "mind-body": -5,
     "chaos-order": -5
   },
-  "howItPlays": "Tempo. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Diana.",
+  "howItPlays": "You spend cheap spells to win fights over battlefields early, using Diana's ability to generate an extra Energy mid-fight so you can react with a trick your opponent didn't plan for. Once you're ahead you keep bouncing or weakening their units to stay in front on points while they struggle to mount a comeback.",
+  "whyYou": "You like winning the small fights first and using that lead to stay ahead for the rest of the game. You enjoy having a trick ready at exactly the right second, and you don't mind that Diana takes a few games to click before her timing starts to feel natural. If you want a Legend that punishes careless play and rewards reading your opponent, Diana is worth taking the time to learn.",
   "guideUrls": [
-    "https://riftbound.gg/tier-list"
+    "https://riftboundguide.com/2026/06/08/riftbound-diana-champion-deck-guide/",
+    "https://riftbound.gg/diana-scorn-of-the-moon-guide/"
   ],
   "cardImage": "diana-scorn-of-the-moon.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Tempo template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 7.5: riftbound.gg calls Diana 'a fast-paced legend, looking to control the pace of a match through showdown domination early on'; her meta page independently labels her a Mind/Chaos tempo legend and she went 14-0-2 to win RQ Vancouver. stance 6: she builds an early lead proactively but riftboundguide.com stresses she generates Energy specifically to hold up 'reaction spells' for the exact right moment, so the number leans proactive rather than sitting at the top of the scale. complexity 8: riftboundguide.com says Diana 'is not a beginner's first deck' and 'the first few games piloting her will feel overwhelming compared to a pre-built deck', rewarding players who 'read board states well and understand when to spend their legend-generated Energy'. variance 5.5: both guides describe outcomes turning on sequencing and reads rather than random effects, a moderate, skill-driven swing rather than a coin-flip one. Ability: Diana may exhaust as a Reaction to add 1 Energy that can only be spent during showdowns. Confidence: high, two detailed guides agree closely and a third source (her official meta page) independently confirms the tempo label and her dominant Unleashed results."
 }

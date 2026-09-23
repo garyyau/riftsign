@@ -8,24 +8,25 @@
   ],
   "set": "UNL",
   "starterDeck": null,
-  "archetype": "Control",
+  "archetype": "Midrange",
   "coordinates": {
-    "pace": 1.5,
-    "stance": 2,
+    "pace": 3,
+    "stance": 5,
     "complexity": 6.5,
-    "variance": 3.5,
+    "variance": 5,
     "fury-calm": 5,
     "mind-body": 0,
     "chaos-order": 5
   },
-  "howItPlays": "Control/ramp value. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Ivern.",
+  "howItPlays": "You bring out small animals like birds, cats, dogs, and poros, and once you take a battlefield you exhaust Ivern to turn it into Brush, where those same animals hit harder. You keep spreading your units across battlefields and protecting the ones sharing a tag, turning a pile of small bodies into a fight you keep winning.",
+  "whyYou": "You enjoy building something out of a lot of small pieces and watching them add up over a game. You like tracking details, remembering which animal tags are still alive, and getting a little thrill when a cheap unit turns out to matter more than it looked. If you're happiest slowly assembling a group of units that quietly gets stronger every turn, Ivern is for you.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://hextechanalytics.com/legends/ivern",
+    "https://piltoverarchive.com/decks/view/c750870f-0b81-4e1a-bd66-1f6202aee44b"
   ],
   "cardImage": "ivern-green-father.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Control template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 3: hextechanalytics.com says 'this is deliberately not a fast deck' and piltoverarchive.com calls it 'a slower, grindy matchup rather than explosive aggro' that needs several turns to get going. stance 5: hextechanalytics.com says the deck 'leans proactive early' by developing animals before its payoff, but piltoverarchive.com notes it 'balances proactive creature deployment with defensive options,' so it genuinely swings between roles by matchup. complexity 6.5: hextechanalytics.com says players must track which animal tags remain alive since 'losing the last unit with a particular animal tag can weaken multiple cards at once,' and piltoverarchive.com describes 'terrain manipulation, and animal tag synergies' as strategic layers beyond simple attacks. variance 5: hextechanalytics.com notes 'moderate variance through Nurturer's reveals' and piltoverarchive.com says outcomes 'depend on drawing the right pieces at optimal times.' Legend ability: exhaust Ivern when you conquer or hold a battlefield to swap it for a Brush token that buffs Bird, Cat, Dog, Poro, and Ivern units. Confidence: medium. Only two readable guides turned up (a third, magicalmeta.ink, loaded with no usable guide text, only a card list), and they hedge the archetype between midrange and control. Reviewer should double-check the archetype call (went with Midrange) and the stance number, since both sources describe a genuine mix of proactive and reactive play rather than a clean lean either way; also confirm starterDeck is really null (no Ivern Champion Deck product turned up in search)."
 }

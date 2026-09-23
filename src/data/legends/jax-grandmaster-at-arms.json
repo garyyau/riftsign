@@ -11,21 +11,22 @@
   "archetype": "Midrange",
   "coordinates": {
     "pace": 5,
-    "stance": 5.5,
-    "complexity": 4.5,
-    "variance": 4,
+    "stance": 6,
+    "complexity": 7,
+    "variance": 5.5,
     "fury-calm": 5,
     "mind-body": 5,
     "chaos-order": 0
   },
-  "howItPlays": "Midrange weaponmaster. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Jax.",
+  "howItPlays": "You attach Equipment to your units and use Jax's free ability to slide that gear off a unit that has already fought and onto one that hasn't, so the same weapon keeps working all game. You build toward one heavily-equipped unit the opponent cannot safely fight, then send it in to force the fight that decides the game.",
+  "whyYou": "You like figuring out which unit should carry the good gear this turn and which one needs it next turn, and you don't mind the plan changing hand to hand. Losing a piece of Equipment to a well-timed answer stings, but you're the sort of player who replans around it instead of getting rattled. Jax suits you if you want a deck that asks you to keep solving a small puzzle every turn on the way to one unit the other player has to deal with.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://riftbound.gg/jax-grandmaster-at-arms-guide/",
+    "https://hextechanalytics.com/legends/jax"
   ],
   "cardImage": "jax-grandmaster-at-arms.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "Ability: 1 energy + Exhaust: attach a detached Equipment to a unit you control; Exhaust: attach an attached Equipment to a unit you control (Riftcodex, SFD-193). pace 5: riftbound.gg frames Jax around a gradual build ('develop units the opponent will struggle to remove') rather than an early rush or a pure late-game plan; hextechanalytics calls the pace 'moderate,' developing from cheap units into mid-cost carriers. stance 6: both sources call Jax proactive in developing threats, but hextechanalytics notes it needs 'reactive flexibility to move gear between units,' so it isn't fully proactive. complexity 7: hextechanalytics says the deck has 'plenty of decisions before the fight and inside it,' and riftbound.gg calls the sequencing 'high,' requiring precise timing of unit order and Equipment attachment. variance 5.5: riftbound.gg calls the deck 'inconsistent and vulnerable to disruption' from gear removal and bounce effects, while hextechanalytics calls it 'consistent with tactical swings' from well-timed Equipment plays; split the difference given the disagreement. archetype Midrange: no source uses a strict label, but both describe an Equipment-driven unit-development plan rather than an early rush or a pure answer-and-outlast plan, which matches Midrange best. Confidence: medium, two real guides read but they disagree on how consistent the deck is, and no tournament decklist was cross-checked. starterDeck kept null: neither guide names a retail starter product for this Legend. Reviewer should double check the variance rating given the source disagreement."
 }

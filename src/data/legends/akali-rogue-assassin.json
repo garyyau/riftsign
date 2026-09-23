@@ -8,24 +8,26 @@
   ],
   "set": "VEN",
   "starterDeck": null,
-  "archetype": "Aggro",
+  "archetype": "Midrange",
   "coordinates": {
-    "pace": 8.5,
-    "stance": 8.5,
-    "complexity": 3.5,
-    "variance": 6.5,
+    "pace": 5.5,
+    "stance": 6,
+    "complexity": 6.5,
+    "variance": 5,
     "fury-calm": 0,
     "mind-body": 0,
     "chaos-order": 0
   },
-  "howItPlays": "Aggro hit and run assassin. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Akali.",
+  "howItPlays": "You pull a unit out of a fight and back to base before it takes real damage, and once Akali is Empowered that unit also readies so it can act again right away. Early on you trade efficiently and hold up answers, then once you have a strong attacker established you protect it while your card draw keeps refilling your hand.",
+  "whyYou": "You like a game that starts careful and turns aggressive once you have found your footing. You enjoy deciding turn by turn whether to trade evenly, hold back, or commit to one strong unit, and you do not mind adjusting your plan to whatever the opponent is doing. If you like a Legend that rewards reading the game rather than following one fixed script, Akali fits.",
   "guideUrls": [
-    "https://riftboundguide.com/2026/07/21/riftbound-akali-champion-deck-guide/"
+    "https://riftbound.gg/akali-rogue-assassin-guide/",
+    "https://riftstorm.gg/blog/riftbound-vendetta-launch-guide-decks-rules",
+    "https://riftbound.gg/vendetta-legends-guide/"
   ],
   "cardImage": "akali-rogue-assassin.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 5.5: riftbound.gg says Akali leans on the Fury domain early for board development, then 'switches to support cards' in the middle turns; riftstorm.gg independently rates speed 'Medium,' so neither source reads it as fast or slow.\nstance 6: riftbound.gg describes the deck playing reactively early with 'cost effective removals' before committing to its key unit, while riftstorm.gg rates it 'Proactive' overall and says pilots 'need to plan movement routes across the battlefield map rather than measuring pressure only through raw Might'; riftbound.gg's separate Vendetta roundup calls it 'a value oriented midrange legend.' Averaging the switch-by-matchup read with riftstorm's proactive rating lands just past center.\ncomplexity 6.5: riftbound.gg calls it moderately complex, centered on sequencing removal timing against unit development, but riftstorm.gg rates complexity 'High,' citing the need to plan movement routes rather than just track Might; this file leans toward the higher, more recent read.\nvariance 5: riftbound.gg says the deck's multiple draw engines add some variance but the core plan stays consistent game to game; riftstorm.gg independently rates variance 'Moderate,' agreeing it is not the swingiest Legend in this batch.\nLegend ability: Empower by paying 3 rainbow energy, usable only once; Action and exhaust, if it's your turn, to move a friendly unit in a showdown to base, readying it too if Akali is Empowered.\nConfidence: medium. Two guides read in full (riftbound.gg's dedicated Akali guide, riftstorm.gg's Vendetta launch roundup) plus riftbound.gg's separate Vendetta legends roundup for a third data point; domains are Fury/Calm, an opposite pair, so per project convention the fury-calm coordinate is 0 by design even though the guides read the deck as Fury-leaning early and Calm-leaning later."
 }

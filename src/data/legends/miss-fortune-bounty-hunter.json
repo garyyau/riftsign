@@ -8,24 +8,25 @@
   ],
   "set": "OGN",
   "starterDeck": null,
-  "archetype": "Midrange",
+  "archetype": "Control",
   "coordinates": {
-    "pace": 5,
-    "stance": 5.5,
-    "complexity": 4.5,
-    "variance": 4,
+    "pace": 2,
+    "stance": 2.5,
+    "complexity": 7,
+    "variance": 6,
     "fury-calm": 0,
     "mind-body": 5,
     "chaos-order": -5
   },
-  "howItPlays": "Midrange value. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Miss Fortune.",
+  "howItPlays": "She spends early turns holding removal and disruption spells while working toward turn three or four, then plays Dazzling Aurora to start pulling free units into play every turn after that. From there her Legend ability lets her exhaust to send a unit to another battlefield the same turn, so she can score points on two fronts while her opponent runs out of answers.",
+  "whyYou": "You like games that start quiet and end with your opponent unable to keep up. Sitting back with removal in hand while you count down to one big turn feels good to you, and you don't mind a deck that can struggle if that turn gets disrupted. You enjoy the puzzle of lining up several small effects in the right order to pull off something your opponent can't easily undo.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://riftbound.gg/miss-fortune-bounty-hunter-guide/",
+    "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-miss-fortune-bounty-hunter-body-chaos"
   ],
   "cardImage": "miss-fortune-bounty-hunter.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 2: riftbound.gg says the deck 'specializes against other late-game strategies' and has 'fewer tools to control the early game,' ramping to Dazzling Aurora around turns 3-4. stance 2.5: cardsrealm calls it 'reactive control that becomes proactive once Aurora hits,' spending early turns on removal and hand disruption rather than developing. complexity 7: riftbound.gg's sample line ('move your big unit... play OGN-162... pay the Accelerate cost... use OGN-267's ability to grant that big unit ganking') chains three effects in one turn. variance 6: cardsrealm notes the deck 'doesn't perform that well without Aurora,' so games swing hard on whether that one card resolves, though the engine itself is steady once it does. Legend ability: exhaust to give a unit Ganking this turn (it can move from battlefield to battlefield). Confidence: medium. Both guides describe the same Aurora-ramp shell but neither cites a hard tournament placement, so treat these numbers as a starting point for review."
 }

@@ -7,25 +7,26 @@
     "Body"
   ],
   "set": "OGS",
-  "starterDeck": "Proving Grounds",
-  "archetype": "Aggro",
+  "starterDeck": "Origins Proving Grounds",
+  "archetype": "Control",
   "coordinates": {
-    "pace": 8.5,
-    "stance": 8.5,
-    "complexity": 3.5,
-    "variance": 5.5,
+    "pace": 2.5,
+    "stance": 3,
+    "complexity": 2.5,
+    "variance": 2,
     "fury-calm": 5,
     "mind-body": 5,
     "chaos-order": 0
   },
-  "howItPlays": "Aggro tempo. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Master Yi.",
+  "howItPlays": "You send one unit to a battlefield and leave it alone there, so Master Yi's ability gives it plus two might every time it defends. You hold the rest of your units back to spring surprise attacks later and eventually bring in a heavy hitter that enters ready to take back any battlefield you lose.",
+  "whyYou": "You like games that reward patience and careful defense more than racing to points. Holding one battlefield while the rest of your hand builds up feels satisfying to you, and you enjoy the moment your held-back units finally swing in. If overcommitting stresses you out and you would rather play one card at a time and get it right, this Legend fits how you already like to play.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://riftbound.gg/master-yi-wuju-bladesman-guide/",
+    "https://riftboundguide.com/2026/06/22/master-yi-deck-guide-riftbound-wuju-bladesman/"
   ],
   "cardImage": "master-yi-wuju-bladesman.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "Ability: while a friendly unit defends alone at a battlefield, it gets +2 might. Pace 2.5: riftboundguide.com describes holding a battlefield across turns 6-8 and names a 7-cost unit as the deck's late finisher, so it wins by grinding out a long game rather than closing fast. Stance 3: riftbound.gg frames the ability as a trap, either the opponent lets you hold and falls behind on points or spends resources removing your one defender, so you spend most of the game reacting to how they respond rather than pushing the attack yourself. Complexity 2.5: riftboundguide.com says the core discipline is never deploying a second unit to the held battlefield and calls execution straightforward once that is learned. Variance 2: riftboundguide.com calls it the most consistently proven deck in the Unleashed format, with a Top 8 at every Regional Qualifier, so results look steady from game to game. Confidence: high, both guides independently describe the same solo-hold plan and agree it is reliable. Reviewer: riftbound.gg's own summary labels this 'Tempo/Midrange,' which reads faster than the solo-hold description in riftboundguide.com; I weighted the mechanical hold-and-grind plan over that label when picking Control, so double check that call."
 }

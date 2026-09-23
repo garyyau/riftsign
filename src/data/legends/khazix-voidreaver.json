@@ -8,24 +8,25 @@
   ],
   "set": "UNL",
   "starterDeck": null,
-  "archetype": "Aggro",
+  "archetype": "Midrange",
   "coordinates": {
-    "pace": 8.5,
-    "stance": 8.5,
-    "complexity": 3.5,
-    "variance": 5.5,
+    "pace": 5,
+    "stance": 6,
+    "complexity": 7,
+    "variance": 6.5,
     "fury-calm": 0,
     "mind-body": 5,
     "chaos-order": -5
   },
-  "howItPlays": "Aggro hunter. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Kha'Zix.",
+  "howItPlays": "You send units into fights to win combats and bank experience on Kha'Zix, then spend it to make an ally hit harder or pull a beat-up unit home to base before it can be finished off. You mix cheap units with hidden and surprise effects alongside a few bigger threats that take over once the game reaches its middle turns.",
+  "whyYou": "You like games where every fight matters and you keep deciding whether to press an advantage or pull a hurt unit to safety. You enjoy holding a few surprises in reserve and sensing when the opponent is about to overextend. If you would rather build a strong turn five or six out of small wins than gamble everything early, Kha'Zix suits you.",
   "guideUrls": [
-    "https://riftbound.gg/tier-list"
+    "https://riftbound.gg/khazix-voidreaver-guide/",
+    "https://hextechanalytics.com/legends/khazix"
   ],
   "cardImage": "khazix-voidreaver.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 5: riftbound.gg calls Kha'Zix a midrange plan built around 4-5 cost cards after an early combat-focused setup, and hextechanalytics separately calls the speed 'medium pace that requires setup and planning,' so neither source reads it as a rush.\nstance 6: hextechanalytics says Kha'Zix is 'primarily proactive,' manipulating the battlefield 'on your own turn' rather than waiting to react, while riftbound.gg describes a more even mix of developing and reacting through Ambush; splitting the difference lands just proactive of center.\ncomplexity 7: hextechanalytics calls it high complexity, since 'those choices compete for the same Legend activation,' forcing a pick between a stronger board or a unit brought home safely each turn; riftbound.gg calls it only moderately intricate, so this leans toward the higher read.\nvariance 6.5: both sources agree on moderate-to-high, tied to drawing the right movement pieces (Void Assault, Faefolk per hextechanalytics) and to early unit survival (per riftbound.gg).\nLegend ability: gain 1 XP on winning a combat; spend 1 XP and exhaust to buff a unit; spend 2 XP and exhaust to move an exhausted friendly unit from a battlefield back to base.\nConfidence: high. Two independent guides read in full (riftbound.gg, hextechanalytics.com), both landing on a Midrange read, though they disagree slightly on how proactive versus reactive the deck feels; the seed had this Legend as Aggro, which neither source supports, so the archetype change is worth a second look."
 }

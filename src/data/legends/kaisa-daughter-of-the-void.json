@@ -8,24 +8,27 @@
   ],
   "set": "OGN",
   "starterDeck": null,
-  "archetype": "Aggro",
+  "archetype": "Midrange",
   "coordinates": {
-    "pace": 7.5,
-    "stance": 8.5,
+    "pace": 5,
+    "stance": 5.5,
     "complexity": 5,
-    "variance": 5.5,
+    "variance": 4,
     "fury-calm": -5,
     "mind-body": -5,
     "chaos-order": 0
   },
-  "howItPlays": "Aggro scaling combo. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Kai'Sa.",
+  "howItPlays": "You lean on a small core of sticky units backed by a steady stream of cheap spells, exhausting Kai'Sa as a reaction to generate an extra rune whenever you need to cast one more. You use those spells for removal and damage to clear the way, then let your units and your card draw carry you to the win.",
+  "whyYou": "You like a deck that gives you options every turn instead of forcing one obvious line, since Kai'Sa keeps handing you extra resources for your spells. You're the type who enjoys reading a matchup and choosing whether to play it safe with removal or push forward with your units, and you don't need every game to be a straightforward race. If running out of cards worries you more than losing a big swing, this fits you well.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://riftbound.gg/kaisa-daughter-of-the-void-guide/",
+    "https://riftbound.gg/kaisa-daughter-of-the-void-deck-guide/",
+    "https://hextechanalytics.com/legends/kaisa",
+    "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-guide-kaisa-daughter-of-the-void"
   ],
   "cardImage": "kaisa-daughter-of-the-void.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "Legend ability: exhausting Kai'Sa as a reaction adds one rune usable only to play spells. pace 5: sources disagree on speed. riftbound.cardsrealm.com frames the plan as 'getting ahead in points early on and trying to finish the game as soon as possible,' while hextechanalytics.com says Kai'Sa 'wins slowly through resource accumulation,' so 5 sits between the two readings. stance 5.5: riftbound.gg labels it a 'midrange proactive play style, supported by spells' and cardsrealm agrees it is proactive, but hextechanalytics.com calls the same Legend 'reactive... using cheap spells and removal to stabilize before deploying expensive finishers' - genuinely contested, landed near the middle. complexity 5: hextechanalytics.com flags real rules interactions to track, while cardsrealm calls the plan 'a clear and even simple game plan,' netting out to moderate. variance 4: no source called this deck swingy; cardsrealm calls it 'pretty consistent' with 'practically no bad matchups,' and hextechanalytics.com only flags a mulligan-consistency risk rather than in-game swings. Confidence: medium-high on the ability text (pulled directly from the card API), but archetype and stance are genuinely contested across four independently read sources - reviewer should treat the Midrange label and the stance score as the most debatable numbers in this batch. No preconstructed starter deck exists for Kai'Sa in the Origins Champion Deck lineup (Jinx, Lee Sin, Viktor only), confirmed against the set data, so starterDeck is null."
 }

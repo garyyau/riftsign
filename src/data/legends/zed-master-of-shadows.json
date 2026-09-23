@@ -10,22 +10,23 @@
   "starterDeck": "Vendetta Showdown Deck",
   "archetype": "Aggro",
   "coordinates": {
-    "pace": 8.5,
-    "stance": 8.5,
-    "complexity": 3.5,
-    "variance": 5.5,
+    "pace": 8,
+    "stance": 8,
+    "complexity": 5,
+    "variance": 6.5,
     "fury-calm": -5,
     "mind-body": 0,
     "chaos-order": -5
   },
-  "howItPlays": "Aggro shadow tempo. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Zed.",
+  "howItPlays": "You banish cards from your trash to Empower Zed, then spend that charge to discard a card and draw a fresh one, digging toward your next attacker. You race to take battlefields as fast as possible, throwing units forward turn after turn and trusting your draws to keep finding more.",
+  "whyYou": "You like playing fast and taking chances, throwing units into fights turn after turn without slowing down to plan five turns ahead. You do not mind some games going sideways if it means other games end almost before your opponent has started. If you would rather gamble on a quick, exciting race than grind out a long one, Zed is your Legend.",
   "guideUrls": [
-    "https://riftbound.gg/riftbound-vendetta-preconstructed-decks-all-products/"
+    "https://riftbound.gg/vendetta-legends-guide/",
+    "https://riftstorm.gg/blog/riftbound-vendetta-launch-guide-decks-rules"
   ],
   "cardImage": "zed-master-of-shadows.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 8: riftbound.gg describes Zed as 'a mix of Annie and Jinx, featuring gameplay aimed at scoring as fast as possible, almost playing for broke at times,' but riftstorm.gg independently rates its speed only 'Medium,' calling it a 'trash economy' deck that must balance setup with board presence; this file leans toward the faster read since two separate write-ups both single out speed as its defining trait, but the disagreement is real.\nstance 8: riftbound.gg says the deck 'operates proactively, consistently finding strong patterns' through Flow and card draw; riftstorm.gg agrees, rating it 'Proactive.'\ncomplexity 5: riftbound.gg calls Zed 'relatively straightforward to pilot,' but riftstorm.gg rates complexity 'High,' noting 'a hand full of clever Flow cards is not functional if it cannot establish a body'; this file splits the difference given the direct conflict.\nvariance 6.5: riftbound.gg calls out high variance and 'a lack of flexibility in the deck building department,' expecting it to dominate casual best-of-one play but struggle once opponents can sideboard; riftstorm.gg rates it 'Moderate-High,' agreeing on the same general range.\nLegend ability: banishing a card you own Empowers Zed; Action, disempower and exhaust, to discard a card then draw a card.\nConfidence: medium. Two full write-ups read (riftbound.gg's Vendetta legends guide, riftstorm.gg's Vendetta launch roundup) but they disagree sharply on pace and complexity; a third, more Zed-specific guide would help settle those two axes. starterDeck corrected to the official product name, 'Showdown Deck: Zed vs. Shen' (the seed's 'Vendetta Showdown Deck' did not name the paired Legend, Shen)."
 }

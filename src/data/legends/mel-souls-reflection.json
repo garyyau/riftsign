@@ -10,22 +10,24 @@
   "starterDeck": null,
   "archetype": "Control",
   "coordinates": {
-    "pace": 2.5,
-    "stance": 2,
-    "complexity": 6.5,
-    "variance": 3.5,
+    "pace": 3.5,
+    "stance": 2.5,
+    "complexity": 6,
+    "variance": 2.5,
     "fury-calm": 0,
     "mind-body": -5,
     "chaos-order": -5
   },
-  "howItPlays": "Control value. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Mel.",
+  "howItPlays": "You empower your other units and spells, and each time you do, Mel becomes empowered too without costing you anything extra. Right before a fight, you spend that empowered state to shrink an enemy unit by two might, turning what looked like a losing fight into one you win.",
+  "whyYou": "You like picking apart your opponent's plans instead of overpowering them. You're comfortable holding cards back and waiting for the moment your shrink effect turns a bad fight into a good one. If it satisfies you more to out-think someone than to out-muscle them, Mel is a good fit.",
   "guideUrls": [
+    "https://riftbound.gg/mel-souls-reflection-guide/",
+    "https://riftboundguide.com/2026/07/23/riftbound-mel-champion-deck-guide/",
     "https://skillshotzgaming.com/riftbound-vendetta-legends-guide/"
   ],
   "cardImage": "mel-souls-reflection.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Control template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 3.5: skillshotzgaming.com rates Mel's speed 'Moderate,' and riftboundguide.com describes a deck that spends its early turns on removal and unit development rather than racing. stance 2.5: riftboundguide.com calls Mel 'reactive rather than aggressive,' built around 'shrinking the opponent's unit before combat resolves' and holding spells like Rebuttal or Shock Blast for the opponent's response. complexity 6: riftboundguide.com says the Empower loop 'reads like a riddle' at first and 'once it clicks it is one of the more satisfying control engines,' while skillshotzgaming.com rates complexity 'Medium.' variance 2.5: riftboundguide.com notes 'the more Empower sources you play, the more consistently her loop fires,' so deck construction, not luck, drives reliability. Legend ability: whenever you empower something else, Mel becomes empowered too; exhausting her while empowered gives an enemy unit -2 might for the turn. Confidence: medium. Sources disagree on the archetype label (riftboundguide.com says Control, skillshotzgaming.com says 'Tempo/Control,' an earlier riftbound.gg summary leaned midrange); went with Control since two of three call it that and its reactive, low-variance shape fits the Control end of the scale. Reviewer should double-check the archetype call."
 }

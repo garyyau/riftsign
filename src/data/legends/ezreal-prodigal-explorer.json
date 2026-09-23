@@ -8,24 +8,25 @@
   ],
   "set": "SFD",
   "starterDeck": null,
-  "archetype": "Tempo",
+  "archetype": "Control",
   "coordinates": {
-    "pace": 7,
-    "stance": 6.5,
-    "complexity": 8,
-    "variance": 5,
+    "pace": 3,
+    "stance": 3,
+    "complexity": 6.5,
+    "variance": 4,
     "fury-calm": 0,
     "mind-body": -5,
     "chaos-order": -5
   },
-  "howItPlays": "Tempo spell combo. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Ezreal.",
+  "howItPlays": "You spend most of your turns removing or bouncing whatever your opponent puts down, and every time you target two of their units or gear in a turn Ezreal lets you draw an extra card for free. Over a long game you never run low on answers while your opponent slowly runs out of things to play, so you win by simply outlasting them.",
+  "whyYou": "You like having an answer for everything and don't mind waiting for your opponent to make the first move. You enjoy the feeling of a long grinding game where every removal spell and bounce effect chips away at what they have left, until there's nothing left for them to do. If patience and a full hand of answers sound more fun to you than racing to the finish, Ezreal fits you well.",
   "guideUrls": [
-    "https://riftbound.gg/tier-list"
+    "https://riftmana.com/ezreal-prodigal-explorer-deck-guide-riftbound-tcg/",
+    "https://magicalmeta.ink/riftbound/articles/Ezreal-Prodigal-Explorer-Spiritforged-Deck-Guide"
   ],
   "cardImage": "ezreal-prodigal-explorer.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Tempo template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 3: riftmana says Ezreal 'plays at a deliberately slow pace' and wins because 'the opponent will eventually run out of cards to play', though magicalmeta notes the deck 'can establish board presence quickly... from turn 1' before settling into its long game, which is why this isn't a 0. stance 3: riftmana calls it 'reactive defensive', and magicalmeta's own advice is 'don't overcommit, hold back 1-2 threats for rebuild', a reactive posture with an early proactive opening. complexity 6.5: magicalmeta calls it 'not the easiest to play but very rewarding' with a toolbox of replay effects, and riftmana says balancing removal against threats is 'the trickier part', real decisions but not the most intricate archetype. variance 4: magicalmeta calls variance 'moderate-to-high' from flex slots and toolbox draws, while riftmana emphasizes a grindy, repeatable bounce loop that is fairly consistent, so this sits closer to steady than swingy. Ability: exhausting Ezreal is a Reaction that draws 1 card, usable only if you've targeted enemy units and/or gear twice that turn with spells or unit abilities. Confidence: medium, both sources agree on the card-advantage control shape but the archetype label required reading past an initial 'toolbox tempo' description that describes only the opening turns; reviewer should sanity check pace against tournament results, which weren't found in this pass."
 }

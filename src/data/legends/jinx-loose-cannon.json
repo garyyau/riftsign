@@ -18,14 +18,16 @@
     "mind-body": 0,
     "chaos-order": -5
   },
-  "howItPlays": "Aggro explosive burst. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Jinx.",
+  "howItPlays": "You dump your hand fast, play cheap Fury and Chaos units to attack every turn, and let Jinx refill your hand whenever you're down to one card or fewer. You keep swinging and recasting your best threats until your opponent runs out of ways to answer you.",
+  "whyYou": "You want to be the one setting the pace and forcing your opponent to keep answering you turn after turn. You like emptying your hand and trusting Jinx's ability to feed you a new card right when you need it, and you don't mind that an all-in attack can occasionally backfire and leave you thin the following turn. If you enjoy racing to the finish rather than settling in for a long fight, Jinx suits you.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://riftbound.gg/jinx-loose-cannon-guide/",
+    "https://riftboundguide.com/2026/03/14/riftbound-jinx-champion-deck-guide/",
+    "https://animealley.ca/blogs/the-synergy-lab/jinx-loose-cannon-riftbound-deck-guide"
   ],
   "cardImage": "jinx-loose-cannon.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "Legend ability: at the start of your Beginning Phase, draw a card if you have one or fewer cards in hand. pace 8.5: riftboundguide.com calls Jinx 'the most aggressive of the three Origins Champion Decks' whose job is to 'end games quickly rather than grinding out long turns.' stance 8.5: the same guide says Jinx wins 'because it moves faster than the opponent can react,' and animealley.ca's tournament guide describes the deck as wanting 'the opponent answering a board that keeps finding another attacker.' complexity 3.5: riftbound.gg calls the discard mechanic 'initially confusing but conceptually straightforward,' though animealley.ca notes real decisions since 'deciding what to discard matters as much as deciding what to play.' variance 7: riftboundguide.com highlights swing turns from recurring threats, and animealley.ca warns that 'recycling several Fury runes for one attack makes the next turn smaller,' so a stopped all-in can cost more than it gains. Confidence: medium-high, three independently written sources agree closely on shape; one source's deck-size figure conflicted with the official card count, likely a summarization slip rather than a real discrepancy. starterDeck confirmed against the official Riot Games Store listing title 'Riftbound: League of Legends TCG Origins Champion Deck: Jinx.'"
 }

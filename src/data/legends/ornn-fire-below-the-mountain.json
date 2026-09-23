@@ -10,22 +10,23 @@
   "starterDeck": null,
   "archetype": "Midrange",
   "coordinates": {
-    "pace": 5,
-    "stance": 5.5,
-    "complexity": 6,
-    "variance": 4,
+    "pace": 5.5,
+    "stance": 6.5,
+    "complexity": 6.5,
+    "variance": 3.5,
     "fury-calm": 5,
     "mind-body": -5,
     "chaos-order": 0
   },
-  "howItPlays": "Midrange equipment engine. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Ornn.",
+  "howItPlays": "You use Ornn's ability to generate a spare rune every turn just for playing or using gear, then spend that extra resource attaching Equipment to your units so they hit harder and survive longer. You keep developing new units and gear turn after turn until your opponent runs out of good answers.",
+  "whyYou": "You enjoy having a little more to work with each turn than your opponent expects, and you like the quiet satisfaction of a unit that keeps growing because you kept feeding it gear. You're patient enough to keep rebuilding your side of the field turn after turn rather than going for one big swing. If you'd rather out-work an opponent piece by piece than gamble on a single play, Ornn is for you.",
   "guideUrls": [
-    "https://riftbound.gg/tier-list"
+    "https://riftbound.gg/ornn-fire-below-the-mountain-guide/",
+    "https://hextechanalytics.com/legends/ornn"
   ],
   "cardImage": "ornn-fire-below-the-mountain.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "Ability: Exhaust: Reaction, add a rainbow rune, usable only to play gear or use gear abilities (Riftcodex, SFD-189). pace 5.5: riftbound.gg calls the current build 'super fast-paced,' but hextechanalytics calls it 'mid-tempo,' establishing an early board before pivoting to equipment; split toward the middle since the two sources disagree on how quick the plan is. stance 6.5: riftbound.gg says 'simply reacting to the board without developing units won't cut it,' and hextechanalytics calls it a 'balanced hybrid' that still holds protective spells, so mostly proactive with some held-back answers. complexity 6.5: hextechanalytics calls it 'intermediate to high,' citing which unit gets equipment and readiness timing; riftbound.gg calls gear timing 'the main skill test.' variance 3.5: hextechanalytics says the deck is 'consistent,' citing 'multiple tutors and replacement effects,' and riftbound.gg notes 'a good amount of draw' backing up the plan. archetype Midrange: sources split between calling it fast-paced and calling it 'equipment-focused control'; Midrange sits between those two reads better than either extreme. Confidence: medium, two guides read but they characterize the deck's speed differently, likely because one describes an older build and one a newer set's list; reviewer should check whether a more recent decklist changes the pace rating. starterDeck kept null: neither guide names a retail starter product for this Legend."
 }

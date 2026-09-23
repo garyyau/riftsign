@@ -10,22 +10,23 @@
   "starterDeck": null,
   "archetype": "Aggro",
   "coordinates": {
-    "pace": 8.5,
+    "pace": 8,
     "stance": 8.5,
-    "complexity": 3.5,
+    "complexity": 6,
     "variance": 5.5,
     "fury-calm": -5,
     "mind-body": 5,
     "chaos-order": 0
   },
-  "howItPlays": "Aggro predatory rush. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Rengar.",
+  "howItPlays": "You play out a lot of cheap units, and every new unit you play gives one of your units extra might for the turn, so your attacks keep hitting harder than they look. You hold some units back to ambush battlefields your opponent thought were safe, then keep adding bodies until they run out of ways to stop you.",
+  "whyYou": "You like moving fast and keeping the pressure on from the first turn instead of waiting for a big payoff later. Holding units back to spring a surprise attack and guessing right about where to strike next appeals to your instincts. If you would rather overwhelm someone with a wave of small threats than win with one big card, Rengar is your Legend.",
   "guideUrls": [
-    "https://riftbound.gg/tier-list"
+    "https://riftbound.gg/rengar-pridestalker-guide/",
+    "https://hextechanalytics.com/legends/rengar"
   ],
   "cardImage": "rengar-pridestalker.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "Ability: when you play a unit, give a unit +1 might this turn. Pace 8: riftbound.gg says the deck 'wins the first showdowns' and is 'designed to quickly seize the lead,' a fast plan that wants the game decided early. Stance 8.5: riftbound.gg calls the game plan 'strongly proactive' and hextechanalytics.com agrees units are played to dictate the battlefields rather than to answer the opponent. Complexity 6: hextechanalytics.com calls sequencing 'high' from trigger ordering and tracking effects across battlefields, while riftbound.gg calls it more moderate; I set it above a simple attack-every-turn deck but below the most intricate decks in the pool. Variance 5.5: riftbound.gg highlights hidden information from held-back units as a strength, so games can swing on whether the opponent guesses right, even though the core plan repeats reliably. Confidence: high, both guides agree closely on the wide-board, hidden-threat plan. Reviewer: none major."
 }

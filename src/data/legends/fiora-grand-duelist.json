@@ -10,22 +10,23 @@
   "starterDeck": "Spiritforged Champion Deck",
   "archetype": "Midrange",
   "coordinates": {
-    "pace": 5,
-    "stance": 5.5,
-    "complexity": 4.5,
-    "variance": 4,
+    "pace": 6,
+    "stance": 7.5,
+    "complexity": 7.5,
+    "variance": 6.5,
     "fury-calm": 0,
     "mind-body": 5,
     "chaos-order": 5
   },
-  "howItPlays": "Midrange equipment duelist. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Fiora.",
+  "howItPlays": "You attach equipment and play spells that push your units past five Might, and every time one of your units crosses that line Fiora lets you exhaust her to channel an extra rune. You keep growing your strongest units into hard-to-answer threats turn after turn until your side of the board is too big for your opponent to fight through.",
+  "whyYou": "You like decks that reward planning a turn or two ahead, figuring out which unit to grow first and which equipment or spell gets it over the Might threshold. The payoff of watching a cheap unit turn into your best threat is what keeps you coming back, even on turns where the pieces don't line up and you have to play it slower. This Legend suits you if you enjoy puzzling out sequencing more than reacting on the fly.",
   "guideUrls": [
-    "https://riftbound.gg/spiritforged-rumble-fiora-champion-starter-decklists/"
+    "https://riftbound.gg/fiora-grand-duelist-guide/",
+    "https://riftboundguide.com/2026/04/01/riftbound-fiora-champion-deck-guide/"
   ],
   "cardImage": "fiora-grand-duelist.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 6: riftbound.gg calls it a 'moderately fast tempo,' saying Fiora is 'difficult to manoeuvre' once she has runes or equipment going; riftboundguide.com frames the same deck as building toward a dominant late-game board rather than an early rush, so I split the difference. stance 7.5: riftboundguide.com says 'the deck builds toward a board state your opponent cannot answer, then closes the game from there,' and riftbound.gg agrees she looks to 'seize board control early and maintain it.' complexity 7.5: riftboundguide.com is explicit - 'Fiora requires sequencing. You need a unit on the board, then a way to push it to 5 Might, and the trigger fires from there' - each turn is its own small puzzle. variance 6.5: the same guide describes a turn where 'Jaull-Fish costs 3 energy' after two Mighty units feeling 'absurd,' against hands with no equipment or spells feeling 'slow' - the deck's best and worst turns are far apart. Legend ability: when one of your units becomes Mighty (5+ Might), you may exhaust Fiora to channel 1 rune exhausted. Confidence: high. Both guides describe the same Mighty-trigger shell in detail. I updated starterDeck to 'Spiritforged Fiora Champion Deck' to match the product title used across sources instead of the seed's shortened 'Spiritforged Champion Deck' - worth a quick check against the physical box."
 }

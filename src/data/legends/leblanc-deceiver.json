@@ -8,24 +8,26 @@
   ],
   "set": "UNL",
   "starterDeck": null,
-  "archetype": "Control",
+  "archetype": "Midrange",
   "coordinates": {
-    "pace": 2.5,
-    "stance": 2,
-    "complexity": 8,
-    "variance": 3.5,
+    "pace": 4.5,
+    "stance": 6,
+    "complexity": 6.5,
+    "variance": 7,
     "fury-calm": 0,
     "mind-body": -5,
     "chaos-order": 5
   },
-  "howItPlays": "Control spell deception. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting LeBlanc.",
+  "howItPlays": "Every time you conquer or hold a battlefield, you can discard a card and exhaust LeBlanc to copy one of the units already there, doubling up on whatever is already working for you. Those copies are temporary and often die on purpose, and each death from a Deathknell unit pays you back, so your side keeps getting stronger while your opponent struggles to keep up.",
+  "whyYou": "You like games that build momentum fast, where copying your best unit turns one good play into two. You don't mind cards dying on purpose if it pays off later, and you enjoy how quickly a game can get away from your opponent once you're rolling. If a game that can go from even to lopsided in a couple of turns sounds fun rather than stressful, LeBlanc fits you well.",
   "guideUrls": [
-    "https://riftbound.gg/tier-list"
+    "https://riftbound.gg/leblanc-deceiver-guide/",
+    "https://hextechanalytics.com/legends/leblanc",
+    "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-deathknell-leblanc"
   ],
   "cardImage": "leblanc-deceiver.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Control template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 4.5: riftbound.gg says one build 'will focus on drawing cards and answering opposing threats' while another aims to 'snowball in the mid game'; cardsrealm agrees you'll 'draw a lot of cards, have a lot of runes' before the deck's plan comes online, putting it squarely in the midgame rather than an early or late-game plan. stance 6: the deck actively conquers and holds battlefields to trigger its copy ability and punishes removal through Deathknell payoffs, an initiative-taking plan rather than a purely reactive one, even though the card-draw build leans more reactive. complexity 6.5: riftbound.gg says 'you will make a lot of decisions about what stays alive and what needs to die', while cardsrealm calls it 'a bit difficult to pilot at first, but it often plays by itself and doesn't punish you for making small mistakes', a real but forgiving decision tree. variance 7: cardsrealm says the deck has been 'victim of her inability to build around anything else but her signature synergy' and games often feel 'one-sided, with either LeBlanc developing a synergy the opponent will struggle to contain, or the opposite, with the Deceiver struggling to get going', a high-ceiling, low-floor shape. Legend ability: when you conquer or hold, you may discard a card and exhaust LeBlanc to play a ready Reflection token there that copies another unit at that battlefield and gets Temporary. Confidence: medium, three sources agree on the Deathknell-copy engine and its inconsistency, but the archetype call (Midrange with combo leanings, chosen over a pure Control read) follows the copy-and-conquer plan being initiative-taking rather than purely reactive; reviewer should double check this lean given how binary the sources say games can be."
 }

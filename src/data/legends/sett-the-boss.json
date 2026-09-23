@@ -8,24 +8,25 @@
   ],
   "set": "OGN",
   "starterDeck": null,
-  "archetype": "Midrange",
+  "archetype": "Tempo",
   "coordinates": {
-    "pace": 5,
-    "stance": 5.5,
-    "complexity": 4.5,
-    "variance": 4,
+    "pace": 7.5,
+    "stance": 8,
+    "complexity": 6,
+    "variance": 6.5,
     "fury-calm": 0,
     "mind-body": 5,
     "chaos-order": 5
   },
-  "howItPlays": "Midrange brawler. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Sett.",
+  "howItPlays": "You play strong Body units early and rush to conquer a battlefield before your opponent can set up, then use Sett's ability to recall a buffed unit that would die instead of losing it for good. Every battlefield you conquer readies Sett again, so you keep protecting your best units turn after turn while you race to hold more ground than your opponent.",
+  "whyYou": "You like setting the pace instead of waiting to see what the other player does. You want to commit units early, keep the pressure on, and trust your buffs to bail your best unit out of a bad trade instead of playing it safe. This Legend suits you if you're comfortable riding a hot start and don't mind that a stalled game can turn on you fast.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-guide-sett-the-boss-body-order",
+    "https://riftbound.gg/sett-the-boss-guide/"
   ],
   "cardImage": "sett-the-boss.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 7.5: riftbound.gg says to 'constantly be in a sort of rush, and score every turn'; cardsrealm adds the deck wants to 'play strong units early on and conquer a battlefield as soon as possible.' stance 8: cardsrealm says 'you won't let your opponent fight for the board at any point during the game,' controlling the pace rather than reacting to it. complexity 6: riftbound.gg notes it 'mix[es] disruptive cards with way[s] to ready its units,' which takes timing around rune recycling and buff-spend sequencing. variance 6.5: riftbound.gg warns 'The Boss isn't suited for a value oriented war' and that falling behind on runes leaves you 'helpless,' while also saying it's 'competitive if you are one of the bests in the world piloting that legend,' pointing to a wide gap between a good and bad piloting. Legend ability: when a buffed unit you control would die, you may pay a rune and exhaust Sett to spend its buff and recall the unit instead of losing it, and Sett readies whenever you conquer. Confidence: medium-high. Two independent guides agree on the fast, proactive shape of the deck; a reviewer should sanity-check the Tempo label against the seed's earlier Midrange framing."
 }

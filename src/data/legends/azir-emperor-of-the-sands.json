@@ -8,24 +8,26 @@
   ],
   "set": "SFD",
   "starterDeck": null,
-  "archetype": "Control",
+  "archetype": "Midrange",
   "coordinates": {
-    "pace": 2.5,
-    "stance": 2,
+    "pace": 3.5,
+    "stance": 5,
     "complexity": 6.5,
-    "variance": 3.5,
+    "variance": 2.5,
     "fury-calm": 5,
     "mind-body": 0,
     "chaos-order": 5
   },
-  "howItPlays": "Control army summoning. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Azir.",
+  "howItPlays": "Every turn you play an Equipment card, you can exhaust Azir to drop a fresh Sand Soldier token, and those tokens auto-equip your gear for cheaper the moment they hit the board. You keep replacing tokens as they trade away, holding battlefields with a steady stream of armed soldiers instead of protecting a few expensive units.",
+  "whyYou": "You like a game with a clear rhythm, playing an Equipment and a soldier almost every turn and watching your side of the board slowly fill up. You don't mind trading a soldier away if it means you can hold the ground, and you enjoy adjusting your speed to match whatever your opponent is doing. If a steady, repeatable plan that flexes to the matchup sounds satisfying, Azir suits you.",
   "guideUrls": [
-    "https://riftbound.gg/tier-list"
+    "https://riftbound.gg/azir-emperor-of-the-sands-guide/",
+    "https://riftboundguide.com/2026/07/09/riftbound-azir-champion-deck-guide/",
+    "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-token-azir"
   ],
   "cardImage": "azir-emperor-of-the-sands.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Control template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 3.5: riftboundguide.com says Azir 'plays a patient game: hold battlefields with cheap Sand Soldier tokens, use Equipment cards to make them stronger' rather than racing, but the deck still deploys a token most turns, so it isn't as slow as a pure grind plan; a faster 'Tempo Token' variant exists per cardsrealm playing one unit a turn. stance 5: riftbound.gg's own guide describes Azir as a flex legend that matches its opponent, 'against a slow, value oriented opponent, Azir will focus on summoning units every turn' while 'if the opponent tries to play at a fast pace, Azir can switch to a more value oriented style', so it sits in the middle rather than leaning hard either way. complexity 6.5: riftboundguide.com says the deck rewards 'knowing when to trade a Sand Soldier away and when to hold your board' and warns to 'never play an equipment card without resources to pay for your Legend's energy cost', real sequencing pressure from chaining many cheap Equipment cards. variance 2.5: riftboundguide.com calls it 'a consistent value engine built on repeatable mechanics', and riftbound.gg notes at least 13 cheap Equipment cards reliably feed the token engine, so games look similar turn to turn. Legend ability: Sand Soldiers you play have Weaponmaster (equip them for less); pay Energy 1 and exhaust Azir to play a 2 Might Sand Soldier token if you've played an Equipment this turn. Confidence: medium, three sources broadly agree on the token-and-equipment engine but disagree on the archetype label (tempo-control hybrid vs midrange-control hybrid vs a separate faster tempo-token build); went with Midrange since the dominant description is patient board development rather than racing. Reviewer should double check whether the faster cardsrealm variant is common enough to rate instead."
 }

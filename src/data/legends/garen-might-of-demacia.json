@@ -7,25 +7,26 @@
     "Order"
   ],
   "set": "OGS",
-  "starterDeck": "Proving Grounds",
+  "starterDeck": "Origins Proving Grounds",
   "archetype": "Midrange",
   "coordinates": {
-    "pace": 5,
-    "stance": 5.5,
+    "pace": 4.5,
+    "stance": 6.5,
     "complexity": 3.5,
-    "variance": 4,
+    "variance": 5,
     "fury-calm": 0,
     "mind-body": 5,
     "chaos-order": 5
   },
-  "howItPlays": "Midrange straightforward beatdown. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Garen.",
+  "howItPlays": "You build up a wide army of Body units on your side of the board and choose when to swing them at a battlefield together, aiming for four or more units there so Garen's Legend ability draws you two cards when you conquer. You keep adding units, protecting your strongest ones from bad trades, and turning those extra cards into more units until your opponent can't match your numbers.",
+  "whyYou": "You want a deck that teaches you the fundamentals without asking you to track a dozen moving pieces at once. You like building a bigger army than your opponent, picking your moment to attack, and getting rewarded with extra cards for playing patiently. This Legend suits you if you'd rather outnumber your opponent than outtrick them, and you don't mind a plan that takes a couple of turns to come together.",
   "guideUrls": [
-    "https://riftbound.gg/legends"
+    "https://riftbound.gg/garen-might-of-demacia-guide/",
+    "https://hextechanalytics.com/legends/garen"
   ],
   "cardImage": "garen-might-of-demacia.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Midrange template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 4.5: hextechanalytics calls it a 'measured, proactive tempo' that 'builds a board deliberately before committing to fights,' and riftbound.gg agrees the deck is neither an early rush nor a drawn-out game. stance 6.5: riftbound.gg says the deck 'cares mostly about units and winning the good old-fashioned way,' developing its own units instead of answering the opponent's, though it isn't as relentlessly proactive as the fastest Legends. complexity 3.5: riftbound.gg calls the gameplan 'fairly simple' and beginner-friendly; hextechanalytics pushes back a bit, saying success 'requires counting surviving units mid-combat' and that 'the mistake is treating the draw-two trigger as an obligation' - I split the difference since one source is describing the starter deck specifically and the other the wider Legend. variance 5: hextechanalytics notes 'removal that takes the fourth unit out before the conquest can deny the cards even when you still win,' a real but setup-dependent swing rather than a random one. Legend ability: when you conquer, if you have 4+ units at that battlefield, draw 2. Confidence: high. Two guides independently describe the same shape of deck; they disagree somewhat on complexity because one covers the Proving Grounds starter deck and the other the Legend in general, which a reviewer should weigh given this file is for the starter version."
 }

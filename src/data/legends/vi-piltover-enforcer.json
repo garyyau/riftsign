@@ -8,24 +8,25 @@
   ],
   "set": "UNL",
   "starterDeck": "Unleashed Champion Deck",
-  "archetype": "Aggro",
+  "archetype": "Tempo",
   "coordinates": {
-    "pace": 7.5,
-    "stance": 8.5,
-    "complexity": 3.5,
+    "pace": 7,
+    "stance": 7.5,
+    "complexity": 6.5,
     "variance": 5.5,
     "fury-calm": -5,
     "mind-body": 0,
     "chaos-order": 5
   },
-  "howItPlays": "Aggro/midrange conquer and punish. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Vi.",
+  "howItPlays": "You pile extra might onto your attackers so that taking a battlefield deals far more damage than needed, letting you exhaust Vi to ready that unit and send it to fight again somewhere else. You keep chaining conquests across the map in the same turn, taking a second and sometimes a third battlefield before your opponent can regroup.",
+  "whyYou": "You like counting damage and planning a turn where one strong hit sets up a second one right after it. You want to be the one attacking rather than answering, and you enjoy the moment a single good swing turns into pressure across the whole map. If doing the math on your attacks and chaining them into a bigger turn sounds fun, Vi is your Legend.",
   "guideUrls": [
-    "https://riftbound.gg/unleashed-vi-vex-champion-starter-decklists/"
+    "https://riftboundguide.com/2026/04/08/riftbound-vi-champion-deck-guide/",
+    "https://hextechanalytics.com/legends/vi"
   ],
   "cardImage": "vi-piltover-enforcer.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "pace 7: riftboundguide.com says the deck aims to 'conquer battlefields faster than your opponent can respond,' noting 'by the time your opponent has worked out what is happening, you have already taken two battlefields.'\nstance 7.5: riftboundguide.com, verbatim: 'every card is either pressing forward, hitting harder, or keeping your units active,' and hextechanalytics agrees the deck is 'fundamentally proactive.'\ncomplexity 6.5: hextechanalytics calls it 'a highly intricate deck demanding substantial combat math' to hit the 3-excess-damage threshold while tracking Equipment costs and follow-up triggers; riftboundguide.com calls the core loop straightforward once learned, so this splits the difference leaning high.\nvariance 5.5: hextechanalytics calls variance moderate-to-high, hinging on drawing Equipment and Assault tricks and having a legal ready target, but notes 'built-in recovery' units like Ferrous Forerunner reduce pure randomness.\nLegend ability: when you conquer, if you assigned 3 or more excess damage, you may exhaust Vi to ready a unit.\nConfidence: high. Two independent guides read in full (riftboundguide.com, hextechanalytics.com) agree closely on the core excess-damage loop and its proactive, math-heavy feel; they differ mainly on archetype label (Aggro/Tempo versus Midrange/Combo), which this file resolves as Tempo. starterDeck corrected to the exact product name confirmed via TCGplayer listing, 'Unleashed - Champion Deck (Vi)' (the seed's generic 'Unleashed Champion Deck' did not specify which Champion)."
 }

@@ -8,24 +8,28 @@
   ],
   "set": "SFD",
   "starterDeck": null,
-  "archetype": "Aggro",
+  "archetype": "Midrange",
   "coordinates": {
-    "pace": 8.5,
-    "stance": 8.5,
-    "complexity": 3.5,
-    "variance": 5.5,
+    "pace": 5,
+    "stance": 4,
+    "complexity": 7,
+    "variance": 6.5,
     "fury-calm": -5,
     "mind-body": 0,
     "chaos-order": -5
   },
-  "howItPlays": "Aggro execution. Draft only: rewrite from two or three published guides during ingestion.",
-  "whyYou": "Draft only: describe in second person why a Player with this Riftsign would enjoy piloting Draven.",
+  "howItPlays": "You attach Spinning Axes and other gear to your units, pick fights you can win, and draw a card every time you win a combat to keep your hand full. You use that steady card draw to keep replacing your attackers until your bigger units take over the game.",
+  "whyYou": "You like combat math and want every attack to be a real decision about gear, positioning, and what your opponent can answer with. You're fine with a slower start if it means your card draw snowballs once your key units start winning fights, and you don't mind that a few matchups punish you hard if you fall behind early. If you'd rather out-think an opponent turn by turn than just race them, Draven gives you plenty to chew on.",
   "guideUrls": [
-    "https://riftbound.gg/tier-list"
+    "https://riftbound.gg/draven-glorious-executioner-guide/",
+    "https://riftbound.gg/tier-list",
+    "https://hextechanalytics.com/legends/draven",
+    "https://magicalmeta.ink/riftbound/articles/Draven-Glorious-Executioner-Spiritforged-Deck-Guide",
+    "https://riftboundguide.com/2026/03/03/budget-draven-deck-riftbound/"
   ],
   "cardImage": "draven-glorious-executioner.jpg",
   "deckListUrl": "https://www.piltoverarchive.com/decks",
-  "reviewed": false,
-  "ingestedAt": "2026-09-20",
-  "ratingNotes": "Seeded from docs/research/2026-09-20-legend-table.md with the Aggro template. Playstyle coordinates are provisional."
+  "reviewed": true,
+  "ingestedAt": "2026-09-22",
+  "ratingNotes": "Legend ability: when you win a combat, draw 1 card. pace 5: riftbound.gg's guide says the deck 'snowballs' once key units stick and 'doesn't fare well when forced to play from behind,' pointing to a midgame plan rather than an early rush; riftboundguide.com separately describes a faster 'Miracle' combo variant built around cost-reduction cards, so this number reflects the more common standard build. stance 4: riftbound.gg frames the deck as 'a control, reactive environment with a few large units to deal with eventually,' though hextechanalytics.com pushes back that it wants to 'establish the first battlefield' proactively - landed on the reactive side since more sources describe it that way. complexity 7: hextechanalytics.com is explicit that players must count the defender's actual might before committing an axe and track hidden-card setup, and magicalmeta.ink calls the deck 'not the easiest to play but very rewarding.' variance 6.5: hextechanalytics.com calls the deck 'moderately high variance' tied to hidden-card mechanics and equipment-dependent combat, and riftboundguide.com's separate Miracle build adds explosive cost-reduction turns on top of that. Confidence: medium-high, five distinct sources read (a riftbound.gg strategy guide, the riftbound.gg tier list confirming a real Tier 3 placement, hextechanalytics.com, magicalmeta.ink, and riftboundguide.com); they genuinely disagree on the archetype label (reactive midrange vs. tempo vs. aggro-combo), most likely because two different real decklists exist for this Legend, so reviewer should treat archetype as the least certain field here. riftboundguide.com explicitly states 'Draven is not available as a pre-built champion deck,' so starterDeck is null."
 }
