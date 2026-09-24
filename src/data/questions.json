@@ -1,41 +1,94 @@
 {
-  "version": "2026-09",
+  "version": "2026-10",
   "questions": [
     {
-      "id": "opening-hand",
+      "id": "first-turn",
       "kind": "scenario",
-      "eyebrow": "Opening moves",
-      "prompt": "It's turn one. Your dream opening hand lets you...",
+      "scale": true,
+      "eyebrow": "Turn one",
+      "prompt": "It's turn one and your hand offers two openings. You...",
       "loads": [{ "axis": "pace", "reverse": false }],
       "answers": [
-        { "id": "pressure", "text": "Hit the board right away and start pressuring.", "moves": [{ "axis": "pace", "weight": 2 }, { "axis": "stance", "weight": 1 }] },
-        { "id": "setup", "text": "Set up something that pays off a few turns later.", "moves": [{ "axis": "pace", "weight": -2 }] },
-        { "id": "flexible", "text": "Hold flexible answers and see what they're up to.", "moves": [{ "axis": "pace", "weight": -1 }, { "axis": "stance", "weight": -2 }] }
+        { "id": "pressure", "text": "Put a unit on a battlefield and start scoring straight away.", "moves": [{ "axis": "pace", "weight": 2 }] },
+        { "id": "ramp", "text": "Play a card that grows your runes for the rest of the game, and let them have the early lead.", "moves": [{ "axis": "pace", "weight": -2 }, { "axis": "mind-body", "weight": 1 }] }
       ]
     },
     {
-      "id": "long-games",
-      "kind": "statement",
-      "eyebrow": "Game length",
-      "prompt": "I enjoy long games where the board slowly fills up and every decision matters.",
-      "loads": [{ "axis": "pace", "reverse": true }],
-      "agreeMoves": [{ "axis": "pace", "weight": -2 }, { "axis": "complexity", "weight": 1 }]
+      "id": "damage-or-stun",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Two spells",
+      "prompt": "Two cheap spells, same cost. Which one makes your deck?",
+      "loads": [{ "axis": "fury-calm", "reverse": true }],
+      "answers": [
+        { "id": "damage", "text": "Deals damage straight to an enemy unit.", "moves": [{ "axis": "fury-calm", "weight": -2 }] },
+        { "id": "stun", "text": "Stuns an enemy unit so it sits out the next fight.", "moves": [{ "axis": "fury-calm", "weight": 2 }] }
+      ]
     },
     {
-      "id": "stabilising",
+      "id": "units-or-answers",
       "kind": "scenario",
-      "eyebrow": "Mid game",
-      "prompt": "The match is running long and your opponent is starting to stabilise. You...",
-      "loads": [{ "axis": "pace", "reverse": false }],
+      "scale": true,
+      "eyebrow": "Building",
+      "prompt": "Filling out your deck, you give more slots to...",
+      "loads": [{ "axis": "stance", "reverse": false }],
       "answers": [
-        { "id": "all-in", "text": "Go all in before they finish setting up.", "moves": [{ "axis": "pace", "weight": 2 }, { "axis": "variance", "weight": 1 }] },
-        { "id": "grind", "text": "Shift gears and grind it out. You're comfortable going long.", "moves": [{ "axis": "pace", "weight": -2 }] },
-        { "id": "one-swing", "text": "Look for the one big turn that flips the game.", "moves": [{ "axis": "pace", "weight": 1 }, { "axis": "variance", "weight": 1 }, { "axis": "complexity", "weight": 1 }] }
+        { "id": "units", "text": "Units, and cards that make your units stronger.", "moves": [{ "axis": "stance", "weight": 2 }, { "axis": "mind-body", "weight": 1 }] },
+        { "id": "answers", "text": "Spells that answer whatever your opponent puts down.", "moves": [{ "axis": "stance", "weight": -2 }, { "axis": "mind-body", "weight": -1 }] }
+      ]
+    },
+    {
+      "id": "tokens-or-trash",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "One spell slot",
+      "prompt": "One spell slot left. It goes to a spell that...",
+      "loads": [{ "axis": "chaos-order", "reverse": false }],
+      "answers": [
+        { "id": "tokens", "text": "Creates two small soldier units.", "moves": [{ "axis": "chaos-order", "weight": 2 }] },
+        { "id": "trash", "text": "Returns the best card in your trash to your hand.", "moves": [{ "axis": "chaos-order", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "cut-one-card",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Cut one",
+      "prompt": "Your deck is one card over. Which do you cut?",
+      "loads": [{ "axis": "variance", "reverse": true }],
+      "answers": [
+        { "id": "cut-bomb", "text": "The card that wins the game by itself when it lands, and does nothing when it doesn't.", "moves": [{ "axis": "variance", "weight": -2 }] },
+        { "id": "cut-steady", "text": "The card that's always useful and never spectacular.", "moves": [{ "axis": "variance", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "draw-or-ramp",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Two cards",
+      "prompt": "Two cards, same cost. You'd rather run the one that...",
+      "loads": [{ "axis": "mind-body", "reverse": true }],
+      "answers": [
+        { "id": "draw", "text": "Draws you two cards.", "moves": [{ "axis": "mind-body", "weight": -2 }] },
+        { "id": "rune", "text": "Gives you an extra rune for the rest of the game.", "moves": [{ "axis": "mind-body", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "engine-or-pieces",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Picking a deck",
+      "prompt": "Two decks are on the table. You'd rather pick up...",
+      "loads": [{ "axis": "complexity", "reverse": true }],
+      "answers": [
+        { "id": "engine", "text": "The one with a single engine you lean on every turn. You'll be playing it sharply within a few games and can spend your attention on your opponent.", "moves": [{ "axis": "complexity", "weight": -2 }] },
+        { "id": "pieces", "text": "The one with several small pieces that combine differently every game. You'll still be finding new lines after twenty games.", "moves": [{ "axis": "complexity", "weight": 2 }] }
       ]
     },
     {
       "id": "which-win",
       "kind": "scenario",
+      "scale": true,
       "eyebrow": "Favourite wins",
       "prompt": "Which win feels better?",
       "loads": [{ "axis": "pace", "reverse": true }],
@@ -45,217 +98,203 @@
       ]
     },
     {
-      "id": "scary-play",
+      "id": "hold-or-press",
       "kind": "scenario",
-      "eyebrow": "Their move",
-      "prompt": "Your opponent plays something scary. Your instinct is to...",
-      "loads": [{ "axis": "stance", "reverse": false }],
+      "scale": true,
+      "eyebrow": "After the conquest",
+      "prompt": "You've just taken a battlefield. Next turn you'd rather...",
+      "loads": [{ "axis": "fury-calm", "reverse": false }],
       "answers": [
-        { "id": "ignore", "text": "Ignore it and push your own plan harder.", "moves": [{ "axis": "stance", "weight": 2 }] },
-        { "id": "answer", "text": "Deal with it right away. Your plan can wait.", "moves": [{ "axis": "stance", "weight": -2 }] }
+        { "id": "hold", "text": "Dig in and hold it, with a trick ready for whoever comes to take it back.", "moves": [{ "axis": "fury-calm", "weight": 2 }] },
+        { "id": "press", "text": "Leave it and hit the next battlefield while they're off balance.", "moves": [{ "axis": "fury-calm", "weight": -2 }] }
       ]
     },
     {
-      "id": "hand-full-of",
+      "id": "discard-or-sacrifice",
       "kind": "scenario",
-      "eyebrow": "Your hand",
-      "prompt": "You'd rather be holding a hand full of...",
-      "loads": [{ "axis": "stance", "reverse": false }],
+      "scale": true,
+      "eyebrow": "The price",
+      "prompt": "A powerful effect asks a price. You'd rather pay by...",
+      "loads": [{ "axis": "chaos-order", "reverse": true }],
       "answers": [
-        { "id": "threats", "text": "Threats you're dying to play.", "moves": [{ "axis": "stance", "weight": 2 }, { "axis": "pace", "weight": 1 }] },
-        { "id": "answers", "text": "Answers that punish whatever they try.", "moves": [{ "axis": "stance", "weight": -2 }] }
+        { "id": "discard", "text": "Discarding a card from your hand.", "moves": [{ "axis": "chaos-order", "weight": -2 }] },
+        { "id": "sacrifice", "text": "Giving up one of your own units.", "moves": [{ "axis": "chaos-order", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "all-in-or-measured",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "The attack",
+      "prompt": "You're about to attack and you have the numbers. You...",
+      "loads": [{ "axis": "variance", "reverse": false }],
+      "answers": [
+        { "id": "all-in", "text": "Commit everything. If it lands, the game is as good as over.", "moves": [{ "axis": "variance", "weight": 2 }] },
+        { "id": "measured", "text": "Commit enough to force a response and keep the rest in reserve.", "moves": [{ "axis": "variance", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "hold-or-spend",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Your runes",
+      "prompt": "It's your turn and you could spend every rune or keep some back. You...",
+      "loads": [{ "axis": "stance", "reverse": true }],
+      "answers": [
+        { "id": "keep-back", "text": "Keep some back so you can react to whatever they do on their turn.", "moves": [{ "axis": "stance", "weight": -2 }] },
+        { "id": "spend", "text": "Spend everything now and put another threat on the board.", "moves": [{ "axis": "stance", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "biggest-card",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Your headline card",
+      "prompt": "The most expensive card in your deck should be...",
+      "loads": [{ "axis": "mind-body", "reverse": false }],
+      "answers": [
+        { "id": "huge-unit", "text": "A huge unit that wins any fight it's in.", "moves": [{ "axis": "mind-body", "weight": 2 }] },
+        { "id": "gear", "text": "A piece of gear that quietly takes over the game once it's in play.", "moves": [{ "axis": "mind-body", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "card-order",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Sequencing",
+      "prompt": "You have four cards to play this turn and the order matters. You...",
+      "loads": [{ "axis": "complexity", "reverse": false }],
+      "answers": [
+        { "id": "enjoy-order", "text": "Enjoy it. Working out the exact order is the best bit.", "moves": [{ "axis": "complexity", "weight": 2 }] },
+        { "id": "barely-matters", "text": "Would rather play cards strong enough that the order takes care of itself.", "moves": [{ "axis": "complexity", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "painful-loss",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "The loss",
+      "prompt": "Which loss stings more?",
+      "loads": [{ "axis": "pace", "reverse": true }],
+      "answers": [
+        { "id": "two-turns-short", "text": "You were two turns from your plan coming together.", "moves": [{ "axis": "pace", "weight": -2 }] },
+        { "id": "they-stabilised", "text": "You had them on the ropes early, then they stabilised and ground you out.", "moves": [{ "axis": "pace", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "protector-or-striker",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Two units",
+      "prompt": "Two units, same cost and size. You'd rather run the one that...",
+      "loads": [{ "axis": "fury-calm", "reverse": false }],
+      "answers": [
+        { "id": "protector", "text": "Takes the hits for the units beside it.", "moves": [{ "axis": "fury-calm", "weight": 2 }] },
+        { "id": "striker", "text": "Hits harder whenever it's the one attacking.", "moves": [{ "axis": "fury-calm", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "token-or-face-down",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Add one",
+      "prompt": "Add one unit to the deck:",
+      "loads": [{ "axis": "chaos-order", "reverse": false }],
+      "answers": [
+        { "id": "two-bodies", "text": "One that arrives with a small token unit: two bodies for one card.", "moves": [{ "axis": "chaos-order", "weight": 2 }] },
+        { "id": "face-down", "text": "One you can play face down and flip at the moment of your choosing.", "moves": [{ "axis": "chaos-order", "weight": -2 }, { "axis": "mind-body", "weight": -1 }] }
+      ]
+    },
+    {
+      "id": "best-days",
+      "kind": "statement",
+      "eyebrow": "Good days, bad days",
+      "prompt": "A deck that's unbeatable on its best days and falls apart on its worst is more fun than one that plays out the same way every game.",
+      "loads": [{ "axis": "variance", "reverse": false }],
+      "agreeMoves": [{ "axis": "variance", "weight": 2 }]
+    },
+    {
+      "id": "cut-unit-or-draw",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Cut one",
+      "prompt": "You need to cut a card. It's between...",
+      "loads": [{ "axis": "mind-body", "reverse": true }],
+      "answers": [
+        { "id": "cut-biggest-unit", "text": "Your biggest unit.", "moves": [{ "axis": "mind-body", "weight": -2 }] },
+        { "id": "cut-draw", "text": "Your best card-draw spell.", "moves": [{ "axis": "mind-body", "weight": 2 }] }
       ]
     },
     {
       "id": "shutting-down",
       "kind": "statement",
       "eyebrow": "Satisfaction",
-      "prompt": "The best feeling in a game is shutting down exactly what my opponent was trying to do.",
+      "prompt": "The best moment in a game is when my opponent commits to a play and I have the exact answer waiting.",
       "loads": [{ "axis": "stance", "reverse": true }],
       "agreeMoves": [{ "axis": "stance", "weight": -2 }]
     },
     {
-      "id": "racing",
+      "id": "quick-games",
+      "kind": "statement",
+      "eyebrow": "Your ideal game",
+      "prompt": "I want a game decided in the first few turns, whichever way it goes.",
+      "loads": [{ "axis": "pace", "reverse": false }],
+      "agreeMoves": [{ "axis": "pace", "weight": 2 }]
+    },
+    {
+      "id": "big-enemy-unit",
       "kind": "scenario",
-      "eyebrow": "The race",
-      "prompt": "When both players are racing, you want to be the one...",
-      "loads": [{ "axis": "stance", "reverse": false }],
+      "scale": true,
+      "eyebrow": "The wall",
+      "prompt": "A huge enemy unit is parked on the battlefield you need. You'd rather...",
+      "loads": [{ "axis": "fury-calm", "reverse": true }],
       "answers": [
-        { "id": "set-pace", "text": "Setting the pace they have to keep up with.", "moves": [{ "axis": "stance", "weight": 2 }] },
-        { "id": "punish", "text": "Waiting for them to overcommit, then punishing it.", "moves": [{ "axis": "stance", "weight": -2 }, { "axis": "complexity", "weight": 1 }] }
+        { "id": "burn-it", "text": "Attack into it with several units and finish it off with damage.", "moves": [{ "axis": "fury-calm", "weight": -2 }] },
+        { "id": "stun-it", "text": "Stun it, or move it out of the way, and take the battlefield while it stands there.", "moves": [{ "axis": "fury-calm", "weight": 2 }] }
       ]
     },
     {
-      "id": "reading-cards",
+      "id": "formation-or-tricks",
       "kind": "scenario",
-      "eyebrow": "New cards",
-      "prompt": "Reading a new card, you love it when...",
-      "loads": [{ "axis": "complexity", "reverse": false }],
+      "scale": true,
+      "eyebrow": "Your plan",
+      "prompt": "Your deck at its best feels like...",
+      "loads": [{ "axis": "chaos-order", "reverse": true }],
       "answers": [
-        { "id": "one-thing", "text": "It does one strong thing with no fine print.", "moves": [{ "axis": "complexity", "weight": -2 }] },
-        { "id": "three-ways", "text": "It has three ways to use it and you'll find them all.", "moves": [{ "axis": "complexity", "weight": 2 }] }
+        { "id": "bag-of-tricks", "text": "A bag of tricks: cards changing places and surprises coming back from the trash.", "moves": [{ "axis": "chaos-order", "weight": -2 }] },
+        { "id": "formation", "text": "A formation: every unit has a role and every loss pays for something.", "moves": [{ "axis": "chaos-order", "weight": 2 }] }
       ]
     },
     {
-      "id": "punishing-deck",
-      "kind": "scenario",
-      "eyebrow": "Mastery",
-      "prompt": "A deck that punishes tiny mistakes but rewards mastery sounds...",
-      "loads": [{ "axis": "complexity", "reverse": false }],
-      "answers": [
-        { "id": "exhausting", "text": "Exhausting. You want to play the game, not solve it.", "moves": [{ "axis": "complexity", "weight": -2 }] },
-        { "id": "perfect", "text": "Exactly what you want.", "moves": [{ "axis": "complexity", "weight": 2 }] },
-        { "id": "sometimes", "text": "Fine now and then, not every night.", "moves": [{ "axis": "complexity", "weight": -0.5 }] }
-      ]
-    },
-    {
-      "id": "straightforward",
+      "id": "one-clear-job",
       "kind": "statement",
       "eyebrow": "Piloting",
-      "prompt": "I'd rather play a straightforward deck perfectly than a clever deck at 80 percent.",
+      "prompt": "I play best with a deck that has one clear job, so I can focus on doing it well.",
       "loads": [{ "axis": "complexity", "reverse": true }],
       "agreeMoves": [{ "axis": "complexity", "weight": -2 }]
     },
     {
-      "id": "favourite-turn",
+      "id": "edge-hand-or-board",
       "kind": "scenario",
-      "eyebrow": "Best turn",
-      "prompt": "Your favourite kind of turn is when...",
-      "loads": [{ "axis": "complexity", "reverse": false }],
+      "scale": true,
+      "eyebrow": "Your edge",
+      "prompt": "Your favourite kind of edge over an opponent is...",
+      "loads": [{ "axis": "mind-body", "reverse": false }],
       "answers": [
-        { "id": "chain", "text": "You line up four cards that all set each other off.", "moves": [{ "axis": "complexity", "weight": 2 }, { "axis": "variance", "weight": 1 }] },
-        { "id": "biggest", "text": "You play the biggest thing you have and it just works.", "moves": [{ "axis": "complexity", "weight": -2 }, { "axis": "stance", "weight": 1 }] }
+        { "id": "board", "text": "More on the board: the bigger unit, the buff at the right moment.", "moves": [{ "axis": "mind-body", "weight": 2 }] },
+        { "id": "hand", "text": "More in hand: extra cards, and a face-down card they have to respect.", "moves": [{ "axis": "mind-body", "weight": -2 }] }
       ]
     },
     {
-      "id": "coin-flip-card",
+      "id": "finisher-or-spread",
       "kind": "scenario",
-      "eyebrow": "Gambles",
-      "prompt": "A card that either wins the game on the spot or does nothing at all...",
-      "loads": [{ "axis": "variance", "reverse": false }],
-      "answers": [
-        { "id": "love-it", "text": "Love it. That's the fun part.", "moves": [{ "axis": "variance", "weight": 2 }] },
-        { "id": "no-thanks", "text": "No thanks. You want cards that always do their job.", "moves": [{ "axis": "variance", "weight": -2 }] }
-      ]
-    },
-    {
-      "id": "consistency",
-      "kind": "statement",
-      "eyebrow": "Win rate",
-      "prompt": "I'd rather win 55 percent of my games steadily than 50 percent with wild swings.",
-      "loads": [{ "axis": "variance", "reverse": true }],
-      "agreeMoves": [{ "axis": "variance", "weight": -2 }]
-    },
-    {
-      "id": "game-night-story",
-      "kind": "scenario",
-      "eyebrow": "The story",
-      "prompt": "After game night, the story you tell is about...",
-      "loads": [{ "axis": "variance", "reverse": false }],
-      "answers": [
-        { "id": "top-deck", "text": "The ridiculous draw that flipped a lost game.", "moves": [{ "axis": "variance", "weight": 2 }] },
-        { "id": "controlled", "text": "The tight game you controlled from start to finish.", "moves": [{ "axis": "variance", "weight": -2 }, { "axis": "pace", "weight": -1 }] }
-      ]
-    },
-    {
-      "id": "behind-on-board",
-      "kind": "scenario",
-      "eyebrow": "Falling behind",
-      "prompt": "You're behind on board. You...",
-      "loads": [{ "axis": "variance", "reverse": false }],
-      "answers": [
-        { "id": "dig", "text": "Dig for the one card that turns it all around.", "moves": [{ "axis": "variance", "weight": 2 }] },
-        { "id": "claw-back", "text": "Trade carefully and claw it back an inch at a time.", "moves": [{ "axis": "variance", "weight": -2 }, { "axis": "pace", "weight": -1 }] }
-      ]
-    },
-    {
-      "id": "table-mood",
-      "kind": "scenario",
-      "eyebrow": "Table mood",
-      "prompt": "The mood you want at the table:",
-      "loads": [{ "axis": "fury-calm", "reverse": false }],
-      "answers": [
-        { "id": "relentless", "text": "Relentless. Keep swinging, make them sweat.", "moves": [{ "axis": "fury-calm", "weight": -2 }, { "axis": "pace", "weight": 1 }] },
-        { "id": "composed", "text": "Composed. Precise. Wait for the perfect moment.", "moves": [{ "axis": "fury-calm", "weight": 2 }, { "axis": "pace", "weight": -1 }] }
-      ]
-    },
-    {
-      "id": "fired-up",
-      "kind": "statement",
-      "eyebrow": "Your energy",
-      "prompt": "I play my best when I'm fired up and pushing hard.",
-      "loads": [{ "axis": "fury-calm", "reverse": true }],
-      "agreeMoves": [{ "axis": "fury-calm", "weight": -2 }, { "axis": "stance", "weight": 1 }]
-    },
-    {
-      "id": "battle-cry",
-      "kind": "scenario",
-      "eyebrow": "Battle cry",
-      "prompt": "Which line would you rather say out loud?",
-      "loads": [{ "axis": "fury-calm", "reverse": false }],
-      "answers": [
-        { "id": "breathe", "text": "\"Breathe. Everything in its time.\"", "moves": [{ "axis": "fury-calm", "weight": 2 }] },
-        { "id": "burn", "text": "\"Burn it all down.\"", "moves": [{ "axis": "fury-calm", "weight": -2 }] }
-      ]
-    },
-    {
-      "id": "win-because",
-      "kind": "scenario",
+      "scale": true,
       "eyebrow": "How you win",
-      "prompt": "You'd rather win because...",
-      "loads": [{ "axis": "mind-body", "reverse": false }],
+      "prompt": "Your deck wins with...",
+      "loads": [{ "axis": "variance", "reverse": true }],
       "answers": [
-        { "id": "outsmart", "text": "You outsmarted them with tricks and knowledge.", "moves": [{ "axis": "mind-body", "weight": -2 }, { "axis": "complexity", "weight": 1 }] },
-        { "id": "bigger", "text": "Your units were simply bigger and stronger.", "moves": [{ "axis": "mind-body", "weight": 2 }, { "axis": "complexity", "weight": -1 }] }
-      ]
-    },
-    {
-      "id": "spells-over-creatures",
-      "kind": "statement",
-      "eyebrow": "Preference",
-      "prompt": "Give me spells, gadgets and clever tricks over big creatures every time.",
-      "loads": [{ "axis": "mind-body", "reverse": true }],
-      "agreeMoves": [{ "axis": "mind-body", "weight": -2 }]
-    },
-    {
-      "id": "ideal-crew",
-      "kind": "scenario",
-      "eyebrow": "Your crew",
-      "prompt": "Your ideal crew is made of...",
-      "loads": [{ "axis": "mind-body", "reverse": false }],
-      "answers": [
-        { "id": "scholars", "text": "Scholars, inventors and schemers.", "moves": [{ "axis": "mind-body", "weight": -2 }] },
-        { "id": "warriors", "text": "Warriors, beasts and brawlers.", "moves": [{ "axis": "mind-body", "weight": 2 }] }
-      ]
-    },
-    {
-      "id": "game-plan",
-      "kind": "scenario",
-      "eyebrow": "The plan",
-      "prompt": "Your plan for a game is...",
-      "loads": [{ "axis": "chaos-order", "reverse": false }],
-      "answers": [
-        { "id": "structured", "text": "A structured sequence you follow every time.", "moves": [{ "axis": "chaos-order", "weight": 2 }, { "axis": "variance", "weight": -1 }] },
-        { "id": "chaos", "text": "Whatever chaos you can create, then ride it.", "moves": [{ "axis": "chaos-order", "weight": -2 }, { "axis": "variance", "weight": 1 }] }
-      ]
-    },
-    {
-      "id": "break-the-rules",
-      "kind": "statement",
-      "eyebrow": "Rule breaking",
-      "prompt": "I like decks that bend the rules, sneak things in, and make a glorious mess.",
-      "loads": [{ "axis": "chaos-order", "reverse": true }],
-      "agreeMoves": [{ "axis": "chaos-order", "weight": -2 }, { "axis": "variance", "weight": 1 }]
-    },
-    {
-      "id": "rules-are",
-      "kind": "scenario",
-      "eyebrow": "Rules",
-      "prompt": "To you, rules are...",
-      "loads": [{ "axis": "chaos-order", "reverse": false }],
-      "answers": [
-        { "id": "framework", "text": "The framework that lets you plan.", "moves": [{ "axis": "chaos-order", "weight": 2 }] },
-        { "id": "bendable", "text": "There to be bent.", "moves": [{ "axis": "chaos-order", "weight": -2 }] }
+        { "id": "spread", "text": "Many threats spread across the deck, so losing any one barely matters.", "moves": [{ "axis": "variance", "weight": -2 }] },
+        { "id": "finisher", "text": "One finisher the whole deck is built around. Drawing it is the game.", "moves": [{ "axis": "variance", "weight": 2 }] }
       ]
     }
   ]

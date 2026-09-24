@@ -107,7 +107,8 @@ export function validateLegend(raw: unknown): ValidationResult<Legend> {
 /**
  * Reverse keying has to be real, not just declared. For a statement, agreeing must move the Axis
  * low when reverse is true and high when it is false. For a scenario, reverse means the first
- * listed (most "obvious") Answer moves the Axis low.
+ * listed (most "obvious") Answer moves the Axis low. A scale has only its two poles, so its keying
+ * is checked both ways and the poles must pull the Axis in opposite directions.
  */
 function reverseKeyingIssue(question: Question, axis: AxisId, reverse: boolean): string | null {
   const weightOf = (moves: { axis: AxisId; weight: number }[]) => moves.find((m) => m.axis === axis)?.weight ?? 0
@@ -119,6 +120,11 @@ function reverseKeyingIssue(question: Question, axis: AxisId, reverse: boolean):
   }
   const first = weightOf(question.answers[0].moves)
   if (reverse && first >= 0) return `marked reverse on ${axis} but its first Answer does not move it low`
+  if (!question.scale) return null
+  if (!reverse && first <= 0) return `not marked reverse on ${axis} but its first pole does not move it high`
+  if (Math.sign(weightOf(question.answers[1].moves)) !== -Math.sign(first)) {
+    return `scale poles must move ${axis} in opposite directions`
+  }
   return null
 }
 

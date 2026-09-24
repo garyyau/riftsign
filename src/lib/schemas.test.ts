@@ -133,6 +133,17 @@ describe('validateQuestionSet', () => {
     expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/answers.*scale scenario needs exactly two/)
   })
 
+  it('checks scale keying both ways and requires the poles to oppose each other', () => {
+    const set = fullCoverageSet()
+    swapReverseAnswers(set)
+    const q = set.questions[0] // pace-1, not reverse, high pole first
+    if (q.kind !== 'scenario') throw new Error('expected a scenario')
+    set.questions[0] = { ...q, scale: true, answers: [...q.answers].reverse() }
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*not marked reverse.*first pole/)
+    set.questions[0] = { ...q, scale: true, answers: [q.answers[0], answer('also-high', [{ axis: 'pace', weight: 1 }])] }
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*opposite directions/)
+  })
+
   it('rejects a scale scenario whose expanded points collide with a pole id', () => {
     const set = fullCoverageSet()
     swapReverseAnswers(set)
