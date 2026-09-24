@@ -78,10 +78,10 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
 
       <section className="grid gap-10 py-12 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5">
-          <p className="label-mono text-muted-foreground">{s.eyebrow}</p>
+          <p className="label-mono text-muted-foreground">{shared ? s.sharedEyebrow : s.eyebrow}</p>
           {archetype ? (
             <h1 className={settle('display mt-5 text-5xl md:text-7xl')}>
-              <span className="block text-2xl text-muted-foreground md:text-3xl">{s.archetypeLead}</span>
+              <span className="block text-2xl text-muted-foreground md:text-3xl">{shared ? s.sharedArchetypeLead : s.archetypeLead}</span>
               <span className="glow-primary text-primary">{ARCHETYPE_COPY[archetype].name}</span>
             </h1>
           ) : (
@@ -117,7 +117,7 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
       {matches.length > 0 && (
         <section className={settle(settled ? 'rise-in' : undefined)}>
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-t pt-8 pb-2">
-            <h2 className="display text-3xl">{s.matchesTitle}</h2>
+            <h2 className="display text-3xl">{shared ? s.sharedMatchesTitle : s.matchesTitle}</h2>
             <p className="label-mono text-muted-foreground">{s.fitNote}</p>
           </div>
           {close && (

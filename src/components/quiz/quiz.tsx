@@ -1,4 +1,5 @@
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { STRINGS } from '@/lib/strings'
 import type { Answers, Question } from '@/lib/types'
@@ -14,10 +15,14 @@ interface QuizProps {
   /** 0-based; equal to questions.length on the champion step. */
   step: number
   onAnswer: (questionId: string, answerId: string) => void
+  onNext: () => void
   onToggleChampion: (champion: string) => void
   onBack: () => void
   onFinish: (skipChampions: boolean) => void
 }
+
+/** How long a picked Answer stays on screen before the next Question, so the Player sees what they chose. */
+export const ANSWER_PAUSE_MS = 250
 
 export function Quiz({
   questions,
@@ -26,23 +31,44 @@ export function Quiz({
   favouriteChampions,
   step,
   onAnswer,
+  onNext,
   onToggleChampion,
   onBack,
   onFinish,
 }: QuizProps) {
-  const total = questions.length + 1
+  const s = STRINGS.quiz
+  // The optional champion step sits after the Questions and is left out of the count.
+  const total = questions.length
   const onChampions = step >= questions.length
   const question = onChampions ? null : questions[step]
+  const progress = onChampions ? s.optionalStep : s.progress(step + 1, total)
+
+  // Leaving the step (Back, Next, or the timer itself) cancels a pending advance.
+  const advance = useRef<number | undefined>(undefined)
+  useEffect(() => () => window.clearTimeout(advance.current), [step])
+  const select = (questionId: string, answerId: string) => {
+    onAnswer(questionId, answerId)
+    window.clearTimeout(advance.current)
+    advance.current = window.setTimeout(onNext, ANSWER_PAUSE_MS)
+  }
 
   return (
     <div>
-      <ProgressBar value={step} max={total} label={STRINGS.quiz.progress(step + 1, total)} />
-      <div className="flex items-center justify-between px-6 pt-4">
+      <ProgressBar value={Math.min(step, total)} max={total} label={progress} />
+      <div className="flex items-center justify-between gap-3 px-6 pt-4">
         <Button variant="ghost" size="sm" onClick={onBack} className="-ml-3">
           <ArrowLeft aria-hidden />
-          {STRINGS.quiz.back}
+          {s.back}
         </Button>
-        <span className="label-mono text-muted-foreground">{STRINGS.quiz.progress(step + 1, total)}</span>
+        <div className="flex items-center gap-3">
+          <span className="label-mono text-muted-foreground">{progress}</span>
+          {question && question.id in answers && (
+            <Button variant="ghost" size="sm" onClick={onNext} className="-mr-3">
+              {s.next}
+              <ArrowRight aria-hidden />
+            </Button>
+          )}
+        </div>
       </div>
       {question ? (
         <QuestionStep
@@ -50,11 +76,10 @@ export function Quiz({
           question={question}
           number={step + 1}
           selected={answers[question.id]}
-          onSelect={(answerId) => onAnswer(question.id, answerId)}
+          onSelect={(answerId) => select(question.id, answerId)}
         />
       ) : (
         <ChampionStep
-          number={total}
           champions={champions}
           selected={favouriteChampions}
           onToggle={onToggleChampion}

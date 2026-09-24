@@ -14,6 +14,9 @@ interface QuestionStepProps {
 const pointClass =
   'cursor-pointer transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'
 
+/** A picked statement or scale point: an inset ring and accent text, so the choice reads before the step advances. */
+const activePoint = 'bg-primary/10 text-primary ring-1 ring-primary ring-inset'
+
 export function QuestionStep({ question, number, selected, onSelect }: QuestionStepProps) {
   const answers = answersOf(question)
   const isStatement = question.kind === 'statement'
@@ -39,10 +42,15 @@ export function QuestionStep({ question, number, selected, onSelect }: QuestionS
                 className={cn(
                   pointClass,
                   'text-left',
+                  // Statements carry their own border only on mobile; from sm the row's divide-x draws them.
                   isStatement
-                    ? 'label-mono flex-1 border px-3 py-4 text-center leading-snug normal-case tracking-normal sm:border-0 hover:bg-accent'
+                    ? 'label-mono flex-1 px-3 py-4 text-center leading-snug normal-case tracking-normal max-sm:border hover:bg-accent'
                     : 'rounded-md border px-5 py-4 text-base leading-snug hover:border-foreground',
-                  active ? 'border-primary bg-primary/10 text-foreground sm:bg-primary/10' : 'text-foreground/90',
+                  active
+                    ? isStatement
+                      ? cn(activePoint, 'max-sm:border-primary')
+                      : 'border-primary bg-primary/10 text-foreground'
+                    : 'text-foreground/90',
                 )}
               >
                 {answer.text}
@@ -94,17 +102,19 @@ function ScalePoints({ prompt, points, selected, onSelect }: ScalePointsProps) {
               className={cn(
                 pointClass,
                 'label-mono flex min-h-16 flex-col items-center justify-center gap-2.5 px-1 py-4 text-center normal-case tracking-normal hover:bg-accent',
-                active ? 'bg-primary/10 text-foreground' : 'text-foreground/90',
+                active ? activePoint : 'text-foreground/90',
               )}
             >
-              <span
-                aria-hidden
-                className={cn(
-                  'rounded-sm border',
-                  strong ? 'size-3' : 'size-2',
-                  active ? 'border-primary bg-primary' : 'border-muted-foreground',
-                )}
-              />
+              {/* A fixed box keeps both marker sizes on one baseline, so every label lines up. */}
+              <span aria-hidden className="flex size-3 items-center justify-center">
+                <span
+                  className={cn(
+                    'rounded-sm border',
+                    strong ? 'size-3' : 'size-2',
+                    active ? 'border-primary bg-primary' : 'border-muted-foreground',
+                  )}
+                />
+              </span>
               {label}
             </button>
           )

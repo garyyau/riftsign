@@ -18,7 +18,7 @@ describe('App', () => {
     expect(screen.getByText(LEGAL_DISCLAIMER)).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: STRINGS.landing.start }))
     expect(screen.getByText(QUESTION_SET.questions[0].prompt)).toBeTruthy()
-    expect(screen.getByText(STRINGS.quiz.progress(1, QUESTION_SET.questions.length + 1))).toBeTruthy()
+    expect(screen.getByText(STRINGS.quiz.progress(1, QUESTION_SET.questions.length))).toBeTruthy()
   })
 
   it('keeps in-progress Answers across a reload', () => {

@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
 import { StepRail } from './step-rail'
 
 interface ChampionStepProps {
-  number: number
   champions: string[]
   selected: string[]
   onToggle: (champion: string) => void
@@ -12,10 +11,10 @@ interface ChampionStepProps {
   onDone: () => void
 }
 
-export function ChampionStep({ number, champions, selected, onToggle, onSkip, onDone }: ChampionStepProps) {
+export function ChampionStep({ champions, selected, onToggle, onSkip, onDone }: ChampionStepProps) {
   const s = STRINGS.quiz
   return (
-    <StepRail number={number} eyebrow={s.championsEyebrow} title={s.championsPrompt} help={s.championsHelp}>
+    <StepRail number={s.optionalStep} eyebrow={s.championsEyebrow} title={s.championsPrompt} help={s.championsHelp}>
       {champions.length === 0 ? (
         <p className="text-sm text-muted-foreground">{s.noChampions}</p>
       ) : (

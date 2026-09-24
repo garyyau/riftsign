@@ -30,6 +30,8 @@ export const STRINGS = {
   quiz: {
     progress: (current: number, total: number) => `Question ${current} of ${total}`,
     back: 'Back',
+    next: 'Next',
+    optionalStep: 'Optional',
     championsEyebrow: 'One last thing',
     championsPrompt: 'Any champions you already love?',
     championsHelp:
@@ -44,10 +46,13 @@ export const STRINGS = {
   },
   result: {
     eyebrow: 'Your Riftsign',
+    sharedEyebrow: 'A shared Riftsign',
     archetypeLead: 'You play',
+    sharedArchetypeLead: 'They play',
     noPool: 'No Legends have been reviewed yet, so there is nothing to match against. Your scores are still yours.',
     fitNote: 'Fit is about how a Legend plays, not how strong it is. This is not a tier list.',
     matchesTitle: 'Legends that play like you',
+    sharedMatchesTitle: 'Legends that play like this',
     closeCall: (first: string, second: string) =>
       `It was close: ${first} and ${second} fit you almost equally. Start with whichever grabs you.`,
     fit: (n: number) => `${n}% fit`,

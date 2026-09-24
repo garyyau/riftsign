@@ -104,10 +104,10 @@ export default function App() {
             answers={session.answers}
             favouriteChampions={session.favouriteChampions}
             step={view.step}
-            onAnswer={(questionId, answerId) => {
+            onAnswer={(questionId, answerId) =>
               updateSession((prev) => ({ answers: { ...prev.answers, [questionId]: answerId }, lastProfileCode: null }))
-              show({ kind: 'quiz', step: Math.min(view.step + 1, questions.length) })
-            }}
+            }
+            onNext={() => show({ kind: 'quiz', step: Math.min(view.step + 1, questions.length) })}
             onToggleChampion={(champion) =>
               updateSession((prev) => ({
                 favouriteChampions: prev.favouriteChampions.includes(champion)
