@@ -1,6 +1,6 @@
 # Riftsign
 
-A five-minute playstyle test for Riftbound players. Answer twenty-six questions about how you like to play, get your Riftsign (seven scores), a playstyle name in plain words, and the Legends that fit it. Fit is about how a Legend plays, never how strong it is.
+A five-minute playstyle test for Riftbound players. Answer twenty-six questions about how you like to play, get your Riftsign (four playstyle scores and six Domain scores), a playstyle name in plain words, and the Legends that fit it. Fit is about how a Legend plays, never how strong it is.
 
 Static site, no server, no accounts, no analytics. Vocabulary is in `CONTEXT.md`; decisions are in `docs/adr`; the v1 spec is `docs/specs/0001-riftsign-v1.md`.
 
@@ -26,7 +26,7 @@ Pushing to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
 - `src/data/legends/<id>.json`: one file per Legend, holding one to three Builds (ways the Legend is played, each a different Archetype; see ADR 0003). Only Builds with `"reviewed": true` reach the site.
 - `public/cards/<id>.jpg`: one official card image per Legend.
 
-Domain coordinates are derived from the two Domains and checked at build time. Playstyle coordinates are drafted from published guides and reviewed by a person before each Build's `reviewed` is flipped.
+A Build stores only its four playstyle coordinates; its Domains come from the Legend (ADR 0005), and the build rejects a stored Domain coordinate. Playstyle coordinates are drafted from published guides and reviewed by a person before each Build's `reviewed` is flipped.
 
 ## Adding Legends
 

@@ -1,7 +1,7 @@
 # 0001. Axis-based profile matching for results
 
 Date: 2026-09-20
-Status: Accepted
+Status: Accepted. The three bipolar Domain Axes are superseded by ADR 0005 (six independent Domain scores); the playstyle Axes and profile matching stand.
 
 ## Context
 

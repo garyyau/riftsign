@@ -1,7 +1,7 @@
 # 0004. Playstyle leads matching
 
 Date: 2026-09-23
-Status: Proposed. Amends ADR 0001's distance (weights and the midpoint rule for opposite-pair Legends), and the favourite-champion bonus and Domain lean in docs/specs/0001-riftsign-v1.md.
+Status: Proposed. Amends ADR 0001's distance (weights and the midpoint rule for opposite-pair Legends), and the favourite-champion bonus and Domain lean in docs/specs/0001-riftsign-v1.md. Partly superseded by ADR 0005: Domains are six independent scores, so the opposite-pair rule, the favourite-champion bonus and the Domain lean below no longer apply. The playstyle term, the affinity cost and `DOMAIN_WEIGHT` carry over.
 
 ## Context
 
@@ -20,10 +20,10 @@ The top Matches are decks that play like you. Playstyle leads the distance, and 
 
 - **Playstyle term.** Normalised squared distance on the four playstyle Axes, weight 1 each, as before.
 - **Domain term, by affinity.** For each of the Legend's two Domains, the Player's affinity runs from -1 to 1: their score on that Domain's Axis over 5, signed so positive points toward the Domain. The Domain costs ((1 - affinity) / 2)², which is 0 at full affinity, 0.25 when neutral and 1 when fully opposed. The Domain term is `DOMAIN_WEIGHT` × the sum of the two costs. A Domain the Legend doesn't hold contributes nothing.
-- **Opposite-pair Legends** take the nearer Domain's cost and count the other as neutral (0.25). For a Fury Player, Akali scores like a Fury Legend whose second Domain the Player has no view on.
+- **Opposite-pair Legends** take the nearer Domain's cost and count the other as neutral (0.25). For a Fury Player, Akali scores like a Fury Legend whose second Domain the Player has no view on. *Superseded by ADR 0005: with independent Domain scores, they use both Domains like any other Legend.*
 - Profiles, stored Build coordinates, validation and share URLs are unchanged. Only the distance changed. Fit is 1 minus distance over the maximum distance: all four playstyle gaps at 1 and both Domain costs at 1.
-- The favourite-champion bonus is 1 fit point, a tie-break between Matches that are already close. A share link names the top Legend ranked without favourites, because that is what the recipient's view shows.
-- The Domain lean names a Domain only where the Profile's score is at least 2.5 from 0 (`DOMAIN_LEAN_THRESHOLD`). Below that the Axis contributes no Domain, and a Player with no qualifying Axis is told their Legends were picked on how they play.
+- The favourite-champion bonus is 1 fit point, a tie-break between Matches that are already close. A share link names the top Legend ranked without favourites, because that is what the recipient's view shows. *Superseded by ADR 0005: there is no bonus, and favourites get their own "Has the look you like" section.*
+- The Domain lean names a Domain only where the Profile's score is at least 2.5 from 0 (`DOMAIN_LEAN_THRESHOLD`). Below that the Axis contributes no Domain, and a Player with no qualifying Axis is told their Legends were picked on how they play. *Superseded by ADR 0005: "Your Domains" highlights leading Domains at `DOMAIN_HIGHLIGHT_THRESHOLD` (3).*
 
 Why the affinity model fixes the attractor by construction: a fully neutral Player pays 0.25 per Domain for every Legend, opposite-pair or not, so they are matched on playstyle alone. Stronger affinity for a Legend's Domains lowers the distance monotonically, and no Legend is rewarded for the Player being undecided.
 
