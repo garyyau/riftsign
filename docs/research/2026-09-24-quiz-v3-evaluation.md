@@ -125,3 +125,65 @@ The Questions' structure is unchanged by the power-balance pass, so every popula
 4. **Stance** has the largest playstyle error (MAE 1.8–2.1). Several Players overstated how proactive they are.
 
 Legend-side items stay for the separate Legend-quality evaluation: Priya's combo match, Kha'Zix's Archetype, and Combo Build variance.
+
+## Experiment: independent Domain statements (2026-11b)
+
+This tests gap 1 directly. The 12 zero-sum Domain scenarios were replaced with 18 single-Domain statements, 3 per Domain (2 forward, 1 reverse-keyed). Each rates one contract face on the 5-point agree scale and moves only its own Domain. The 15 playstyle items are unchanged. The set has 33 items and is kept in `docs/eval/experiments/2026-11b-independent-domains.json`.
+
+A first draft required every face to lead all other Domains 2:1 in the card pool. That dropped stun, Tank, draw, ramp, big units and conquer and swapped in XP and bounce, which no longer measure the Domains the truth was rated on. It was rewritten to use the contract's faces, keeping weak-evidence faces with a flag. The same 16 Players took it twice, with fresh role-players each time.
+
+| | v3 take / retest | 2026-11b take / retest |
+| --- | --- | --- |
+| Six-Domain MAE | 1.71 / 1.60 | 1.36 / 1.33 |
+| Top-2 Domains shared with truth | 19 / 22 of 32 | 23 / 22 of 32 |
+| Regret (fit points) | 4.6 / 5.4 | 3.5 / 4.9 |
+| Regret from the Domain half alone | 3.6 / 2.9 | 2.2 / 2.4 |
+| Top-3 overlap with the oracle | 16 / 18 of 48 | 23 / 21 of 48 |
+| #1 matches oracle #1 | 6 / 5 of 16 | 5 / 5 of 16 |
+| Test-retest: same #1, Profile RMS gap | 9/16, 1.01 | 9/16, 0.94 |
+
+| Domain rho, take / retest | Fury | Calm | Mind | Body | Chaos | Order |
+| --- | --- | --- | --- | --- | --- | --- |
+| v3 | 0.88 / 0.83 | 0.49 / 0.46 | 0.62 / 0.72 | 0.64 / 0.68 | 0.70 / 0.57 | 0.44 / 0.44 |
+| 2026-11b | 0.76 / 0.78 | 0.71 / 0.76 | 0.79 / 0.72 | 0.74 / 0.74 | 0.54 / 0.61 | 0.49 / 0.71 |
+
+`pnpm simulate` on 2026-11b:
+- Build recovery with 25% neighbour slips is 77% / 99%, against 61% / 89% for v3.
+- "Your Domains" names a strong fan's pair 96–99% of the time, against 0–56%.
+- Domain-neutral Players stay quiet 100% of the time.
+
+**Reading.** Domain error falls by about a fifth in both runs. Calm, Body and Order rank Players noticeably better, and the Domain share of regret falls by a third. Fury gets worse, because v3's four Fury items were its strongest, and Chaos stays weak. Exact #1 agreement doesn't move. Top fits sit about a point apart, so the #1 is a noisy target, and top-3 overlap and regret are the better guides. The role-players showed no agree-with-everything drift: item means ran from −0.34 to +0.25.
+
+**Item validity** is the Spearman rho of each item's signed answer against true Domain, pooled over both runs:
+
+| Domain | Keying | Statement | rho |
+| --- | --- | --- | --- |
+| Fury | forward | I love units that hit harder when they're the one attacking. | 0.76 |
+| Fury | forward | I love units that give me a bonus each time they conquer a battlefield. | 0.70 |
+| Fury | reverse | Decks built around dealing damage to enemy units feel dull to me. | 0.10 |
+| Calm | forward | I love stunning enemy units so they deal no combat damage this turn. | 0.89 |
+| Calm | forward | I love units that give me a bonus each time they hold a battlefield at the start of my turn. | 0.50 |
+| Calm | reverse | Decks built around tough units that take the hits first for my other units feel dull to me. | 0.51 |
+| Mind | forward | I love cards that draw me extra cards. | 0.92 |
+| Mind | forward | I love making enemy units smaller. | 0.35 |
+| Mind | reverse | Decks built around gear that gives me something every turn feel dull to me. | 0.40 |
+| Body | reverse | Decks built around a few huge, expensive units feel dull to me. | 0.88 |
+| Body | forward | I love giving each of my units a lasting +1 might buff. | 0.41 |
+| Body | forward | I love cards that give me an extra rune for the rest of the game. | 0.21 |
+| Chaos | reverse | Decks full of tricks and surprise plays feel unfair to me. | 0.63 |
+| Chaos | forward | I love discarding cards I don't need so I can draw new ones. | 0.53 |
+| Chaos | forward | I love bringing cards back from my trash to play them again. | 0.35 |
+| Order | forward | I love filling the board with lots of small 1-might soldier units. | 0.76 |
+| Order | forward | I love units that leave something behind when they die. | 0.40 |
+| Order | reverse | Decks that kill their own units to power up other cards feel wrong to me. | 0.28 |
+
+**Costs and open questions.**
+- **Length.** The quiz grows from 27 to 33 items, and 22 of them are agree/disagree statements (v3 had 4). That moves away from concrete scenarios, which the 2026-09-23 question-design research favoured.
+- **Weak items.** Replace or reword five items before any adoption:
+  - Fury damage (0.10)
+  - Body ramp (0.21): control players like ramp too
+  - Order sacrifice (0.28)
+  - Mind shrink (0.35)
+  - Chaos trash (0.35)
+- **Hybrid option.** Keep v3's strongest Fury scenarios and use statements only where forced choice failed (Calm, Order, Mind). That would also cut the length.
+- **Real people.** Role-players showed no acquiescence. Real people usually do, so a small human pilot should check it.
