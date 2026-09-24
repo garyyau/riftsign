@@ -46,7 +46,7 @@ export const legendSchema = z.object({
 
 const scoreMove = z.object({ axis: scoreId, weight: z.number() })
 const scoreLoading = z.object({ axis: scoreId, reverse: z.boolean() })
-const answerSchema = z.object({ id: z.string().min(1), text: z.string().min(1), moves: z.array(scoreMove).min(1) })
+const answerSchema = z.object({ id: z.string().min(1), text: z.string().min(1), moves: z.array(scoreMove) })
 
 const questionBase = {
   id: z.string().regex(/^[a-z0-9-]+$/, 'kebab-case id'),
