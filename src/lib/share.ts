@@ -15,10 +15,7 @@ export function hashForProfile(code: string): string {
   return `#${HASH_KEY}=${code}`
 }
 
-/**
- * The Legend a share link's preview should name. A recipient's view ranks without the sharer's
- * favourite champions, so this does too, and the preview matches what they see on opening it.
- */
+/** The Legend a share link's preview should name: the top Match, which the recipient sees first too. */
 export function shareLegendId(profile: Profile, pool: Legend[]): string | null {
   return rankLegends(profile, pool)[0]?.legend.id ?? null
 }

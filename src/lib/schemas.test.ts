@@ -1,19 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { domainCoordinates, validateLegend, validateQuestionSet } from './schemas'
+import { SCORE_IDS } from './axes'
+import { validateLegend, validateQuestionSet } from './schemas'
 import { answer, build, legend, scenario, smallQuestionSet } from './test-fixtures'
 import type { Question } from './types'
 
 const issuesOf = (result: { success: boolean; issues?: string[] }) => (result.success ? [] : result.issues!)
-
-describe('domainCoordinates', () => {
-  it('points each Domain Axis at the Legend Domains and leaves the untouched Axis at 0', () => {
-    expect(domainCoordinates(['Fury', 'Order'])).toEqual({ 'fury-calm': -5, 'mind-body': 0, 'chaos-order': 5 })
-  })
-
-  it('sits at the midpoint when a Legend holds both Domains of one Axis', () => {
-    expect(domainCoordinates(['Mind', 'Body'])).toEqual({ 'fury-calm': 0, 'mind-body': 0, 'chaos-order': 0 })
-  })
-})
 
 describe('validateLegend', () => {
   const good = legend('darius', 'Aggro', { pace: 8 }, ['Fury', 'Order'])
@@ -63,7 +54,35 @@ describe('validateLegend', () => {
 })
 
 describe('validateQuestionSet', () => {
-  it('accepts a set that loads every Axis at least three times with a reverse-keyed Question each', () => {
+  it('rejects a Domain whose every load is reverse-keyed, since a zero-sum choice always lists it second', () => {
+    const set = fullCoverageSet()
+    for (const q of set.questions) if (q.id.startsWith('fury-')) q.loads = [{ axis: 'fury', reverse: true }]
+    swapReverseAnswers(set)
+    const issues = issuesOf(validateQuestionSet(set)).join('\n')
+    expect(issues).toMatch(/fury: no forward-keyed/)
+    expect(issues).not.toMatch(/pace: no forward-keyed/)
+  })
+
+  it('accepts a zero-sum Domain choice that loads both Domains, one each way', () => {
+    const set = fullCoverageSet()
+    swapReverseAnswers(set)
+    set.questions.push(
+      scenario(
+        'fury-or-calm',
+        [
+          answer('fury', [{ axis: 'fury', weight: 2 }, { axis: 'calm', weight: -2 }]),
+          answer('calm', [{ axis: 'fury', weight: -2 }, { axis: 'calm', weight: 2 }]),
+        ],
+        [
+          { axis: 'fury', reverse: false },
+          { axis: 'calm', reverse: true },
+        ],
+      ),
+    )
+    expect(validateQuestionSet(set).success).toBe(true)
+  })
+
+  it('accepts a set that loads every score at least three times with a reverse-keyed Question each', () => {
     const set = fullCoverageSet()
     swapReverseAnswers(set)
     expect(validateQuestionSet(set)).toEqual({ success: true, data: set })
@@ -168,10 +187,10 @@ function swapReverseAnswers(set: ReturnType<typeof fullCoverageSet>) {
   }
 }
 
-/** Three Questions per Axis, the third flagged reverse-keyed (Answers still high-first; see swapReverseAnswers). */
+/** Three Questions per score, the third flagged reverse-keyed (Answers still high-first; see swapReverseAnswers). */
 function fullCoverageSet() {
   const questions: Question[] = []
-  for (const axis of ['pace', 'stance', 'complexity', 'variance', 'fury-calm', 'mind-body', 'chaos-order'] as const) {
+  for (const axis of SCORE_IDS) {
     for (const n of [1, 2, 3]) {
       questions.push(
         scenario(

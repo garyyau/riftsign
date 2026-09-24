@@ -3,20 +3,32 @@
  * and are ranked against the reviewed pool by the real engine. Seeded, so two runs on the same data
  * print the same table. Run `pnpm simulate` before and after a weight, Question or rating change.
  *
- * Respondent model: a Player has a true position on every Axis. For each Question they pick the
+ * Respondent model: a Player has a true position on every score. For each Question they pick the
  * Answer whose moves come closest to where that position points, after per-Question noise.
+ * Unless a population says otherwise, a Player likes the Domains they are built around (10) and
+ * has no feeling about the rest (5).
  */
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
-import { AXES, AXIS_IDS, DOMAIN_POLES, normalize, type AxisId } from '../src/lib/axes'
-import { domainCoordinates, validateQuestionSet } from '../src/lib/schemas'
-import { answersOf, CLOSE_CALL_MARGIN, computeProfile, rankLegends } from '../src/lib/scoring'
+import { DOMAIN_ID, DOMAIN_IDS, normalize, PLAYSTYLE_AXIS_IDS, SCORE_IDS, type Domain, type ScoreId } from '../src/lib/axes'
+import { validateQuestionSet } from '../src/lib/schemas'
+import {
+  answersOf,
+  CLOSE_CALL_MARGIN,
+  computeProfile,
+  DOMAIN_HIGHLIGHT_THRESHOLD,
+  DOMAIN_WEIGHT,
+  HEADLINE_MATCHES,
+  leadingDomains,
+  rankLegends,
+} from '../src/lib/scoring'
 import { ARCHETYPES, type Answer, type Answers, type Archetype, type Legend, type Match, type Profile } from '../src/lib/types'
 import { loadLegends } from './lib/load-legends'
 
 const SEED = 20260923
 const SIGMA = 0.25
 const SLIP_RATE = 0.25
+const THRESHOLDS = [1.5, 2, 2.5, 3, 3.5]
 
 // `pnpm simulate [questions.json]` simulates any Question set; the committed one by default.
 const questionFile = path.resolve(process.argv[2] ?? path.resolve(import.meta.dirname, '../src/data/questions.json'))
@@ -43,7 +55,7 @@ interface Item {
   options: Answer[]
   /** Options sit on a line (statement points, scale points), so a slip lands on a neighbour. */
   ordered: boolean
-  reach: Partial<Record<AxisId, { high: number; low: number }>>
+  reach: Partial<Record<ScoreId, { high: number; low: number }>>
 }
 
 const items: Item[] = set.questions.map((q) => {
@@ -57,20 +69,20 @@ const items: Item[] = set.questions.map((q) => {
   return { id: q.id, options, ordered: q.kind === 'statement' || (q.kind === 'scenario' && q.scale === true), reach }
 })
 
-const weightOn = (option: Answer, axis: AxisId) => option.moves.find((m) => m.axis === axis)?.weight ?? 0
+const weightOn = (option: Answer, id: ScoreId) => option.moves.find((m) => m.axis === id)?.weight ?? 0
 
 function respond(truth: Profile, sigma: number, slipRate = 0): Answers {
   const answers: Answers = {}
   for (const item of items) {
-    const axes = Object.keys(item.reach) as AxisId[]
+    const ids = Object.keys(item.reach) as ScoreId[]
     const target = Object.fromEntries(
-      axes.map((axis) => {
-        const c = Math.max(-1, Math.min(1, 2 * normalize(axis, truth[axis]) - 1 + sigma * gauss()))
-        return [axis, c >= 0 ? c * item.reach[axis]!.high : -c * item.reach[axis]!.low]
+      ids.map((id) => {
+        const c = Math.max(-1, Math.min(1, 2 * normalize(truth[id]) - 1 + sigma * gauss()))
+        return [id, c >= 0 ? c * item.reach[id]!.high : -c * item.reach[id]!.low]
       }),
-    ) as Record<AxisId, number>
+    ) as Record<ScoreId, number>
     const ranked = item.options
-      .map((option, i) => ({ i, error: axes.reduce((s, a) => s + (weightOn(option, a) - target[a]) ** 2, 0) + 1e-9 * rand() }))
+      .map((option, i) => ({ i, error: ids.reduce((s, id) => s + (weightOn(option, id) - target[id]) ** 2, 0) + 1e-9 * rand() }))
       .sort((a, b) => a.error - b.error)
     let chosen = ranked[0].i
     if (rand() < slipRate) {
@@ -86,7 +98,7 @@ function respond(truth: Profile, sigma: number, slipRate = 0): Answers {
 }
 
 const randomAnswers = (): Answers => Object.fromEntries(items.map((item) => [item.id, pick(item.options).id]))
-const rank = (answers: Answers): Match[] => rankLegends(computeProfile(set, answers), pool)
+const rank = (profile: Profile): Match[] => rankLegends(profile, pool)
 
 const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length
 const median = (xs: number[]) => {
@@ -94,27 +106,37 @@ const median = (xs: number[]) => {
   return s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2
 }
 const pct = (x: number) => `${(100 * x).toFixed(0)}%`
+const share = <T>(xs: T[], test: (x: T) => boolean) => pct(xs.filter(test).length / xs.length)
 
-const playstyleCentroid = (archetype: Archetype): Partial<Profile> => {
+const OPPOSITE_PAIRS: [Domain, Domain][] = [['Fury', 'Calm'], ['Mind', 'Body'], ['Chaos', 'Order']]
+/** A Player who likes these Domains (10) and has no feeling about the rest (5). */
+const liking = (domains: readonly Domain[]) =>
+  Object.fromEntries(DOMAIN_IDS.map((id) => [id, domains.some((d) => DOMAIN_ID[d] === id) ? 10 : 5]))
+/** The other Domain of a Domain's old opposite pair. */
+const opposite = (d: Domain) => OPPOSITE_PAIRS.flat()[OPPOSITE_PAIRS.flat().indexOf(d) ^ 1]
+/** v2's strong-Domain Player sat on two Axis poles: loving the pair also meant disliking (0) its opposites. */
+const polar = (domains: readonly Domain[]) => ({ ...liking(domains), ...Object.fromEntries(domains.map((d) => [DOMAIN_ID[opposite(d)], 0])) })
+const playstyleCentroid = (archetype: Archetype) => {
   const of = builds.filter((b) => b.build.archetype === archetype)
-  return Object.fromEntries(
-    (['pace', 'stance', 'complexity', 'variance'] as const).map((axis) => [axis, mean(of.map((b) => b.build.coordinates[axis]))]),
-  )
+  return Object.fromEntries(PLAYSTYLE_AXIS_IDS.map((axis) => [axis, mean(of.map((b) => b.build.coordinates[axis]))]))
 }
+const player = (...parts: Record<string, number>[]) => Object.assign({}, ...parts) as Profile
 const archetypes = ARCHETYPES.filter((a) => builds.some((b) => b.build.archetype === a))
-const isOppositePair = (l: Legend) => DOMAIN_POLES[l.domains[0]].axis === DOMAIN_POLES[l.domains[1]].axis
-const samePair = (l: Legend, pair: readonly string[]) => pair.every((d) => l.domains.includes(d as Legend['domains'][number]))
+const isOppositePair = (l: Legend) => OPPOSITE_PAIRS.some((pair) => samePair(l.domains, pair))
+const samePair = (a: readonly Domain[], b: readonly Domain[]) => a.length === b.length && b.every((d) => a.includes(d))
 
 const rows: [string, string][] = []
 const row = (label: string, value: string) => rows.push([label, value])
+const section = (title: string) => rows.push([title, ''])
 
-// 1. Build recovery: a Player standing on a Build should get that Build's Legend.
+// 1. Build recovery: a Player standing on a Build, liking its Legend's Domains, should get that Legend.
 function recovery(sigma: number, slipRate: number, trials: number) {
   let top1 = 0
   let top3 = 0
   for (const { legend, build } of builds) {
     for (let k = 0; k < trials; k++) {
-      const index = rank(respond({ ...build.coordinates, ...domainCoordinates(legend.domains) }, sigma, slipRate)).findIndex((m) => m.legend.id === legend.id)
+      const truth = player(build.coordinates, liking(legend.domains))
+      const index = rank(computeProfile(set, respond(truth, sigma, slipRate))).findIndex((m) => m.legend.id === legend.id)
       if (index === 0) top1++
       if (index < 3) top3++
     }
@@ -122,82 +144,118 @@ function recovery(sigma: number, slipRate: number, trials: number) {
   const n = builds.length * trials
   return `${pct(top1 / n)} / ${pct(top3 / n)}`
 }
-row('Build recovery top-1 / top-3, noise-free', recovery(0, 0, 1))
-row(`Build recovery top-1 / top-3, noise σ=${SIGMA}`, recovery(SIGMA, 0, 150))
-row(`Build recovery top-1 / top-3, ${pct(SLIP_RATE)} neighbour slips`, recovery(0, SLIP_RATE, 150))
+section('Build recovery')
+row('  top-1 / top-3, noise-free', recovery(0, 0, 1))
+row(`  top-1 / top-3, noise σ=${SIGMA}`, recovery(SIGMA, 0, 150))
+row(`  top-1 / top-3, ${pct(SLIP_RATE)} neighbour slips`, recovery(0, SLIP_RATE, 150))
 
-// 2. Playstyle-first Players: an Archetype's centroid with no or mild Domain lean (|score| <= 1.5).
+// 2. Playstyle-first Players: an Archetype's centroid with every Domain within 1.5 of neutral.
+section('Playstyle-first Players (every Domain 3.5 to 6.5)')
 {
-  let own = 0
-  let opposite = 0
-  let players = 0
+  let own3 = 0
+  let own2 = 0
+  const tops: Match[] = []
   for (const archetype of archetypes) {
     for (let k = 0; k < 300; k++) {
-      const truth: Profile = {
-        ...(playstyleCentroid(archetype) as Profile),
-        'fury-calm': uniform(-1.5, 1.5),
-        'mind-body': uniform(-1.5, 1.5),
-        'chaos-order': uniform(-1.5, 1.5),
-      }
-      const matches = rank(respond(truth, SIGMA))
-      own += matches.slice(0, 3).filter((m) => m.build.archetype === archetype).length
-      if (isOppositePair(matches[0].legend)) opposite++
-      players++
+      const domains = Object.fromEntries(DOMAIN_IDS.map((id) => [id, uniform(3.5, 6.5)]))
+      const matches = rank(computeProfile(set, respond(player(playstyleCentroid(archetype), domains), SIGMA)))
+      own3 += matches.slice(0, 3).filter((m) => m.build.archetype === archetype).length
+      own2 += matches.slice(0, HEADLINE_MATCHES).filter((m) => m.build.archetype === archetype).length
+      tops.push(matches[0])
     }
   }
-  row('Playstyle-first: own Archetype share of top-3 slots', pct(own / (3 * players)))
-  row('Playstyle-first: #1 is an opposite-pair Legend', pct(opposite / players))
+  row('  own Archetype share of top-3 slots', pct(own3 / (3 * tops.length)))
+  row(`  own Archetype share of the top-${HEADLINE_MATCHES} headline`, pct(own2 / (HEADLINE_MATCHES * tops.length)))
+  row('  #1 is an opposite-pair Legend', share(tops, (m) => isOppositePair(m.legend)))
 }
 
-// 3. Strong-Domain Players: an Archetype centroid standing on an ordinary Domain pair's corner.
-{
-  const pairs = [...new Set(pool.filter((l) => !isOppositePair(l)).map((l) => [...l.domains].sort().join('/')))].map((p) => p.split('/'))
+/** Players built around a Domain pair: #1 hit rate, and how often "Your Domains" names exactly that pair. */
+function domainPlayers(pairs: [Domain, Domain][], trials: number, truthOf = liking) {
+  const profiles: { profile: Profile; pair: [Domain, Domain] }[] = []
   let hits = 0
-  const trials = 1500
   for (let k = 0; k < trials; k++) {
     const pair = pick(pairs)
-    const truth = { ...(playstyleCentroid(pick(archetypes)) as Profile), ...domainCoordinates(pair as Legend['domains']) }
-    if (samePair(rank(respond(truth, SIGMA))[0].legend, pair)) hits++
+    const profile = computeProfile(set, respond(player(playstyleCentroid(pick(archetypes)), truthOf(pair)), SIGMA))
+    if (samePair(rank(profile)[0].legend.domains, pair)) hits++
+    profiles.push({ profile, pair })
   }
-  row('Strong-Domain: #1 holds their exact Domain pair', pct(hits / trials))
+  const named = (t: number) => share(profiles, ({ profile, pair }) => samePair(leadingDomains(profile, t), pair))
+  return { hits: pct(hits / trials), named }
 }
 
-// 4. Random clicking: opposite-pair Legends should take no more than their share of the pool.
+// 3. Strong-Domain Players: an Archetype centroid who loves an ordinary Domain pair.
+section('Strong-Domain Players (love one ordinary pair, neutral on the rest)')
+const ordinaryPairs = [...new Set(pool.filter((l) => !isOppositePair(l)).map((l) => [...l.domains].sort().join('/')))].map(
+  (p) => p.split('/') as [Domain, Domain],
+)
+const strong = domainPlayers(ordinaryPairs, 1500)
+row('  #1 holds their exact Domain pair', strong.hits)
+row(`  "Your Domains" names that pair (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, strong.named(DOMAIN_HIGHLIGHT_THRESHOLD))
+// Comparable with v2, where loving a pair meant sitting on the poles of two bipolar Axes.
+const strongPolar = domainPlayers(ordinaryPairs, 1500, polar)
+row('  #1 holds their pair when they also dislike its opposites (v2 population)', strongPolar.hits)
+
+// 4. Players who like both Domains of an old opposite pair, e.g. Fury and Calm.
+section('Players who like both Domains of an old opposite pair')
+const both = domainPlayers(OPPOSITE_PAIRS, 900)
+row('  #1 holds both Domains', both.hits)
+row(`  "Your Domains" names both (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, both.named(DOMAIN_HIGHLIGHT_THRESHOLD))
+
+// 5. Domain-neutral Players: any playstyle, no feeling about any Domain.
+section('Domain-neutral Players (every Domain 5)')
+const neutral = Array.from({ length: 1500 }, () => {
+  const style = Object.fromEntries(PLAYSTYLE_AXIS_IDS.map((axis) => [axis, uniform(0, 10)]))
+  return computeProfile(set, respond(player(style, liking([])), SIGMA))
+})
+const quiet = (t: number) => share(neutral, (p) => leadingDomains(p, t).length === 0)
+row(`  "Your Domains" stays quiet (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, quiet(DOMAIN_HIGHLIGHT_THRESHOLD))
+row('  #1 is an opposite-pair Legend', share(neutral, (p) => isOppositePair(rank(p)[0].legend)))
+
+// 6. The highlight threshold trades naming a real pair against staying quiet for a neutral Player.
+section(`Highlight threshold ${THRESHOLDS.join(' / ')}`)
+row('  strong-Domain pair named', THRESHOLDS.map(strong.named).join(' / '))
+row('  strong-Domain pair named, v2 population', THRESHOLDS.map(strongPolar.named).join(' / '))
+row('  opposite-pair likers: both named', THRESHOLDS.map(both.named).join(' / '))
+row('  Domain-neutral: stays quiet', THRESHOLDS.map(quiet).join(' / '))
+
+// 7. Random clicking: opposite-pair Legends should take no more than their share of the pool.
+section('Random clicks')
 {
   const opposite = pool.filter(isOppositePair)
-  const trials = 6000
-  let wins = 0
-  for (let k = 0; k < trials; k++) if (isOppositePair(rank(randomAnswers())[0].legend)) wins++
-  const names = opposite.map((l) => l.champion).join(', ')
-  row(`Random clicks: #1 is ${names} (pool share ${pct(opposite.length / pool.length)})`, pct(wins / trials))
+  const tops = Array.from({ length: 6000 }, () => rank(computeProfile(set, randomAnswers()))[0])
+  row(`  #1 is ${opposite.map((l) => l.champion).join(', ')} (pool share ${pct(opposite.length / pool.length)})`, share(tops, (m) => isOppositePair(m.legend)))
 }
 
-// 5 and 6. Plausible Players: independent uniform traits on every Axis, answering with noise.
+// 8. Plausible Players: independent uniform traits on every score, answering with noise.
+section('Plausible Players (every score uniform 0 to 10)')
 {
   const gaps: number[] = []
   const flips: number[] = []
   for (let k = 0; k < 1000; k++) {
-    const truth = Object.fromEntries(AXIS_IDS.map((axis) => [axis, uniform(AXES[axis].min, AXES[axis].max)])) as Profile
+    const truth = Object.fromEntries(SCORE_IDS.map((id) => [id, uniform(0, 10)])) as Profile
     const answers = respond(truth, SIGMA)
-    const [first, second] = rank(answers)
+    const [first, second] = rank(computeProfile(set, answers))
     gaps.push(first.fit - second.fit)
     let changed = 0
     for (const item of items) {
       for (const option of item.options) {
         if (option.id === answers[item.id]) continue
-        if (rank({ ...answers, [item.id]: option.id })[0].legend.id !== first.legend.id) changed++
+        if (rank(computeProfile(set, { ...answers, [item.id]: option.id }))[0].legend.id !== first.legend.id) changed++
       }
     }
     flips.push(changed)
   }
   const within = (m: number) => pct(gaps.filter((g) => g <= m).length / gaps.length)
-  row('Plausible Players: median fit gap #1 to #2', `${median(gaps)} pts`)
-  row(`Plausible Players: close call (gap <= ${CLOSE_CALL_MARGIN})`, within(CLOSE_CALL_MARGIN))
+  row('  median fit gap #1 to #2', `${median(gaps)} pts`)
+  row(`  close call (gap <= ${CLOSE_CALL_MARGIN})`, within(CLOSE_CALL_MARGIN))
   row('  gap <= 0 / 1 / 2 / 3 / 4', [0, 1, 2, 3, 4].map(within).join(' / '))
   const alternatives = items.reduce((n, item) => n + item.options.length - 1, 0)
-  row('Plausible Players: mean single-answer flips that change #1', `${mean(flips).toFixed(1)} of ${alternatives}`)
+  row('  mean single-answer flips that change #1', `${mean(flips).toFixed(1)} of ${alternatives}`)
 }
 
 const width = Math.max(...rows.map(([label]) => label.length))
-console.log(`Riftsign simulation: ${set.questions.length} Questions (${set.version}), ${pool.length} Legends, ${builds.length} Builds, seed ${SEED}\n`)
-for (const [label, value] of rows) console.log(`${label.padEnd(width)}  ${value}`)
+console.log(
+  `Riftsign simulation: ${set.questions.length} Questions (${set.version}), ${pool.length} Legends, ${builds.length} Builds, ` +
+    `DOMAIN_WEIGHT ${DOMAIN_WEIGHT}, seed ${SEED}\n`,
+)
+for (const [label, value] of rows) console.log(value ? `${label.padEnd(width)}  ${value}` : label)

@@ -1,4 +1,4 @@
-import type { AxisId, Domain, PlaystyleAxisId } from './axes'
+import type { Domain, PlaystyleAxisId, ScoreId } from './axes'
 
 export const ARCHETYPES = ['Aggro', 'Tempo', 'Midrange', 'Control', 'Combo'] as const
 export type Archetype = (typeof ARCHETYPES)[number]
@@ -6,27 +6,28 @@ export type Archetype = (typeof ARCHETYPES)[number]
 export const SET_CODES = ['OGN', 'OGS', 'SFD', 'UNL', 'VEN', 'RAD'] as const
 export type SetCode = (typeof SET_CODES)[number]
 
-/** The Player's position on all seven Axes, in each Axis's presentation units. */
-export type Profile = Record<AxisId, number>
+/** The Player's ten scores, each 0 to 10: four playstyle Axes and six Domain scores. */
+export type Profile = Record<ScoreId, number>
 
 /** Where a Build sits on the four playstyle Axes. Its Domains come from the Legend. */
 export type BuildCoordinates = Record<PlaystyleAxisId, number>
 
-export interface AxisMove {
-  axis: AxisId
-  /** Signed weight. Positive moves toward the Axis's high pole. */
+export interface ScoreMove {
+  /** A score id: a playstyle Axis or a Domain. Named axis so Question files read the same as before. */
+  axis: ScoreId
+  /** Signed weight. Positive moves the score up. */
   weight: number
 }
 
 export interface Answer {
   id: string
   text: string
-  moves: AxisMove[]
+  moves: ScoreMove[]
 }
 
-export interface AxisLoading {
-  axis: AxisId
-  /** True when agreeing / the "obvious" answer moves toward the LOW pole. */
+export interface ScoreLoading {
+  axis: ScoreId
+  /** True when agreeing / the "obvious" answer moves the score down. */
   reverse: boolean
 }
 
@@ -37,7 +38,7 @@ export type Question =
       /** Short Axis-neutral eyebrow label shown in the step rail, e.g. "At the table". */
       eyebrow: string
       prompt: string
-      loads: AxisLoading[]
+      loads: ScoreLoading[]
       answers: Answer[]
       /** Shows the two Answers as poles of a four-point scale: strong and leaning on each side. */
       scale?: boolean
@@ -47,9 +48,9 @@ export type Question =
       kind: 'statement'
       eyebrow: string
       prompt: string
-      loads: AxisLoading[]
+      loads: ScoreLoading[]
       /** Movement applied at "strongly agree"; scaled -1..1 across the five points. */
-      agreeMoves: AxisMove[]
+      agreeMoves: ScoreMove[]
     }
 
 export interface QuestionSet {
@@ -98,10 +99,10 @@ export interface Match {
   fit: number
 }
 
-export interface DomainLean {
-  /** The two Domain Axes with the largest magnitude, strongest first. */
-  axes: [AxisId, AxisId]
-  /** The Domains those Axes point to. An Axis nearer 0 than DOMAIN_LEAN_THRESHOLD contributes none. */
+/** The "Your Domains" section of the result page. */
+export interface DomainPicks {
+  /** The one or two Domains that clearly lead the Profile, strongest first. Empty when none does. */
   domains: Domain[]
-  legends: Legend[]
+  /** Matches holding every leading Domain, best fit first, without the headline Matches. */
+  matches: Match[]
 }

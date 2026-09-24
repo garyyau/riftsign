@@ -1,8 +1,8 @@
-import { AXES, bandLabel, normalize, type AxisId } from '@/lib/axes'
+import { AXES, bandLabel, normalize, SCORE_MAX, type PlaystyleAxisId } from '@/lib/axes'
 import { cn } from '@/lib/utils'
 
 interface AxisBarProps {
-  axis: AxisId
+  axis: PlaystyleAxisId
   value: number
   /** When false the bar sits at zero width; flips to true during the reveal. */
   shown: boolean
@@ -11,7 +11,7 @@ interface AxisBarProps {
 /** A playstyle Axis (0-10): horizontal bar with five band ticks, the score, and its band label. */
 export function AxisBar({ axis, value, shown }: AxisBarProps) {
   const def = AXES[axis]
-  const pct = normalize(axis, value) * 100
+  const pct = normalize(value) * 100
   return (
     <div className={cn('py-5 transition-opacity duration-500', shown ? 'opacity-100' : 'opacity-0')}>
       <div className="flex items-baseline justify-between gap-4">
@@ -21,7 +21,7 @@ export function AxisBar({ axis, value, shown }: AxisBarProps) {
         </div>
         <p className="score-mono text-2xl">
           {value.toFixed(1)}
-          <span className="text-muted-foreground"> / {def.max}</span>
+          <span className="text-muted-foreground"> / {SCORE_MAX}</span>
         </p>
       </div>
       <div className="relative mt-3 h-1.5 w-full bg-border">

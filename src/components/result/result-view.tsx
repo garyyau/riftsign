@@ -1,15 +1,14 @@
 import { Check, Link2 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { AXIS_IDS, DOMAIN_AXIS_IDS, PLAYSTYLE_AXIS_IDS } from '@/lib/axes'
-import { closeCall, deriveArchetype, domainLean, rankLegends } from '@/lib/scoring'
+import { PLAYSTYLE_AXIS_IDS } from '@/lib/axes'
+import { closeCall, deriveArchetype, domainPicks, rankLegends } from '@/lib/scoring'
 import { shareLegendId } from '@/lib/share'
 import { ARCHETYPE_COPY, STRINGS } from '@/lib/strings'
 import type { Legend, Profile } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { AxisBar } from './axis-bar'
 import { DomainLeanSection } from './domain-lean-section'
-import { DomainSlider } from './domain-slider'
 import { MatchCard } from './match-card'
 import { RankingList } from './ranking-list'
 
@@ -29,24 +28,24 @@ interface ResultViewProps {
 const REVEAL_STEP_MS = 380
 const COPIED_RESET_MS = 2500
 
-export function ResultView({ profile, pool, favouriteChampions, source, versionChanged, shareUrl, onRetake }: ResultViewProps) {
+export function ResultView({ profile, pool, source, versionChanged, shareUrl, onRetake }: ResultViewProps) {
   const s = STRINGS.result
   const shared = source === 'shared'
-  const matches = useMemo(() => rankLegends(profile, pool, { favouriteChampions }), [profile, pool, favouriteChampions])
+  const matches = useMemo(() => rankLegends(profile, pool), [profile, pool])
   const archetype = deriveArchetype(matches)
   const top = matches.slice(0, 3)
   const close = closeCall(matches)
-  const lean = useMemo(() => domainLean(profile, pool, matches.slice(0, 3).map((m) => m.legend)), [profile, pool, matches])
+  const picks = useMemo(() => domainPicks(profile, matches), [profile, matches])
   const shareLegend = useMemo(() => shareLegendId(profile, pool), [profile, pool])
 
   // First fresh view reveals one Axis at a time; returning and shared views skip straight to the summary.
-  const [revealed, setRevealed] = useState(source === 'fresh' ? 0 : AXIS_IDS.length + 1)
+  const [revealed, setRevealed] = useState(source === 'fresh' ? 0 : PLAYSTYLE_AXIS_IDS.length + 1)
   useEffect(() => {
-    if (revealed > AXIS_IDS.length) return
+    if (revealed > PLAYSTYLE_AXIS_IDS.length) return
     const t = window.setTimeout(() => setRevealed((n) => n + 1), REVEAL_STEP_MS)
     return () => window.clearTimeout(t)
   }, [revealed])
-  const settled = revealed > AXIS_IDS.length
+  const settled = revealed > PLAYSTYLE_AXIS_IDS.length
 
   const [copied, setCopied] = useState<'idle' | 'done' | 'failed'>('idle')
   const copiedTimer = useRef<number | undefined>(undefined)
@@ -107,9 +106,6 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
             {PLAYSTYLE_AXIS_IDS.map((axis, i) => (
               <AxisBar key={axis} axis={axis} value={profile[axis]} shown={revealed > i} />
             ))}
-            {DOMAIN_AXIS_IDS.map((axis, i) => (
-              <DomainSlider key={axis} axis={axis} value={profile[axis]} shown={revealed > PLAYSTYLE_AXIS_IDS.length + i} />
-            ))}
           </div>
         </div>
       </section>
@@ -132,7 +128,7 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
             <MatchCard key={m.legend.id} match={m} rank={i + 1} />
           ))}
           <RankingList matches={matches} />
-          <DomainLeanSection lean={lean} />
+          <DomainLeanSection picks={picks} />
         </section>
       )}
     </div>

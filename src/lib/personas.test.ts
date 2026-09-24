@@ -5,11 +5,14 @@
  *
  * Each set answers the Questions as that kind of player honestly would, using a scale's
  * "-leaning" point wherever they would be lukewarm rather than picking the pole that scores best.
+ *
+ * Interim: the 2026-11 set is a mechanical six-Domain conversion of 2026-10 with the same Question
+ * and Answer ids, so these Answers carry over unchanged. Redo them when the redesigned set lands.
  */
 import { describe, expect, it } from 'vitest'
 import { ALL_LEGENDS, QUESTION_SET } from '@/data'
-import type { AxisId } from './axes'
-import { answersOf, computeProfile, deriveArchetype, domainLean, rankLegends } from './scoring'
+import type { Domain } from './axes'
+import { answersOf, computeProfile, deriveArchetype, leadingDomains, rankLegends } from './scoring'
 import type { Answers, Archetype } from './types'
 
 // The seed pool is unreviewed until Ingestion approves it; the fixtures still need to rank against it.
@@ -19,7 +22,8 @@ interface Persona {
   name: string
   answers: Answers
   archetype: Archetype
-  dominantDomainAxes?: [AxisId, AxisId]
+  /** The Domains "Your Domains" should highlight for this Persona. */
+  leadingDomains?: Domain[]
 }
 
 const PERSONAS: Persona[] = [
@@ -184,9 +188,9 @@ const PERSONAS: Persona[] = [
     },
   },
   {
-    name: 'Fury and Chaos brawler (Domain lean)',
+    name: 'Fury and Chaos brawler (leading Domains)',
     archetype: 'Aggro',
-    dominantDomainAxes: ['fury-calm', 'chaos-order'],
+    leadingDomains: ['Fury', 'Chaos'],
     answers: {
       'first-turn': 'pressure',
       'damage-or-stun': 'damage',
@@ -217,9 +221,9 @@ const PERSONAS: Persona[] = [
     },
   },
   {
-    name: 'Calm and Order tactician (Domain lean)',
+    name: 'Calm and Order tactician (leading Domains)',
     archetype: 'Control',
-    dominantDomainAxes: ['fury-calm', 'chaos-order'],
+    leadingDomains: ['Calm', 'Order'],
     answers: {
       'first-turn': 'ramp',
       'damage-or-stun': 'stun',
@@ -259,8 +263,8 @@ describe('Personas land on their expected Archetype', () => {
       expect(deriveArchetype(matches), `profile ${JSON.stringify(profile)}, top: ${matches.slice(0, 3).map((m) => `${m.legend.name} (${m.build.archetype}) ${m.fit}`).join(', ')}`).toBe(
         persona.archetype,
       )
-      if (persona.dominantDomainAxes) {
-        expect([...domainLean(profile, pool).axes].sort()).toEqual([...persona.dominantDomainAxes].sort())
+      if (persona.leadingDomains) {
+        expect([...leadingDomains(profile)].sort(), `profile ${JSON.stringify(profile)}`).toEqual([...persona.leadingDomains].sort())
       }
     })
   }

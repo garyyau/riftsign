@@ -6,9 +6,15 @@ import {
   closeCall,
   computeProfile,
   deriveArchetype,
-  DOMAIN_LEAN_THRESHOLD,
-  domainLean,
-  FAVOURITE_CHAMPION_BONUS,
+  DOMAIN_HIGHLIGHT_THRESHOLD,
+  DOMAIN_PICKS_LIMIT,
+  domainFeeling,
+  domainPicks,
+  favouritePick,
+  HEADLINE_MATCHES,
+  leadingDomains,
+  PLAYSTYLE_GAP_THRESHOLD,
+  playstyleGaps,
   rankLegends,
 } from './scoring'
 import type { Domain } from './axes'
@@ -40,16 +46,8 @@ describe('scale scenarios', () => {
 })
 
 describe('computeProfile', () => {
-  it('lands at the midpoint of every Axis when nothing is answered', () => {
-    expect(computeProfile(smallQuestionSet(), {})).toEqual({
-      pace: 5,
-      stance: 5,
-      complexity: 5,
-      variance: 5,
-      'fury-calm': 0,
-      'mind-body': 0,
-      'chaos-order': 0,
-    })
+  it('lands at the midpoint of every score when nothing is answered', () => {
+    expect(computeProfile(smallQuestionSet(), {})).toEqual(CENTER)
   })
 
   it('reaches the top of an Axis when every loading Answer points the same way', () => {
@@ -68,9 +66,11 @@ describe('computeProfile', () => {
     expect(profile.pace).toBe(6)
   })
 
-  it('moves Domain Axes toward the chosen pole', () => {
-    expect(computeProfile(smallQuestionSet(), { 'domain-1': 'fury' })['fury-calm']).toBe(-5)
-    expect(computeProfile(smallQuestionSet(), { 'domain-1': 'order' })['chaos-order']).toBe(5)
+  it('moves both Domains of a zero-sum choice and leaves the Domains it never touches at 5', () => {
+    const fury = computeProfile(smallQuestionSet(), { 'domain-1': 'fury' })
+    expect([fury.fury, fury.calm, fury.order, fury.mind]).toEqual([10, 0, 5, 5])
+    const order = computeProfile(smallQuestionSet(), { 'domain-1': 'order' })
+    expect([order.order, order.fury, order.calm, order.chaos]).toEqual([10, 5, 5, 5])
   })
 
   it('ignores Answers that do not belong to the Question', () => {
@@ -86,7 +86,7 @@ describe('rankLegends', () => {
   ]
   const fastProactive: Profile = { ...CENTER, pace: 10, stance: 10 }
   // Full affinity for the fixture Legends' default Fury/Order pair.
-  const furyOrderFast: Profile = { ...fastProactive, 'fury-calm': -5, 'chaos-order': 5 }
+  const furyOrderFast: Profile = { ...fastProactive, fury: 10, order: 10 }
 
   it('clamps playstyle scores to the pool range so an extreme Axis cannot swamp the others', () => {
     // Pace in the pool runs 2..4. A Player at pace 0 is past both Builds; unclamped, that overshoot
@@ -103,16 +103,11 @@ describe('rankLegends', () => {
     expect(rankLegends(fastProactive, pool).map((m) => m.legend.id)).toEqual(['exact', 'near', 'far'])
   })
 
-  it('gives an identical Legend a fit of 100 and the opposite corner of all Axes a fit of 0', () => {
+  it('gives an identical Legend a fit of 100 and the opposite corner of everything a fit of 0', () => {
     const [exact] = rankLegends(furyOrderFast, pool)
     expect(exact.fit).toBe(100)
-    const opposite = legend(
-      'opposite',
-      'Control',
-      { pace: 0, stance: 0, complexity: 0, variance: 0 },
-      ['Fury', 'Mind'],
-    )
-    const top: Profile = { pace: 10, stance: 10, complexity: 10, variance: 10, 'fury-calm': 5, 'mind-body': 5, 'chaos-order': 5 }
+    const opposite = legend('opposite', 'Control', { pace: 0, stance: 0, complexity: 0, variance: 0 }, ['Fury', 'Mind'])
+    const top: Profile = { ...CENTER, pace: 10, stance: 10, complexity: 10, variance: 10, fury: 0, mind: 0 }
     // A second Legend at the top corner keeps the pool's range at 0..10, so clamping leaves the Player where they are.
     const corner = legend('corner', 'Aggro', { pace: 10, stance: 10, complexity: 10, variance: 10 })
     const fits = rankLegends(top, [opposite, corner])
@@ -127,24 +122,6 @@ describe('rankLegends', () => {
     expect(after).toBe(before)
   })
 
-  it('nudges Legends of favourite Champions up without letting fit exceed 100', () => {
-    const ranked = rankLegends(furyOrderFast, pool, { favouriteChampions: ['far', 'exact'] })
-    const far = ranked.find((m) => m.legend.id === 'far')!
-    const plain = rankLegends(furyOrderFast, pool).find((m) => m.legend.id === 'far')!
-    expect(far.fit).toBeGreaterThan(plain.fit)
-    expect(ranked[0].legend.id).toBe('exact')
-    expect(ranked[0].fit).toBe(100)
-  })
-
-  it('lets the favourite bonus break a near-tie but not reorder a clear gap', () => {
-    const close = [legend('first', 'Aggro', { pace: 9.9 }), legend('second', 'Aggro', { pace: 9.8 })]
-    expect(rankLegends(fastProactive, close, { favouriteChampions: ['second'] })[0].legend.id).toBe('second')
-    const clear = [legend('first', 'Aggro', { pace: 10, stance: 10 }), legend('second', 'Aggro', { pace: 8, stance: 8 })]
-    const [first, second] = rankLegends(fastProactive, clear)
-    expect(first.fit - second.fit).toBeGreaterThan(FAVOURITE_CHAMPION_BONUS)
-    expect(rankLegends(fastProactive, clear, { favouriteChampions: ['second'] })[0].legend.id).toBe('first')
-  })
-
   const fitOf = (profile: Partial<Profile>, l: Legend) => rankLegends({ ...CENTER, ...profile }, [l])[0].fit
 
   it('gives a fully neutral Player the same Domain term for every Legend, so playstyle alone decides', () => {
@@ -155,20 +132,26 @@ describe('rankLegends', () => {
     expect(ranked[0].legend.id).toBe('mind-body')
   })
 
-  it("raises fit steadily as the Player's affinity for the Legend's Domains grows", () => {
+  it("raises fit steadily as the Player's score for one of the Legend's Domains grows", () => {
     const furyOrder = legend('fury-order', 'Aggro', {})
-    const fits = [5, 2.5, 0, -2.5, -5].map((furyCalm) => fitOf({ 'fury-calm': furyCalm, 'chaos-order': 2 }, furyOrder))
+    const fits = [0, 2.5, 5, 7.5, 10].map((fury) => fitOf({ fury, order: 7 }, furyOrder))
     fits.slice(1).forEach((fit, i) => expect(fit).toBeGreaterThan(fits[i]))
   })
 
-  it('scores a Legend holding both Domains of an Axis on the one the Player prefers, the other as neutral', () => {
+  it('ignores Domains the Legend does not hold', () => {
+    const furyOrder = legend('fury-order', 'Aggro', {})
+    expect(fitOf({ calm: 0, mind: 10, chaos: 3 }, furyOrder)).toBe(fitOf({}, furyOrder))
+  })
+
+  it('scores an opposite-pair Legend on both of its Domains, like any other pair', () => {
     const akali = legend('akali', 'Aggro', {}, ['Fury', 'Calm'])
     const furyOrder = legend('fury-order', 'Aggro', {}, ['Fury', 'Order'])
-    const calmOrder = legend('calm-order', 'Aggro', {}, ['Calm', 'Order'])
-    // Neutral on Order, so Order costs the same as Akali's unused Domain.
-    for (const furyCalm of [-5, -2]) expect(fitOf({ 'fury-calm': furyCalm }, akali)).toBe(fitOf({ 'fury-calm': furyCalm }, furyOrder))
-    expect(fitOf({ 'fury-calm': 4 }, akali)).toBe(fitOf({ 'fury-calm': 4 }, calmOrder))
-    expect(fitOf({ 'fury-calm': -5 }, akali)).toBeGreaterThan(fitOf({}, akali))
+    // Liking Fury alone: Akali's Calm and Fury/Order's Order are both neutral, so they tie.
+    expect(fitOf({ fury: 10 }, akali)).toBe(fitOf({ fury: 10 }, furyOrder))
+    // Liking both Fury and Calm favours the Legend that holds both.
+    expect(fitOf({ fury: 10, calm: 10 }, akali)).toBeGreaterThan(fitOf({ fury: 10, calm: 10 }, furyOrder))
+    // Disliking Calm now costs Akali, which it never did under the bipolar model's nearer-pole rule.
+    expect(fitOf({ fury: 10, calm: 0 }, akali)).toBeLessThan(fitOf({ fury: 10, calm: 0 }, furyOrder))
   })
 
   it('leaves Legends with no reviewed Build out of the ranking', () => {
@@ -233,40 +216,100 @@ describe('closeCall', () => {
   })
 })
 
-describe('domainLean', () => {
+describe('domainFeeling', () => {
+  it('calls a score a pull or a push only at the highlight threshold from neutral', () => {
+    const t = DOMAIN_HIGHLIGHT_THRESHOLD
+    expect([5 + t, 5 + t - 0.1, 5, 5 - t + 0.1, 5 - t].map((s) => domainFeeling(s))).toEqual(['pull', 'neutral', 'neutral', 'neutral', 'push'])
+  })
+})
+
+describe('leadingDomains', () => {
+  const lead = (scores: Partial<Profile>) => leadingDomains({ ...CENTER, ...scores })
+  const t = DOMAIN_HIGHLIGHT_THRESHOLD
+
+  it('names the top two, strongest first, when both clearly lead', () => {
+    expect(lead({ order: 8, fury: 9, mind: 6 })).toEqual(['Fury', 'Order'])
+  })
+
+  it('names both Domains of an old opposite pair, since each score is independent', () => {
+    expect(lead({ fury: 9, calm: 8 })).toEqual(['Fury', 'Calm'])
+  })
+
+  it('names only the top one when the second is not a pull', () => {
+    expect(lead({ fury: 9, order: 5 + t - 0.1 })).toEqual(['Fury'])
+  })
+
+  it('names none when nothing reaches the threshold, however the scores rank', () => {
+    expect(lead({})).toEqual([])
+    expect(lead({ fury: 5 + t - 0.1 })).toEqual([])
+    expect(lead({ calm: 0, mind: 0, body: 0, chaos: 0, order: 0 })).toEqual([])
+  })
+
+  it('leaves out Domains tied at the cut rather than picking one arbitrarily', () => {
+    expect(lead({ fury: 9, order: 8, chaos: 8 })).toEqual(['Fury'])
+    expect(lead({ fury: 8, order: 8, chaos: 8 })).toEqual([])
+    expect(lead({ fury: 8, order: 8, chaos: 6 })).toEqual(['Fury', 'Order'])
+  })
+})
+
+describe('domainPicks', () => {
   const pool = [
-    legend('fury-order', 'Aggro', {}, ['Fury', 'Order']),
-    legend('order-fury', 'Midrange', {}, ['Order', 'Fury']),
-    legend('calm-order', 'Control', {}, ['Calm', 'Order']),
-    legend('fury-chaos', 'Aggro', {}, ['Fury', 'Chaos']),
+    legend('head-1', 'Aggro', { pace: 10 }, ['Fury', 'Order']),
+    legend('head-2', 'Aggro', { pace: 9.9 }, ['Fury', 'Order']),
+    legend('order-fury', 'Midrange', { pace: 6 }, ['Order', 'Fury']),
+    legend('fury-order', 'Aggro', { pace: 8 }, ['Fury', 'Order']),
+    legend('fury-chaos', 'Aggro', { pace: 9 }, ['Fury', 'Chaos']),
+    legend('calm-order', 'Control', { pace: 0 }, ['Calm', 'Order']),
   ]
+  const picksFor = (scores: Partial<Profile>) => {
+    const profile = { ...CENTER, pace: 10, ...scores }
+    return domainPicks(profile, rankLegends(profile, pool))
+  }
 
-  it('names the two strongest Domain Axes and their Domains, and lists Legends sharing that pair', () => {
-    const lean = domainLean({ ...CENTER, 'fury-calm': -4, 'chaos-order': 3, 'mind-body': 1 }, pool)
-    expect(lean.axes).toEqual(['fury-calm', 'chaos-order'])
-    expect(lean.domains).toEqual(['Fury', 'Order'])
-    expect(lean.legends.map((l) => l.id).sort()).toEqual(['fury-order', 'order-fury'])
+  it('lists Legends holding the leading pair in fit order, skipping the headline Matches', () => {
+    const picks = picksFor({ fury: 9, order: 8 })
+    expect(picks.domains).toEqual(['Fury', 'Order'])
+    expect(picks.matches.map((m) => m.legend.id)).toEqual(['fury-order', 'order-fury'])
+    expect(HEADLINE_MATCHES).toBe(2)
   })
 
-  it('leaves out Legends already shown in the top three', () => {
-    const lean = domainLean({ ...CENTER, 'fury-calm': -4, 'chaos-order': 3 }, pool, [pool[0]])
-    expect(lean.legends.map((l) => l.id)).toEqual(['order-fury'])
+  it('lists Legends holding the one leading Domain when only one leads', () => {
+    expect(picksFor({ fury: 9 }).matches.map((m) => m.legend.id)).toEqual(['fury-chaos', 'fury-order', 'order-fury'])
   })
 
-  it('leaves out Legends with no reviewed Build', () => {
-    const draft = legend('draft', 'Aggro', {}, ['Fury', 'Order'], { builds: [build('Aggro', {}, { reviewed: false })] })
-    const lean = domainLean({ ...CENTER, 'fury-calm': -4, 'chaos-order': 3 }, [...pool, draft])
-    expect(lean.legends.map((l) => l.id)).not.toContain('draft')
+  it('lists nothing when no Domain leads', () => {
+    expect(picksFor({})).toEqual({ domains: [], matches: [] })
   })
 
-  it('claims no Domain for an Axis nearer the midpoint than the lean threshold', () => {
-    expect(domainLean(CENTER, pool).domains).toEqual([])
-    expect(domainLean(CENTER, pool).legends).toEqual([])
-    const faint = domainLean({ ...CENTER, 'fury-calm': -(DOMAIN_LEAN_THRESHOLD - 0.1), 'chaos-order': 1 }, pool)
-    expect(faint.domains).toEqual([])
-    expect(faint.legends).toEqual([])
-    const oneSided = domainLean({ ...CENTER, 'fury-calm': -DOMAIN_LEAN_THRESHOLD, 'chaos-order': 1 }, pool)
-    expect(oneSided.domains).toEqual(['Fury'])
-    expect(oneSided.legends.map((l) => l.id).sort()).toEqual(['fury-chaos', 'fury-order', 'order-fury'])
+  it('stops at the limit', () => {
+    const many = Array.from({ length: DOMAIN_PICKS_LIMIT + 4 }, (_, i) => legend(`f${i}`, 'Aggro', { pace: i }, ['Fury', 'Body']))
+    const profile = { ...CENTER, fury: 10 }
+    expect(domainPicks(profile, rankLegends(profile, many)).matches).toHaveLength(DOMAIN_PICKS_LIMIT)
+  })
+})
+
+describe('favouritePick', () => {
+  const pool = [legend('shown', 'Aggro', { pace: 10 }), legend('jinx', 'Aggro', { pace: 8 }), legend('jinx-2', 'Aggro', { pace: 2 }, undefined, { champion: 'jinx' })]
+  const matches = rankLegends({ ...CENTER, pace: 10 }, pool)
+
+  it("picks the best-fitting Legend of the Player's favourite champions that the page has not shown", () => {
+    expect(favouritePick(matches, ['jinx'], [pool[0]])?.legend.id).toBe('jinx')
+    expect(favouritePick(matches, ['jinx'], [pool[1]])?.legend.id).toBe('jinx-2')
+  })
+
+  it('returns null when every favourite is already shown, or none is named', () => {
+    expect(favouritePick(matches, ['shown'], [pool[0]])).toBeNull()
+    expect(favouritePick(matches, [], [])).toBeNull()
+  })
+})
+
+describe('playstyleGaps', () => {
+  it('names the Axes where the Build sits a band or more from the Player, biggest gap first, signed', () => {
+    const b = build('Aggro', { pace: 9, stance: 5 + PLAYSTYLE_GAP_THRESHOLD - 0.1, complexity: 1, variance: 5 })
+    expect(playstyleGaps({ ...CENTER, pace: 4 }, b)).toEqual([
+      { axis: 'pace', gap: 5 },
+      { axis: 'complexity', gap: -4 },
+    ])
+    expect(playstyleGaps(CENTER, build('Aggro', {}))).toEqual([])
   })
 })

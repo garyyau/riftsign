@@ -31,24 +31,31 @@ export function smallQuestionSet(): QuestionSet {
       scenario(
         'domain-1',
         [
-          answer('fury', [{ axis: 'fury-calm', weight: -2 }]),
-          answer('calm', [{ axis: 'fury-calm', weight: 2 }]),
-          answer('order', [{ axis: 'chaos-order', weight: 2 }]),
+          answer('fury', [{ axis: 'fury', weight: 2 }, { axis: 'calm', weight: -2 }]),
+          answer('calm', [{ axis: 'fury', weight: -2 }, { axis: 'calm', weight: 2 }]),
+          answer('order', [{ axis: 'order', weight: 2 }]),
         ],
-        [{ axis: 'fury-calm', reverse: false }],
+        [
+          { axis: 'fury', reverse: false },
+          { axis: 'calm', reverse: true },
+        ],
       ),
     ],
   }
 }
 
+/** Every score at its midpoint: even-paced on every Axis and no feeling about any Domain. */
 export const CENTER: Profile = {
   pace: 5,
   stance: 5,
   complexity: 5,
   variance: 5,
-  'fury-calm': 0,
-  'mind-body': 0,
-  'chaos-order': 0,
+  fury: 5,
+  calm: 5,
+  mind: 5,
+  body: 5,
+  chaos: 5,
+  order: 5,
 }
 
 export function build(archetype: Archetype, coords: Partial<BuildCoordinates>, extra: Partial<Build> = {}): Build {

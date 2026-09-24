@@ -18,7 +18,7 @@ if (points.length < 2) {
 }
 
 const columns = Object.fromEntries(
-  PLAYSTYLE_AXIS_IDS.map((axis) => [axis, points.map((p) => normalize(axis, p.coordinates[axis]))]),
+  PLAYSTYLE_AXIS_IDS.map((axis) => [axis, points.map((p) => normalize(p.coordinates[axis]))]),
 ) as Record<PlaystyleAxisId, number[]>
 
 const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length
@@ -55,7 +55,7 @@ console.log(
 
 const CENTRAL_RADIUS = 0.25
 const central = points.filter((p) => {
-  const d = Math.sqrt(PLAYSTYLE_AXIS_IDS.reduce((sum, axis) => sum + (normalize(axis, p.coordinates[axis]) - 0.5) ** 2, 0))
+  const d = Math.sqrt(PLAYSTYLE_AXIS_IDS.reduce((sum, axis) => sum + (normalize(p.coordinates[axis]) - 0.5) ** 2, 0))
   return d <= CENTRAL_RADIUS
 })
 console.log(

@@ -1,25 +1,13 @@
 import { z } from 'zod'
-import { AXIS_IDS, DOMAIN_AXIS_IDS, DOMAIN_POLES, DOMAINS, type AxisId, type Domain, type DomainAxisId } from './axes'
+import { DOMAINS, isDomainId, SCORE_IDS, type ScoreId } from './axes'
 import { answersOf } from './scoring'
 import { ARCHETYPES, MAX_BUILDS, SET_CODES, type Legend, type Question, type QuestionSet } from './types'
 
-export const MIN_QUESTIONS_PER_AXIS = 3
+export const MIN_QUESTIONS_PER_SCORE = 3
 
-const axisId = z.enum(AXIS_IDS)
-const domain = z.enum(DOMAINS)
-
+const scoreId = z.enum(SCORE_IDS)
 const playstyleScore = z.number().min(0).max(10)
-const domainScore = z.number().min(-5).max(5)
-
-export const profileSchema = z.object({
-  pace: playstyleScore,
-  stance: playstyleScore,
-  complexity: playstyleScore,
-  variance: playstyleScore,
-  'fury-calm': domainScore,
-  'mind-body': domainScore,
-  'chaos-order': domainScore,
-})
+const domain = z.enum(DOMAINS)
 
 /** Strict, so a stored Domain coordinate is rejected: a Build's Domains come from its Legend. */
 export const buildCoordinatesSchema = z.strictObject({
@@ -56,22 +44,22 @@ export const legendSchema = z.object({
     .refine((bs) => new Set(bs.map((b) => b.archetype)).size === bs.length, 'each Build needs a different archetype'),
 })
 
-const axisMove = z.object({ axis: axisId, weight: z.number() })
-const axisLoading = z.object({ axis: axisId, reverse: z.boolean() })
-const answerSchema = z.object({ id: z.string().min(1), text: z.string().min(1), moves: z.array(axisMove).min(1) })
+const scoreMove = z.object({ axis: scoreId, weight: z.number() })
+const scoreLoading = z.object({ axis: scoreId, reverse: z.boolean() })
+const answerSchema = z.object({ id: z.string().min(1), text: z.string().min(1), moves: z.array(scoreMove).min(1) })
 
 const questionBase = {
   id: z.string().regex(/^[a-z0-9-]+$/, 'kebab-case id'),
   eyebrow: z.string().min(1),
   prompt: z.string().min(1),
-  loads: z.array(axisLoading).min(1),
+  loads: z.array(scoreLoading).min(1),
 }
 
 export const questionSchema = z.discriminatedUnion('kind', [
   z
     .object({ ...questionBase, kind: z.literal('scenario'), answers: z.array(answerSchema).min(2).max(4), scale: z.boolean().optional() })
     .refine((q) => !q.scale || q.answers.length === 2, { message: 'a scale scenario needs exactly two Answers', path: ['answers'] }),
-  z.object({ ...questionBase, kind: z.literal('statement'), agreeMoves: z.array(axisMove).min(1) }),
+  z.object({ ...questionBase, kind: z.literal('statement'), agreeMoves: z.array(scoreMove).min(1) }),
 ])
 
 export const questionSetSchema = z.object({
@@ -84,45 +72,42 @@ export type ValidationResult<T> = { success: true; data: T } | { success: false;
 const formatZodIssues = (error: z.ZodError) =>
   error.issues.map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)
 
-/** Domain Axis coordinates implied by a Legend's two Domains. */
-export function domainCoordinates(domains: readonly Domain[]): Record<DomainAxisId, number> {
-  const out = Object.fromEntries(DOMAIN_AXIS_IDS.map((id) => [id, 0])) as Record<DomainAxisId, number>
-  for (const d of domains) {
-    const { axis, value } = DOMAIN_POLES[d]
-    out[axis] += value
-  }
-  return out
-}
-
 export function validateLegend(raw: unknown): ValidationResult<Legend> {
   const parsed = legendSchema.safeParse(raw)
   return parsed.success ? { success: true, data: parsed.data } : { success: false, issues: formatZodIssues(parsed.error) }
 }
 
 /**
- * Reverse keying has to be real, not just declared. For a statement, agreeing must move the Axis
- * low when reverse is true and high when it is false. For a scenario, reverse means the first
- * listed (most "obvious") Answer moves the Axis low. A scale has only its two poles, so its keying
- * is checked both ways and the poles must pull the Axis in opposite directions.
+ * Reverse keying has to be real, not just declared. For a statement, agreeing must move the score
+ * down when reverse is true and up when it is false. For a scenario, reverse means the first
+ * listed (most "obvious") Answer moves the score down. A scale has only its two poles, so its
+ * keying is checked both ways and the poles must pull the score in opposite directions.
  */
-function reverseKeyingIssue(question: Question, axis: AxisId, reverse: boolean): string | null {
-  const weightOf = (moves: { axis: AxisId; weight: number }[]) => moves.find((m) => m.axis === axis)?.weight ?? 0
+function reverseKeyingIssue(question: Question, id: ScoreId, reverse: boolean): string | null {
+  const weightOf = (moves: { axis: ScoreId; weight: number }[]) => moves.find((m) => m.axis === id)?.weight ?? 0
   if (question.kind === 'statement') {
     const agree = weightOf(question.agreeMoves)
-    if (reverse && agree >= 0) return `marked reverse on ${axis} but agreeing moves it high`
-    if (!reverse && agree <= 0) return `not marked reverse on ${axis} but agreeing moves it low`
+    if (reverse && agree >= 0) return `marked reverse on ${id} but agreeing moves it up`
+    if (!reverse && agree <= 0) return `not marked reverse on ${id} but agreeing moves it down`
     return null
   }
   const first = weightOf(question.answers[0].moves)
-  if (reverse && first >= 0) return `marked reverse on ${axis} but its first Answer does not move it low`
+  if (reverse && first >= 0) return `marked reverse on ${id} but its first Answer does not move it down`
   if (!question.scale) return null
-  if (!reverse && first <= 0) return `not marked reverse on ${axis} but its first pole does not move it high`
+  if (!reverse && first <= 0) return `not marked reverse on ${id} but its first pole does not move it up`
   if (Math.sign(weightOf(question.answers[1].moves)) !== -Math.sign(first)) {
-    return `scale poles must move ${axis} in opposite directions`
+    return `scale poles must move ${id} in opposite directions`
   }
   return null
 }
 
+/**
+ * Every score needs MIN_QUESTIONS_PER_SCORE loads, one of them reverse-keyed. A Domain also needs
+ * a forward-keyed load. In a zero-sum Domain choice the first Answer raises one Domain and lowers
+ * the other, so every such item is reverse-keyed for one of its two Domains by construction, and
+ * "has a reverse-keyed load" only means "is not always listed first". A Domain always listed
+ * second would lose to first-option bias every time, so a Domain needs both directions.
+ */
 export function validateQuestionSet(raw: unknown): ValidationResult<QuestionSet> {
   const parsed = questionSetSchema.safeParse(raw)
   if (!parsed.success) return { success: false, issues: formatZodIssues(parsed.error) }
@@ -130,8 +115,8 @@ export function validateQuestionSet(raw: unknown): ValidationResult<QuestionSet>
   const issues: string[] = []
 
   const seenIds = new Set<string>()
-  const loading = Object.fromEntries(AXIS_IDS.map((id) => [id, { count: 0, reverse: 0 }])) as Record<
-    AxisId,
+  const loading = Object.fromEntries(SCORE_IDS.map((id) => [id, { count: 0, reverse: 0 }])) as Record<
+    ScoreId,
     { count: number; reverse: number }
   >
 
@@ -143,10 +128,10 @@ export function validateQuestionSet(raw: unknown): ValidationResult<QuestionSet>
     const answerIds = new Set(answers.map((a) => a.id))
     if (answerIds.size !== answers.length) issues.push(`${question.id}: duplicate Answer id`)
 
-    const movedAxes = new Set(answers.flatMap((a) => a.moves.map((m) => m.axis)))
-    const seenLoads = new Set<AxisId>()
+    const moved = new Set(answers.flatMap((a) => a.moves.map((m) => m.axis)))
+    const seenLoads = new Set<ScoreId>()
     for (const load of question.loads) {
-      if (!movedAxes.has(load.axis)) {
+      if (!moved.has(load.axis)) {
         issues.push(`${question.id}: claims to load ${load.axis} but no Answer moves it`)
         continue
       }
@@ -162,13 +147,14 @@ export function validateQuestionSet(raw: unknown): ValidationResult<QuestionSet>
     }
   }
 
-  for (const axis of AXIS_IDS) {
-    const { count, reverse } = loading[axis]
-    if (count < MIN_QUESTIONS_PER_AXIS) {
+  for (const id of SCORE_IDS) {
+    const { count, reverse } = loading[id]
+    if (count < MIN_QUESTIONS_PER_SCORE) {
       const noun = count === 1 ? 'Question' : 'Questions'
-      issues.push(`${axis}: loaded by ${count} ${noun}, needs at least ${MIN_QUESTIONS_PER_AXIS}`)
+      issues.push(`${id}: loaded by ${count} ${noun}, needs at least ${MIN_QUESTIONS_PER_SCORE}`)
     }
-    if (reverse === 0) issues.push(`${axis}: no reverse-keyed Question`)
+    if (reverse === 0) issues.push(`${id}: no reverse-keyed Question`)
+    if (isDomainId(id) && count > 0 && reverse === count) issues.push(`${id}: no forward-keyed Question`)
   }
 
   return issues.length ? { success: false, issues } : { success: true, data: set }

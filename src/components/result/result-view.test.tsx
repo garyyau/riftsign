@@ -28,10 +28,10 @@ function show(profile: Profile, pool: Legend[], favouriteChampions: string[] = [
 describe('ResultView', () => {
   afterEach(cleanup)
 
-  it('shares the Legend a recipient will see first, not the one a favourite lifted', async () => {
+  it('ranks the same with favourite champions, and shares the Legend a recipient sees first', async () => {
     Object.assign(navigator, { clipboard: { writeText: vi.fn(() => Promise.resolve()) } })
     const shareUrl = show(fast, nearTie, ['favourite'])
-    expect(screen.getAllByRole('heading', { level: 3 })[0].textContent).toBe('favourite, Test Legend')
+    expect(screen.getAllByRole('heading', { level: 3 })[0].textContent).toBe('closest, Test Legend')
     fireEvent.click(screen.getByRole('button', { name: STRINGS.result.share }))
     await waitFor(() => expect(shareUrl).toHaveBeenCalledWith('closest'))
   })
@@ -45,7 +45,7 @@ describe('ResultView', () => {
   })
 
   it('explains a missing Domain lean instead of leaving the section empty', () => {
-    show({ ...CENTER, 'fury-calm': -2 }, nearTie)
+    show({ ...CENTER, fury: 7 }, nearTie)
     expect(screen.getByText(STRINGS.result.leanTitle)).toBeTruthy()
     expect(screen.getByText(STRINGS.result.leanNone)).toBeTruthy()
   })

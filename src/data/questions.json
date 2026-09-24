@@ -1,5 +1,5 @@
 {
-  "version": "2026-10",
+  "version": "2026-11",
   "questions": [
     {
       "id": "first-turn",
@@ -10,7 +10,7 @@
       "loads": [{ "axis": "pace", "reverse": false }],
       "answers": [
         { "id": "pressure", "text": "Play a cheap unit now, ready to take a battlefield next turn.", "moves": [{ "axis": "pace", "weight": 2 }] },
-        { "id": "ramp", "text": "Play a card that gives you an extra rune for the rest of the game, and let them take the early points.", "moves": [{ "axis": "pace", "weight": -2 }, { "axis": "mind-body", "weight": 1 }] }
+        { "id": "ramp", "text": "Play a card that gives you an extra rune for the rest of the game, and let them take the early points.", "moves": [{ "axis": "pace", "weight": -2 }, { "axis": "mind", "weight": -1 }, { "axis": "body", "weight": 1 }] }
       ]
     },
     {
@@ -19,10 +19,10 @@
       "scale": true,
       "eyebrow": "Two spells",
       "prompt": "Two cheap spells, same cost. Which one makes your deck?",
-      "loads": [{ "axis": "fury-calm", "reverse": true }],
+      "loads": [{ "axis": "fury", "reverse": false }, { "axis": "calm", "reverse": true }],
       "answers": [
-        { "id": "damage", "text": "Deals 3 damage to an enemy unit.", "moves": [{ "axis": "fury-calm", "weight": -2 }] },
-        { "id": "stun", "text": "Stuns two enemy units, so neither deals damage this turn.", "moves": [{ "axis": "fury-calm", "weight": 2 }] }
+        { "id": "damage", "text": "Deals 3 damage to an enemy unit.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
+        { "id": "stun", "text": "Stuns two enemy units, so neither deals damage this turn.", "moves": [{ "axis": "fury", "weight": -2 }, { "axis": "calm", "weight": 2 }] }
       ]
     },
     {
@@ -43,10 +43,10 @@
       "scale": true,
       "eyebrow": "One spell slot",
       "prompt": "One spell slot left. It goes to a spell that...",
-      "loads": [{ "axis": "chaos-order", "reverse": false }],
+      "loads": [{ "axis": "chaos", "reverse": true }, { "axis": "order", "reverse": false }],
       "answers": [
-        { "id": "tokens", "text": "Makes two 1-might unit tokens.", "moves": [{ "axis": "chaos-order", "weight": 2 }] },
-        { "id": "trash", "text": "Returns the best card in your trash to your hand.", "moves": [{ "axis": "chaos-order", "weight": -2 }] }
+        { "id": "tokens", "text": "Makes two 1-might unit tokens.", "moves": [{ "axis": "chaos", "weight": -2 }, { "axis": "order", "weight": 2 }] },
+        { "id": "trash", "text": "Returns the best card in your trash to your hand.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] }
       ]
     },
     {
@@ -67,10 +67,10 @@
       "scale": true,
       "eyebrow": "Two cards",
       "prompt": "Two cards, same cost. You'd rather run the one that...",
-      "loads": [{ "axis": "mind-body", "reverse": true }],
+      "loads": [{ "axis": "mind", "reverse": false }, { "axis": "body", "reverse": true }],
       "answers": [
-        { "id": "draw", "text": "Draws you two cards.", "moves": [{ "axis": "mind-body", "weight": -2 }] },
-        { "id": "rune", "text": "Gives you an extra rune for the rest of the game.", "moves": [{ "axis": "mind-body", "weight": 2 }] }
+        { "id": "draw", "text": "Draws you two cards.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] },
+        { "id": "rune", "text": "Gives you an extra rune for the rest of the game.", "moves": [{ "axis": "mind", "weight": -2 }, { "axis": "body", "weight": 2 }] }
       ]
     },
     {
@@ -103,10 +103,10 @@
       "scale": true,
       "eyebrow": "After the conquest",
       "prompt": "You've just taken a battlefield. Next turn you'd rather...",
-      "loads": [{ "axis": "fury-calm", "reverse": false }],
+      "loads": [{ "axis": "fury", "reverse": true }, { "axis": "calm", "reverse": false }],
       "answers": [
-        { "id": "hold", "text": "Dig in: add units there so it's too costly to take back.", "moves": [{ "axis": "fury-calm", "weight": 2 }] },
-        { "id": "press", "text": "Send your other units at their battlefield while they're off balance.", "moves": [{ "axis": "fury-calm", "weight": -2 }] }
+        { "id": "hold", "text": "Dig in: add units there so it's too costly to take back.", "moves": [{ "axis": "fury", "weight": -2 }, { "axis": "calm", "weight": 2 }] },
+        { "id": "press", "text": "Send your other units at their battlefield while they're off balance.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
       ]
     },
     {
@@ -115,10 +115,10 @@
       "scale": true,
       "eyebrow": "The price",
       "prompt": "A powerful effect asks a price. You'd rather pay by...",
-      "loads": [{ "axis": "chaos-order", "reverse": true }],
+      "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "order", "reverse": true }],
       "answers": [
-        { "id": "discard", "text": "Discarding a card from your hand (you'll draw a fresh one).", "moves": [{ "axis": "chaos-order", "weight": -2 }] },
-        { "id": "sacrifice", "text": "Giving up one of your own units.", "moves": [{ "axis": "chaos-order", "weight": 2 }] }
+        { "id": "discard", "text": "Discarding a card from your hand (you'll draw a fresh one).", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] },
+        { "id": "sacrifice", "text": "Giving up one of your own units.", "moves": [{ "axis": "chaos", "weight": -2 }, { "axis": "order", "weight": 2 }] }
       ]
     },
     {
@@ -151,10 +151,10 @@
       "scale": true,
       "eyebrow": "Your headline card",
       "prompt": "The most expensive card in your deck should be...",
-      "loads": [{ "axis": "mind-body", "reverse": false }],
+      "loads": [{ "axis": "mind", "reverse": true }, { "axis": "body", "reverse": false }],
       "answers": [
-        { "id": "huge-unit", "text": "A huge unit that wins any fight it's in.", "moves": [{ "axis": "mind-body", "weight": 2 }] },
-        { "id": "gear", "text": "A piece of gear that draws you an extra card every turn it stays in play.", "moves": [{ "axis": "mind-body", "weight": -2 }] }
+        { "id": "huge-unit", "text": "A huge unit that wins any fight it's in.", "moves": [{ "axis": "mind", "weight": -2 }, { "axis": "body", "weight": 2 }] },
+        { "id": "gear", "text": "A piece of gear that draws you an extra card every turn it stays in play.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] }
       ]
     },
     {
@@ -187,10 +187,10 @@
       "scale": true,
       "eyebrow": "Two units",
       "prompt": "Two units, same cost and might. You'd rather run the one that...",
-      "loads": [{ "axis": "fury-calm", "reverse": false }],
+      "loads": [{ "axis": "fury", "reverse": true }, { "axis": "calm", "reverse": false }],
       "answers": [
-        { "id": "protector", "text": "Takes the hits for the units beside it.", "moves": [{ "axis": "fury-calm", "weight": 2 }] },
-        { "id": "striker", "text": "Hits harder whenever it's the one attacking.", "moves": [{ "axis": "fury-calm", "weight": -2 }] }
+        { "id": "protector", "text": "Takes the hits for the units beside it.", "moves": [{ "axis": "fury", "weight": -2 }, { "axis": "calm", "weight": 2 }] },
+        { "id": "striker", "text": "Hits harder whenever it's the one attacking.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
       ]
     },
     {
@@ -199,10 +199,10 @@
       "scale": true,
       "eyebrow": "Add one",
       "prompt": "Add one unit to the deck:",
-      "loads": [{ "axis": "chaos-order", "reverse": false }],
+      "loads": [{ "axis": "chaos", "reverse": true }, { "axis": "order", "reverse": false }],
       "answers": [
-        { "id": "tokens-on-death", "text": "One that leaves two 1-might tokens behind when it dies.", "moves": [{ "axis": "chaos-order", "weight": 2 }] },
-        { "id": "face-down", "text": "One you can hide face down and spring on them later.", "moves": [{ "axis": "chaos-order", "weight": -2 }, { "axis": "mind-body", "weight": -1 }] }
+        { "id": "tokens-on-death", "text": "One that leaves two 1-might tokens behind when it dies.", "moves": [{ "axis": "chaos", "weight": -2 }, { "axis": "order", "weight": 2 }] },
+        { "id": "face-down", "text": "One you can hide face down and spring on them later.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }, { "axis": "mind", "weight": 1 }, { "axis": "body", "weight": -1 }] }
       ]
     },
     {
@@ -219,10 +219,10 @@
       "scale": true,
       "eyebrow": "Losing a fight",
       "prompt": "Your unit is about to lose a fight. The trick you'd rather have...",
-      "loads": [{ "axis": "mind-body", "reverse": true }],
+      "loads": [{ "axis": "mind", "reverse": false }, { "axis": "body", "reverse": true }],
       "answers": [
-        { "id": "shrink", "text": "Shrinks their unit this turn.", "moves": [{ "axis": "mind-body", "weight": -2 }] },
-        { "id": "buff", "text": "Makes your unit bigger this turn.", "moves": [{ "axis": "mind-body", "weight": 2 }] }
+        { "id": "shrink", "text": "Shrinks their unit this turn.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] },
+        { "id": "buff", "text": "Makes your unit bigger this turn.", "moves": [{ "axis": "mind", "weight": -2 }, { "axis": "body", "weight": 2 }] }
       ]
     },
     {
@@ -247,10 +247,10 @@
       "scale": true,
       "eyebrow": "The wall",
       "prompt": "A huge enemy unit is parked on the battlefield you need. You'd rather...",
-      "loads": [{ "axis": "fury-calm", "reverse": true }],
+      "loads": [{ "axis": "fury", "reverse": false }, { "axis": "calm", "reverse": true }],
       "answers": [
-        { "id": "attack", "text": "Attack into it with several units and finish it off with damage.", "moves": [{ "axis": "fury-calm", "weight": -2 }] },
-        { "id": "move-it", "text": "Move it back to its base and take the battlefield while it's gone.", "moves": [{ "axis": "fury-calm", "weight": 2 }] }
+        { "id": "attack", "text": "Attack into it with several units and finish it off with damage.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
+        { "id": "move-it", "text": "Move it back to its base and take the battlefield while it's gone.", "moves": [{ "axis": "fury", "weight": -2 }, { "axis": "calm", "weight": 2 }] }
       ]
     },
     {
@@ -259,10 +259,10 @@
       "scale": true,
       "eyebrow": "Your plan",
       "prompt": "Your deck at its best feels like...",
-      "loads": [{ "axis": "chaos-order", "reverse": true }],
+      "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "order", "reverse": true }],
       "answers": [
-        { "id": "bag-of-tricks", "text": "A bag of tricks: cards hiding face down and surprises coming back from the trash.", "moves": [{ "axis": "chaos-order", "weight": -2 }] },
-        { "id": "formation", "text": "A formation: every unit has a role and every loss pays for something.", "moves": [{ "axis": "chaos-order", "weight": 2 }] }
+        { "id": "bag-of-tricks", "text": "A bag of tricks: cards hiding face down and surprises coming back from the trash.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] },
+        { "id": "formation", "text": "A formation: every unit has a role and every loss pays for something.", "moves": [{ "axis": "chaos", "weight": -2 }, { "axis": "order", "weight": 2 }] }
       ]
     },
     {
@@ -279,10 +279,10 @@
       "scale": true,
       "eyebrow": "Your edge",
       "prompt": "Your favourite kind of edge over an opponent is...",
-      "loads": [{ "axis": "mind-body", "reverse": false }],
+      "loads": [{ "axis": "mind", "reverse": true }, { "axis": "body", "reverse": false }],
       "answers": [
-        { "id": "board", "text": "More on the board: the bigger unit, the buff at the right moment.", "moves": [{ "axis": "mind-body", "weight": 2 }] },
-        { "id": "hand", "text": "More in hand: extra cards, and a face-down card they have to respect.", "moves": [{ "axis": "mind-body", "weight": -2 }] }
+        { "id": "board", "text": "More on the board: the bigger unit, the buff at the right moment.", "moves": [{ "axis": "mind", "weight": -2 }, { "axis": "body", "weight": 2 }] },
+        { "id": "hand", "text": "More in hand: extra cards, and a face-down card they have to respect.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] }
       ]
     },
     {
