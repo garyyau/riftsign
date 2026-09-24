@@ -2,15 +2,16 @@ import { Check, Link2 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { PLAYSTYLE_AXIS_IDS } from '@/lib/axes'
-import { closeCall, deriveArchetype, domainPicks, rankLegends } from '@/lib/scoring'
+import { closeCall, deriveArchetype, domainPicks, favouritePick, HEADLINE_MATCHES, rankLegends } from '@/lib/scoring'
 import { shareLegendId } from '@/lib/share'
 import { ARCHETYPE_COPY, STRINGS } from '@/lib/strings'
 import type { Legend, Profile } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { AxisBar } from './axis-bar'
-import { DomainLeanSection } from './domain-lean-section'
+import { LookYouLike } from './look-you-like'
 import { MatchCard } from './match-card'
 import { RankingList } from './ranking-list'
+import { YourDomainsSection } from './your-domains-section'
 
 export type ResultSource = 'fresh' | 'stored' | 'shared'
 
@@ -28,14 +29,15 @@ interface ResultViewProps {
 const REVEAL_STEP_MS = 380
 const COPIED_RESET_MS = 2500
 
-export function ResultView({ profile, pool, source, versionChanged, shareUrl, onRetake }: ResultViewProps) {
+export function ResultView({ profile, pool, favouriteChampions, source, versionChanged, shareUrl, onRetake }: ResultViewProps) {
   const s = STRINGS.result
   const shared = source === 'shared'
   const matches = useMemo(() => rankLegends(profile, pool), [profile, pool])
   const archetype = deriveArchetype(matches)
-  const top = matches.slice(0, 3)
+  const top = matches.slice(0, HEADLINE_MATCHES)
   const close = closeCall(matches)
   const picks = useMemo(() => domainPicks(profile, matches), [profile, matches])
+  const favourite = favouritePick(matches, favouriteChampions, [...top, ...picks.matches].map((m) => m.legend))
   const shareLegend = useMemo(() => shareLegendId(profile, pool), [profile, pool])
 
   // First fresh view reveals one Axis at a time; returning and shared views skip straight to the summary.
@@ -127,8 +129,9 @@ export function ResultView({ profile, pool, source, versionChanged, shareUrl, on
           {top.map((m, i) => (
             <MatchCard key={m.legend.id} match={m} rank={i + 1} />
           ))}
+          <YourDomainsSection profile={profile} picks={picks} shared={shared} />
+          <LookYouLike profile={profile} favouriteChampions={favouriteChampions} pick={favourite} />
           <RankingList matches={matches} />
-          <DomainLeanSection picks={picks} />
         </section>
       )}
     </div>

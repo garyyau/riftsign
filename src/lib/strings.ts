@@ -2,7 +2,7 @@
  * Every Player-facing string lives here so a future localization has one file to translate.
  * Game vocabulary follows CONTEXT.md; Players see "Riftsign" where the code says Profile.
  */
-import type { Domain } from './axes'
+import type { Domain, PlaystyleAxisId } from './axes'
 import type { Archetype } from './types'
 
 export const PROJECT_TITLE = 'Riftsign'
@@ -19,7 +19,7 @@ export const STRINGS = {
   landing: {
     eyebrow: 'A playstyle test for Riftbound',
     title: 'Find the Legends you were made to pilot.',
-    body: 'Twenty-six quick questions about how you like to play. No deck jargon, no sign-up. You get your Riftsign: seven scores, a playstyle name, and the Legends that fit it.',
+    body: 'Twenty-six quick questions about how you like to play. No deck jargon, no sign-up. You get your Riftsign: how you like to play, the Domains that pull you, and the Legends that fit.',
     start: 'Start the test',
     continue: 'Continue where you left off',
     seeResult: 'See your Riftsign',
@@ -35,7 +35,7 @@ export const STRINGS = {
     championsEyebrow: 'One last thing',
     championsPrompt: 'Any champions you already love?',
     championsHelp:
-      'Optional. When two Legends fit you about equally, a favourite champion tips it their way. Skip it if the names mean nothing to you yet.',
+      "Optional. Pick any you like the look of and we'll show you their best Legend for you, with an honest note on how it plays. Skip it if the names mean nothing to you yet.",
     championsSkip: 'Skip',
     championsDone: 'Show my Riftsign',
     noChampions: 'No reviewed Legends yet, so there is nothing to pick from.',
@@ -63,12 +63,22 @@ export const STRINGS = {
     alsoPlayed: (archetypes: string[]) => `Also played as ${archetypes.join(' or ')}`,
     deckLists: 'Deck lists on Piltover Archive',
     fullRanking: (n: number) => `Full ranking of all ${n} Legends`,
-    leanTitle: 'Your Domain lean',
-    leanBody: (domains: Domain[]) =>
-      `You lean ${joinDomains(domains)}. Other Legends ${domains.length === 1 ? 'with that Domain' : 'in those Domains'}:`,
-    leanEmpty: (domains: Domain[]) => `You lean ${joinDomains(domains)}. Your top three already cover that.`,
-    leanNone:
-      'No strong pull toward any Domain, so your Legends above were picked on how you play. Any Domain pair could suit you.',
+    // "Your Domains" is worded so it reads the same on a shared Riftsign; only the title changes there.
+    domainsTitle: 'Your Domains',
+    sharedDomainsTitle: 'Domains',
+    domainFeeling: { pull: 'Strong pull', neutral: 'No strong pull', push: 'Not a draw' },
+    domainsLead: (domains: Domain[]) => `${joinDomains(domains)} ${domains.length === 1 ? 'pulls' : 'pull'} clearly ahead.`,
+    domainsLegends: (domains: Domain[]) =>
+      domains.length === 1 ? `More Legends with ${domains[0]}, best fit first:` : `More Legends in ${joinDomains(domains)}, best fit first:`,
+    domainsCovered: 'The Legends above already cover that.',
+    domainsNone:
+      'No Domain pulls clearly ahead, so the Legends above were picked on playstyle alone. Any Domain pair could suit.',
+    lookTitle: 'Has the look you like',
+    lookLead: (champion: string) => `Your best fit among the champions you picked is ${champion}.`,
+    /** Playstyle gaps from the Player's scores, e.g. ["faster", "swingier"]. */
+    lookGaps: (gaps: string[]) => `It's ${gaps.join(' and ')} than you like.`,
+    lookClose: 'It plays close to how you like to play.',
+    lookCovered: 'Your favourite champions are already in the Legends above.',
     share: 'Copy share link',
     shared: 'Link copied',
     shareFailed: 'Could not copy. The link is in your address bar.',
@@ -77,7 +87,7 @@ export const STRINGS = {
     takeOwn: 'Take the test',
     versionNotice: 'The test has changed since you took it. A retake might land differently.',
     olderLinkNotice: 'This Riftsign was made with an earlier version of the test.',
-    scoresTitle: 'Your seven scores',
+    scoresTitle: 'Your scores',
   },
   footer: {
     about: 'Riftsign matches your playstyle to Legends. It never rates deck strength.',
@@ -119,4 +129,22 @@ export const ARCHETYPE_COPY: Record<Archetype, { name: string; description: stri
     description:
       'You build toward one big moment. Most of the game is setup, and the payoff is a turn where several pieces click together and the board changes all at once.',
   },
+}
+
+/** What each Domain's cards do, from the card-pool research, in words a new Player can picture. */
+export const DOMAIN_COPY: Record<Domain, string> = {
+  Fury: 'Direct damage, attacking and conquering, and units that hit harder when they attack.',
+  Calm: 'Stuns, pushing enemy units away, units that take hits for others, and holding battlefields.',
+  Mind: 'Card draw, shrinking enemy units, gear that keeps paying off, and hidden cards.',
+  Body: 'Extra runes, big units, and making your own units stronger.',
+  Chaos: 'Discarding to dig deeper, playing cards back from the trash, hidden cards, and surprises.',
+  Order: 'Lots of small units, value when your units die, and sacrificing them for more.',
+}
+
+/** How a Build differs from the Player on each Axis: [when the Build sits higher, when it sits lower]. */
+export const GAP_WORDS: Record<PlaystyleAxisId, [string, string]> = {
+  pace: ['faster', 'slower'],
+  stance: ['more proactive', 'more reactive'],
+  complexity: ['more intricate', 'simpler'],
+  variance: ['swingier', 'steadier'],
 }
