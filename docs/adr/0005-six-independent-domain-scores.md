@@ -28,15 +28,27 @@ ADR 0001 scored Domains on three bipolar Axes (Fury/Calm, Mind/Body, Chaos/Order
 
 ## Consequences
 
-- **Weight.** `DOMAIN_WEIGHT` stays 0.5, tuned with `pnpm simulate` on the interim 2026-11 set. From 0.3 to 1.0, playstyle-first runs 64% to 53% (top-3 slots) against strong-Domain #1 pair hits of 50% to 73%, with no knee. At 0.5 playstyle-first matches v2 (59%), and v2's own strong-Domain population (love a pair, dislike its opposites) gets its pair at #1 70% of the time, against 68% on v2.
-- **Threshold.** `DOMAIN_HIGHLIGHT_THRESHOLD` is 3 (was 2.5). On the interim set, always answering "Leaning" the same way tops out at 7.5. A Player with no Domain preference also reaches 7.5 by chance, so no threshold at or below 2.5 can tell those Players apart:
+Tuned with `pnpm simulate` (seeded) on the reviewed v3 set (2026-11, 27 Questions, docs/research/2026-09-24-question-redesign-v3.md). The simulation's respondent model never answers "Definitely" for a loved Domain against a neutral one, because the strong answer overshoots the neutral side. So it also simulates "mostly-Definitely fans", who answer "Definitely" for a loved Domain three times in four.
+
+- **Weight.** `DOMAIN_WEIGHT` stays 0.5. There is no knee:
+
+  | Weight | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.8 |
+  | --- | --- | --- | --- | --- | --- | --- |
+  | Playstyle-first share (top 3) | 68% | 64% | 62% | 60% | 58% | 54% |
+  | Fans' #1 holds their pair | 55% | 65% | 74% | 79% | 84% | 91% |
+
+  At 0.5, playstyle-first matches v2 (59%). The skew described below persists at every weight from 0.3 up, so weight is not the lever for it.
+- **Threshold.** `DOMAIN_HIGHLIGHT_THRESHOLD` is 3 (was 2.5). Each Domain has reach 8, so four "Leaning" answers the same way give exactly 7.5. Any cut below 3 lands there, and anything at 3 or above needs a fifth point (8.1). The choice is binary:
 
   | Threshold | 1.5 | 2 | 2.5 | 3 | 3.5 |
   | --- | --- | --- | --- | --- | --- |
-  | Neutral Players kept quiet | 65% | 68% | 73% | 100% | 100% |
-  | Pair named, Player answers "Definitely" (v2 population) | 100% | 100% | 100% | 100% | 97% |
-  | Pair named, Player only ever leans | 89% | 77% | 50% | 0% | 0% |
+  | Neutral Players kept quiet | 64% | 64% | 64% | 100% | 100% |
+  | Indifferent power pickers kept quiet | 0% | 0% | 0% | 100% | 100% |
+  | Fans: pair named | 99% | 89% | 89% | 56% | 24% |
+  | Fans of both Domains of an old opposite pair: both named | 98% | 84% | 84% | 40% | 0% |
 
-  At 3 a clear lead needs some "Definitely" answers. 2 is the alternative if the redesigned Questions can't lift real Domain lovers past 8.
-- **Interim numbers.** The 2026-11 set is a mechanical conversion of 2026-10 that only pits old opposites against each other, so it can't express liking both. Players who like both Domains of an old opposite pair get neither highlighted and never get that pair at #1 (0%). Fury + Calm always sums to 10, so opposite-pair Legends never beat the neutral cost and take 0% of random-click #1s (pool share 6%). A neighbour slip on a 4-point scale can turn "Leaning Fury" into "Leaning Calm", which is part of why Build recovery with slips drops from 70% to 58%. The redesigned Domain Questions replace this set; retune both constants, and redo the Personas, when they land.
+  At 3, a clear lead needs at least one "Definitely", and no Player without a preference is told they have one. Fans reach 8.6 on average on their two Domains, and fans of both halves of an old pair reach 8.3. Their misses mostly come from the item that pits their two loved Domains against each other, where they only lean.
+- **Indifferent power pickers.** A Player with no Domain feelings who always takes the stronger-sounding answer ends at Fury 1.9, Calm 5, Mind 7.5, Body 6.9, Chaos 4.4, Order 4.4. Nothing is highlighted at 3. Their #1 is skewed, though. It holds Fury 0% of the time (Domain-neutral Players: 33%), and Mind 59% (32%) and Body 58% (43%). The Question rationale's fix applies: give one Fury answer lasting value, rather than lowering the weight.
+- **Old opposite pairs.** Players who love both Fury and Calm (or Mind and Body, Chaos and Order) now get that pair at #1 30% of the time under the model, and 56% as fans (the interim set managed 0%). Opposite-pair Legends take 7% of random-click #1s, against a 6% pool share: no attractor.
+- **Personas.** Eight Personas answer the v3 set honestly, including one who loves Fury and Calm. All land on their expected Archetypes and leading Domains.
 - **Records.** Share links from v1 and v2 keep working. The v3 link is 20 characters of scores, up from 14. Personas now assert the leading Domains instead of dominant Domain Axes.

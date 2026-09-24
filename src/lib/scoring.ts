@@ -208,8 +208,8 @@ export function deriveArchetype(matches: Match[]): Archetype | null {
 /**
  * A Domain the Player feels this far from neutral (5) about counts as a pull or a push. The same
  * line decides the bar labels and which Domains "Your Domains" highlights, so they never disagree.
- * 3 needs some "Definitely" answers: always "Leaning" the same way tops out at 7.5, which a
- * Player with no real preference also reaches by chance (`pnpm simulate`, ADR 0005).
+ * 3 needs a "Definitely" answer: four "Leaning" answers the same way give 7.5, which a third of
+ * Players with no preference reach by chance and power pickers reach on Mind (`pnpm simulate`, ADR 0005).
  */
 export const DOMAIN_HIGHLIGHT_THRESHOLD = 3
 
