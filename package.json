@@ -10,6 +10,7 @@
     "postbuild:share": "tsx scripts/build-share-pages.ts",
     "validate": "tsx scripts/validate-data.ts",
     "report": "tsx scripts/report-axes.ts",
+    "simulate": "tsx scripts/simulate-quiz.ts",
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "lint": "oxlint",

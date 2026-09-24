@@ -60,7 +60,9 @@ const questionBase = {
 }
 
 export const questionSchema = z.discriminatedUnion('kind', [
-  z.object({ ...questionBase, kind: z.literal('scenario'), answers: z.array(answerSchema).min(2).max(4) }),
+  z
+    .object({ ...questionBase, kind: z.literal('scenario'), answers: z.array(answerSchema).min(2).max(4), scale: z.boolean().optional() })
+    .refine((q) => !q.scale || q.answers.length === 2, { message: 'a scale scenario needs exactly two Answers', path: ['answers'] }),
   z.object({ ...questionBase, kind: z.literal('statement'), agreeMoves: z.array(axisMove).min(1) }),
 ])
 

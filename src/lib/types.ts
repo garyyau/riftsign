@@ -36,6 +36,8 @@ export type Question =
       prompt: string
       loads: AxisLoading[]
       answers: Answer[]
+      /** Shows the two Answers as poles of a four-point scale: strong and leaning on each side. */
+      scale?: boolean
     }
   | {
       id: string
@@ -96,7 +98,7 @@ export interface Match {
 export interface DomainLean {
   /** The two Domain Axes with the largest magnitude, strongest first. */
   axes: [AxisId, AxisId]
-  /** The Domains those Axes point to. An Axis sitting exactly at 0 contributes none. */
+  /** The Domains those Axes point to. An Axis nearer 0 than DOMAIN_LEAN_THRESHOLD contributes none. */
   domains: Domain[]
   legends: Legend[]
 }

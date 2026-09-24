@@ -14,6 +14,7 @@ pnpm typecheck
 pnpm lint
 pnpm validate     # schema + cross-checks on Questions and Legends
 pnpm report       # inter-Axis correlation and central clustering (add --all for drafts)
+pnpm simulate     # seeded simulated Players: recovery, attractors, close calls (run before/after tuning)
 pnpm build        # validate, test, typecheck, vite build, share pages
 ```
 

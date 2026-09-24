@@ -122,6 +122,26 @@ describe('validateQuestionSet', () => {
     expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*pace.*twice/)
   })
 
+  it('accepts a two-Answer scale scenario and rejects one with more Answers', () => {
+    const set = fullCoverageSet()
+    swapReverseAnswers(set)
+    const q = set.questions[0]
+    if (q.kind !== 'scenario') throw new Error('expected a scenario')
+    set.questions[0] = { ...q, scale: true }
+    expect(validateQuestionSet(set).success).toBe(true)
+    set.questions[0] = { ...q, scale: true, answers: [...q.answers, answer('middle', [{ axis: 'pace', weight: 1 }])] }
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/answers.*scale scenario needs exactly two/)
+  })
+
+  it('rejects a scale scenario whose expanded points collide with a pole id', () => {
+    const set = fullCoverageSet()
+    swapReverseAnswers(set)
+    const q = set.questions[0]
+    if (q.kind !== 'scenario') throw new Error('expected a scenario')
+    set.questions[0] = { ...q, scale: true, answers: [q.answers[0], { ...q.answers[1], id: `${q.answers[0].id}-leaning` }] }
+    expect(issuesOf(validateQuestionSet(set)).join('\n')).toMatch(/pace-1.*duplicate Answer id/)
+  })
+
   it('rejects a scenario with a single Answer', () => {
     const set = fullCoverageSet()
     const q = set.questions[0]

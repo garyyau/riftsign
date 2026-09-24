@@ -1,4 +1,4 @@
-import { AXES, AXIS_IDS, DOMAIN_AXIS_IDS, normalize, type AxisId, type Domain, type DomainAxisId } from './axes'
+import { AXES, AXIS_IDS, DOMAIN_AXIS_IDS, DOMAIN_POLES, normalize, type AxisId, type Domain, type DomainAxisId } from './axes'
 import type { Answer, Answers, Archetype, Build, DomainLean, Legend, Match, Profile, Question, QuestionSet } from './types'
 
 export const STATEMENT_POINTS = [
@@ -9,9 +9,30 @@ export const STATEMENT_POINTS = [
   { id: 'strongly-agree', text: 'Strongly agree', factor: 1 },
 ] as const
 
-/** Every Question presents as a list of Answers; statements expand to five points. */
+/** A scale scenario's two poles expand to four points: strong and leaning on each side. */
+export const SCALE_POINTS = [
+  { pole: 0, strength: 'strong', factor: 1 },
+  { pole: 0, strength: 'leaning', factor: 0.5 },
+  { pole: 1, strength: 'leaning', factor: 0.5 },
+  { pole: 1, strength: 'strong', factor: 1 },
+] as const
+
+/**
+ * Every Question presents as a list of Answers. Statements expand to five points and scale
+ * scenarios to four. A scale's strong points keep the pole Answer's id, so stored Answers survive.
+ */
 export function answersOf(question: Question): Answer[] {
-  if (question.kind === 'scenario') return question.answers
+  if (question.kind === 'scenario') {
+    if (!question.scale) return question.answers
+    return SCALE_POINTS.map((p) => {
+      const pole = question.answers[p.pole]
+      return {
+        id: p.strength === 'strong' ? pole.id : `${pole.id}-leaning`,
+        text: pole.text,
+        moves: pole.moves.map((m) => ({ axis: m.axis, weight: m.weight * p.factor })),
+      }
+    })
+  }
   return STATEMENT_POINTS.map((p) => ({
     id: p.id,
     text: p.text,
@@ -64,26 +85,40 @@ export function computeProfile(set: QuestionSet, answers: Answers): Profile {
 }
 
 
-/** Per-Axis distance weights. All 1 by default; adjust here after an audit, nowhere else. */
+/**
+ * Per-Axis distance weights. Domain Axes weigh less so playstyle leads the Match (ADR 0004).
+ * Adjust here after an audit (`pnpm simulate`), nowhere else.
+ */
 export const AXIS_WEIGHTS: Record<AxisId, number> = {
   pace: 1,
   stance: 1,
   complexity: 1,
   variance: 1,
-  'fury-calm': 1,
-  'mind-body': 1,
-  'chaos-order': 1,
+  'fury-calm': 0.4,
+  'mind-body': 0.4,
+  'chaos-order': 0.4,
 }
 
-/** Fit points added to every Legend of a Champion the Player named as a favourite. Kept small: a nudge, not a thumb on the scale. */
-export const FAVOURITE_CHAMPION_BONUS = 3
+/** Fit points added to every Legend of a Champion the Player named as a favourite. A tie-break between close Matches, too small to reorder clear ones. */
+export const FAVOURITE_CHAMPION_BONUS = 1
 
 const MAX_DISTANCE = Math.sqrt(AXIS_IDS.reduce((sum, axis) => sum + AXIS_WEIGHTS[axis], 0))
 
-function distance(a: Profile, b: Profile): number {
+/** The Domain Axis a Legend holds both Domains of (e.g. Fury and Calm), if any. */
+function splitAxis(legend: Legend): DomainAxisId | null {
+  const [a, b] = legend.domains.map((d) => DOMAIN_POLES[d].axis)
+  return a === b ? a : null
+}
+
+/**
+ * A Legend holding both Domains of an Axis is stored at 0 there but can play either Domain,
+ * so on that Axis distance is measured to whichever pole is nearer the Profile.
+ */
+function distance(profile: Profile, build: Build, split: DomainAxisId | null): number {
   let sum = 0
   for (const axis of AXIS_IDS) {
-    const d = normalize(axis, a[axis]) - normalize(axis, b[axis])
+    const target = axis === split ? (profile[axis] < 0 ? AXES[axis].min : AXES[axis].max) : build.coordinates[axis]
+    const d = normalize(axis, profile[axis]) - normalize(axis, target)
     sum += AXIS_WEIGHTS[axis] * d * d
   }
   return Math.sqrt(sum)
@@ -101,7 +136,8 @@ export function rankLegends(profile: Profile, pool: Legend[], options: RankOptio
   const favourites = new Set(options.favouriteChampions ?? [])
   return pool
     .flatMap((legend) => {
-      const scored = reviewedBuilds(legend).map((build) => ({ build, d: distance(profile, build.coordinates) }))
+      const split = splitAxis(legend)
+      const scored = reviewedBuilds(legend).map((build) => ({ build, d: distance(profile, build, split) }))
       if (!scored.length) return []
       const { build, d } = scored.reduce((best, s) => (s.d < best.d ? s : best))
       const bonus = favourites.has(legend.champion) ? FAVOURITE_CHAMPION_BONUS : 0
@@ -113,6 +149,19 @@ export function rankLegends(profile: Profile, pool: Legend[], options: RankOptio
 
 /** Top two Matches within this many fit points of each other count as a tie for the headline. */
 export const ARCHETYPE_TIE_MARGIN = 3
+
+/**
+ * Top two Matches within this many fit points of each other are called a close call on the
+ * result page. 0 means the same shown fit, which `pnpm simulate` puts at about one Player in
+ * six; 1 would fire for over 40%. Retune with the simulation, separately from the tie margin.
+ */
+export const CLOSE_CALL_MARGIN = 0
+
+/** The top two Matches when their fits sit within the close-call margin, else null. */
+export function closeCall(matches: Match[]): [Match, Match] | null {
+  const [first, second] = matches
+  return first && second && first.fit - second.fit <= CLOSE_CALL_MARGIN ? [first, second] : null
+}
 
 /**
  * The Archetype of the top Match, unless the top two disagree and sit within the tie
@@ -135,9 +184,12 @@ export function deriveArchetype(matches: Match[]): Archetype | null {
     : first.build.archetype
 }
 
+/** A Domain Axis names a Domain in the lean only when the Profile sits at least this far from 0 on it. */
+export const DOMAIN_LEAN_THRESHOLD = 2.5
+
 /**
- * The two Domain Axes the Profile leans on hardest, the Domains they point to, and the
- * reviewed Legends holding exactly that Domain pair (minus any already in the top three).
+ * The two Domain Axes the Profile leans on hardest, the Domains they point to past the
+ * threshold, and the reviewed Legends holding those Domains (minus any already in the top three).
  */
 export function domainLean(profile: Profile, pool: Legend[], exclude: Legend[] = []): DomainLean {
   const [a, b] = [...DOMAIN_AXIS_IDS].sort((x, y) => Math.abs(profile[y]) - Math.abs(profile[x])) as [
@@ -145,7 +197,7 @@ export function domainLean(profile: Profile, pool: Legend[], exclude: Legend[] =
     DomainAxisId,
   ]
   const poleOf = (axis: DomainAxisId): Domain[] => {
-    if (profile[axis] === 0) return []
+    if (Math.abs(profile[axis]) < DOMAIN_LEAN_THRESHOLD) return []
     return [(profile[axis] < 0 ? AXES[axis].lowLabel : AXES[axis].highLabel) as Domain]
   }
   const domains = [...poleOf(a), ...poleOf(b)]

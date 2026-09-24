@@ -1,7 +1,42 @@
 import { describe, expect, it } from 'vitest'
-import { ARCHETYPE_TIE_MARGIN, computeProfile, deriveArchetype, domainLean, rankLegends } from './scoring'
-import type { Archetype, Profile } from './types'
-import { build, CENTER, legend, smallQuestionSet } from './test-fixtures'
+import {
+  answersOf,
+  ARCHETYPE_TIE_MARGIN,
+  CLOSE_CALL_MARGIN,
+  closeCall,
+  computeProfile,
+  deriveArchetype,
+  DOMAIN_LEAN_THRESHOLD,
+  domainLean,
+  FAVOURITE_CHAMPION_BONUS,
+  rankLegends,
+} from './scoring'
+import type { Archetype, Profile, QuestionSet } from './types'
+import { answer, build, CENTER, legend, scenario, smallQuestionSet } from './test-fixtures'
+
+describe('scale scenarios', () => {
+  const scale = {
+    ...scenario('pace-scale', [answer('fast', [{ axis: 'pace', weight: 2 }]), answer('slow', [{ axis: 'pace', weight: -2 }])], [
+      { axis: 'pace', reverse: false },
+    ]),
+    scale: true,
+  }
+  const set: QuestionSet = { version: 'test-1', questions: [scale] }
+
+  it('expands two poles into four points, strong ids kept and leaning points at half strength', () => {
+    expect(answersOf(scale).map((a) => [a.id, a.text, a.moves[0].weight])).toEqual([
+      ['fast', 'Answer fast', 2],
+      ['fast-leaning', 'Answer fast', 1],
+      ['slow-leaning', 'Answer slow', -1],
+      ['slow', 'Answer slow', -2],
+    ])
+  })
+
+  it('reaches each end only on the strong point and lands halfway on a leaning point', () => {
+    const paceFor = (id: string) => computeProfile(set, { 'pace-scale': id }).pace
+    expect([paceFor('fast'), paceFor('fast-leaning'), paceFor('slow-leaning'), paceFor('slow')]).toEqual([10, 7.5, 2.5, 0])
+  })
+})
 
 describe('computeProfile', () => {
   it('lands at the midpoint of every Axis when nothing is answered', () => {
@@ -87,6 +122,26 @@ describe('rankLegends', () => {
     expect(ranked[0].fit).toBe(100)
   })
 
+  it('lets the favourite bonus break a near-tie but not reorder a clear gap', () => {
+    const close = [legend('first', 'Aggro', { pace: 9.9 }), legend('second', 'Aggro', { pace: 9.8 })]
+    expect(rankLegends(fastProactive, close, { favouriteChampions: ['second'] })[0].legend.id).toBe('second')
+    const clear = [legend('first', 'Aggro', { pace: 10, stance: 10 }), legend('second', 'Aggro', { pace: 8, stance: 8 })]
+    const [first, second] = rankLegends(fastProactive, clear)
+    expect(first.fit - second.fit).toBeGreaterThan(FAVOURITE_CHAMPION_BONUS)
+    expect(rankLegends(fastProactive, clear, { favouriteChampions: ['second'] })[0].legend.id).toBe('first')
+  })
+
+  it('measures a Legend holding both Domains of an Axis to the nearer pole, not the midpoint', () => {
+    const akali = legend('akali', 'Aggro', {}, ['Fury', 'Calm'])
+    const fitAt = (furyCalm: number) => rankLegends({ ...CENTER, 'fury-calm': furyCalm }, [akali])[0].fit
+    expect(fitAt(-5)).toBe(100)
+    expect(fitAt(5)).toBe(100)
+    expect(fitAt(0)).toBeLessThan(100)
+    // Halfway toward Fury sits as far from the Fury pole as a Legend stored there would.
+    const furyOnly = legend('fury', 'Aggro', { 'fury-calm': -5 })
+    expect(fitAt(-2)).toBe(rankLegends({ ...CENTER, 'fury-calm': -2 }, [furyOnly])[0].fit)
+  })
+
   it('leaves Legends with no reviewed Build out of the ranking', () => {
     const draft = legend('draft', 'Aggro', {}, undefined, { builds: [build('Aggro', { pace: 10, stance: 10 }, { reviewed: false })] })
     expect(rankLegends(fastProactive, [...pool, draft]).map((m) => m.legend.id)).not.toContain('draft')
@@ -116,20 +171,36 @@ describe('deriveArchetype', () => {
   })
 
   it('breaks a near-tie between differing top two by mean fit across the top five', () => {
-    // Aggro and Tempo at equal distance; two more Tempo Legends close behind tilt the mean.
+    // Aggro leads by a hair, but Tempo holds up across the top five while a distant Aggro drags its mean.
     const matches = rankLegends({ ...CENTER, pace: 8 }, [
-      at('a', 'Aggro', 9),
-      at('t1', 'Tempo', 7),
-      at('t2', 'Tempo', 7.2),
-      at('t3', 'Tempo', 6.8),
+      at('a1', 'Aggro', 8.8),
+      at('t1', 'Tempo', 7.1),
+      at('t2', 'Tempo', 6.9),
+      at('a2', 'Aggro', 10),
       at('c', 'Control', 0),
     ])
+    expect(matches[0].build.archetype).toBe('Aggro')
     expect(matches[0].fit - matches[1].fit).toBeLessThanOrEqual(ARCHETYPE_TIE_MARGIN)
     expect(deriveArchetype(matches)).toBe('Tempo')
   })
 
   it('returns null for an empty pool', () => {
     expect(deriveArchetype([])).toBeNull()
+  })
+})
+
+describe('closeCall', () => {
+  const pool = [legend('a', 'Aggro', { pace: 10 }), legend('b', 'Tempo', { pace: 9.9 }), legend('c', 'Control', { pace: 0 })]
+
+  it('names the top two when their fits sit within the margin', () => {
+    const matches = rankLegends({ ...CENTER, pace: 10 }, pool)
+    expect(matches[0].fit - matches[1].fit).toBeLessThanOrEqual(CLOSE_CALL_MARGIN)
+    expect(closeCall(matches)?.map((m) => m.legend.id)).toEqual(['a', 'b'])
+  })
+
+  it('stays quiet for a clear winner or a single Match', () => {
+    expect(closeCall(rankLegends({ ...CENTER, pace: 10 }, [pool[0], pool[2]]))).toBeNull()
+    expect(closeCall(rankLegends(CENTER, [pool[0]]))).toBeNull()
   })
 })
 
@@ -159,10 +230,13 @@ describe('domainLean', () => {
     expect(lean.legends.map((l) => l.id)).not.toContain('draft')
   })
 
-  it('claims no Domain for an Axis sitting exactly at the midpoint', () => {
+  it('claims no Domain for an Axis nearer the midpoint than the lean threshold', () => {
     expect(domainLean(CENTER, pool).domains).toEqual([])
     expect(domainLean(CENTER, pool).legends).toEqual([])
-    const oneSided = domainLean({ ...CENTER, 'fury-calm': -2 }, pool)
+    const faint = domainLean({ ...CENTER, 'fury-calm': -(DOMAIN_LEAN_THRESHOLD - 0.1), 'chaos-order': 1 }, pool)
+    expect(faint.domains).toEqual([])
+    expect(faint.legends).toEqual([])
+    const oneSided = domainLean({ ...CENTER, 'fury-calm': -DOMAIN_LEAN_THRESHOLD, 'chaos-order': 1 }, pool)
     expect(oneSided.domains).toEqual(['Fury'])
     expect(oneSided.legends.map((l) => l.id).sort()).toEqual(['fury-chaos', 'fury-order', 'order-fury'])
   })
