@@ -1,6 +1,6 @@
 # Question redesign from first principles (2026-09-23)
 
-Draft set: `docs/research/drafts/questions-v2.json` (version `2026-10`, 26 Questions, 22 of them strength-scale scenarios, 4 statements). Not yet integrated: the scoring code is being changed in parallel and `src/data/questions.json` is untouched.
+Draft set: `docs/research/drafts/questions-v2.json` (version `2026-10`, 26 Questions, 22 of them strength-scale scenarios, 4 statements). Now integrated as `src/data/questions.json`, with the rules fixes listed under "Post-review changes" at the end.
 
 Inputs: the two audits summarised in the brief, `docs/research/2026-09-23-quiz-question-design.md`, `docs/research/2026-09-22-domain-archetype-identities.md`, and the 52 rated Builds in `src/data/legends/`. Pool medians: pace 4.5, stance 6, complexity 6.5, variance 5.5.
 
@@ -95,3 +95,29 @@ Run with a local reproduction of `computeProfile` (scale answers apply full or h
 - **`first-turn` cross-load.** Ramp on turn one moves `mind-body` +1 toward Body. Nasus (Calm/Mind) and Jhin (Fury/Mind) also build toward big turns, so a Mind ramp player loses half a point of Mind here. Accepted because five of the seven ramp Builds are Body.
 - **`scale` is not yet in `schemas.ts`.** The draft carries `"scale": true` on 22 items as instructed; validation will reject it until the parallel scoring change lands.
 - **Persona fixtures in `src/lib/personas.test.ts` reference old ids** and will need rewriting when this set is integrated. The walkthrough answer sets above are a starting point for three of them.
+
+Both of the last two risks are resolved: `scale` is validated, and the Personas answer the integrated set.
+
+## 6. Post-review changes
+
+A fact-check against the Riftbound rules (riftbound.gg beginner guide, Riot's quick start, Riftcodex card counts) found rules errors and duplicates. All fixes are applied in `src/data/questions.json`; the walkthroughs above predate them.
+
+- **Rules errors.** `first-turn`: units enter exhausted, so pressure is now "Play a cheap unit now, ready to take a battlefield next turn." and ramp "…let them take the early points." `big-enemy-unit` is now `move-or-attack`, because stun doesn't clear a battlefield. Its Calm side (`move-it`) reads "Move it back to its base and take the battlefield while it's gone." `hold-or-press`: units only move between base and a battlefield, so the answers are "Dig in: add units there so it's too costly to take back." and "Send your other units at their battlefield while they're off balance." The stance cue "trick ready" is gone.
+- **Replaced.** `painful-loss` → `behind-early` (pace, reverse): "Turn three. They're ahead on points, but you have more runes and a better hand. You feel..." with `relaxed` / `itchy`. `cut-unit-or-draw` → `shrink-or-buff` (mind-body, reverse): "Your unit is about to lose a fight. The trick you'd rather have..." with `shrink` (Mind) / `buff` (Body); shrink effects are Mind-only in the card pool. `engine-or-pieces` → `reading-their-hand` (complexity, now forward-keyed): "Your opponent has two face-down cards and three in hand. You..." with `work-it-out` / `play-your-game`. Complexity keeps one reverse-keyed item (`one-clear-job`).
+- **Reworded.**
+  - `damage-or-stun`: "Deals 3 damage to an enemy unit." / "Stuns two enemy units, so neither deals damage this turn."
+  - `units-or-answers` drops its mind-body cross-loads, which the pool doesn't support.
+  - `tokens-or-trash`: "Makes two 1-might unit tokens."
+  - `cut-one-card`: "Which goes?", with each answer starting "Cut the card that..."
+  - `which-win`: "...after all your best cards have come out." / "...before their best cards come out."
+  - `discard-or-sacrifice`: "(you'll draw a fresh one)".
+  - `all-in-or-measured` now states both sides' risk.
+  - `hold-or-spend`: "put another unit on the board".
+  - `biggest-card`: gear "draws you an extra card every turn it stays in play".
+  - `protector-or-striker`: "same cost and might".
+  - `token-or-face-down`: `tokens-on-death` "leaves two 1-might tokens behind when it dies" / face-down "hide face down and spring on them later". The face-down answer keeps its mind-body −1.
+  - `shutting-down`: adds "That beats landing a big play of my own."
+  - `finisher-or-spread`: "One big finisher the whole deck is built to find."
+  - `formation-or-tricks`: "cards hiding face down".
+
+Per-Axis load counts and the no-adjacent-Axis rule are unchanged. Two figures in the section 3 table are now out of date: complexity has one reverse-keyed item (not two), and mind-body has two secondary cross-loads (not four).
