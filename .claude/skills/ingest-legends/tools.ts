@@ -6,10 +6,9 @@
  */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
-import { PLAYSTYLE_AXIS_IDS, type PlaystyleAxisId } from '../../../src/lib/axes'
-import { domainCoordinates } from '../../../src/lib/schemas'
+import { DOMAIN_ID, DOMAINS, PLAYSTYLE_AXIS_IDS, type PlaystyleAxisId } from '../../../src/lib/axes'
 import { rankLegends } from '../../../src/lib/scoring'
-import type { Archetype, Build, Legend } from '../../../src/lib/types'
+import type { Archetype, Build, BuildCoordinates, Legend, Profile } from '../../../src/lib/types'
 import { loadLegends } from '../../../scripts/lib/load-legends'
 
 const DIR = path.resolve(import.meta.dirname, '../../../src/data/legends')
@@ -64,7 +63,7 @@ function toBuild(legend: Legend, archetype: Archetype, d: Draft): Build {
   if (missing.length) throw new Error(`${legend.id} ${archetype}: draft is missing ${missing.join(', ')}`)
   return {
     archetype,
-    coordinates: { ...(pick(d as Record<string, number>) as Record<PlaystyleAxisId, number>), ...domainCoordinates(legend.domains) },
+    coordinates: pick(d as Record<string, number>) as BuildCoordinates,
     howItPlays: d.howItPlays!,
     whyYou: d.whyYou!,
     guideUrls: d.guideUrls!,
@@ -129,7 +128,9 @@ function check(ids: string[]) {
   const dist = (a: number[], b: number[]) => Math.hypot(...a.map((x, i) => x - b[i]))
   let flags = 0
   for (const { l, b, v } of points.filter((p) => scope.has(p.l.id))) {
-    const [top] = rankLegends(b.coordinates, pool)
+    // A Player on the Build who loves its Legend's two Domains and has no feeling about the rest.
+    const player = { ...b.coordinates, ...Object.fromEntries(DOMAINS.map((d) => [DOMAIN_ID[d], l.domains.includes(d) ? 10 : 5])) } as Profile
+    const [top] = rankLegends(player, pool)
     if (top.legend.id !== l.id || top.build.archetype !== b.archetype) {
       flags++
       console.log(`self-match  ${l.id} ${b.archetype}: top Match is ${top.legend.id} ${top.build.archetype}`)

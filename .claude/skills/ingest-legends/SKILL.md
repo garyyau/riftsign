@@ -38,7 +38,7 @@ Done when: the workflow has completed and its `failed` list is empty. Rerun fail
 
 ## 3. Apply
 
-Run `tools.ts apply <workflow output file> <today>`, using the output file path from the completion notification. It applies each skeptic-accepted proposal (the skeptic's revision when there is one), sets every changed or new Build to `reviewed: false`, fills Domain coordinates, and logs every rejection with its reason. Then run `pnpm validate`; fix any draft it rejects by hand from the output file.
+Run `tools.ts apply <workflow output file> <today>`, using the output file path from the completion notification. It applies each skeptic-accepted proposal (the skeptic's revision when there is one), sets every changed or new Build to `reviewed: false`, and logs every rejection with its reason. Then run `pnpm validate`; fix any draft it rejects by hand from the output file.
 
 Done when: `pnpm validate` prints `Data OK` and the apply log accounts for every target Legend.
 

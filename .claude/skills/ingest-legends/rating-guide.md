@@ -28,7 +28,7 @@ The five labels are Aggro, Tempo, Midrange, Control, Combo. There is no Ramp. De
 ## Coordinates
 
 - Playstyle Axes 0 to 10 in half steps, placed relative to two or three existing Builds of the same Archetype, named in the notes.
-- Domain coordinates come from the Legend's Domains (`domainCoordinates` in `src/lib/schemas.ts`); `tools.ts apply` fills them.
+- A Build stores only the four playstyle Axes. Its Domains come from the Legend's `domains` (ADR 0005), and validation rejects a stored Domain coordinate.
 - `ratingNotes`: one line per Axis citing the source that supports it, then the Legend ability, then `Confidence: low | medium | high.`, then anything the reviewer should check. For a change, say what moved and why, dated.
 
 ## Copy
