@@ -10,7 +10,7 @@
       "loads": [{ "axis": "pace", "reverse": false }],
       "answers": [
         { "id": "pressure", "text": "Play a cheap unit now, ready to take a battlefield next turn.", "moves": [{ "axis": "pace", "weight": 2 }] },
-        { "id": "ramp", "text": "Play a card that gives you an extra rune for the rest of the game, and let them take the early points.", "moves": [{ "axis": "pace", "weight": -2 }, { "axis": "mind", "weight": -1 }, { "axis": "body", "weight": 1 }] }
+        { "id": "ramp", "text": "Play a card that gives you an extra rune for the rest of the game, and let them take the early points.", "moves": [{ "axis": "pace", "weight": -2 }] }
       ]
     },
     {
@@ -21,8 +21,8 @@
       "prompt": "Two cheap spells, same cost. Which one makes your deck?",
       "loads": [{ "axis": "fury", "reverse": false }, { "axis": "calm", "reverse": true }],
       "answers": [
-        { "id": "damage", "text": "Deals 3 damage to an enemy unit.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
-        { "id": "stun", "text": "Stuns two enemy units, so neither deals damage this turn.", "moves": [{ "axis": "fury", "weight": -2 }, { "axis": "calm", "weight": 2 }] }
+        { "id": "damage", "text": "Deals 2 damage to an enemy unit.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
+        { "id": "stun", "text": "Stuns an enemy unit, so it deals no combat damage this turn.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "fury", "weight": -2 }] }
       ]
     },
     {
@@ -38,15 +38,15 @@
       ]
     },
     {
-      "id": "tokens-or-trash",
+      "id": "shrink-or-buff",
       "kind": "scenario",
       "scale": true,
-      "eyebrow": "One spell slot",
-      "prompt": "One spell slot left. It goes to a spell that...",
-      "loads": [{ "axis": "chaos", "reverse": true }, { "axis": "order", "reverse": false }],
+      "eyebrow": "Losing a fight",
+      "prompt": "Your unit is about to lose a fight. The trick you'd rather have...",
+      "loads": [{ "axis": "mind", "reverse": false }, { "axis": "body", "reverse": true }],
       "answers": [
-        { "id": "tokens", "text": "Makes two 1-might unit tokens.", "moves": [{ "axis": "chaos", "weight": -2 }, { "axis": "order", "weight": 2 }] },
-        { "id": "trash", "text": "Returns the best card in your trash to your hand.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] }
+        { "id": "shrink", "text": "Shrinks their unit this turn.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] },
+        { "id": "buff", "text": "Makes your unit bigger this turn.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "mind", "weight": -2 }] }
       ]
     },
     {
@@ -62,15 +62,15 @@
       ]
     },
     {
-      "id": "draw-or-ramp",
+      "id": "discard-or-sacrifice",
       "kind": "scenario",
       "scale": true,
-      "eyebrow": "Two cards",
-      "prompt": "Two cards, same cost. You'd rather run the one that...",
-      "loads": [{ "axis": "mind", "reverse": false }, { "axis": "body", "reverse": true }],
+      "eyebrow": "The price",
+      "prompt": "A powerful effect asks a price. You'd rather pay by...",
+      "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "order", "reverse": true }],
       "answers": [
-        { "id": "draw", "text": "Draws you two cards.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] },
-        { "id": "rune", "text": "Gives you an extra rune for the rest of the game.", "moves": [{ "axis": "mind", "weight": -2 }, { "axis": "body", "weight": 2 }] }
+        { "id": "discard", "text": "Discarding a card from your hand.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] },
+        { "id": "sacrifice", "text": "Giving up one of your smallest units.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "chaos", "weight": -2 }] }
       ]
     },
     {
@@ -86,6 +86,18 @@
       ]
     },
     {
+      "id": "ready-or-look",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "The four-cost slot",
+      "prompt": "Two 4-cost units, same might. You'd rather have the one that...",
+      "loads": [{ "axis": "fury", "reverse": false }, { "axis": "mind", "reverse": true }],
+      "answers": [
+        { "id": "ready", "text": "Can enter ready for a little extra, so it attacks the turn it lands.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "mind", "weight": -2 }] },
+        { "id": "look", "text": "Looks at the top three cards of your deck when it lands, and you draw the one you want.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "fury", "weight": -2 }] }
+      ]
+    },
+    {
       "id": "which-win",
       "kind": "scenario",
       "scale": true,
@@ -98,27 +110,15 @@
       ]
     },
     {
-      "id": "hold-or-press",
+      "id": "hold-or-deathknell",
       "kind": "scenario",
       "scale": true,
-      "eyebrow": "After the conquest",
-      "prompt": "You've just taken a battlefield. Next turn you'd rather...",
-      "loads": [{ "axis": "fury", "reverse": true }, { "axis": "calm", "reverse": false }],
+      "eyebrow": "Two units",
+      "prompt": "Two units, same cost and might. You'd rather run the one that...",
+      "loads": [{ "axis": "order", "reverse": false }, { "axis": "calm", "reverse": true }],
       "answers": [
-        { "id": "hold", "text": "Dig in: add units there so it's too costly to take back.", "moves": [{ "axis": "fury", "weight": -2 }, { "axis": "calm", "weight": 2 }] },
-        { "id": "press", "text": "Send your other units at their battlefield while they're off balance.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
-      ]
-    },
-    {
-      "id": "discard-or-sacrifice",
-      "kind": "scenario",
-      "scale": true,
-      "eyebrow": "The price",
-      "prompt": "A powerful effect asks a price. You'd rather pay by...",
-      "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "order", "reverse": true }],
-      "answers": [
-        { "id": "discard", "text": "Discarding a card from your hand (you'll draw a fresh one).", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] },
-        { "id": "sacrifice", "text": "Giving up one of your own units.", "moves": [{ "axis": "chaos", "weight": -2 }, { "axis": "order", "weight": 2 }] }
+        { "id": "soldiers-on-death", "text": "Leaves two 1-might soldiers behind when it dies.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
+        { "id": "draw-on-hold", "text": "Draws you a card each time it holds a battlefield at the start of your turn.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "order", "weight": -2 }] }
       ]
     },
     {
@@ -134,6 +134,18 @@
       ]
     },
     {
+      "id": "rune-or-assault",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "The five-cost slot",
+      "prompt": "Two 5-cost units with the same might. Which makes your deck?",
+      "loads": [{ "axis": "body", "reverse": false }, { "axis": "fury", "reverse": true }],
+      "answers": [
+        { "id": "rune", "text": "The one that gives you an extra rune for the rest of the game when it lands.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "fury", "weight": -2 }] },
+        { "id": "assault", "text": "The one that hits harder whenever it's the one attacking.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "body", "weight": -2 }] }
+      ]
+    },
+    {
       "id": "hold-or-spend",
       "kind": "scenario",
       "scale": true,
@@ -146,15 +158,15 @@
       ]
     },
     {
-      "id": "biggest-card",
+      "id": "dig-or-huge",
       "kind": "scenario",
       "scale": true,
-      "eyebrow": "Your headline card",
-      "prompt": "The most expensive card in your deck should be...",
-      "loads": [{ "axis": "mind", "reverse": true }, { "axis": "body", "reverse": false }],
+      "eyebrow": "Add one",
+      "prompt": "Add one card to the deck:",
+      "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "body", "reverse": true }],
       "answers": [
-        { "id": "huge-unit", "text": "A huge unit that wins any fight it's in.", "moves": [{ "axis": "mind", "weight": -2 }, { "axis": "body", "weight": 2 }] },
-        { "id": "gear", "text": "A piece of gear that draws you an extra card every turn it stays in play.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] }
+        { "id": "dig", "text": "A spell that has you discard your hand, then draw four fresh cards.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "body", "weight": -2 }] },
+        { "id": "huge-unit", "text": "A huge unit, bigger than almost anything they can play.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "chaos", "weight": -2 }] }
       ]
     },
     {
@@ -170,6 +182,18 @@
       ]
     },
     {
+      "id": "tank-or-hidden",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Same cost, same might",
+      "prompt": "Two units cost the same and hit the same. You take the one that...",
+      "loads": [{ "axis": "calm", "reverse": false }, { "axis": "chaos", "reverse": true }],
+      "answers": [
+        { "id": "tank", "text": "Takes the hits first for the units fighting alongside it.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "chaos", "weight": -2 }] },
+        { "id": "hidden", "text": "Can be hidden face down at a battlefield and sprung on them later.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
+      ]
+    },
+    {
       "id": "behind-early",
       "kind": "scenario",
       "scale": true,
@@ -182,47 +206,35 @@
       ]
     },
     {
-      "id": "protector-or-striker",
+      "id": "gear-or-trash",
       "kind": "scenario",
       "scale": true,
-      "eyebrow": "Two units",
-      "prompt": "Two units, same cost and might. You'd rather run the one that...",
-      "loads": [{ "axis": "fury", "reverse": true }, { "axis": "calm", "reverse": false }],
+      "eyebrow": "Your headline card",
+      "prompt": "The most expensive card in your deck should be...",
+      "loads": [{ "axis": "mind", "reverse": false }, { "axis": "chaos", "reverse": true }],
       "answers": [
-        { "id": "protector", "text": "Takes the hits for the units beside it.", "moves": [{ "axis": "fury", "weight": -2 }, { "axis": "calm", "weight": 2 }] },
-        { "id": "striker", "text": "Hits harder whenever it's the one attacking.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
-      ]
-    },
-    {
-      "id": "token-or-face-down",
-      "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Add one",
-      "prompt": "Add one unit to the deck:",
-      "loads": [{ "axis": "chaos", "reverse": true }, { "axis": "order", "reverse": false }],
-      "answers": [
-        { "id": "tokens-on-death", "text": "One that leaves two 1-might tokens behind when it dies.", "moves": [{ "axis": "chaos", "weight": -2 }, { "axis": "order", "weight": 2 }] },
-        { "id": "face-down", "text": "One you can hide face down and spring on them later.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }, { "axis": "mind", "weight": 1 }, { "axis": "body", "weight": -1 }] }
+        { "id": "gear", "text": "A gear that draws you an extra card every turn it stays in play.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "chaos", "weight": -2 }] },
+        { "id": "from-trash", "text": "A spell that plays your best unit straight from the trash, ignoring its cost.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "mind", "weight": -2 }] }
       ]
     },
     {
       "id": "best-days",
       "kind": "statement",
       "eyebrow": "Good days, bad days",
-      "prompt": "A deck that's unbeatable on its best days and falls apart on its worst is more fun than one that plays out the same way every game.",
+      "prompt": "A deck that's unbeatable when the draws line up and falls apart when they don't is more fun than one that plays out much the same every game.",
       "loads": [{ "axis": "variance", "reverse": false }],
       "agreeMoves": [{ "axis": "variance", "weight": 2 }]
     },
     {
-      "id": "shrink-or-buff",
+      "id": "grower-or-soldiers",
       "kind": "scenario",
       "scale": true,
-      "eyebrow": "Losing a fight",
-      "prompt": "Your unit is about to lose a fight. The trick you'd rather have...",
-      "loads": [{ "axis": "mind", "reverse": false }, { "axis": "body", "reverse": true }],
+      "eyebrow": "One more unit",
+      "prompt": "One unit slot left. It goes to a unit that...",
+      "loads": [{ "axis": "body", "reverse": false }, { "axis": "order", "reverse": true }],
       "answers": [
-        { "id": "shrink", "text": "Shrinks their unit this turn.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] },
-        { "id": "buff", "text": "Makes your unit bigger this turn.", "moves": [{ "axis": "mind", "weight": -2 }, { "axis": "body", "weight": 2 }] }
+        { "id": "grower", "text": "Each time it conquers a battlefield, one of your units gets +1 might for the rest of the game.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "order", "weight": -2 }] },
+        { "id": "soldiers", "text": "Brings two 1-might soldiers along when it arrives.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "body", "weight": -2 }] }
       ]
     },
     {
@@ -234,36 +246,48 @@
       "agreeMoves": [{ "axis": "stance", "weight": -2 }]
     },
     {
+      "id": "kill-or-conquer",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Two fighters",
+      "prompt": "Two 4-cost units, same might. You'd rather have the one that...",
+      "loads": [{ "axis": "order", "reverse": false }, { "axis": "fury", "reverse": true }],
+      "answers": [
+        { "id": "kill", "text": "Kills an enemy unit with 2 might or less when it lands.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "fury", "weight": -2 }] },
+        { "id": "conquer", "text": "Deals 2 damage to an enemy unit each time it conquers a battlefield.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "order", "weight": -2 }] }
+      ]
+    },
+    {
+      "id": "strongest-or-setup",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "Your favourite turn",
+      "prompt": "The turn you enjoy most is...",
+      "loads": [{ "axis": "complexity", "reverse": true }],
+      "answers": [
+        { "id": "strongest-card", "text": "One where every card you play does its job without needing the others.", "moves": [{ "axis": "complexity", "weight": -2 }] },
+        { "id": "setup-pays-off", "text": "One where cards you set up over several turns finally click together.", "moves": [{ "axis": "complexity", "weight": 2 }] }
+      ]
+    },
+    {
+      "id": "move-or-shrink",
+      "kind": "scenario",
+      "scale": true,
+      "eyebrow": "On arrival",
+      "prompt": "Two 3-cost units, same might, each with an effect when it lands. You'd rather have the one that...",
+      "loads": [{ "axis": "calm", "reverse": false }, { "axis": "mind", "reverse": true }],
+      "answers": [
+        { "id": "move-away", "text": "Sends an enemy unit back to its base when it lands.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "mind", "weight": -2 }] },
+        { "id": "shrink-in-fights", "text": "Shrinks an enemy unit by 2 whenever it attacks or defends.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
+      ]
+    },
+    {
       "id": "quick-games",
       "kind": "statement",
       "eyebrow": "Your ideal game",
       "prompt": "I want a game decided in the first few turns, whichever way it goes.",
       "loads": [{ "axis": "pace", "reverse": false }],
       "agreeMoves": [{ "axis": "pace", "weight": 2 }]
-    },
-    {
-      "id": "move-or-attack",
-      "kind": "scenario",
-      "scale": true,
-      "eyebrow": "The wall",
-      "prompt": "A huge enemy unit is parked on the battlefield you need. You'd rather...",
-      "loads": [{ "axis": "fury", "reverse": false }, { "axis": "calm", "reverse": true }],
-      "answers": [
-        { "id": "attack", "text": "Attack into it with several units and finish it off with damage.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
-        { "id": "move-it", "text": "Move it back to its base and take the battlefield while it's gone.", "moves": [{ "axis": "fury", "weight": -2 }, { "axis": "calm", "weight": 2 }] }
-      ]
-    },
-    {
-      "id": "formation-or-tricks",
-      "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Your plan",
-      "prompt": "Your deck at its best feels like...",
-      "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "order", "reverse": true }],
-      "answers": [
-        { "id": "bag-of-tricks", "text": "A bag of tricks: cards hiding face down and surprises coming back from the trash.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] },
-        { "id": "formation", "text": "A formation: every unit has a role and every loss pays for something.", "moves": [{ "axis": "chaos", "weight": -2 }, { "axis": "order", "weight": 2 }] }
-      ]
     },
     {
       "id": "one-clear-job",
@@ -274,27 +298,15 @@
       "agreeMoves": [{ "axis": "complexity", "weight": -2 }]
     },
     {
-      "id": "edge-hand-or-board",
-      "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Your edge",
-      "prompt": "Your favourite kind of edge over an opponent is...",
-      "loads": [{ "axis": "mind", "reverse": true }, { "axis": "body", "reverse": false }],
-      "answers": [
-        { "id": "board", "text": "More on the board: the bigger unit, the buff at the right moment.", "moves": [{ "axis": "mind", "weight": -2 }, { "axis": "body", "weight": 2 }] },
-        { "id": "hand", "text": "More in hand: extra cards, and a face-down card they have to respect.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] }
-      ]
-    },
-    {
-      "id": "finisher-or-spread",
+      "id": "swingy-or-spread",
       "kind": "scenario",
       "scale": true,
       "eyebrow": "How you win",
       "prompt": "Your deck wins with...",
       "loads": [{ "axis": "variance", "reverse": true }],
       "answers": [
-        { "id": "spread", "text": "Many threats spread across the deck, so losing any one barely matters.", "moves": [{ "axis": "variance", "weight": -2 }] },
-        { "id": "finisher", "text": "One big finisher the whole deck is built to find.", "moves": [{ "axis": "variance", "weight": 2 }] }
+        { "id": "spread", "text": "Many solid threats across the deck, so no single draw decides the game, for better or worse.", "moves": [{ "axis": "variance", "weight": -2 }] },
+        { "id": "swingy", "text": "A few explosive cards that win the game on their own, if you draw them in time.", "moves": [{ "axis": "variance", "weight": 2 }] }
       ]
     }
   ]

@@ -19,7 +19,7 @@ export const STRINGS = {
   landing: {
     eyebrow: 'A playstyle test for Riftbound',
     title: 'Find the Legends you were made to pilot.',
-    body: 'Twenty-six quick questions about how you like to play. No deck jargon, no sign-up. You get your Riftsign: how you like to play, the Domains that pull you, and the Legends that fit.',
+    body: 'Twenty-seven quick questions about how you like to play. No deck jargon, no sign-up. You get your Riftsign: how you like to play, the Domains that pull you, and the Legends that fit.',
     start: 'Start the test',
     continue: 'Continue where you left off',
     seeResult: 'See your Riftsign',
