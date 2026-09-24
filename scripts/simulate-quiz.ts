@@ -229,37 +229,70 @@ row('  #1 holds both Domains: model / fan', `${both.hits} / ${bothFan.hits}`)
 row('  mean score on the two Domains: model / fan', `${both.reached} / ${bothFan.reached}`)
 row(`  "Your Domains" names both (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD}): model / fan`, `${both.named(DOMAIN_HIGHLIGHT_THRESHOLD)} / ${bothFan.named(DOMAIN_HIGHLIGHT_THRESHOLD)}`)
 
-// 5. Domain-neutral Players: any playstyle, no feeling about any Domain. The indifferent power
-// picker shares their playstyle but, on every Domain item, takes the answer the Question author
-// judged stronger-sounding, at "Leaning" where the pair is close (docs/research/2026-09-24-question-redesign-v3.md §3).
-const POWER_PICKS: Answers = {
-  'damage-or-stun': 'stun-leaning',
-  'shrink-or-buff': 'buff-leaning',
-  'discard-or-sacrifice': 'discard',
-  'ready-or-look': 'look-leaning',
-  'hold-or-deathknell': 'draw-on-hold',
-  'rune-or-assault': 'rune',
-  'dig-or-huge': 'huge-unit',
-  'tank-or-hidden': 'hidden-leaning',
-  'gear-or-trash': 'gear',
-  'grower-or-soldiers': 'soldiers',
-  'kill-or-conquer': 'kill-leaning',
-  'move-or-shrink': 'shrink-in-fights',
+// 5. Domain-neutral Players: any playstyle, no feeling about any Domain. An indifferent power
+// picker shares their playstyle but, on every Domain item, takes the answer a blind judge rated the
+// stronger card ("Leaning" for a slight edge, their own answer on a tie). Three judges read the
+// items with answer order shuffled and Domains hidden (docs/research/2026-09-24-quiz-v3-evaluation.md).
+const POWER_JUDGES: Record<string, Answers> = {
+  fable: {
+    'damage-or-stun': 'damage-leaning',
+    'shrink-or-buff': 'shrink-leaning',
+    'discard-or-sacrifice': 'sacrifice-leaning',
+    'ready-or-look': 'look-leaning',
+    'hold-or-deathknell': 'soldiers-on-death-leaning',
+    'rune-or-assault': 'rune-leaning',
+    'dig-or-huge': 'dig-leaning',
+    'tank-or-hidden': 'hidden-leaning',
+    'gear-or-trash': 'gear-leaning',
+    'grower-or-soldiers': 'soldiers-leaning',
+    'kill-or-conquer': 'conquer-leaning',
+    'move-or-shrink': 'shrink-in-fights',
+  },
+  opus: {
+    'damage-or-stun': 'damage-leaning',
+    'discard-or-sacrifice': 'discard-leaning',
+    'ready-or-look': 'ready-leaning',
+    'hold-or-deathknell': 'soldiers-on-death-leaning',
+    'rune-or-assault': 'rune',
+    'dig-or-huge': 'dig-leaning',
+    'tank-or-hidden': 'hidden-leaning',
+    'gear-or-trash': 'from-trash-leaning',
+    'grower-or-soldiers': 'soldiers-leaning',
+    'kill-or-conquer': 'conquer-leaning',
+    'move-or-shrink': 'move-away-leaning',
+  },
+  sonnet: {
+    'damage-or-stun': 'stun-leaning',
+    'discard-or-sacrifice': 'sacrifice-leaning',
+    'ready-or-look': 'look-leaning',
+    'hold-or-deathknell': 'draw-on-hold',
+    'rune-or-assault': 'rune',
+    'dig-or-huge': 'dig',
+    'tank-or-hidden': 'hidden-leaning',
+    'gear-or-trash': 'gear-leaning',
+    'grower-or-soldiers': 'soldiers-leaning',
+    'kill-or-conquer': 'conquer',
+    'move-or-shrink': 'shrink-in-fights-leaning',
+  },
 }
-const powerPicksFit = Object.entries(POWER_PICKS).every(([q, a]) => items.some((i) => i.id === q && i.options.some((o) => o.id === a)))
+const picksFit = (picks: Answers) => Object.entries(picks).every(([q, a]) => items.some((i) => i.id === q && i.options.some((o) => o.id === a)))
+const judges = Object.entries(POWER_JUDGES).filter(([, picks]) => picksFit(picks))
 const styles = Array.from({ length: 1500 }, () => Object.fromEntries(PLAYSTYLE_AXIS_IDS.map((axis) => [axis, uniform(0, 10)])))
 const neutral = styles.map((style) => respond(player(style, liking([])), SIGMA))
 const neutralProfiles = neutral.map((answers) => computeProfile(set, answers))
-const powerProfiles = powerPicksFit ? neutral.map((answers) => computeProfile(set, { ...answers, ...POWER_PICKS })) : []
+const powerProfiles = judges.flatMap(([, picks]) => neutral.map((answers) => computeProfile(set, { ...answers, ...picks })))
+// A judge's own Domain scores count a tie as no move, so they don't depend on the neutral Player's answers.
+const judgeScores = judges.map(([name, picks]) => [name, computeProfile(set, picks)] as const)
 const quiet = (profiles: Profile[]) => (t: number) => share(profiles, (p) => leadingDomains(p, t).length === 0)
 const topDomains = (profiles: Profile[]) => DOMAINS.map((d) => share(profiles, (p) => rank(p)[0].legend.domains.includes(d))).join(' / ')
 section('Domain-neutral Players (every Domain 5)')
 row(`  "Your Domains" stays quiet (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, quiet(neutralProfiles)(DOMAIN_HIGHLIGHT_THRESHOLD))
 row('  #1 is an opposite-pair Legend', share(neutralProfiles, (p) => isOppositePair(rank(p)[0].legend)))
 row(`  #1 holds ${DOMAINS.join(' / ')}`, topDomains(neutralProfiles))
-section('Indifferent power pickers (neutral, but always take the stronger-sounding Domain answer)')
+section('Indifferent power pickers (neutral, but take the answer a blind judge rated the stronger card)')
 if (powerProfiles.length) {
-  row('  Domain scores', DOMAINS.map((d) => `${d} ${powerProfiles[0][DOMAIN_ID[d]]}`).join(' · '))
+  for (const [name, p] of judgeScores) row(`  Domain scores: ${name}'s picks`, DOMAINS.map((d) => `${d} ${p[DOMAIN_ID[d]]}`).join(' · '))
+  row('  Domain scores: judge mean', DOMAINS.map((d) => `${d} ${mean(judgeScores.map(([, p]) => p[DOMAIN_ID[d]])).toFixed(1)}`).join(' · '))
   row(`  "Your Domains" stays quiet (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, quiet(powerProfiles)(DOMAIN_HIGHLIGHT_THRESHOLD))
   row(`  #1 holds ${DOMAINS.join(' / ')}`, topDomains(powerProfiles))
 } else row('  n/a: the picks name Questions or Answers this set lacks', '-')

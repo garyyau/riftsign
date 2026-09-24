@@ -22,7 +22,7 @@
       "loads": [{ "axis": "fury", "reverse": false }, { "axis": "calm", "reverse": true }],
       "answers": [
         { "id": "damage", "text": "Deals 2 damage to an enemy unit.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
-        { "id": "stun", "text": "Stuns an enemy unit, so it deals no combat damage this turn.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "fury", "weight": -2 }] }
+        { "id": "stun", "text": "Stuns two enemy units, so they deal no combat damage this turn.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "fury", "weight": -2 }] }
       ]
     },
     {
@@ -45,8 +45,8 @@
       "prompt": "Your unit is about to lose a fight. The trick you'd rather have...",
       "loads": [{ "axis": "mind", "reverse": false }, { "axis": "body", "reverse": true }],
       "answers": [
-        { "id": "shrink", "text": "Shrinks their unit this turn.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] },
-        { "id": "buff", "text": "Makes your unit bigger this turn.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "mind", "weight": -2 }] }
+        { "id": "shrink", "text": "Gives their unit −2 might this turn.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] },
+        { "id": "buff", "text": "Gives your unit +2 might this turn.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "mind", "weight": -2 }] }
       ]
     },
     {
@@ -69,8 +69,8 @@
       "prompt": "A powerful effect asks a price. You'd rather pay by...",
       "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "order", "reverse": true }],
       "answers": [
-        { "id": "discard", "text": "Discarding a card from your hand.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] },
-        { "id": "sacrifice", "text": "Giving up one of your smallest units.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "chaos", "weight": -2 }] }
+        { "id": "discard", "text": "Discarding two cards from your hand.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] },
+        { "id": "sacrifice", "text": "Giving up one of your units.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "chaos", "weight": -2 }] }
       ]
     },
     {
@@ -93,8 +93,8 @@
       "prompt": "Two 4-cost units, same might. You'd rather have the one that...",
       "loads": [{ "axis": "fury", "reverse": false }, { "axis": "mind", "reverse": true }],
       "answers": [
-        { "id": "ready", "text": "Can enter ready for a little extra, so it attacks the turn it lands.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "mind", "weight": -2 }] },
-        { "id": "look", "text": "Looks at the top three cards of your deck when it lands, and you draw the one you want.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "fury", "weight": -2 }] }
+        { "id": "ready", "text": "Can enter ready for a little extra to attack at once, and draws you a card if it conquers that turn.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "mind", "weight": -2 }] },
+        { "id": "look", "text": "Looks at the top two cards of your deck when it lands, and you draw the one you want.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "fury", "weight": -2 }] }
       ]
     },
     {
@@ -142,7 +142,7 @@
       "loads": [{ "axis": "body", "reverse": false }, { "axis": "fury", "reverse": true }],
       "answers": [
         { "id": "rune", "text": "The one that gives you an extra rune for the rest of the game when it lands.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "fury", "weight": -2 }] },
-        { "id": "assault", "text": "The one that hits harder whenever it's the one attacking.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "body", "weight": -2 }] }
+        { "id": "assault", "text": "The one that gets +1 might whenever it's the one attacking.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "body", "weight": -2 }] }
       ]
     },
     {
@@ -165,8 +165,8 @@
       "prompt": "Add one card to the deck:",
       "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "body", "reverse": true }],
       "answers": [
-        { "id": "dig", "text": "A spell that has you discard your hand, then draw four fresh cards.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "body", "weight": -2 }] },
-        { "id": "huge-unit", "text": "A huge unit, bigger than almost anything they can play.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "chaos", "weight": -2 }] }
+        { "id": "dig", "text": "A cheap spell that has you discard two cards, then draw four.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "body", "weight": -2 }] },
+        { "id": "huge-unit", "text": "An expensive unit, bigger than almost anything they can play.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "chaos", "weight": -2 }] }
       ]
     },
     {
@@ -190,7 +190,7 @@
       "loads": [{ "axis": "calm", "reverse": false }, { "axis": "chaos", "reverse": true }],
       "answers": [
         { "id": "tank", "text": "Takes the hits first for the units fighting alongside it.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "chaos", "weight": -2 }] },
-        { "id": "hidden", "text": "Can be hidden face down at a battlefield and sprung on them later.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
+        { "id": "hidden", "text": "Can be hidden face down at a battlefield and sprung on them later, even mid-fight.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
       ]
     },
     {
@@ -233,7 +233,7 @@
       "prompt": "One unit slot left. It goes to a unit that...",
       "loads": [{ "axis": "body", "reverse": false }, { "axis": "order", "reverse": true }],
       "answers": [
-        { "id": "grower", "text": "Each time it conquers a battlefield, one of your units gets +1 might for the rest of the game.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "order", "weight": -2 }] },
+        { "id": "grower", "text": "When it lands and each time it conquers, one of your units gets a lasting +1 might.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "order", "weight": -2 }] },
         { "id": "soldiers", "text": "Brings two 1-might soldiers along when it arrives.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "body", "weight": -2 }] }
       ]
     },
@@ -253,7 +253,7 @@
       "prompt": "Two 4-cost units, same might. You'd rather have the one that...",
       "loads": [{ "axis": "order", "reverse": false }, { "axis": "fury", "reverse": true }],
       "answers": [
-        { "id": "kill", "text": "Kills an enemy unit with 2 might or less when it lands.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "fury", "weight": -2 }] },
+        { "id": "kill", "text": "Kills an enemy unit with 1 might or less when it lands.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "fury", "weight": -2 }] },
         { "id": "conquer", "text": "Deals 2 damage to an enemy unit each time it conquers a battlefield.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "order", "weight": -2 }] }
       ]
     },

@@ -102,3 +102,46 @@ An independent reviewer re-counted the Riftcodex dump on 2026-09-23: 810 cards a
   - Indifferent Players decide on power, so they all drift the same way rather than at random.
   - `discard-or-sacrifice` is a lesser-evil choice.
   - Their fix for the last two: a highlight threshold of 3.0 or more, plus simulating an indifferent power picker. Section 4 and the engine's `pnpm simulate` cover both.
+
+## 7. Power-balance pass (2026-09-24)
+
+The walkthrough in section 3 put an indifferent power picker at Fury 1.9, Mind 7.5 and Body 6.9, and `pnpm simulate` confirmed that their #1 held Fury 0% of the time. The fix rewrote answer text only. Ids, positions, Domain pairs, first-listed Domains, moves, loads, keying and `scale` are unchanged, and a script diff confirmed it after every round.
+
+**Method.** The author's own calls ("tie", "stronger") turned out to be unreliable, so every round was checked by three blind judges: Fable, Opus and Sonnet, each a fresh agent. They saw the 12 Domain items with answer order shuffled, Domain labels hidden and no knowledge of the goal, and rated each item strong, leaning or tie. For each judge, the power picker takes that judge's stronger answer, at "Leaning" for a slight edge, and nothing on a tie.
+
+| Round | Change | Judge mean (Fury · Calm · Mind · Body · Chaos · Order) | Furthest from 5 |
+| --- | --- | --- | --- |
+| Author's calls, before | – | 1.9 · 5.0 · 7.5 · 6.9 · 4.4 · 4.4 | 3.1 |
+| 1 | Fury answers gain lasting value; ten items rebuilt as like-for-like trades | 6.1 · 5.4 · 3.4 · 5.2 · 3.6 · 6.5 | 1.6 |
+| 2 | Undo the round-1 riders the judges named as decisive | 5.4 · 3.5 · 5.8 · 5.2 · 6.9 · 3.1 | 1.9 |
+| 3 | Pick the calmer of the round-1 and round-2 wordings for `discard-or-sacrifice`; stun hits two units | 4.8 · 4.0 · 6.5 · 4.8 · 4.8 · 5.2 | 1.5 |
+| 4 (kept) | Look at the top two cards, not three | 4.8 · 3.8 · 6.0 · 4.4 · 6.0 · 5.0 | 1.2 |
+
+Round 1 overshot because the author's "ties" were not ties to anyone else: the judges called only `shrink-or-buff` a tie. Round 2 overshot the other way. Between rounds, identical items drew the same verdict from most judges, but several flipped (for example `move-or-shrink` and `damage-or-stun`), so the judge noise is about ±0.5 per Domain. Rounds 3 and 4 sit inside that noise of each other. The individual judges still disagree widely (Calm 1.9 to 5.6 and Mind 3.1 to 8.1 in round 4), so no single wording is a tie for everyone. There is no single power picker; the population mean is what the text can balance.
+
+**Final text changes** (from the section 5 set):
+
+- `damage-or-stun`: the stun hits two enemy units.
+- `shrink-or-buff`: both answers name the size, −2 and +2 might this turn.
+- `discard-or-sacrifice`: discard two cards against giving up one of your units (dropping "smallest").
+- `ready-or-look`: the ready unit also draws a card if it conquers that turn; the look sees the top two cards, not three.
+- `rune-or-assault`: Assault is "+1 might whenever it's the one attacking".
+- `dig-or-huge`: a cheap spell that discards two, then draws four, against an expensive huge unit.
+- `tank-or-hidden`: Hidden adds "even mid-fight".
+- `grower-or-soldiers`: the buff also fires when it lands.
+- `kill-or-conquer`: the kill reaches units with 1 might or less, not 2.
+
+**Evidence** for new mechanics, with the section 1 counting rules:
+- Discard then draw: Chaos 5, Body 0.
+- Hidden units: Chaos 7, Calm 0.
+- Might-threshold kills: Order 5, Fury 0.
+- Accelerate: Fury 11, Mind 4.
+- Conquer triggers, Hunt excluded: Fury 9, Mind 3.
+- Assault: Fury 24, Body 4.
+- Buff when played: Body 7, Order 3.
+
+Printed kill thresholds are 2 or 3, so 1 is invented.
+
+**Simulation.** `pnpm simulate` now takes its power picks from the three round-4 judges instead of the author. Their power pickers' #1 holds Fury / Calm / Mind / Body / Chaos / Order 33% / 19% / 59% / 17% / 48% / 24%, where Domain-neutral Players get 33% / 31% / 32% / 43% / 29% / 33%. Before the pass it was 0% / 45% / 59% / 58% / 16% / 22%. At threshold 3, "Your Domains" stays quiet for 67% of power pickers, because one judge's picks put Mind at 8.1.
+
+**Still open.** Calm loses its power contests to most judges: 2 damage beats a stun, Hidden beats Tank, and shrink-in-fights beats send-to-base. Mind and Chaos come out slightly ahead. The test-player evaluation (docs/research/2026-09-24-quiz-v3-evaluation.md) found a bigger problem than power: zero-sum items move two Domains even when the Player is indifferent to both.
