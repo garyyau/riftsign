@@ -8,6 +8,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import sharp, { type OverlayOptions } from 'sharp'
+import { SCORE_IDS } from '../src/lib/axes'
 import { LEGAL_DISCLAIMER, PROJECT_TITLE, STRINGS } from '../src/lib/strings'
 import type { Legend } from '../src/lib/types'
 import { loadLegends } from './lib/load-legends'
@@ -34,18 +35,19 @@ const ACCENT = '#ff4d8d'
 const escapeXml = (s: string) =>
   s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
 
-/** Decorative heptagon radar echoing the seven Axes. Allowed only on the share image. */
+/** Decorative radar with one spoke per Profile score (ten since ADR 0005). Allowed only on the share image. */
 function radar(cx: number, cy: number, r: number): string {
+  const n = SCORE_IDS.length
   const pts = (scale: number) =>
-    Array.from({ length: 7 }, (_, i) => {
-      const a = -Math.PI / 2 + (i * 2 * Math.PI) / 7
+    Array.from({ length: n }, (_, i) => {
+      const a = -Math.PI / 2 + (i * 2 * Math.PI) / n
       return `${(cx + Math.cos(a) * r * scale).toFixed(1)},${(cy + Math.sin(a) * r * scale).toFixed(1)}`
     }).join(' ')
   const rings = [1, 0.66, 0.33].map((s) => `<polygon points="${pts(s)}" fill="none" stroke="#26262a" stroke-width="1"/>`)
-  const seed = [0.8, 0.55, 0.7, 0.45, 0.9, 0.6, 0.75]
-  const shape = Array.from({ length: 7 }, (_, i) => {
-    const a = -Math.PI / 2 + (i * 2 * Math.PI) / 7
-    return `${(cx + Math.cos(a) * r * seed[i]).toFixed(1)},${(cy + Math.sin(a) * r * seed[i]).toFixed(1)}`
+  const seed = [0.8, 0.55, 0.7, 0.45, 0.9, 0.6, 0.75, 0.5, 0.85, 0.65]
+  const shape = Array.from({ length: n }, (_, i) => {
+    const a = -Math.PI / 2 + (i * 2 * Math.PI) / n
+    return `${(cx + Math.cos(a) * r * seed[i % seed.length]).toFixed(1)},${(cy + Math.sin(a) * r * seed[i % seed.length]).toFixed(1)}`
   }).join(' ')
   return `${rings.join('')}<polygon points="${shape}" fill="${ACCENT}" fill-opacity="0.12" stroke="${ACCENT}" stroke-width="2"/>`
 }
