@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { QUESTION_SET } from '@/data'
 import { STRINGS } from '@/lib/strings'
 import { answer, scenario } from '@/lib/test-fixtures'
 import { QuestionStep } from './question-step'
@@ -34,6 +35,20 @@ describe('QuestionStep', () => {
     fireEvent.click(screen.getByRole('radio', { name: scalePoint(scaleLeaning, 'Answer race') }))
     fireEvent.click(screen.getByRole('radio', { name: scalePoint(scaleStrong, 'Answer wait') }))
     expect(onSelect.mock.calls).toEqual([['race-leaning'], ['wait']])
+  })
+
+  it('renders every committed scale Question as four points labelled with its poles', () => {
+    const scales = QUESTION_SET.questions.filter((q) => q.kind === 'scenario' && q.scale)
+    expect(scales.length).toBeGreaterThan(0)
+    for (const q of scales) {
+      if (q.kind !== 'scenario') continue
+      render(<QuestionStep question={q} number={1} selected={undefined} onSelect={() => {}} />)
+      const labels = screen.getAllByRole('radio').map((r) => r.getAttribute('aria-label'))
+      expect(labels, q.id).toHaveLength(4)
+      expect(labels[0]).toContain(q.answers[0].text)
+      expect(labels[3]).toContain(q.answers[1].text)
+      cleanup()
+    }
   })
 
   it('keeps an ordinary scenario as one choice per Answer', () => {

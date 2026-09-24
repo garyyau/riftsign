@@ -1,6 +1,6 @@
 # Riftsign
 
-A five-minute playstyle test for Riftbound players. Answer twenty-five questions about how you like to play, get your Riftsign (seven scores), a playstyle name in plain words, and the Legends that fit it. Fit is about how a Legend plays, never how strong it is.
+A five-minute playstyle test for Riftbound players. Answer twenty-six questions about how you like to play, get your Riftsign (seven scores), a playstyle name in plain words, and the Legends that fit it. Fit is about how a Legend plays, never how strong it is.
 
 Static site, no server, no accounts, no analytics. Vocabulary is in `CONTEXT.md`; decisions are in `docs/adr`; the v1 spec is `docs/specs/0001-riftsign-v1.md`.
 

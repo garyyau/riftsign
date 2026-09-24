@@ -29,8 +29,13 @@ Why the affinity model fixes the attractor by construction: a fully neutral Play
 
 ## Consequences
 
-- On the v1 Questions (`pnpm simulate`, seeded) at `DOMAIN_WEIGHT` 0.5, opposite-pair Legends take 2% of random-click #1s, down from 40%, and 3% of #1s for balanced playstyle-first Players, down from 27%. Playstyle-first Players get their Archetype in 58% of top-three slots, up from 47%.
-- Strong-Domain Players get a #1 Legend in their exact Domain pair less often (53% on v1, down from 85%). The Domain-lean section below the top three lists those Legends.
+- `DOMAIN_WEIGHT` is 0.5, chosen on the v2 Questions (2026-10) with `pnpm simulate` (seeded). Against the nearer-pole model at 0.4 on the same Questions:
+  - Opposite-pair Legends take 2% of random-click #1s instead of 42%.
+  - Balanced playstyle-first Players land on one 3% of the time instead of 53%.
+  - Playstyle-first Players get their Archetype in 60% of top-three slots (59%).
+  - Noise-free Build recovery is 85% top-1 and 96% top-3 (88% and 100%).
+  On the v1 Questions the original engine gave 47% playstyle-first and a 40% attractor.
+- Strong-Domain Players get a #1 Legend in their exact Domain pair less often: 67% on v2, against 74% for the nearer-pole model. The Domain-lean section below the top three lists those Legends. `DOMAIN_WEIGHT` 0.6 would give 72% at a cost of two points of playstyle-first.
 - Build recovery for opposite-pair Builds drops. A Player standing on Akali's stored coordinates is a balanced Player, and the model deliberately stops giving balanced Players to Akali. Recovery on ordinary-pair Builds is unchanged.
 - Fit percentages shift for every Player. A fully neutral Player can't reach 100% with any Legend, because they have no affinity for its Domains. Share links still decode; they just rank differently, as they already do when Legends are added.
-- `DOMAIN_WEIGHT` trades playstyle-first accuracy against strong-Domain accuracy with no clear knee. Retune it with `pnpm simulate` whenever the Questions change.
+- `DOMAIN_WEIGHT` trades playstyle-first accuracy against strong-Domain accuracy with no clear knee (0.3 to 0.8 on v2 runs 65% to 55% against 55% to 80%). Retune it with `pnpm simulate` whenever the Questions change, and keep the close-call margin (0, which fires for 16% of simulated Players on v2) under the same review.
