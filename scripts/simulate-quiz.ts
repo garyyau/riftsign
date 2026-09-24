@@ -10,7 +10,7 @@
  */
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
-import { DOMAIN_ID, DOMAIN_IDS, normalize, PLAYSTYLE_AXIS_IDS, SCORE_IDS, type Domain, type ScoreId } from '../src/lib/axes'
+import { DOMAIN_ID, DOMAIN_IDS, DOMAINS, normalize, PLAYSTYLE_AXIS_IDS, SCORE_IDS, type Domain, type DomainId, type ScoreId } from '../src/lib/axes'
 import { validateQuestionSet } from '../src/lib/schemas'
 import {
   answersOf,
@@ -169,18 +169,42 @@ section('Playstyle-first Players (every Domain 3.5 to 6.5)')
   row('  #1 is an opposite-pair Legend', share(tops, (m) => isOppositePair(m.legend)))
 }
 
-/** Players built around a Domain pair: #1 hit rate, and how often "Your Domains" names exactly that pair. */
-function domainPlayers(pairs: [Domain, Domain][], trials: number, truthOf = liking) {
+/**
+ * The model's answers, except that a fan of these Domains answers "Definitely" for a loved Domain
+ * three times in four and "Leaning" otherwise, and leans either way where both sides are loved.
+ * The model alone never says "Definitely" for a Domain the Player loves against one they're
+ * neutral on: the strong answer would overshoot the neutral side, so it always leans.
+ */
+function asFan(answers: Answers, loved: readonly Domain[]): Answers {
+  const out = { ...answers }
+  for (const item of items) {
+    const sides = loved.map((d) => DOMAIN_ID[d]).filter((id) => item.reach[id])
+    if (!sides.length) continue
+    // Options raising a Domain, strongest first: [Definitely, Leaning] on a scale.
+    const toward = (id: DomainId) => item.options.filter((o) => weightOn(o, id) > 0).sort((a, b) => weightOn(b, id) - weightOn(a, id))
+    if (sides.length === 2) out[item.id] = pick(sides.map((id) => toward(id).at(-1)!)).id
+    else {
+      const [definitely, leaning] = toward(sides[0])
+      out[item.id] = (leaning && rand() >= 0.75 ? leaning : definitely).id
+    }
+  }
+  return out
+}
+
+/** Players built around a Domain pair: #1 hit rate, how often "Your Domains" names exactly that pair, and the pair's mean score. */
+function domainPlayers(pairs: [Domain, Domain][], trials: number, { truthOf = liking, fan = false } = {}) {
   const profiles: { profile: Profile; pair: [Domain, Domain] }[] = []
   let hits = 0
   for (let k = 0; k < trials; k++) {
     const pair = pick(pairs)
-    const profile = computeProfile(set, respond(player(playstyleCentroid(pick(archetypes)), truthOf(pair)), SIGMA))
+    const answers = respond(player(playstyleCentroid(pick(archetypes)), truthOf(pair)), SIGMA)
+    const profile = computeProfile(set, fan ? asFan(answers, pair) : answers)
     if (samePair(rank(profile)[0].legend.domains, pair)) hits++
     profiles.push({ profile, pair })
   }
   const named = (t: number) => share(profiles, ({ profile, pair }) => samePair(leadingDomains(profile, t), pair))
-  return { hits: pct(hits / trials), named }
+  const reached = mean(profiles.flatMap(({ profile, pair }) => pair.map((d) => profile[DOMAIN_ID[d]]))).toFixed(1)
+  return { hits: pct(hits / trials), named, reached }
 }
 
 // 3. Strong-Domain Players: an Archetype centroid who loves an ordinary Domain pair.
@@ -189,34 +213,66 @@ const ordinaryPairs = [...new Set(pool.filter((l) => !isOppositePair(l)).map((l)
   (p) => p.split('/') as [Domain, Domain],
 )
 const strong = domainPlayers(ordinaryPairs, 1500)
-row('  #1 holds their exact Domain pair', strong.hits)
-row(`  "Your Domains" names that pair (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, strong.named(DOMAIN_HIGHLIGHT_THRESHOLD))
+const strongFan = domainPlayers(ordinaryPairs, 1500, { fan: true })
 // Comparable with v2, where loving a pair meant sitting on the poles of two bipolar Axes.
-const strongPolar = domainPlayers(ordinaryPairs, 1500, polar)
+const strongPolar = domainPlayers(ordinaryPairs, 1500, { truthOf: polar })
+row('  #1 holds their exact Domain pair: model / mostly-Definitely fan', `${strong.hits} / ${strongFan.hits}`)
 row('  #1 holds their pair when they also dislike its opposites (v2 population)', strongPolar.hits)
+row('  mean score on their two Domains: model / fan', `${strong.reached} / ${strongFan.reached}`)
+row(`  "Your Domains" names that pair (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD}): model / fan`, `${strong.named(DOMAIN_HIGHLIGHT_THRESHOLD)} / ${strongFan.named(DOMAIN_HIGHLIGHT_THRESHOLD)}`)
 
 // 4. Players who like both Domains of an old opposite pair, e.g. Fury and Calm.
 section('Players who like both Domains of an old opposite pair')
 const both = domainPlayers(OPPOSITE_PAIRS, 900)
-row('  #1 holds both Domains', both.hits)
-row(`  "Your Domains" names both (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, both.named(DOMAIN_HIGHLIGHT_THRESHOLD))
+const bothFan = domainPlayers(OPPOSITE_PAIRS, 900, { fan: true })
+row('  #1 holds both Domains: model / fan', `${both.hits} / ${bothFan.hits}`)
+row('  mean score on the two Domains: model / fan', `${both.reached} / ${bothFan.reached}`)
+row(`  "Your Domains" names both (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD}): model / fan`, `${both.named(DOMAIN_HIGHLIGHT_THRESHOLD)} / ${bothFan.named(DOMAIN_HIGHLIGHT_THRESHOLD)}`)
 
-// 5. Domain-neutral Players: any playstyle, no feeling about any Domain.
+// 5. Domain-neutral Players: any playstyle, no feeling about any Domain. The indifferent power
+// picker shares their playstyle but, on every Domain item, takes the answer the Question author
+// judged stronger-sounding, at "Leaning" where the pair is close (docs/research/2026-09-24-question-redesign-v3.md §3).
+const POWER_PICKS: Answers = {
+  'damage-or-stun': 'stun-leaning',
+  'shrink-or-buff': 'buff-leaning',
+  'discard-or-sacrifice': 'discard',
+  'ready-or-look': 'look-leaning',
+  'hold-or-deathknell': 'draw-on-hold',
+  'rune-or-assault': 'rune',
+  'dig-or-huge': 'huge-unit',
+  'tank-or-hidden': 'hidden-leaning',
+  'gear-or-trash': 'gear',
+  'grower-or-soldiers': 'soldiers',
+  'kill-or-conquer': 'kill-leaning',
+  'move-or-shrink': 'shrink-in-fights',
+}
+const powerPicksFit = Object.entries(POWER_PICKS).every(([q, a]) => items.some((i) => i.id === q && i.options.some((o) => o.id === a)))
+const styles = Array.from({ length: 1500 }, () => Object.fromEntries(PLAYSTYLE_AXIS_IDS.map((axis) => [axis, uniform(0, 10)])))
+const neutral = styles.map((style) => respond(player(style, liking([])), SIGMA))
+const neutralProfiles = neutral.map((answers) => computeProfile(set, answers))
+const powerProfiles = powerPicksFit ? neutral.map((answers) => computeProfile(set, { ...answers, ...POWER_PICKS })) : []
+const quiet = (profiles: Profile[]) => (t: number) => share(profiles, (p) => leadingDomains(p, t).length === 0)
+const topDomains = (profiles: Profile[]) => DOMAINS.map((d) => share(profiles, (p) => rank(p)[0].legend.domains.includes(d))).join(' / ')
 section('Domain-neutral Players (every Domain 5)')
-const neutral = Array.from({ length: 1500 }, () => {
-  const style = Object.fromEntries(PLAYSTYLE_AXIS_IDS.map((axis) => [axis, uniform(0, 10)]))
-  return computeProfile(set, respond(player(style, liking([])), SIGMA))
-})
-const quiet = (t: number) => share(neutral, (p) => leadingDomains(p, t).length === 0)
-row(`  "Your Domains" stays quiet (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, quiet(DOMAIN_HIGHLIGHT_THRESHOLD))
-row('  #1 is an opposite-pair Legend', share(neutral, (p) => isOppositePair(rank(p)[0].legend)))
+row(`  "Your Domains" stays quiet (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, quiet(neutralProfiles)(DOMAIN_HIGHLIGHT_THRESHOLD))
+row('  #1 is an opposite-pair Legend', share(neutralProfiles, (p) => isOppositePair(rank(p)[0].legend)))
+row(`  #1 holds ${DOMAINS.join(' / ')}`, topDomains(neutralProfiles))
+section('Indifferent power pickers (neutral, but always take the stronger-sounding Domain answer)')
+if (powerProfiles.length) {
+  row('  Domain scores', DOMAINS.map((d) => `${d} ${powerProfiles[0][DOMAIN_ID[d]]}`).join(' · '))
+  row(`  "Your Domains" stays quiet (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, quiet(powerProfiles)(DOMAIN_HIGHLIGHT_THRESHOLD))
+  row(`  #1 holds ${DOMAINS.join(' / ')}`, topDomains(powerProfiles))
+} else row('  n/a: the picks name Questions or Answers this set lacks', '-')
 
 // 6. The highlight threshold trades naming a real pair against staying quiet for a neutral Player.
 section(`Highlight threshold ${THRESHOLDS.join(' / ')}`)
-row('  strong-Domain pair named', THRESHOLDS.map(strong.named).join(' / '))
-row('  strong-Domain pair named, v2 population', THRESHOLDS.map(strongPolar.named).join(' / '))
-row('  opposite-pair likers: both named', THRESHOLDS.map(both.named).join(' / '))
-row('  Domain-neutral: stays quiet', THRESHOLDS.map(quiet).join(' / '))
+row('  strong-Domain pair named: model', THRESHOLDS.map(strong.named).join(' / '))
+row('  strong-Domain pair named: mostly-Definitely fan', THRESHOLDS.map(strongFan.named).join(' / '))
+row('  strong-Domain pair named: v2 population', THRESHOLDS.map(strongPolar.named).join(' / '))
+row('  opposite-pair likers, both named: model', THRESHOLDS.map(both.named).join(' / '))
+row('  opposite-pair likers, both named: fan', THRESHOLDS.map(bothFan.named).join(' / '))
+row('  Domain-neutral: stays quiet', THRESHOLDS.map(quiet(neutralProfiles)).join(' / '))
+if (powerProfiles.length) row('  power pickers: stay quiet', THRESHOLDS.map(quiet(powerProfiles)).join(' / '))
 
 // 7. Random clicking: opposite-pair Legends should take no more than their share of the pool.
 section('Random clicks')
