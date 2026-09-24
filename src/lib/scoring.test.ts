@@ -88,6 +88,17 @@ describe('rankLegends', () => {
   // Full affinity for the fixture Legends' default Fury/Order pair.
   const furyOrderFast: Profile = { ...fastProactive, 'fury-calm': -5, 'chaos-order': 5 }
 
+  it('clamps playstyle scores to the pool range so an extreme Axis cannot swamp the others', () => {
+    // Pace in the pool runs 2..4. A Player at pace 0 is past both Builds; unclamped, that overshoot
+    // outweighs the stance gap and 'slow-wrong-stance' wins.
+    const clampPool = [
+      legend('slow-wrong-stance', 'Control', { pace: 2, stance: 5 }),
+      legend('mid-right-stance', 'Midrange', { pace: 4, stance: 8 }),
+    ]
+    const player: Profile = { ...CENTER, pace: 0, stance: 8 }
+    expect(rankLegends(player, clampPool)[0].legend.id).toBe('mid-right-stance')
+  })
+
   it('orders Legends by closeness to the Profile, closest first', () => {
     expect(rankLegends(fastProactive, pool).map((m) => m.legend.id)).toEqual(['exact', 'near', 'far'])
   })
@@ -102,7 +113,10 @@ describe('rankLegends', () => {
       ['Fury', 'Mind'],
     )
     const top: Profile = { pace: 10, stance: 10, complexity: 10, variance: 10, 'fury-calm': 5, 'mind-body': 5, 'chaos-order': 5 }
-    expect(rankLegends(top, [opposite])[0].fit).toBe(0)
+    // A second Legend at the top corner keeps the pool's range at 0..10, so clamping leaves the Player where they are.
+    const corner = legend('corner', 'Aggro', { pace: 10, stance: 10, complexity: 10, variance: 10 })
+    const fits = rankLegends(top, [opposite, corner])
+    expect(fits.find((m) => m.legend.id === 'opposite')?.fit).toBe(0)
   })
 
   it('keeps fit stable as the pool grows', () => {

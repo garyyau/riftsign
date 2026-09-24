@@ -151,9 +151,26 @@ export interface RankOptions {
 /** Only reviewed Builds can appear in a Match. A Legend with none is not in the pool. */
 export const reviewedBuilds = (legend: Legend): Build[] => legend.builds.filter((b) => b.reviewed)
 
+/**
+ * The Profile with each playstyle score pulled inside the range the pool's Builds cover. A Player
+ * at 0 or 10 is past every Build, and the overshoot would make that one Axis dominate the distance.
+ * Matching only; the shown Profile keeps the raw scores.
+ */
+export function clampToPool(profile: Profile, pool: Legend[]): Profile {
+  const builds = pool.flatMap(reviewedBuilds)
+  if (!builds.length) return profile
+  const out = { ...profile }
+  for (const axis of PLAYSTYLE_AXIS_IDS) {
+    const values = builds.map((b) => b.coordinates[axis])
+    out[axis] = Math.min(Math.max(profile[axis], Math.min(...values)), Math.max(...values))
+  }
+  return out
+}
+
 /** One Match per Legend, scored on whichever of its reviewed Builds sits closest to the Profile. */
-export function rankLegends(profile: Profile, pool: Legend[], options: RankOptions = {}): Match[] {
+export function rankLegends(rawProfile: Profile, pool: Legend[], options: RankOptions = {}): Match[] {
   const favourites = new Set(options.favouriteChampions ?? [])
+  const profile = clampToPool(rawProfile, pool)
   return pool
     .flatMap((legend) => {
       const domain = domainTerm(profile, legend)
