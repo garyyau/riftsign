@@ -21,9 +21,17 @@ export const profileSchema = z.object({
   'chaos-order': domainScore,
 })
 
+/** Strict, so a stored Domain coordinate is rejected: a Build's Domains come from its Legend. */
+export const buildCoordinatesSchema = z.strictObject({
+  pace: playstyleScore,
+  stance: playstyleScore,
+  complexity: playstyleScore,
+  variance: playstyleScore,
+})
+
 export const buildSchema = z.object({
   archetype: z.enum(ARCHETYPES),
-  coordinates: profileSchema,
+  coordinates: buildCoordinatesSchema,
   howItPlays: z.string().min(1),
   whyYou: z.string().min(1),
   guideUrls: z.array(z.url()).min(1, 'at least one guide URL grounds the rating'),
@@ -76,7 +84,7 @@ export type ValidationResult<T> = { success: true; data: T } | { success: false;
 const formatZodIssues = (error: z.ZodError) =>
   error.issues.map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`)
 
-/** Domain Axis coordinates implied by a Legend's two Domains. The only allowed source for them. */
+/** Domain Axis coordinates implied by a Legend's two Domains. */
 export function domainCoordinates(domains: readonly Domain[]): Record<DomainAxisId, number> {
   const out = Object.fromEntries(DOMAIN_AXIS_IDS.map((id) => [id, 0])) as Record<DomainAxisId, number>
   for (const d of domains) {
@@ -88,20 +96,7 @@ export function domainCoordinates(domains: readonly Domain[]): Record<DomainAxis
 
 export function validateLegend(raw: unknown): ValidationResult<Legend> {
   const parsed = legendSchema.safeParse(raw)
-  if (!parsed.success) return { success: false, issues: formatZodIssues(parsed.error) }
-  const legend = parsed.data
-  const issues: string[] = []
-  const expected = domainCoordinates(legend.domains)
-  legend.builds.forEach((build, i) => {
-    for (const axis of DOMAIN_AXIS_IDS) {
-      if (build.coordinates[axis] !== expected[axis]) {
-        issues.push(
-          `builds.${i}.coordinates.${axis}: stored ${build.coordinates[axis]} but Domains ${legend.domains.join('/')} expected ${expected[axis]}`,
-        )
-      }
-    }
-  })
-  return issues.length ? { success: false, issues } : { success: true, data: legend }
+  return parsed.success ? { success: true, data: parsed.data } : { success: false, issues: formatZodIssues(parsed.error) }
 }
 
 /**

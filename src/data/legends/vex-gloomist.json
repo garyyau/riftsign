@@ -17,10 +17,7 @@
         "pace": 2,
         "stance": 1.5,
         "complexity": 7,
-        "variance": 3,
-        "fury-calm": 5,
-        "mind-body": 0,
-        "chaos-order": -5
+        "variance": 3
       },
       "howItPlays": "You dig in at a battlefield with cheap blockers and answers, using spells like Rebuke and Gust to send back or stun whatever your opponent commits there. Every turn you hold that spot you exhaust Vex to draw an extra card, so your hand keeps filling with answers while your opponent runs out of good plays.",
       "whyYou": "You like sitting back, watching what your opponent does, and having the right answer ready when they commit to something. You don't mind losing the early turns as long as you end up drawing more cards than the other player and grinding them down over time. If patience and a strong finish feel better to you than a fast win, Vex fits you well.",

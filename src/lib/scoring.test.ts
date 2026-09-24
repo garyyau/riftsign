@@ -109,7 +109,7 @@ describe('rankLegends', () => {
     const opposite = legend(
       'opposite',
       'Control',
-      { pace: 0, stance: 0, complexity: 0, variance: 0, 'fury-calm': -5, 'mind-body': -5 },
+      { pace: 0, stance: 0, complexity: 0, variance: 0 },
       ['Fury', 'Mind'],
     )
     const top: Profile = { pace: 10, stance: 10, complexity: 10, variance: 10, 'fury-calm': 5, 'mind-body': 5, 'chaos-order': 5 }

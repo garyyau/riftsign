@@ -17,10 +17,7 @@
         "pace": 3.5,
         "stance": 4,
         "complexity": 9,
-        "variance": 6,
-        "fury-calm": -5,
-        "mind-body": -5,
-        "chaos-order": 0
+        "variance": 6
       },
       "howItPlays": "You spend the early turns clearing your opponent's units with spells and holding the line, and any time you spend four or more Energy on a spell you can banish it under Jhin instead of letting it go to the trash. Once four spells are banished this way you cash them all in at once for four runes and a card, turning that stockpile into the turn that ends the game.",
       "whyYou": "You like a game with a long fuse, where you spend the early turns quietly setting up while your opponent has no idea what's coming. You enjoy tracking every spell you've spent big on, counting down to the turn everything pays off at once. If you're the sort of player who's happy to wait through a slow start for one dramatic finish, Jhin is built for you.",

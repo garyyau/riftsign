@@ -17,10 +17,7 @@
         "pace": 4,
         "stance": 6.5,
         "complexity": 6.5,
-        "variance": 5,
-        "fury-calm": 5,
-        "mind-body": 5,
-        "chaos-order": 0
+        "variance": 5
       },
       "howItPlays": "You spend Energy to tap Lee Sin and hand a friendly unit a lasting +1 Might buff, then protect that unit while it wins fights in your favor. Over a few turns your buffed units get big enough to take battlefields outright, closing out the game through sheer size.",
       "whyYou": "You like games where a single unit slowly becomes a problem your opponent can't ignore. You're the kind of player who enjoys picking the right moment to commit a buff and then guarding that unit like it's precious, tracking every fight so nothing wastes the investment. If you'd rather build one threat carefully than spread your attention everywhere at once, Lee Sin rewards that patience.",

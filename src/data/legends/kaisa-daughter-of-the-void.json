@@ -17,10 +17,7 @@
         "pace": 5.5,
         "stance": 6,
         "complexity": 5,
-        "variance": 4,
-        "fury-calm": -5,
-        "mind-body": -5,
-        "chaos-order": 0
+        "variance": 4
       },
       "howItPlays": "You lean on a small core of sticky units backed by a steady stream of cheap spells, exhausting Kai'Sa as a reaction to generate an extra rune whenever you need to cast one more. You use those spells for removal and damage to clear the way, then let your units and your card draw carry you to the win.",
       "whyYou": "You like a deck that gives you options every turn instead of forcing one obvious line, since Kai'Sa keeps handing you extra resources for your spells. You're the type who enjoys reading a matchup and choosing whether to play it safe with removal or push forward with your units, and you don't need every game to be a straightforward race. If running out of cards worries you more than losing a big swing, this fits you well.",
@@ -40,10 +37,7 @@
         "pace": 3.5,
         "stance": 3.5,
         "complexity": 6.5,
-        "variance": 4,
-        "fury-calm": -5,
-        "mind-body": -5,
-        "chaos-order": 0
+        "variance": 4
       },
       "howItPlays": "You play only a handful of units and fill the rest of the deck with spells, using Kai'Sa's extra rune to answer threats with Singularity and refill your hand with Progress Day. Once the board is safe, you cast Time Warp to take a second turn in a row and score points before your opponent can respond.",
       "whyYou": "You'd rather let your opponent commit first and then take their plan apart than race them from turn one. You're happy to spend the early game trading and drawing cards, because your big 10-cost Time Warp turn is coming later. Keeping runes unspent so you can react on your opponent's turn doesn't bore you. It's the part of the game you enjoy most, and the best finish is an opponent who has run out of threats watching you take two turns in a row.",

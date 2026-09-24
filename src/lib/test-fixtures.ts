@@ -1,5 +1,5 @@
 import type { Domain } from './axes'
-import type { Answer, Archetype, Build, Legend, Profile, Question, QuestionSet } from './types'
+import type { Answer, Archetype, Build, BuildCoordinates, Legend, Profile, Question, QuestionSet } from './types'
 
 export function scenario(id: string, answers: Answer[], loads: Question['loads']): Question {
   return { id, kind: 'scenario', eyebrow: 'At the table', prompt: `Prompt ${id}`, loads, answers }
@@ -51,10 +51,10 @@ export const CENTER: Profile = {
   'chaos-order': 0,
 }
 
-export function build(archetype: Archetype, coords: Partial<Profile>, extra: Partial<Build> = {}): Build {
+export function build(archetype: Archetype, coords: Partial<BuildCoordinates>, extra: Partial<Build> = {}): Build {
   return {
     archetype,
-    coordinates: { ...CENTER, ...coords },
+    coordinates: { pace: 5, stance: 5, complexity: 5, variance: 5, ...coords },
     howItPlays: 'Plays cards. Wins games.',
     whyYou: 'You like winning.',
     guideUrls: ['https://example.test/guide'],
@@ -69,7 +69,7 @@ export function build(archetype: Archetype, coords: Partial<Profile>, extra: Par
 export function legend(
   id: string,
   archetype: Archetype,
-  coords: Partial<Profile>,
+  coords: Partial<BuildCoordinates>,
   domains: [Domain, Domain] = ['Fury', 'Order'],
   extra: Partial<Legend> = {},
 ): Legend {

@@ -17,10 +17,7 @@
         "pace": 3.5,
         "stance": 2.5,
         "complexity": 6,
-        "variance": 2.5,
-        "fury-calm": 0,
-        "mind-body": -5,
-        "chaos-order": -5
+        "variance": 2.5
       },
       "howItPlays": "You empower your other units and spells, and each time you do, Mel becomes empowered too without costing you anything extra. Right before a fight, you spend that empowered state to shrink an enemy unit by two might, turning what looked like a losing fight into one you win.",
       "whyYou": "You like picking apart your opponent's plans instead of overpowering them. You're comfortable holding cards back and waiting for the moment your shrink effect turns a bad fight into a good one. If it satisfies you more to out-think someone than to out-muscle them, Mel is a good fit.",

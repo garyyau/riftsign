@@ -17,10 +17,7 @@
         "pace": 8.5,
         "stance": 9,
         "complexity": 4.5,
-        "variance": 7,
-        "fury-calm": -5,
-        "mind-body": 5,
-        "chaos-order": 0
+        "variance": 7
       },
       "howItPlays": "You play unit after unit, and whenever you would otherwise waste spare runes you exhaust Renekton to turn them into extra energy for another unit that same turn. You keep dropping bodies onto the battlefield faster than the opponent can deal with them and win by simply having more units in the fight.",
       "whyYou": "You want to play more units than your opponent has answers for and keep the pressure constant from the first turn. You like decks that do not ask you to hold anything back, where every turn is about deploying another threat and every spare rune has a use. If a simple, aggressive plan where you always have something to do next appeals to you, Renekton is for you.",

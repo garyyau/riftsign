@@ -114,7 +114,7 @@ function recovery(sigma: number, slipRate: number, trials: number) {
   let top3 = 0
   for (const { legend, build } of builds) {
     for (let k = 0; k < trials; k++) {
-      const index = rank(respond(build.coordinates, sigma, slipRate)).findIndex((m) => m.legend.id === legend.id)
+      const index = rank(respond({ ...build.coordinates, ...domainCoordinates(legend.domains) }, sigma, slipRate)).findIndex((m) => m.legend.id === legend.id)
       if (index === 0) top1++
       if (index < 3) top3++
     }

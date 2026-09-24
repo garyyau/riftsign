@@ -5,7 +5,6 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
-import { domainCoordinates } from '../src/lib/schemas'
 import type { Archetype, Legend, SetCode } from '../src/lib/types'
 import type { Domain } from '../src/lib/axes'
 
@@ -123,7 +122,6 @@ for (const [name, champion, d1, d2, set, starter, notes, guide] of ROWS) {
           stance: clamp(coords.stance),
           complexity: clamp(coords.complexity),
           variance: clamp(coords.variance),
-          ...domainCoordinates([d1, d2]),
         },
         howItPlays: `${notes}. Draft only: rewrite from two or three published guides during ingestion.`,
         whyYou: `Draft only: describe in second person why a Player with this Riftsign would enjoy piloting ${champion}.`,

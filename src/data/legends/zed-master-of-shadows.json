@@ -17,10 +17,7 @@
         "pace": 8,
         "stance": 8,
         "complexity": 5,
-        "variance": 6.5,
-        "fury-calm": -5,
-        "mind-body": 0,
-        "chaos-order": -5
+        "variance": 6.5
       },
       "howItPlays": "You banish cards from your trash to Empower Zed, then spend that charge to discard a card and draw a fresh one, digging toward your next attacker. You race to take battlefields as fast as possible, throwing units forward turn after turn and trusting your draws to keep finding more.",
       "whyYou": "You like playing fast and taking chances, throwing units into fights turn after turn without slowing down to plan five turns ahead. You do not mind some games going sideways if it means other games end almost before your opponent has started. If you would rather gamble on a quick, exciting race than grind out a long one, Zed is your Legend.",

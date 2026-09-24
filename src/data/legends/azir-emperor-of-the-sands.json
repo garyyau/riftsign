@@ -17,10 +17,7 @@
         "pace": 3.5,
         "stance": 5,
         "complexity": 6.5,
-        "variance": 2.5,
-        "fury-calm": 5,
-        "mind-body": 0,
-        "chaos-order": 5
+        "variance": 2.5
       },
       "howItPlays": "Every turn you play an Equipment card, you can exhaust Azir to drop a fresh Sand Soldier token, and those tokens auto-equip your gear for cheaper the moment they hit the board. You keep replacing tokens as they trade away, holding battlefields with a steady stream of armed soldiers instead of protecting a few expensive units.",
       "whyYou": "You like a game with a clear rhythm, playing an Equipment and a soldier almost every turn and watching your side of the board slowly fill up. You don't mind trading a soldier away if it means you can hold the ground, and you enjoy adjusting your speed to match whatever your opponent is doing. If a steady, repeatable plan that flexes to the matchup sounds satisfying, Azir suits you.",

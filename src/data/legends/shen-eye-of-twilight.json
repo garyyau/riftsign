@@ -17,10 +17,7 @@
         "pace": 1,
         "stance": 1,
         "complexity": 6,
-        "variance": 2.5,
-        "fury-calm": 5,
-        "mind-body": 0,
-        "chaos-order": 5
+        "variance": 2.5
       },
       "howItPlays": "You pick your strongest unit each turn and exhaust Shen to make it Tank, so it has to take the hit before anything else of yours can be touched. You hold your battlefields turn after turn, using hidden tricks and stuns to keep that one protected unit alive while your opponent runs out of ways to get through.",
       "whyYou": "You like protecting one thing and refusing to let it go. You're patient enough to hold your ground for a long time, and you enjoy the moment your opponent finally can't find an answer to your defense. If a slow, grinding win where you barely take real damage feels satisfying, Shen is your Legend.",

@@ -1,6 +1,6 @@
 /**
  * Build gate: every Question and Legend file must pass its schema and the cross-checks
- * (per-Axis Question counts, reverse keying, Domain coordinate consistency).
+ * (per-score Question counts, reverse keying, and no Domain coordinates on Builds).
  * Exits non-zero with every issue listed.
  */
 import { readFileSync } from 'node:fs'

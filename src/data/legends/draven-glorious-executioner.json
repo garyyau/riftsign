@@ -17,10 +17,7 @@
         "pace": 5,
         "stance": 5.5,
         "complexity": 7,
-        "variance": 6.5,
-        "fury-calm": -5,
-        "mind-body": 0,
-        "chaos-order": -5
+        "variance": 6.5
       },
       "howItPlays": "You fight over battlefields with cheap units and swing those fights with cards like Spinning Axe, a piece of gear you can play even in the middle of a fight that attaches to a unit and gives it +3 Might. Every combat you win, attacking or defending, draws you a card as long as one of your units survives, and Draven, Showboat grows stronger with every point you score.",
       "whyYou": "You like combat math and want every fight to be a real decision: which unit gets the Axe, what you keep face down, and what your opponent can still answer with. You're happy to trade blows for a few turns, knowing each fight you win refills your hand and each point you score makes Showboat scarier. You accept that some fast decks will run you over if you fall behind early. If you'd rather out-think an opponent one combat at a time than race them, Draven gives you plenty to chew on.",

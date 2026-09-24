@@ -17,10 +17,7 @@
         "pace": 3,
         "stance": 4.5,
         "complexity": 7.5,
-        "variance": 5.5,
-        "fury-calm": -5,
-        "mind-body": 0,
-        "chaos-order": -5
+        "variance": 5.5
       },
       "howItPlays": "You pull your own units back from fights before they die, then spend the gold token Pyke leaves behind to pay for whatever you need from your hand. You spend the game trading away the opponent's cards through discard and bounce until they run out of good options and you take over late.",
       "whyYou": "You like grinding a game down rather than rushing it, watching the opponent's options shrink while yours stay open. You do not mind a longer match if you are the one deciding when it ends, and you enjoy squeezing extra use out of every unit you pull back home. If reading the opponent and outlasting them appeals more than racing them, Pyke fits.",

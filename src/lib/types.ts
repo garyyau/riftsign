@@ -1,4 +1,4 @@
-import type { AxisId, Domain } from './axes'
+import type { AxisId, Domain, PlaystyleAxisId } from './axes'
 
 export const ARCHETYPES = ['Aggro', 'Tempo', 'Midrange', 'Control', 'Combo'] as const
 export type Archetype = (typeof ARCHETYPES)[number]
@@ -8,6 +8,9 @@ export type SetCode = (typeof SET_CODES)[number]
 
 /** The Player's position on all seven Axes, in each Axis's presentation units. */
 export type Profile = Record<AxisId, number>
+
+/** Where a Build sits on the four playstyle Axes. Its Domains come from the Legend. */
+export type BuildCoordinates = Record<PlaystyleAxisId, number>
 
 export interface AxisMove {
   axis: AxisId
@@ -64,7 +67,7 @@ export const MAX_BUILDS = 3
 /** One played way of piloting a Legend: an Archetype with its own Axis position and copy. */
 export interface Build {
   archetype: Archetype
-  coordinates: Profile
+  coordinates: BuildCoordinates
   howItPlays: string
   whyYou: string
   guideUrls: string[]

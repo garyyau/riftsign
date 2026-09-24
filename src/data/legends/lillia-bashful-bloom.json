@@ -17,10 +17,7 @@
         "pace": 4,
         "stance": 5,
         "complexity": 7,
-        "variance": 3.5,
-        "fury-calm": 5,
-        "mind-body": -5,
-        "chaos-order": 0
+        "variance": 3.5
       },
       "howItPlays": "You spend Energy to summon a ready Sprite token that fights immediately, and the more Sprites you already have out the cheaper the next one gets. You throw these disposable units into fights to trade with your opponent's real units, then push your permanent units through to take the battlefields those trades open up.",
       "whyYou": "You like getting the most out of units you know won't stick around, treating each Sprite as a trade you're happy to make. You enjoy timing when to send a token in and when to pull it back before it expires, and you don't mind a bit of bookkeeping if it means getting more out of every turn than your opponent does. If you'd rather out-maneuver your opponent piece by piece than overpower them outright, Lillia is a good fit.",

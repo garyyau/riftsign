@@ -16,8 +16,7 @@ describe('domainCoordinates', () => {
 })
 
 describe('validateLegend', () => {
-  const furyOrder = { 'fury-calm': -5, 'chaos-order': 5 }
-  const good = legend('darius', 'Aggro', { pace: 8, ...furyOrder }, ['Fury', 'Order'])
+  const good = legend('darius', 'Aggro', { pace: 8 }, ['Fury', 'Order'])
   const [goodBuild] = good.builds
   const withBuild = (changes: Record<string, unknown>) => ({ ...good, builds: [{ ...goodBuild, ...changes }] })
 
@@ -26,21 +25,22 @@ describe('validateLegend', () => {
   })
 
   it('accepts up to three Builds with different Archetypes', () => {
-    const three = { ...good, builds: [goodBuild, build('Tempo', furyOrder), build('Midrange', furyOrder)] }
+    const three = { ...good, builds: [goodBuild, build('Tempo', {}), build('Midrange', {})] }
     expect(validateLegend(three).success).toBe(true)
   })
 
   it('rejects more than three Builds, none, or two sharing an Archetype', () => {
-    const four = { ...good, builds: [goodBuild, build('Tempo', furyOrder), build('Midrange', furyOrder), build('Combo', furyOrder)] }
+    const four = { ...good, builds: [goodBuild, build('Tempo', {}), build('Midrange', {}), build('Combo', {})] }
     expect(issuesOf(validateLegend(four)).join('\n')).toMatch(/builds/)
     expect(issuesOf(validateLegend({ ...good, builds: [] })).join('\n')).toMatch(/builds/)
-    const twin = { ...good, builds: [goodBuild, build('Aggro', furyOrder)] }
+    const twin = { ...good, builds: [goodBuild, build('Aggro', {})] }
     expect(issuesOf(validateLegend(twin)).join('\n')).toMatch(/different archetype/)
   })
 
-  it('rejects stored Domain coordinates that disagree with the Domains, naming the Build', () => {
-    const bad = { ...good, builds: [goodBuild, build('Tempo', { ...furyOrder, 'fury-calm': 5 })] }
-    expect(issuesOf(validateLegend(bad)).join('\n')).toMatch(/builds\.1\.coordinates\.fury-calm.*expected -5/)
+  it('rejects a Domain coordinate stored on a Build, naming the Build, since Domains come from the Legend', () => {
+    const tempo = build('Tempo', {})
+    const bad = { ...good, builds: [goodBuild, { ...tempo, coordinates: { ...tempo.coordinates, 'fury-calm': -5 } }] }
+    expect(issuesOf(validateLegend(bad)).join('\n')).toMatch(/builds\.1\.coordinates.*fury-calm/)
   })
 
   it('rejects a Legend with two identical Domains', () => {
