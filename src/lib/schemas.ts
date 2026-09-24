@@ -56,9 +56,7 @@ const questionBase = {
 }
 
 export const questionSchema = z.discriminatedUnion('kind', [
-  z
-    .object({ ...questionBase, kind: z.literal('scenario'), answers: z.array(answerSchema).min(2).max(4), scale: z.boolean().optional() })
-    .refine((q) => !q.scale || q.answers.length === 2, { message: 'a scale scenario needs exactly two Answers', path: ['answers'] }),
+  z.object({ ...questionBase, kind: z.literal('scenario'), answers: z.array(answerSchema).min(2).max(4) }),
   z.object({ ...questionBase, kind: z.literal('statement'), agreeMoves: z.array(scoreMove).min(1) }),
 ])
 
@@ -80,8 +78,7 @@ export function validateLegend(raw: unknown): ValidationResult<Legend> {
 /**
  * Reverse keying has to be real, not just declared. For a statement, agreeing must move the score
  * down when reverse is true and up when it is false. For a scenario, reverse means the first
- * listed (most "obvious") Answer moves the score down. A scale has only its two poles, so its
- * keying is checked both ways and the poles must pull the score in opposite directions.
+ * listed (most "obvious") Answer moves the score down.
  */
 function reverseKeyingIssue(question: Question, id: ScoreId, reverse: boolean): string | null {
   const weightOf = (moves: { axis: ScoreId; weight: number }[]) => moves.find((m) => m.axis === id)?.weight ?? 0
@@ -93,11 +90,6 @@ function reverseKeyingIssue(question: Question, id: ScoreId, reverse: boolean): 
   }
   const first = weightOf(question.answers[0].moves)
   if (reverse && first >= 0) return `marked reverse on ${id} but its first Answer does not move it down`
-  if (!question.scale) return null
-  if (!reverse && first <= 0) return `not marked reverse on ${id} but its first pole does not move it up`
-  if (Math.sign(weightOf(question.answers[1].moves)) !== -Math.sign(first)) {
-    return `scale poles must move ${id} in opposite directions`
-  }
   return null
 }
 

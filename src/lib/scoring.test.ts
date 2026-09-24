@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import {
-  answersOf,
   ARCHETYPE_TIE_MARGIN,
   CLOSE_CALL_MARGIN,
   closeCall,
@@ -20,30 +19,6 @@ import {
 import type { Domain } from './axes'
 import type { Archetype, Legend, Profile, QuestionSet } from './types'
 import { answer, build, CENTER, legend, scenario, smallQuestionSet } from './test-fixtures'
-
-describe('scale scenarios', () => {
-  const scale = {
-    ...scenario('pace-scale', [answer('fast', [{ axis: 'pace', weight: 2 }]), answer('slow', [{ axis: 'pace', weight: -2 }])], [
-      { axis: 'pace', reverse: false },
-    ]),
-    scale: true,
-  }
-  const set: QuestionSet = { version: 'test-1', questions: [scale] }
-
-  it('expands two poles into four points, strong ids kept and leaning points at half strength', () => {
-    expect(answersOf(scale).map((a) => [a.id, a.text, a.moves[0].weight])).toEqual([
-      ['fast', 'Answer fast', 2],
-      ['fast-leaning', 'Answer fast', 1],
-      ['slow-leaning', 'Answer slow', -1],
-      ['slow', 'Answer slow', -2],
-    ])
-  })
-
-  it('reaches each end only on the strong point and lands halfway on a leaning point', () => {
-    const paceFor = (id: string) => computeProfile(set, { 'pace-scale': id }).pace
-    expect([paceFor('fast'), paceFor('fast-leaning'), paceFor('slow-leaning'), paceFor('slow')]).toEqual([10, 7.5, 2.5, 0])
-  })
-})
 
 describe('computeProfile', () => {
   it('lands at the midpoint of every score when nothing is answered', () => {

@@ -1,7 +1,7 @@
 # 0005. Six independent Domain scores
 
 Date: 2026-09-23
-Status: Accepted (approved by the maintainer 2026-09-23). Supersedes ADR 0001's three bipolar Domain Axes, and the parts of ADR 0004 on the opposite-pair rule, the favourite-champion bonus and the Domain lean. This is a new major version of the Profile and the share format.
+Status: Accepted (approved by the maintainer 2026-09-23). Supersedes ADR 0001's three bipolar Domain Axes, and the parts of ADR 0004 on the opposite-pair rule, the favourite-champion bonus and the Domain lean. This is a new major version of the Profile and the share format. Its Questions section and highlight threshold are superseded by ADR 0006.
 
 ## Context
 

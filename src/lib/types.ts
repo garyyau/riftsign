@@ -40,8 +40,6 @@ export type Question =
       prompt: string
       loads: ScoreLoading[]
       answers: Answer[]
-      /** Shows the two Answers as poles of a four-point scale: strong and leaning on each side. */
-      scale?: boolean
     }
   | {
       id: string

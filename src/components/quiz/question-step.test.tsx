@@ -1,8 +1,7 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { cleanup, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, it } from 'vitest'
 import { QUESTION_SET } from '@/data'
-import { STRINGS } from '@/lib/strings'
 import { answer, scenario } from '@/lib/test-fixtures'
 import { QuestionStep } from './question-step'
 
@@ -12,41 +11,12 @@ describe('QuestionStep', () => {
   const plain = scenario('racing', [answer('race', [{ axis: 'stance', weight: 2 }]), answer('wait', [{ axis: 'stance', weight: -2 }])], [
     { axis: 'stance', reverse: false },
   ])
-  const scale = { ...plain, scale: true }
 
-  it('shows a scale scenario as four labelled points between its two poles', () => {
-    const onSelect = vi.fn()
-    render(<QuestionStep question={scale} number={1} selected="wait-leaning" onSelect={onSelect} />)
-    const group = screen.getByRole('radiogroup', { name: scale.prompt })
-    expect(group).toBeTruthy()
-    expect(screen.getByText('Answer race')).toBeTruthy()
-    expect(screen.getByText('Answer wait')).toBeTruthy()
-
-    const { scaleStrong, scaleLeaning, scalePoint } = STRINGS.quiz
-    const radios = screen.getAllByRole('radio')
-    expect(radios.map((r) => r.getAttribute('aria-label'))).toEqual([
-      scalePoint(scaleStrong, 'Answer race'),
-      scalePoint(scaleLeaning, 'Answer race'),
-      scalePoint(scaleLeaning, 'Answer wait'),
-      scalePoint(scaleStrong, 'Answer wait'),
-    ])
-    expect(radios.map((r) => r.getAttribute('aria-checked'))).toEqual(['false', 'false', 'true', 'false'])
-
-    fireEvent.click(screen.getByRole('radio', { name: scalePoint(scaleLeaning, 'Answer race') }))
-    fireEvent.click(screen.getByRole('radio', { name: scalePoint(scaleStrong, 'Answer wait') }))
-    expect(onSelect.mock.calls).toEqual([['race-leaning'], ['wait']])
-  })
-
-  it('renders every committed scale Question as four points labelled with its poles', () => {
-    const scales = QUESTION_SET.questions.filter((q) => q.kind === 'scenario' && q.scale)
-    expect(scales.length).toBeGreaterThan(0)
-    for (const q of scales) {
+  it('shows each committed scenario as one choice per Answer, each with its own copy', () => {
+    for (const q of QUESTION_SET.questions) {
       if (q.kind !== 'scenario') continue
       render(<QuestionStep question={q} number={1} selected={undefined} onSelect={() => {}} />)
-      const labels = screen.getAllByRole('radio').map((r) => r.getAttribute('aria-label'))
-      expect(labels, q.id).toHaveLength(4)
-      expect(labels[0]).toContain(q.answers[0].text)
-      expect(labels[3]).toContain(q.answers[1].text)
+      expect(screen.getAllByRole('radio').map((r) => r.textContent), q.id).toEqual(q.answers.map((a) => a.text))
       cleanup()
     }
   })

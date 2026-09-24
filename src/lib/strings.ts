@@ -19,7 +19,7 @@ export const STRINGS = {
   landing: {
     eyebrow: 'A playstyle test for Riftbound',
     title: 'Find the Legends you were made to pilot.',
-    body: 'Twenty-seven quick questions about how you like to play. No deck jargon, no sign-up. You get your Riftsign: how you like to play, the Domains that pull you, and the Legends that fit.',
+    body: 'Twenty-one quick questions about how you like to play. No deck jargon, no sign-up. You get your Riftsign: how you like to play, the Domains that pull you, and the Legends that fit.',
     start: 'Start the test',
     continue: 'Continue where you left off',
     seeResult: 'See your Riftsign',
@@ -39,10 +39,6 @@ export const STRINGS = {
     championsSkip: 'Skip',
     championsDone: 'Show my Riftsign',
     noChampions: 'No reviewed Legends yet, so there is nothing to pick from.',
-    scaleStrong: 'Definitely',
-    scaleLeaning: 'Leaning',
-    /** Screen-reader label for one point of a two-pole scale, e.g. "Leaning: Race them". */
-    scalePoint: (strength: string, pole: string) => `${strength}: ${pole}`,
   },
   result: {
     eyebrow: 'Your Riftsign',

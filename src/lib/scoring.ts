@@ -19,30 +19,9 @@ export const STATEMENT_POINTS = [
   { id: 'strongly-agree', text: 'Strongly agree', factor: 1 },
 ] as const
 
-/** A scale scenario's two poles expand to four points: strong and leaning on each side. */
-export const SCALE_POINTS = [
-  { pole: 0, strength: 'strong', factor: 1 },
-  { pole: 0, strength: 'leaning', factor: 0.5 },
-  { pole: 1, strength: 'leaning', factor: 0.5 },
-  { pole: 1, strength: 'strong', factor: 1 },
-] as const
-
-/**
- * Every Question presents as a list of Answers. Statements expand to five points and scale
- * scenarios to four. A scale's strong points keep the pole Answer's id, so stored Answers survive.
- */
+/** Every Question presents as a list of Answers. A scenario lists its own; a statement expands to five points. */
 export function answersOf(question: Question): Answer[] {
-  if (question.kind === 'scenario') {
-    if (!question.scale) return question.answers
-    return SCALE_POINTS.map((p) => {
-      const pole = question.answers[p.pole]
-      return {
-        id: p.strength === 'strong' ? pole.id : `${pole.id}-leaning`,
-        text: pole.text,
-        moves: pole.moves.map((m) => ({ axis: m.axis, weight: m.weight * p.factor })),
-      }
-    })
-  }
+  if (question.kind === 'scenario') return question.answers
   return STATEMENT_POINTS.map((p) => ({
     id: p.id,
     text: p.text,
@@ -212,10 +191,11 @@ export function deriveArchetype(matches: Match[]): Archetype | null {
 /**
  * A Domain the Player feels this far from neutral (5) about counts as a pull or a push. The same
  * line decides the bar labels and which Domains "Your Domains" highlights, so they never disagree.
- * 3 needs a "Definitely" answer: four "Leaning" answers the same way give 7.5, which a third of
- * Players with no preference reach by chance and power pickers reach on Mind (`pnpm simulate`, ADR 0005).
+ * A Domain sits in three or four three-way choices, so picking it twice and passing once lands
+ * near 7.5. 2.5 names most fans' pair and still stays quiet for every Domain-neutral Player
+ * (`pnpm simulate`, ADR 0006).
  */
-export const DOMAIN_HIGHLIGHT_THRESHOLD = 3
+export const DOMAIN_HIGHLIGHT_THRESHOLD = 2.5
 
 export type DomainFeeling = 'pull' | 'neutral' | 'push'
 

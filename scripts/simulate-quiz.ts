@@ -10,7 +10,7 @@
  */
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
-import { DOMAIN_ID, DOMAIN_IDS, DOMAINS, normalize, PLAYSTYLE_AXIS_IDS, SCORE_IDS, type Domain, type DomainId, type ScoreId } from '../src/lib/axes'
+import { DOMAIN_ID, DOMAIN_IDS, DOMAINS, normalize, PLAYSTYLE_AXIS_IDS, SCORE_IDS, type Domain, type ScoreId } from '../src/lib/axes'
 import { validateQuestionSet } from '../src/lib/schemas'
 import {
   answersOf,
@@ -53,9 +53,19 @@ const uniform = (min: number, max: number) => min + rand() * (max - min)
 interface Item {
   id: string
   options: Answer[]
-  /** Options sit on a line (statement points, scale points), so a slip lands on a neighbour. */
+  /** Options sit on a line (statement points, or graded answers on one Axis), so a slip lands on a neighbour. */
   ordered: boolean
   reach: Partial<Record<ScoreId, { high: number; low: number }>>
+}
+
+const weightOn = (option: Answer, id: ScoreId) => option.moves.find((m) => m.axis === id)?.weight ?? 0
+
+/** Answers that all move one Axis, listed from one end to the other. */
+function isGraded(options: Answer[]): boolean {
+  const axes = [...new Set(options.flatMap((o) => o.moves.map((m) => m.axis)))]
+  if (axes.length !== 1) return false
+  const w = options.map((o) => weightOn(o, axes[0]))
+  return w.every((x, i) => i === 0 || x <= w[i - 1]) || w.every((x, i) => i === 0 || x >= w[i - 1])
 }
 
 const items: Item[] = set.questions.map((q) => {
@@ -66,10 +76,8 @@ const items: Item[] = set.questions.map((q) => {
     r.high = Math.max(r.high, move.weight)
     r.low = Math.min(r.low, move.weight)
   }
-  return { id: q.id, options, ordered: q.kind === 'statement' || (q.kind === 'scenario' && q.scale === true), reach }
+  return { id: q.id, options, ordered: q.kind === 'statement' || isGraded(options), reach }
 })
-
-const weightOn = (option: Answer, id: ScoreId) => option.moves.find((m) => m.axis === id)?.weight ?? 0
 
 function respond(truth: Profile, sigma: number, slipRate = 0): Answers {
   const answers: Answers = {}
@@ -170,23 +178,16 @@ section('Playstyle-first Players (every Domain 3.5 to 6.5)')
 }
 
 /**
- * The model's answers, except that a fan of these Domains answers "Definitely" for a loved Domain
- * three times in four and "Leaning" otherwise, and leans either way where both sides are loved.
- * The model alone never says "Definitely" for a Domain the Player loves against one they're
- * neutral on: the strong answer would overshoot the neutral side, so it always leans.
+ * The model's answers, except that a fan always takes a loved Domain's answer when a Question
+ * offers one, at random if it offers both. The model can pass on a loved Domain when its other
+ * scores pull toward a neutral answer.
  */
 function asFan(answers: Answers, loved: readonly Domain[]): Answers {
   const out = { ...answers }
+  const ids = loved.map((d) => DOMAIN_ID[d])
   for (const item of items) {
-    const sides = loved.map((d) => DOMAIN_ID[d]).filter((id) => item.reach[id])
-    if (!sides.length) continue
-    // Options raising a Domain, strongest first: [Definitely, Leaning] on a scale.
-    const toward = (id: DomainId) => item.options.filter((o) => weightOn(o, id) > 0).sort((a, b) => weightOn(b, id) - weightOn(a, id))
-    if (sides.length === 2) out[item.id] = pick(sides.map((id) => toward(id).at(-1)!)).id
-    else {
-      const [definitely, leaning] = toward(sides[0])
-      out[item.id] = (leaning && rand() >= 0.75 ? leaning : definitely).id
-    }
+    const options = item.options.filter((o) => ids.some((id) => weightOn(o, id) > 0))
+    if (options.length) out[item.id] = pick(options).id
   }
   return out
 }
@@ -216,7 +217,7 @@ const strong = domainPlayers(ordinaryPairs, 1500)
 const strongFan = domainPlayers(ordinaryPairs, 1500, { fan: true })
 // Comparable with v2, where loving a pair meant sitting on the poles of two bipolar Axes.
 const strongPolar = domainPlayers(ordinaryPairs, 1500, { truthOf: polar })
-row('  #1 holds their exact Domain pair: model / mostly-Definitely fan', `${strong.hits} / ${strongFan.hits}`)
+row('  #1 holds their exact Domain pair: model / fan', `${strong.hits} / ${strongFan.hits}`)
 row('  #1 holds their pair when they also dislike its opposites (v2 population)', strongPolar.hits)
 row('  mean score on their two Domains: model / fan', `${strong.reached} / ${strongFan.reached}`)
 row(`  "Your Domains" names that pair (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD}): model / fan`, `${strong.named(DOMAIN_HIGHLIGHT_THRESHOLD)} / ${strongFan.named(DOMAIN_HIGHLIGHT_THRESHOLD)}`)
@@ -229,83 +230,25 @@ row('  #1 holds both Domains: model / fan', `${both.hits} / ${bothFan.hits}`)
 row('  mean score on the two Domains: model / fan', `${both.reached} / ${bothFan.reached}`)
 row(`  "Your Domains" names both (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD}): model / fan`, `${both.named(DOMAIN_HIGHLIGHT_THRESHOLD)} / ${bothFan.named(DOMAIN_HIGHLIGHT_THRESHOLD)}`)
 
-// 5. Domain-neutral Players: any playstyle, no feeling about any Domain. An indifferent power
-// picker shares their playstyle but, on every Domain item, takes the answer a blind judge rated the
-// stronger card ("Leaning" for a slight edge, their own answer on a tie). Three judges read the
-// items with answer order shuffled and Domains hidden (docs/research/2026-09-24-quiz-v3-evaluation.md).
-const POWER_JUDGES: Record<string, Answers> = {
-  fable: {
-    'damage-or-stun': 'damage-leaning',
-    'shrink-or-buff': 'shrink-leaning',
-    'discard-or-sacrifice': 'sacrifice-leaning',
-    'ready-or-look': 'look-leaning',
-    'hold-or-deathknell': 'soldiers-on-death-leaning',
-    'rune-or-assault': 'rune-leaning',
-    'dig-or-huge': 'dig-leaning',
-    'tank-or-hidden': 'hidden-leaning',
-    'gear-or-trash': 'gear-leaning',
-    'grower-or-soldiers': 'soldiers-leaning',
-    'kill-or-conquer': 'conquer-leaning',
-    'move-or-shrink': 'shrink-in-fights',
-  },
-  opus: {
-    'damage-or-stun': 'damage-leaning',
-    'discard-or-sacrifice': 'discard-leaning',
-    'ready-or-look': 'ready-leaning',
-    'hold-or-deathknell': 'soldiers-on-death-leaning',
-    'rune-or-assault': 'rune',
-    'dig-or-huge': 'dig-leaning',
-    'tank-or-hidden': 'hidden-leaning',
-    'gear-or-trash': 'from-trash-leaning',
-    'grower-or-soldiers': 'soldiers-leaning',
-    'kill-or-conquer': 'conquer-leaning',
-    'move-or-shrink': 'move-away-leaning',
-  },
-  sonnet: {
-    'damage-or-stun': 'stun-leaning',
-    'discard-or-sacrifice': 'sacrifice-leaning',
-    'ready-or-look': 'look-leaning',
-    'hold-or-deathknell': 'draw-on-hold',
-    'rune-or-assault': 'rune',
-    'dig-or-huge': 'dig',
-    'tank-or-hidden': 'hidden-leaning',
-    'gear-or-trash': 'gear-leaning',
-    'grower-or-soldiers': 'soldiers-leaning',
-    'kill-or-conquer': 'conquer',
-    'move-or-shrink': 'shrink-in-fights-leaning',
-  },
-}
-const picksFit = (picks: Answers) => Object.entries(picks).every(([q, a]) => items.some((i) => i.id === q && i.options.some((o) => o.id === a)))
-const judges = Object.entries(POWER_JUDGES).filter(([, picks]) => picksFit(picks))
+// 5. Domain-neutral Players: any playstyle, no feeling about any Domain.
 const styles = Array.from({ length: 1500 }, () => Object.fromEntries(PLAYSTYLE_AXIS_IDS.map((axis) => [axis, uniform(0, 10)])))
 const neutral = styles.map((style) => respond(player(style, liking([])), SIGMA))
 const neutralProfiles = neutral.map((answers) => computeProfile(set, answers))
-const powerProfiles = judges.flatMap(([, picks]) => neutral.map((answers) => computeProfile(set, { ...answers, ...picks })))
-// A judge's own Domain scores count a tie as no move, so they don't depend on the neutral Player's answers.
-const judgeScores = judges.map(([name, picks]) => [name, computeProfile(set, picks)] as const)
 const quiet = (profiles: Profile[]) => (t: number) => share(profiles, (p) => leadingDomains(p, t).length === 0)
 const topDomains = (profiles: Profile[]) => DOMAINS.map((d) => share(profiles, (p) => rank(p)[0].legend.domains.includes(d))).join(' / ')
 section('Domain-neutral Players (every Domain 5)')
 row(`  "Your Domains" stays quiet (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, quiet(neutralProfiles)(DOMAIN_HIGHLIGHT_THRESHOLD))
 row('  #1 is an opposite-pair Legend', share(neutralProfiles, (p) => isOppositePair(rank(p)[0].legend)))
 row(`  #1 holds ${DOMAINS.join(' / ')}`, topDomains(neutralProfiles))
-section('Indifferent power pickers (neutral, but take the answer a blind judge rated the stronger card)')
-if (powerProfiles.length) {
-  for (const [name, p] of judgeScores) row(`  Domain scores: ${name}'s picks`, DOMAINS.map((d) => `${d} ${p[DOMAIN_ID[d]]}`).join(' · '))
-  row('  Domain scores: judge mean', DOMAINS.map((d) => `${d} ${mean(judgeScores.map(([, p]) => p[DOMAIN_ID[d]])).toFixed(1)}`).join(' · '))
-  row(`  "Your Domains" stays quiet (threshold ${DOMAIN_HIGHLIGHT_THRESHOLD})`, quiet(powerProfiles)(DOMAIN_HIGHLIGHT_THRESHOLD))
-  row(`  #1 holds ${DOMAINS.join(' / ')}`, topDomains(powerProfiles))
-} else row('  n/a: the picks name Questions or Answers this set lacks', '-')
 
 // 6. The highlight threshold trades naming a real pair against staying quiet for a neutral Player.
 section(`Highlight threshold ${THRESHOLDS.join(' / ')}`)
 row('  strong-Domain pair named: model', THRESHOLDS.map(strong.named).join(' / '))
-row('  strong-Domain pair named: mostly-Definitely fan', THRESHOLDS.map(strongFan.named).join(' / '))
+row('  strong-Domain pair named: fan', THRESHOLDS.map(strongFan.named).join(' / '))
 row('  strong-Domain pair named: v2 population', THRESHOLDS.map(strongPolar.named).join(' / '))
 row('  opposite-pair likers, both named: model', THRESHOLDS.map(both.named).join(' / '))
 row('  opposite-pair likers, both named: fan', THRESHOLDS.map(bothFan.named).join(' / '))
 row('  Domain-neutral: stays quiet', THRESHOLDS.map(quiet(neutralProfiles)).join(' / '))
-if (powerProfiles.length) row('  power pickers: stay quiet', THRESHOLDS.map(quiet(powerProfiles)).join(' / '))
 
 // 7. Random clicking: opposite-pair Legends should take no more than their share of the pool.
 section('Random clicks')

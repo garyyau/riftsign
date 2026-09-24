@@ -1,312 +1,1302 @@
 {
-  "version": "2026-11",
+  "version": "2026-12b",
   "questions": [
     {
-      "id": "first-turn",
+      "id": "say-out-loud",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Turn one",
-      "prompt": "It's turn one and your hand offers two openings. You...",
-      "loads": [{ "axis": "pace", "reverse": false }],
+      "eyebrow": "Out loud",
+      "prompt": "Which line would you rather say out loud, mid-game?",
+      "loads": [
+        {
+          "axis": "mind",
+          "reverse": false
+        },
+        {
+          "axis": "fury",
+          "reverse": true
+        },
+        {
+          "axis": "body",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "pressure", "text": "Play a cheap unit now, ready to take a battlefield next turn.", "moves": [{ "axis": "pace", "weight": 2 }] },
-        { "id": "ramp", "text": "Play a card that gives you an extra rune for the rest of the game, and let them take the early points.", "moves": [{ "axis": "pace", "weight": -2 }] }
+        {
+          "id": "draw-a-few-more",
+          "text": "\"Hang on, let me draw a few more.\"",
+          "moves": [
+            {
+              "axis": "mind",
+              "weight": 2
+            },
+            {
+              "axis": "fury",
+              "weight": -1
+            },
+            {
+              "axis": "body",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "everyone-attacks",
+          "text": "\"Everyone attacks. Let's go.\"",
+          "moves": [
+            {
+              "axis": "fury",
+              "weight": 2
+            },
+            {
+              "axis": "mind",
+              "weight": -1
+            },
+            {
+              "axis": "body",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "mines-bigger",
+          "text": "\"Mine's bigger.\"",
+          "moves": [
+            {
+              "axis": "body",
+              "weight": 2
+            },
+            {
+              "axis": "mind",
+              "weight": -1
+            },
+            {
+              "axis": "fury",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "quiet-player",
+          "text": "I'm more of a quiet player, honestly.",
+          "moves": []
+        }
       ]
     },
     {
-      "id": "damage-or-stun",
+      "id": "perfect-win",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Two spells",
-      "prompt": "Two cheap spells, same cost. Which one makes your deck?",
-      "loads": [{ "axis": "fury", "reverse": false }, { "axis": "calm", "reverse": true }],
+      "eyebrow": "The perfect win",
+      "prompt": "A perfect win looks like...",
+      "loads": [
+        {
+          "axis": "pace",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "damage", "text": "Deals 2 damage to an enemy unit.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
-        { "id": "stun", "text": "Stuns two enemy units, so they deal no combat damage this turn.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "fury", "weight": -2 }] }
+        {
+          "id": "over-early",
+          "text": "Over before they've played anything that matters.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "quick-earned",
+          "text": "Quick, with just enough back and forth to feel earned.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "tips-late",
+          "text": "A proper fight that tips my way in the later turns.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "long-and-full",
+          "text": "Long and full, every card I saved finally on the table.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "units-or-answers",
+      "id": "reading-new-card",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Building",
-      "prompt": "Filling out your deck, you give more slots to...",
-      "loads": [{ "axis": "stance", "reverse": false }],
+      "eyebrow": "New card",
+      "prompt": "Reading a new card, you love it when...",
+      "loads": [
+        {
+          "axis": "complexity",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "units", "text": "Units, and cards that make your units stronger.", "moves": [{ "axis": "stance", "weight": 2 }] },
-        { "id": "answers", "text": "Spells that answer whatever your opponent puts down.", "moves": [{ "axis": "stance", "weight": -2 }] }
+        {
+          "id": "three-uses",
+          "text": "It has three uses and I'll find every one.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "neat-trick",
+          "text": "It has a neat trick or two once you know it.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "does-what-it-says",
+          "text": "It does what it says, and that's plenty.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "one-big-thing",
+          "text": "It does one big thing, no small print.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "shrink-or-buff",
+      "id": "game-night-story",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Losing a fight",
-      "prompt": "Your unit is about to lose a fight. The trick you'd rather have...",
-      "loads": [{ "axis": "mind", "reverse": false }, { "axis": "body", "reverse": true }],
+      "eyebrow": "The story",
+      "prompt": "After game night, the story you tell is about...",
+      "loads": [
+        {
+          "axis": "fury",
+          "reverse": false
+        },
+        {
+          "axis": "calm",
+          "reverse": true
+        },
+        {
+          "axis": "mind",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "shrink", "text": "Gives their unit −2 might this turn.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "body", "weight": -2 }] },
-        { "id": "buff", "text": "Gives your unit +2 might this turn.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "mind", "weight": -2 }] }
+        {
+          "id": "charged-battlefield",
+          "text": "The turn you charged a battlefield with everything and took it.",
+          "moves": [
+            {
+              "axis": "fury",
+              "weight": 2
+            },
+            {
+              "axis": "calm",
+              "weight": -1
+            },
+            {
+              "axis": "mind",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "stopped-cold",
+          "text": "The attack of theirs you stopped cold, right when they needed it.",
+          "moves": [
+            {
+              "axis": "calm",
+              "weight": 2
+            },
+            {
+              "axis": "fury",
+              "weight": -1
+            },
+            {
+              "axis": "mind",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "extra-cards",
+          "text": "Drawing card after card until I found exactly the right one.",
+          "moves": [
+            {
+              "axis": "mind",
+              "weight": 2
+            },
+            {
+              "axis": "fury",
+              "weight": -1
+            },
+            {
+              "axis": "calm",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "no-stories",
+          "text": "I don't really do game stories.",
+          "moves": []
+        }
       ]
     },
     {
-      "id": "cut-one-card",
+      "id": "hand-good-day",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Cut one",
-      "prompt": "Your deck is one card over. Which goes?",
-      "loads": [{ "axis": "variance", "reverse": true }],
+      "eyebrow": "Your hand",
+      "prompt": "On a good day, your hand is full of...",
+      "loads": [
+        {
+          "axis": "stance",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "cut-bomb", "text": "Cut the card that wins the game on a good draw and sits dead in your hand on a bad one.", "moves": [{ "axis": "variance", "weight": -2 }] },
-        { "id": "cut-steady", "text": "Cut the card that's always useful and never spectacular.", "moves": [{ "axis": "variance", "weight": 2 }] }
+        {
+          "id": "units-to-play",
+          "text": "Cards that put them on the back foot right away.",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "one-kept-back",
+          "text": "Mostly units, with one card kept back just in case.",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "ways-to-answer",
+          "text": "A couple of units and plenty of ways to answer theirs.",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "answers-first",
+          "text": "Answers for whatever they try. The win can come later.",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "discard-or-sacrifice",
+      "id": "coin-flip-card",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "The price",
-      "prompt": "A powerful effect asks a price. You'd rather pay by...",
-      "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "order", "reverse": true }],
+      "eyebrow": "Gambles",
+      "prompt": "A card that wins on the spot half the time and does nothing the other half. You...",
+      "loads": [
+        {
+          "axis": "variance",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "discard", "text": "Discarding two cards from your hand.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "order", "weight": -2 }] },
-        { "id": "sacrifice", "text": "Giving up one of your units.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "chaos", "weight": -2 }] }
+        {
+          "id": "as-many-as-allowed",
+          "text": "Love it. As many copies as I'm allowed.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "one-or-two",
+          "text": "Run one or two. The odd dud is worth it.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "try-then-cut",
+          "text": "Try one, then cut it the first time it lets me down.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "pass",
+          "text": "Pass. I want cards that always do their job.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "reading-their-hand",
+      "id": "build-around",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Hidden cards",
-      "prompt": "Your opponent has two face-down cards and three in hand. You...",
-      "loads": [{ "axis": "complexity", "reverse": false }],
+      "eyebrow": "Deck idea",
+      "prompt": "If you built a deck from scratch, it'd be built around...",
+      "loads": [
+        {
+          "axis": "body",
+          "reverse": false
+        },
+        {
+          "axis": "chaos",
+          "reverse": true
+        },
+        {
+          "axis": "order",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "work-it-out", "text": "Enjoy working out what they might be.", "moves": [{ "axis": "complexity", "weight": 2 }] },
-        { "id": "play-your-game", "text": "Would rather play your game and deal with them when they show up.", "moves": [{ "axis": "complexity", "weight": -2 }] }
+        {
+          "id": "one-giant-unit",
+          "text": "One giant unit and every way to make it bigger.",
+          "moves": [
+            {
+              "axis": "body",
+              "weight": 2
+            },
+            {
+              "axis": "chaos",
+              "weight": -1
+            },
+            {
+              "axis": "order",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "keep-coming-back",
+          "text": "Cards that keep coming back after you've lost them.",
+          "moves": [
+            {
+              "axis": "chaos",
+              "weight": 2
+            },
+            {
+              "axis": "body",
+              "weight": -1
+            },
+            {
+              "axis": "order",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "crowd-of-small",
+          "text": "A crowd of small units, with more arriving every turn.",
+          "moves": [
+            {
+              "axis": "order",
+              "weight": 2
+            },
+            {
+              "axis": "body",
+              "weight": -1
+            },
+            {
+              "axis": "chaos",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "copy-a-friend",
+          "text": "None of these grab me. I'd copy a friend's deck.",
+          "moves": []
+        }
       ]
     },
     {
-      "id": "ready-or-look",
+      "id": "opening-play",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "The four-cost slot",
-      "prompt": "Two 4-cost units, same might. You'd rather have the one that...",
-      "loads": [{ "axis": "fury", "reverse": false }, { "axis": "mind", "reverse": true }],
+      "eyebrow": "Opening play",
+      "prompt": "First turn, and your hand has a bit of everything. What goes down?",
+      "loads": [
+        {
+          "axis": "pace",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "ready", "text": "Can enter ready for a little extra to attack at once, and draws you a card if it conquers that turn.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "mind", "weight": -2 }] },
-        { "id": "look", "text": "Looks at the top two cards of your deck when it lands, and you draw the one you want.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "fury", "weight": -2 }] }
+        {
+          "id": "cheapest-unit",
+          "text": "The cheapest unit I've got, so I can attack next turn.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "push-when-safe",
+          "text": "A unit, and I'll start pushing once it feels safe.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "plan-behind-it",
+          "text": "A unit to sit safe behind while I plan the real turns.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "pays-off-later",
+          "text": "Whatever pays off later. Early points aren't my thing.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "which-win",
+      "id": "favourite-turn",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Favourite wins",
-      "prompt": "Which win feels better?",
-      "loads": [{ "axis": "pace", "reverse": true }],
+      "eyebrow": "Best turn",
+      "prompt": "Your favourite kind of turn is...",
+      "loads": [
+        {
+          "axis": "complexity",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "turn-nine", "text": "Winning on turn nine, after all your best cards have come out.", "moves": [{ "axis": "pace", "weight": -2 }] },
-        { "id": "turn-four", "text": "Winning on turn four, before their best cards come out.", "moves": [{ "axis": "pace", "weight": 2 }] }
+        {
+          "id": "ten-seconds",
+          "text": "One I can play in ten seconds.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": -2
+            }
+          ]
+        },
+        {
+          "id": "one-good-card",
+          "text": "One good card doing its job on its own.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "two-work-nicely",
+          "text": "Two cards that happen to work nicely together.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "setup-clicks",
+          "text": "Cards I set up over several turns finally clicking together.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": 2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "hold-or-deathknell",
+      "id": "friend-says",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Two units",
-      "prompt": "Two units, same cost and might. You'd rather run the one that...",
-      "loads": [{ "axis": "order", "reverse": false }, { "axis": "calm", "reverse": true }],
+      "eyebrow": "Your friends",
+      "prompt": "A friend describing how you play would say...",
+      "loads": [
+        {
+          "axis": "mind",
+          "reverse": false
+        },
+        {
+          "axis": "calm",
+          "reverse": true
+        },
+        {
+          "axis": "chaos",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "soldiers-on-death", "text": "Leaves two 1-might soldiers behind when it dies.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "calm", "weight": -2 }] },
-        { "id": "draw-on-hold", "text": "Draws you a card each time it holds a battlefield at the start of your turn.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "order", "weight": -2 }] }
+        {
+          "id": "never-runs-out",
+          "text": "\"Never runs out of cards. Never.\"",
+          "moves": [
+            {
+              "axis": "mind",
+              "weight": 2
+            },
+            {
+              "axis": "calm",
+              "weight": -1
+            },
+            {
+              "axis": "chaos",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "regret-attacking",
+          "text": "\"Lets you attack, then makes you regret it.\"",
+          "moves": [
+            {
+              "axis": "calm",
+              "weight": 2
+            },
+            {
+              "axis": "mind",
+              "weight": -1
+            },
+            {
+              "axis": "chaos",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "never-know",
+          "text": "\"You never know what's coming. Half the time, neither do they.\"",
+          "moves": [
+            {
+              "axis": "chaos",
+              "weight": 2
+            },
+            {
+              "axis": "mind",
+              "weight": -1
+            },
+            {
+              "axis": "calm",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "nothing-like-these",
+          "text": "Nothing like these, honestly.",
+          "moves": []
+        }
       ]
     },
     {
-      "id": "all-in-or-measured",
+      "id": "their-turn",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "The attack",
-      "prompt": "You're about to attack and you have the numbers. You...",
-      "loads": [{ "axis": "variance", "reverse": false }],
+      "eyebrow": "Their turn",
+      "prompt": "It's their turn. What are you doing?",
+      "loads": [
+        {
+          "axis": "stance",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "all-in", "text": "Commit everything. If it works the game is nearly over; if they have an answer, you're in trouble.", "moves": [{ "axis": "variance", "weight": 2 }] },
-        { "id": "measured", "text": "Commit just enough to win the fight, even if it gives them time to recover.", "moves": [{ "axis": "variance", "weight": -2 }] }
+        {
+          "id": "watching-every-move",
+          "text": "Watching every move, ready to respond with something.",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": -2
+            }
+          ]
+        },
+        {
+          "id": "mostly-watching",
+          "text": "Mostly watching them, with a response in mind.",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "own-board",
+          "text": "Thinking about my own board more than theirs.",
+          "moves": []
+        },
+        {
+          "id": "make-them-sweat",
+          "text": "Plotting how to make them sweat next turn.",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": 2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "rune-or-assault",
+      "id": "hoping-for",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "The five-cost slot",
-      "prompt": "Two 5-cost units with the same might. Which makes your deck?",
-      "loads": [{ "axis": "body", "reverse": false }, { "axis": "fury", "reverse": true }],
+      "eyebrow": "Before the game",
+      "prompt": "Shuffling up for a big game, you're secretly hoping for...",
+      "loads": [
+        {
+          "axis": "variance",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "rune", "text": "The one that gives you an extra rune for the rest of the game when it lands.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "fury", "weight": -2 }] },
-        { "id": "assault", "text": "The one that gets +1 might whenever it's the one attacking.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "body", "weight": -2 }] }
+        {
+          "id": "wild-opening",
+          "text": "A wild opening that wins almost by itself.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "bit-of-luck",
+          "text": "A strong start with a bit of luck on top.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "normal-hand",
+          "text": "A normal hand. I'll make it work.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "no-luck",
+          "text": "Nothing flashy. Luck shouldn't decide it.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "hold-or-spend",
+      "id": "brag-about",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Your runes",
-      "prompt": "It's your turn and you could spend every rune or keep some back. You...",
-      "loads": [{ "axis": "stance", "reverse": true }],
+      "eyebrow": "Bragging rights",
+      "prompt": "What would you brag about after a game?",
+      "loads": [
+        {
+          "axis": "order",
+          "reverse": false
+        },
+        {
+          "axis": "fury",
+          "reverse": true
+        },
+        {
+          "axis": "body",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "keep-back", "text": "Keep some back so you can react to whatever they do on their turn.", "moves": [{ "axis": "stance", "weight": -2 }] },
-        { "id": "spend", "text": "Spend everything now and put another unit on the board.", "moves": [{ "axis": "stance", "weight": 2 }] }
+        {
+          "id": "two-more-behind",
+          "text": "\"Every unit they killed left two more behind.\"",
+          "moves": [
+            {
+              "axis": "order",
+              "weight": 2
+            },
+            {
+              "axis": "fury",
+              "weight": -1
+            },
+            {
+              "axis": "body",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "attacked-every-turn",
+          "text": "\"I blasted three of their units off the board.\"",
+          "moves": [
+            {
+              "axis": "fury",
+              "weight": 2
+            },
+            {
+              "axis": "order",
+              "weight": -1
+            },
+            {
+              "axis": "body",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "twice-the-size",
+          "text": "\"My unit was twice the size of anything they had.\"",
+          "moves": [
+            {
+              "axis": "body",
+              "weight": 2
+            },
+            {
+              "axis": "order",
+              "weight": -1
+            },
+            {
+              "axis": "fury",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "dont-brag",
+          "text": "I don't brag. Much.",
+          "moves": []
+        }
       ]
     },
     {
-      "id": "dig-or-huge",
+      "id": "behind-early-mood",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Add one",
-      "prompt": "Add one card to the deck:",
-      "loads": [{ "axis": "chaos", "reverse": false }, { "axis": "body", "reverse": true }],
+      "eyebrow": "Early points",
+      "prompt": "They score first, but your hand's the stronger one. What's the mood?",
+      "loads": [
+        {
+          "axis": "pace",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "dig", "text": "A cheap spell that has you discard two cards, then draw four.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "body", "weight": -2 }] },
-        { "id": "huge-unit", "text": "An expensive unit, bigger than almost anything they can play.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "chaos", "weight": -2 }] }
+        {
+          "id": "let-them",
+          "text": "Fine. Let them. My turn is coming.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": -2
+            }
+          ]
+        },
+        {
+          "id": "one-more-turn",
+          "text": "Mostly fine. One more turn of building, then I go.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "little-itchy",
+          "text": "A little itchy. I'll attack with what I've got and build later.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "itchy",
+          "text": "Itchy. Everything I have goes at a battlefield right now.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": 2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "card-order",
+      "id": "card-sequence",
       "kind": "scenario",
-      "scale": true,
       "eyebrow": "Sequencing",
-      "prompt": "You have four cards to play this turn and the order matters. You...",
-      "loads": [{ "axis": "complexity", "reverse": false }],
+      "prompt": "Four cards to play this turn, and the order matters. You...",
+      "loads": [
+        {
+          "axis": "complexity",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "enjoy-order", "text": "Enjoy it. Working out the exact order is the best bit.", "moves": [{ "axis": "complexity", "weight": 2 }] },
-        { "id": "barely-matters", "text": "Would rather play cards strong enough that the order takes care of itself.", "moves": [{ "axis": "complexity", "weight": -2 }] }
+        {
+          "id": "perfect-sequence",
+          "text": "Love it. I'll sit here and find the perfect sequence.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "think-then-go",
+          "text": "Think it through for a moment, then go.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "obvious-first",
+          "text": "Play the obvious one first and see what happens.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "one-card-whole-job",
+          "text": "Wish I had one card that did the whole job instead.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "tank-or-hidden",
+      "id": "makes-you-grin",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Same cost, same might",
-      "prompt": "Two units cost the same and hit the same. You take the one that...",
-      "loads": [{ "axis": "calm", "reverse": false }, { "axis": "chaos", "reverse": true }],
+      "eyebrow": "The grin",
+      "prompt": "Which moment makes you grin?",
+      "loads": [
+        {
+          "axis": "chaos",
+          "reverse": false
+        },
+        {
+          "axis": "fury",
+          "reverse": true
+        },
+        {
+          "axis": "mind",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "tank", "text": "Takes the hits first for the units fighting alongside it.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "chaos", "weight": -2 }] },
-        { "id": "hidden", "text": "Can be hidden face down at a battlefield and sprung on them later, even mid-fight.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
+        {
+          "id": "face-down-flip",
+          "text": "Flipping a face-down card they'd forgotten was there.",
+          "moves": [
+            {
+              "axis": "chaos",
+              "weight": 2
+            },
+            {
+              "axis": "fury",
+              "weight": -1
+            },
+            {
+              "axis": "mind",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "lands-harder",
+          "text": "An attack landing harder than they expected.",
+          "moves": [
+            {
+              "axis": "fury",
+              "weight": 2
+            },
+            {
+              "axis": "chaos",
+              "weight": -1
+            },
+            {
+              "axis": "mind",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "shrinking-unit",
+          "text": "Their big unit shrinking right before it gets to fight.",
+          "moves": [
+            {
+              "axis": "mind",
+              "weight": 2
+            },
+            {
+              "axis": "chaos",
+              "weight": -1
+            },
+            {
+              "axis": "fury",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "grin-elsewhere",
+          "text": "None of these, really. I grin at other things.",
+          "moves": []
+        }
       ]
     },
     {
-      "id": "behind-early",
+      "id": "scary-play",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Behind early",
-      "prompt": "Turn three. They're ahead on points, but you have more runes and a better hand. You feel...",
-      "loads": [{ "axis": "pace", "reverse": true }],
+      "eyebrow": "Uh oh",
+      "prompt": "They play something scary. Your first thought?",
+      "loads": [
+        {
+          "axis": "stance",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "relaxed", "text": "Relaxed. The later turns are mine.", "moves": [{ "axis": "pace", "weight": -2 }] },
-        { "id": "itchy", "text": "Itchy. I'd trade some of that hand to get on the scoreboard now.", "moves": [{ "axis": "pace", "weight": 2 }] }
+        {
+          "id": "race-it",
+          "text": "\"Race it. I'll hit them harder before it matters.\"",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "stick-to-plan",
+          "text": "\"Fine. I'm sticking to my plan.\"",
+          "moves": []
+        },
+        {
+          "id": "needs-answering",
+          "text": "\"That needs answering before it does anything.\"",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "nothing-else-matters",
+          "text": "\"Right. Nothing else matters until that's gone.\"",
+          "moves": [
+            {
+              "axis": "stance",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "gear-or-trash",
+      "id": "loss-stings-least",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Your headline card",
-      "prompt": "The most expensive card in your deck should be...",
-      "loads": [{ "axis": "mind", "reverse": false }, { "axis": "chaos", "reverse": true }],
+      "eyebrow": "Losing",
+      "prompt": "Which loss stings least?",
+      "loads": [
+        {
+          "axis": "variance",
+          "reverse": true
+        }
+      ],
       "answers": [
-        { "id": "gear", "text": "A gear that draws you an extra card every turn it stays in play.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "chaos", "weight": -2 }] },
-        { "id": "from-trash", "text": "A spell that plays your best unit straight from the trash, ignoring its cost.", "moves": [{ "axis": "chaos", "weight": 2 }, { "axis": "mind", "weight": -2 }] }
+        {
+          "id": "played-it-safe",
+          "text": "I played it safe and they were simply better. Nothing to change.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": -2
+            }
+          ]
+        },
+        {
+          "id": "either-way",
+          "text": "It was close and could have gone either way.",
+          "moves": []
+        },
+        {
+          "id": "went-all-in",
+          "text": "I went all in and it didn't come off. Worth it.",
+          "moves": [
+            {
+              "axis": "variance",
+              "weight": 2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "best-days",
-      "kind": "statement",
-      "eyebrow": "Good days, bad days",
-      "prompt": "A deck that's unbeatable when the draws line up and falls apart when they don't is more fun than one that plays out much the same every game.",
-      "loads": [{ "axis": "variance", "reverse": false }],
-      "agreeMoves": [{ "axis": "variance", "weight": 2 }]
-    },
-    {
-      "id": "grower-or-soldiers",
+      "id": "their-complaint",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "One more unit",
-      "prompt": "One unit slot left. It goes to a unit that...",
-      "loads": [{ "axis": "body", "reverse": false }, { "axis": "order", "reverse": true }],
+      "eyebrow": "Sore loser",
+      "prompt": "After beating them, what does your opponent grumble about?",
+      "loads": [
+        {
+          "axis": "chaos",
+          "reverse": true
+        },
+        {
+          "axis": "order",
+          "reverse": true
+        },
+        {
+          "axis": "calm",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "grower", "text": "When it lands and each time it conquers, one of your units gets a lasting +1 might.", "moves": [{ "axis": "body", "weight": 2 }, { "axis": "order", "weight": -2 }] },
-        { "id": "soldiers", "text": "Brings two 1-might soldiers along when it arrives.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "body", "weight": -2 }] }
+        {
+          "id": "never-got-through",
+          "text": "\"I never got one attack through.\"",
+          "moves": [
+            {
+              "axis": "calm",
+              "weight": 2
+            },
+            {
+              "axis": "chaos",
+              "weight": -1
+            },
+            {
+              "axis": "order",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "where-from",
+          "text": "\"Where did that even come from?\"",
+          "moves": [
+            {
+              "axis": "chaos",
+              "weight": 2
+            },
+            {
+              "axis": "order",
+              "weight": -1
+            },
+            {
+              "axis": "calm",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "two-more-showed-up",
+          "text": "\"There were just too many of them.\"",
+          "moves": [
+            {
+              "axis": "order",
+              "weight": 2
+            },
+            {
+              "axis": "chaos",
+              "weight": -1
+            },
+            {
+              "axis": "calm",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "very-polite",
+          "text": "They don't grumble. We're very polite.",
+          "moves": []
+        }
       ]
     },
     {
-      "id": "shutting-down",
-      "kind": "statement",
-      "eyebrow": "Satisfaction",
-      "prompt": "The best moment in a game is when my opponent commits to a play and I have the exact answer waiting. That beats landing a big play of my own.",
-      "loads": [{ "axis": "stance", "reverse": true }],
-      "agreeMoves": [{ "axis": "stance", "weight": -2 }]
-    },
-    {
-      "id": "kill-or-conquer",
+      "id": "most-frustrating",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Two fighters",
-      "prompt": "Two 4-cost units, same might. You'd rather have the one that...",
-      "loads": [{ "axis": "order", "reverse": false }, { "axis": "fury", "reverse": true }],
+      "eyebrow": "Frustration",
+      "prompt": "What frustrates you most in a game?",
+      "loads": [
+        {
+          "axis": "complexity",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "kill", "text": "Kills an enemy unit with 1 might or less when it lands.", "moves": [{ "axis": "order", "weight": 2 }, { "axis": "fury", "weight": -2 }] },
-        { "id": "conquer", "text": "Deals 2 damage to an enemy unit each time it conquers a battlefield.", "moves": [{ "axis": "fury", "weight": 2 }, { "axis": "order", "weight": -2 }] }
+        {
+          "id": "same-every-turn",
+          "text": "A deck that plays the same way every single turn.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "nothing-to-think",
+          "text": "Turns with nothing to think about.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "remember-their-cards",
+          "text": "Having to remember what all their cards do.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "six-things-at-once",
+          "text": "Six things going on at once and no idea which matters.",
+          "moves": [
+            {
+              "axis": "complexity",
+              "weight": -2
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "strongest-or-setup",
+      "id": "ideal-game-night",
       "kind": "scenario",
-      "scale": true,
-      "eyebrow": "Your favourite turn",
-      "prompt": "The turn you enjoy most is...",
-      "loads": [{ "axis": "complexity", "reverse": true }],
+      "eyebrow": "Your night",
+      "prompt": "Your ideal game night is...",
+      "loads": [
+        {
+          "axis": "pace",
+          "reverse": false
+        }
+      ],
       "answers": [
-        { "id": "strongest-card", "text": "One where every card you play does its job without needing the others.", "moves": [{ "axis": "complexity", "weight": -2 }] },
-        { "id": "setup-pays-off", "text": "One where cards you set up over several turns finally click together.", "moves": [{ "axis": "complexity", "weight": 2 }] }
-      ]
-    },
-    {
-      "id": "move-or-shrink",
-      "kind": "scenario",
-      "scale": true,
-      "eyebrow": "On arrival",
-      "prompt": "Two 3-cost units, same might, each with an effect when it lands. You'd rather have the one that...",
-      "loads": [{ "axis": "calm", "reverse": false }, { "axis": "mind", "reverse": true }],
-      "answers": [
-        { "id": "move-away", "text": "Sends an enemy unit back to its base when it lands.", "moves": [{ "axis": "calm", "weight": 2 }, { "axis": "mind", "weight": -2 }] },
-        { "id": "shrink-in-fights", "text": "Shrinks an enemy unit by 2 whenever it attacks or defends.", "moves": [{ "axis": "mind", "weight": 2 }, { "axis": "calm", "weight": -2 }] }
-      ]
-    },
-    {
-      "id": "quick-games",
-      "kind": "statement",
-      "eyebrow": "Your ideal game",
-      "prompt": "I want a game decided in the first few turns, whichever way it goes.",
-      "loads": [{ "axis": "pace", "reverse": false }],
-      "agreeMoves": [{ "axis": "pace", "weight": 2 }]
-    },
-    {
-      "id": "one-clear-job",
-      "kind": "statement",
-      "eyebrow": "Piloting",
-      "prompt": "I play best with a deck that has one clear job, so I can focus on doing it well.",
-      "loads": [{ "axis": "complexity", "reverse": true }],
-      "agreeMoves": [{ "axis": "complexity", "weight": -2 }]
-    },
-    {
-      "id": "swingy-or-spread",
-      "kind": "scenario",
-      "scale": true,
-      "eyebrow": "How you win",
-      "prompt": "Your deck wins with...",
-      "loads": [{ "axis": "variance", "reverse": true }],
-      "answers": [
-        { "id": "spread", "text": "Many solid threats across the deck, so no single draw decides the game, for better or worse.", "moves": [{ "axis": "variance", "weight": -2 }] },
-        { "id": "swingy", "text": "A few explosive cards that win the game on their own, if you draw them in time.", "moves": [{ "axis": "variance", "weight": 2 }] }
+        {
+          "id": "lots-of-quick",
+          "text": "Lots of quick games, best of as many as we can fit.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "id": "mostly-quick",
+          "text": "Mostly quick ones, with one that goes long.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "id": "none-rushed",
+          "text": "A few proper games, none of them rushed.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": -1
+            }
+          ]
+        },
+        {
+          "id": "two-or-three-long",
+          "text": "Two or three long ones I'll still be thinking about tomorrow.",
+          "moves": [
+            {
+              "axis": "pace",
+              "weight": -2
+            }
+          ]
+        }
       ]
     }
   ]
