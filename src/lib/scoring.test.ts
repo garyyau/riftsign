@@ -11,7 +11,8 @@ import {
   FAVOURITE_CHAMPION_BONUS,
   rankLegends,
 } from './scoring'
-import type { Archetype, Profile, QuestionSet } from './types'
+import type { Domain } from './axes'
+import type { Archetype, Legend, Profile, QuestionSet } from './types'
 import { answer, build, CENTER, legend, scenario, smallQuestionSet } from './test-fixtures'
 
 describe('scale scenarios', () => {
@@ -84,23 +85,22 @@ describe('rankLegends', () => {
     legend('near', 'Tempo', { pace: 9, stance: 9 }),
   ]
   const fastProactive: Profile = { ...CENTER, pace: 10, stance: 10 }
+  // Full affinity for the fixture Legends' default Fury/Order pair.
+  const furyOrderFast: Profile = { ...fastProactive, 'fury-calm': -5, 'chaos-order': 5 }
 
   it('orders Legends by closeness to the Profile, closest first', () => {
     expect(rankLegends(fastProactive, pool).map((m) => m.legend.id)).toEqual(['exact', 'near', 'far'])
   })
 
   it('gives an identical Legend a fit of 100 and the opposite corner of all Axes a fit of 0', () => {
-    const [exact] = rankLegends(fastProactive, pool)
+    const [exact] = rankLegends(furyOrderFast, pool)
     expect(exact.fit).toBe(100)
-    const opposite = legend('opposite', 'Control', {
-      pace: 0,
-      stance: 0,
-      complexity: 0,
-      variance: 0,
-      'fury-calm': -5,
-      'mind-body': -5,
-      'chaos-order': -5,
-    })
+    const opposite = legend(
+      'opposite',
+      'Control',
+      { pace: 0, stance: 0, complexity: 0, variance: 0, 'fury-calm': -5, 'mind-body': -5 },
+      ['Fury', 'Mind'],
+    )
     const top: Profile = { pace: 10, stance: 10, complexity: 10, variance: 10, 'fury-calm': 5, 'mind-body': 5, 'chaos-order': 5 }
     expect(rankLegends(top, [opposite])[0].fit).toBe(0)
   })
@@ -114,9 +114,9 @@ describe('rankLegends', () => {
   })
 
   it('nudges Legends of favourite Champions up without letting fit exceed 100', () => {
-    const ranked = rankLegends(fastProactive, pool, { favouriteChampions: ['far', 'exact'] })
+    const ranked = rankLegends(furyOrderFast, pool, { favouriteChampions: ['far', 'exact'] })
     const far = ranked.find((m) => m.legend.id === 'far')!
-    const plain = rankLegends(fastProactive, pool).find((m) => m.legend.id === 'far')!
+    const plain = rankLegends(furyOrderFast, pool).find((m) => m.legend.id === 'far')!
     expect(far.fit).toBeGreaterThan(plain.fit)
     expect(ranked[0].legend.id).toBe('exact')
     expect(ranked[0].fit).toBe(100)
@@ -131,15 +131,30 @@ describe('rankLegends', () => {
     expect(rankLegends(fastProactive, clear, { favouriteChampions: ['second'] })[0].legend.id).toBe('first')
   })
 
-  it('measures a Legend holding both Domains of an Axis to the nearer pole, not the midpoint', () => {
+  const fitOf = (profile: Partial<Profile>, l: Legend) => rankLegends({ ...CENTER, ...profile }, [l])[0].fit
+
+  it('gives a fully neutral Player the same Domain term for every Legend, so playstyle alone decides', () => {
+    const pairs: [Domain, Domain][] = [['Fury', 'Order'], ['Calm', 'Mind'], ['Body', 'Chaos'], ['Fury', 'Calm'], ['Mind', 'Body']]
+    const sameStyle = pairs.map((domains, i) => legend(`l${i}`, 'Aggro', { pace: 7 }, domains))
+    expect(new Set(sameStyle.map((l) => fitOf({}, l))).size).toBe(1)
+    const ranked = rankLegends(CENTER, [legend('fury-order', 'Aggro', { pace: 9 }), legend('mind-body', 'Aggro', { pace: 6 }, ['Mind', 'Body'])])
+    expect(ranked[0].legend.id).toBe('mind-body')
+  })
+
+  it("raises fit steadily as the Player's affinity for the Legend's Domains grows", () => {
+    const furyOrder = legend('fury-order', 'Aggro', {})
+    const fits = [5, 2.5, 0, -2.5, -5].map((furyCalm) => fitOf({ 'fury-calm': furyCalm, 'chaos-order': 2 }, furyOrder))
+    fits.slice(1).forEach((fit, i) => expect(fit).toBeGreaterThan(fits[i]))
+  })
+
+  it('scores a Legend holding both Domains of an Axis on the one the Player prefers, the other as neutral', () => {
     const akali = legend('akali', 'Aggro', {}, ['Fury', 'Calm'])
-    const fitAt = (furyCalm: number) => rankLegends({ ...CENTER, 'fury-calm': furyCalm }, [akali])[0].fit
-    expect(fitAt(-5)).toBe(100)
-    expect(fitAt(5)).toBe(100)
-    expect(fitAt(0)).toBeLessThan(100)
-    // Halfway toward Fury sits as far from the Fury pole as a Legend stored there would.
-    const furyOnly = legend('fury', 'Aggro', { 'fury-calm': -5 })
-    expect(fitAt(-2)).toBe(rankLegends({ ...CENTER, 'fury-calm': -2 }, [furyOnly])[0].fit)
+    const furyOrder = legend('fury-order', 'Aggro', {}, ['Fury', 'Order'])
+    const calmOrder = legend('calm-order', 'Aggro', {}, ['Calm', 'Order'])
+    // Neutral on Order, so Order costs the same as Akali's unused Domain.
+    for (const furyCalm of [-5, -2]) expect(fitOf({ 'fury-calm': furyCalm }, akali)).toBe(fitOf({ 'fury-calm': furyCalm }, furyOrder))
+    expect(fitOf({ 'fury-calm': 4 }, akali)).toBe(fitOf({ 'fury-calm': 4 }, calmOrder))
+    expect(fitOf({ 'fury-calm': -5 }, akali)).toBeGreaterThan(fitOf({}, akali))
   })
 
   it('leaves Legends with no reviewed Build out of the ranking', () => {

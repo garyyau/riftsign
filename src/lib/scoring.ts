@@ -1,4 +1,15 @@
-import { AXES, AXIS_IDS, DOMAIN_AXIS_IDS, DOMAIN_POLES, normalize, type AxisId, type Domain, type DomainAxisId } from './axes'
+import {
+  AXES,
+  AXIS_IDS,
+  DOMAIN_AXIS_IDS,
+  DOMAIN_POLES,
+  normalize,
+  PLAYSTYLE_AXIS_IDS,
+  type AxisId,
+  type Domain,
+  type DomainAxisId,
+  type PlaystyleAxisId,
+} from './axes'
 import type { Answer, Answers, Archetype, Build, DomainLean, Legend, Match, Profile, Question, QuestionSet } from './types'
 
 export const STATEMENT_POINTS = [
@@ -86,42 +97,51 @@ export function computeProfile(set: QuestionSet, answers: Answers): Profile {
 
 
 /**
- * Per-Axis distance weights. Domain Axes weigh less so playstyle leads the Match (ADR 0004).
- * Adjust here after an audit (`pnpm simulate`), nowhere else.
+ * Distance weights (ADR 0004). Each playstyle Axis adds its normalised squared gap times its
+ * weight; the Domain term adds DOMAIN_WEIGHT times the Legend's two Domain costs. Domain weighs
+ * less so playstyle leads the Match. Adjust here after an audit (`pnpm simulate`), nowhere else.
  */
-export const AXIS_WEIGHTS: Record<AxisId, number> = {
-  pace: 1,
-  stance: 1,
-  complexity: 1,
-  variance: 1,
-  'fury-calm': 0.4,
-  'mind-body': 0.4,
-  'chaos-order': 0.4,
-}
+export const PLAYSTYLE_WEIGHTS: Record<PlaystyleAxisId, number> = { pace: 1, stance: 1, complexity: 1, variance: 1 }
+export const DOMAIN_WEIGHT = 0.5
 
 /** Fit points added to every Legend of a Champion the Player named as a favourite. A tie-break between close Matches, too small to reorder clear ones. */
 export const FAVOURITE_CHAMPION_BONUS = 1
 
-const MAX_DISTANCE = Math.sqrt(AXIS_IDS.reduce((sum, axis) => sum + AXIS_WEIGHTS[axis], 0))
+/** A Domain's cost when the Player's affinity for it is 0 (their score on its Axis is 0). */
+const NEUTRAL_DOMAIN_COST = 0.25
 
-/** The Domain Axis a Legend holds both Domains of (e.g. Fury and Calm), if any. */
-function splitAxis(legend: Legend): DomainAxisId | null {
-  const [a, b] = legend.domains.map((d) => DOMAIN_POLES[d].axis)
-  return a === b ? a : null
+// Both Domain costs at their maximum of 1 is the furthest a Profile can sit from a Legend.
+const MAX_DISTANCE = Math.sqrt(PLAYSTYLE_AXIS_IDS.reduce((sum, axis) => sum + PLAYSTYLE_WEIGHTS[axis], 0) + 2 * DOMAIN_WEIGHT)
+
+/**
+ * How far the Player is from one Domain. Affinity runs from -1 (the Profile sits on the opposite
+ * pole) to 1 (on this Domain's pole); the cost falls from 1 through 0.25 at neutral to 0.
+ */
+function domainCost(profile: Profile, domain: Domain): number {
+  const { axis, value } = DOMAIN_POLES[domain]
+  const affinity = profile[axis] / value
+  return ((1 - affinity) / 2) ** 2
 }
 
 /**
- * A Legend holding both Domains of an Axis is stored at 0 there but can play either Domain,
- * so on that Axis distance is measured to whichever pole is nearer the Profile.
+ * The Domain part of the distance, from the Player's affinity for each of the Legend's two
+ * Domains. Domains the Legend doesn't hold add nothing, so a fully neutral Player pays the same
+ * for every Legend. A Legend holding both Domains of one Axis plays whichever the Player prefers,
+ * so it takes the nearer Domain's cost and counts the other as neutral.
  */
-function distance(profile: Profile, build: Build, split: DomainAxisId | null): number {
+function domainTerm(profile: Profile, legend: Legend): number {
+  const [a, b] = legend.domains.map((d) => domainCost(profile, d))
+  const oppositePair = DOMAIN_POLES[legend.domains[0]].axis === DOMAIN_POLES[legend.domains[1]].axis
+  return DOMAIN_WEIGHT * (oppositePair ? Math.min(a, b) + NEUTRAL_DOMAIN_COST : a + b)
+}
+
+function playstyleTerm(profile: Profile, build: Build): number {
   let sum = 0
-  for (const axis of AXIS_IDS) {
-    const target = axis === split ? (profile[axis] < 0 ? AXES[axis].min : AXES[axis].max) : build.coordinates[axis]
-    const d = normalize(axis, profile[axis]) - normalize(axis, target)
-    sum += AXIS_WEIGHTS[axis] * d * d
+  for (const axis of PLAYSTYLE_AXIS_IDS) {
+    const d = normalize(axis, profile[axis]) - normalize(axis, build.coordinates[axis])
+    sum += PLAYSTYLE_WEIGHTS[axis] * d * d
   }
-  return Math.sqrt(sum)
+  return sum
 }
 
 export interface RankOptions {
@@ -136,8 +156,8 @@ export function rankLegends(profile: Profile, pool: Legend[], options: RankOptio
   const favourites = new Set(options.favouriteChampions ?? [])
   return pool
     .flatMap((legend) => {
-      const split = splitAxis(legend)
-      const scored = reviewedBuilds(legend).map((build) => ({ build, d: distance(profile, build, split) }))
+      const domain = domainTerm(profile, legend)
+      const scored = reviewedBuilds(legend).map((build) => ({ build, d: Math.sqrt(playstyleTerm(profile, build) + domain) }))
       if (!scored.length) return []
       const { build, d } = scored.reduce((best, s) => (s.d < best.d ? s : best))
       const bonus = favourites.has(legend.champion) ? FAVOURITE_CHAMPION_BONUS : 0

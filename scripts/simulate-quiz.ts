@@ -18,9 +18,10 @@ const SEED = 20260923
 const SIGMA = 0.25
 const SLIP_RATE = 0.25
 
-const questionFile = path.resolve(import.meta.dirname, '../src/data/questions.json')
-const parsed = validateQuestionSet(JSON.parse(readFileSync(questionFile, 'utf8')))
-if (!parsed.success) throw new Error(`questions.json failed validation:\n  ${parsed.issues.join('\n  ')}`)
+// `pnpm simulate [questions.json]` simulates any Question set; the committed one by default.
+const questionFile = path.resolve(process.argv[2] ?? path.resolve(import.meta.dirname, '../src/data/questions.json'))
+const parsed = validateQuestionSet(JSON.parse(readFileSync(questionFile, 'utf8').replace(/^﻿/, '')))
+if (!parsed.success) throw new Error(`${questionFile} failed validation:\n  ${parsed.issues.join('\n  ')}`)
 const set = parsed.data
 const pool = loadLegends()
 const builds = pool.flatMap((legend) => legend.builds.map((build) => ({ legend, build })))
@@ -128,7 +129,8 @@ row(`Build recovery top-1 / top-3, ${pct(SLIP_RATE)} neighbour slips`, recovery(
 // 2. Playstyle-first Players: an Archetype's centroid with no or mild Domain lean (|score| <= 1.5).
 {
   let own = 0
-  let slots = 0
+  let opposite = 0
+  let players = 0
   for (const archetype of archetypes) {
     for (let k = 0; k < 300; k++) {
       const truth: Profile = {
@@ -137,11 +139,14 @@ row(`Build recovery top-1 / top-3, ${pct(SLIP_RATE)} neighbour slips`, recovery(
         'mind-body': uniform(-1.5, 1.5),
         'chaos-order': uniform(-1.5, 1.5),
       }
-      own += rank(respond(truth, SIGMA)).slice(0, 3).filter((m) => m.build.archetype === archetype).length
-      slots += 3
+      const matches = rank(respond(truth, SIGMA))
+      own += matches.slice(0, 3).filter((m) => m.build.archetype === archetype).length
+      if (isOppositePair(matches[0].legend)) opposite++
+      players++
     }
   }
-  row('Playstyle-first: own Archetype share of top-3 slots', pct(own / slots))
+  row('Playstyle-first: own Archetype share of top-3 slots', pct(own / (3 * players)))
+  row('Playstyle-first: #1 is an opposite-pair Legend', pct(opposite / players))
 }
 
 // 3. Strong-Domain Players: an Archetype centroid standing on an ordinary Domain pair's corner.
@@ -189,7 +194,8 @@ row(`Build recovery top-1 / top-3, ${pct(SLIP_RATE)} neighbour slips`, recovery(
   row('Plausible Players: median fit gap #1 to #2', `${median(gaps)} pts`)
   row(`Plausible Players: close call (gap <= ${CLOSE_CALL_MARGIN})`, within(CLOSE_CALL_MARGIN))
   row('  gap <= 0 / 1 / 2 / 3 / 4', [0, 1, 2, 3, 4].map(within).join(' / '))
-  row('Plausible Players: mean single-answer flips that change #1', mean(flips).toFixed(1))
+  const alternatives = items.reduce((n, item) => n + item.options.length - 1, 0)
+  row('Plausible Players: mean single-answer flips that change #1', `${mean(flips).toFixed(1)} of ${alternatives}`)
 }
 
 const width = Math.max(...rows.map(([label]) => label.length))
