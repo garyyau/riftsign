@@ -26,7 +26,9 @@ Game terms below are facts about Riftbound. Project terms are decisions made in 
 
 **Build**: One played way of piloting a Legend, with its own Archetype and Axis position (for example Lux as Control, Lux as Combo). A Legend has one to three Builds, each a different Archetype, and a Build exists only if relevant decks show players running it. See ADR 0003.
 
-**Match**: A Legend recommended to a Player because one of its Builds sits close to the Player's Profile. The Match shows that closest Build. A Match is ranked, not binary. A Domain lean in the Profile may also surface Legends sharing those Domains as secondary Matches.
+**Match**: A Legend recommended to a Player because one of its Builds sits close to the Player's Profile. Playstyle Axes weigh more than Domain Axes, so the top Matches are decks that play like the Player (ADR 0004). The Match shows that closest Build. A Match is ranked, not binary. A Domain lean in the Profile may also surface Legends sharing those Domains as secondary Matches.
+
+**Domain lean**: The Domains a Profile points to clearly enough to name. A Domain Axis counts only when the Profile scores at least 2.5 from its centre. The Domain-lean section lists Legends in those Domains for Players who choose decks by Domain.
 
 **Legend rating**: The Builds (each an Archetype, Axis position and short description) assigned to a Legend when it is ingested. Drafted from published guides and card text, then reviewed by a human before it can appear as a Match.
 
