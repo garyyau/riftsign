@@ -74,7 +74,11 @@ function extremes(set: QuestionSet): Extremes {
 
 const round1 = (n: number) => Math.round(n * 10) / 10
 
-/** Each score is 5 + (raw / reach) × 5, where reach is how far the set can push it that way. */
+/**
+ * Each score is 5 + (raw / reach) × 5, where reach is the furthest the set can push it either way.
+ * One reach for both directions keeps a small penalty small: a three-way Domain choice gives +2 to
+ * the pick and −1 to the other two, and not picking a Domain shouldn't read as hating it.
+ */
 export function computeProfile(set: QuestionSet, answers: Answers): Profile {
   const raw = Object.fromEntries(SCORE_IDS.map((id) => [id, 0])) as Record<ScoreId, number>
   for (const question of set.questions) {
@@ -85,7 +89,7 @@ export function computeProfile(set: QuestionSet, answers: Answers): Profile {
   const profile = {} as Profile
   for (const id of SCORE_IDS) {
     const value = raw[id]
-    const reach = value >= 0 ? limits[id].positive : -limits[id].negative
+    const reach = Math.max(limits[id].positive, -limits[id].negative)
     profile[id] = reach === 0 ? SCORE_MID : round1(SCORE_MID + (value / reach) * SCORE_MID)
   }
   return profile

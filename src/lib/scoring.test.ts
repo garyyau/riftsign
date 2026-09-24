@@ -73,6 +73,27 @@ describe('computeProfile', () => {
     expect([order.order, order.fury, order.calm, order.chaos]).toEqual([10, 5, 5, 5])
   })
 
+  it('scales a score by the same reach in both directions, so a small penalty stays small', () => {
+    const threeWay = scenario(
+      'three-way',
+      [
+        answer('fury', [{ axis: 'fury', weight: 2 }, { axis: 'calm', weight: -1 }, { axis: 'mind', weight: -1 }]),
+        answer('calm', [{ axis: 'calm', weight: 2 }, { axis: 'fury', weight: -1 }, { axis: 'mind', weight: -1 }]),
+        answer('mind', [{ axis: 'mind', weight: 2 }, { axis: 'fury', weight: -1 }, { axis: 'calm', weight: -1 }]),
+        answer('none', []),
+      ],
+      [
+        { axis: 'fury', reverse: false },
+        { axis: 'calm', reverse: true },
+        { axis: 'mind', reverse: true },
+      ],
+    )
+    const set: QuestionSet = { version: 'test-1', questions: [threeWay] }
+    const calm = computeProfile(set, { 'three-way': 'calm' })
+    expect([calm.calm, calm.fury, calm.mind]).toEqual([10, 2.5, 2.5])
+    expect(computeProfile(set, { 'three-way': 'none' }).fury).toBe(5)
+  })
+
   it('ignores Answers that do not belong to the Question', () => {
     expect(computeProfile(smallQuestionSet(), { 'pace-1': 'nonsense' }).pace).toBe(5)
   })
