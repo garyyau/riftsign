@@ -32,17 +32,24 @@ export const STRINGS = {
     back: 'Back',
     championsEyebrow: 'One last thing',
     championsPrompt: 'Any champions you already love?',
-    championsHelp: 'Optional. Picking a few nudges their Legends up your list. Skip it if the names mean nothing to you yet.',
+    championsHelp:
+      'Optional. When two Legends fit you about equally, a favourite champion tips it their way. Skip it if the names mean nothing to you yet.',
     championsSkip: 'Skip',
     championsDone: 'Show my Riftsign',
     noChampions: 'No reviewed Legends yet, so there is nothing to pick from.',
+    scaleStrong: 'Definitely',
+    scaleLeaning: 'Leaning',
+    /** Screen-reader label for one point of a two-pole scale, e.g. "Leaning: Race them". */
+    scalePoint: (strength: string, pole: string) => `${strength}: ${pole}`,
   },
   result: {
     eyebrow: 'Your Riftsign',
     archetypeLead: 'You play',
     noPool: 'No Legends have been reviewed yet, so there is nothing to match against. Your scores are still yours.',
     fitNote: 'Fit is about how a Legend plays, not how strong it is. This is not a tier list.',
-    matchesTitle: 'Your top Legends',
+    matchesTitle: 'Legends that play like you',
+    closeCall: (first: string, second: string) =>
+      `It was close: ${first} and ${second} fit you almost equally. Start with whichever grabs you.`,
     fit: (n: number) => `${n}% fit`,
     howItPlays: 'How it plays',
     whyYou: 'Why you might like it',
@@ -52,9 +59,11 @@ export const STRINGS = {
     deckLists: 'Deck lists on Piltover Archive',
     fullRanking: (n: number) => `Full ranking of all ${n} Legends`,
     leanTitle: 'Your Domain lean',
-    leanBody: (domains: Domain[]) => `You lean ${joinDomains(domains)}. Other Legends in those Domains:`,
+    leanBody: (domains: Domain[]) =>
+      `You lean ${joinDomains(domains)}. Other Legends ${domains.length === 1 ? 'with that Domain' : 'in those Domains'}:`,
     leanEmpty: (domains: Domain[]) => `You lean ${joinDomains(domains)}. Your top three already cover that.`,
-    leanNone: "You sit right in the middle of every Domain pair, so no lean yet. Any Domain could be yours.",
+    leanNone:
+      'No strong pull toward any Domain, so your Legends above were picked on how you play. Any Domain pair could suit you.',
     share: 'Copy share link',
     shared: 'Link copied',
     shareFailed: 'Could not copy. The link is in your address bar.',

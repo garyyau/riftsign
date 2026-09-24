@@ -2,7 +2,8 @@ import { Check, Link2 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { AXIS_IDS, DOMAIN_AXIS_IDS, PLAYSTYLE_AXIS_IDS } from '@/lib/axes'
-import { deriveArchetype, domainLean, rankLegends } from '@/lib/scoring'
+import { closeCall, deriveArchetype, domainLean, rankLegends } from '@/lib/scoring'
+import { shareLegendId } from '@/lib/share'
 import { ARCHETYPE_COPY, STRINGS } from '@/lib/strings'
 import type { Legend, Profile } from '@/lib/types'
 import { cn } from '@/lib/utils'
@@ -34,7 +35,9 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
   const matches = useMemo(() => rankLegends(profile, pool, { favouriteChampions }), [profile, pool, favouriteChampions])
   const archetype = deriveArchetype(matches)
   const top = matches.slice(0, 3)
+  const close = closeCall(matches)
   const lean = useMemo(() => domainLean(profile, pool, matches.slice(0, 3).map((m) => m.legend)), [profile, pool, matches])
+  const shareLegend = useMemo(() => shareLegendId(profile, pool), [profile, pool])
 
   // First fresh view reveals one Axis at a time; returning and shared views skip straight to the summary.
   const [revealed, setRevealed] = useState(source === 'fresh' ? 0 : AXIS_IDS.length + 1)
@@ -50,7 +53,7 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
   useEffect(() => () => window.clearTimeout(copiedTimer.current), [])
   const copyLink = async () => {
     try {
-      await navigator.clipboard.writeText(shareUrl(top[0]?.legend.id ?? null))
+      await navigator.clipboard.writeText(shareUrl(shareLegend))
       setCopied('done')
     } catch {
       setCopied('failed')
@@ -117,6 +120,14 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
             <h2 className="display text-3xl">{s.matchesTitle}</h2>
             <p className="label-mono text-muted-foreground">{s.fitNote}</p>
           </div>
+          {close && (
+            <p className="pb-6 text-sm leading-relaxed text-muted-foreground">
+              {/* Champion names read better in a sentence; two printings of one Champion need the full names. */}
+              {close[0].legend.champion === close[1].legend.champion
+                ? s.closeCall(close[0].legend.name, close[1].legend.name)
+                : s.closeCall(close[0].legend.champion, close[1].legend.champion)}
+            </p>
+          )}
           {top.map((m, i) => (
             <MatchCard key={m.legend.id} match={m} rank={i + 1} />
           ))}

@@ -1,6 +1,17 @@
 import { describe, expect, it } from 'vitest'
-import { buildShareUrl, profileFromHash } from './share'
-import { CENTER } from './test-fixtures'
+import { rankLegends } from './scoring'
+import { buildShareUrl, profileFromHash, shareLegendId } from './share'
+import { CENTER, legend } from './test-fixtures'
+
+describe('shareLegendId', () => {
+  it("names the Legend a recipient sees, ignoring the sharer's favourite champions", () => {
+    const profile = { ...CENTER, pace: 10 }
+    const pool = [legend('closest', 'Aggro', { pace: 9.9 }), legend('favourite', 'Aggro', { pace: 9.8 })]
+    expect(rankLegends(profile, pool, { favouriteChampions: ['favourite'] })[0].legend.id).toBe('favourite')
+    expect(shareLegendId(profile, pool)).toBe('closest')
+    expect(shareLegendId(profile, [])).toBeNull()
+  })
+})
 
 describe('share links', () => {
   it('points at the top Legend page and carries the Profile in the fragment', () => {
