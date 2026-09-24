@@ -55,6 +55,7 @@ export const STRINGS = {
     sharedMatchesTitle: 'Legends that play like this',
     closeCall: (first: string, second: string) =>
       `It was close: ${first} and ${second} fit you almost equally. Start with whichever grabs you.`,
+    sharedCloseCall: (first: string, second: string) => `It was close: ${first} and ${second} fit this Riftsign almost equally.`,
     fit: (n: number) => `${n}% fit`,
     howItPlays: 'How it plays',
     whyYou: 'Why you might like it',
@@ -103,31 +104,42 @@ export const STRINGS = {
   },
 } as const
 
-export const ARCHETYPE_COPY: Record<Archetype, { name: string; description: string }> = {
+/** `sharedDescription` says "they", for someone viewing another Player's Riftsign. */
+export const ARCHETYPE_COPY: Record<Archetype, { name: string; description: string; sharedDescription: string }> = {
   Aggro: {
     name: 'Aggro',
     description:
       'You want the game decided early, on your terms. You attack first, keep attacking, and make your opponent find answers before they find their footing.',
+    sharedDescription:
+      'They want the game decided early, on their terms. They attack first, keep attacking, and make their opponent find answers before finding their footing.',
   },
   Tempo: {
     name: 'Tempo',
     description:
       'You like staying one step ahead. You play efficient threats, answer just enough, and keep the opponent reacting to you rather than executing their own plan.',
+    sharedDescription:
+      'They like staying one step ahead. They play efficient threats, answer just enough, and keep the opponent reacting instead of carrying out a plan.',
   },
   Midrange: {
     name: 'Midrange',
     description:
       'You adapt. Against fast decks you defend, against slow decks you push, and your units are usually the best on the table by the middle of the game.',
+    sharedDescription:
+      'They adapt. Against fast decks they defend, against slow decks they push, and their units are usually the best on the table by the middle of the game.',
   },
   Control: {
     name: 'Control',
     description:
       'You let your opponent overextend, then take it all away. You value answers, patience, and winning a long game you have quietly been steering the whole time.',
+    sharedDescription:
+      'They let their opponent overextend, then take it all away. They value answers, patience, and winning a long game they have quietly been steering the whole time.',
   },
   Combo: {
     name: 'Combo',
     description:
       'You build toward one big moment. Most of the game is setup, and the payoff is a turn where several pieces click together and the board changes all at once.',
+    sharedDescription:
+      'They build toward one big moment. Most of the game is setup, and the payoff is a turn where several pieces click together and the board changes all at once.',
   },
 }
 

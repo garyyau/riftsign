@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { STRINGS } from '@/lib/strings'
+import { ARCHETYPE_COPY, STRINGS } from '@/lib/strings'
 import { CENTER, legend } from '@/lib/test-fixtures'
 import type { Legend, Profile } from '@/lib/types'
 import { ResultView, type ResultSource } from './result-view'
@@ -62,9 +62,11 @@ describe('ResultView', () => {
     expect(screen.queryByRole('heading', { name: s.lookTitle })).toBeNull()
   })
 
-  it('uses neutral titles on a shared Riftsign', () => {
+  it('uses neutral copy on a shared Riftsign', () => {
     show(fast, pool, [], 'shared')
-    for (const title of [s.sharedEyebrow, s.sharedMatchesTitle, s.sharedDomainsTitle]) expect(screen.getByText(title)).toBeTruthy()
-    for (const title of [s.eyebrow, s.matchesTitle, s.domainsTitle]) expect(screen.queryByText(title)).toBeNull()
+    const neutral = [s.sharedEyebrow, s.sharedMatchesTitle, s.sharedDomainsTitle, ARCHETYPE_COPY.Aggro.sharedDescription, s.sharedCloseCall('closest', 'favourite')]
+    for (const text of neutral) expect(screen.getByText(text)).toBeTruthy()
+    const personal = [s.eyebrow, s.matchesTitle, s.domainsTitle, ARCHETYPE_COPY.Aggro.description, s.closeCall('closest', 'favourite')]
+    for (const text of personal) expect(screen.queryByText(text)).toBeNull()
   })
 })

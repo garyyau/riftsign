@@ -5,7 +5,7 @@ import { PLAYSTYLE_AXIS_IDS } from '@/lib/axes'
 import { closeCall, deriveArchetype, domainPicks, favouritePick, HEADLINE_MATCHES, rankLegends } from '@/lib/scoring'
 import { shareLegendId } from '@/lib/share'
 import { ARCHETYPE_COPY, STRINGS } from '@/lib/strings'
-import type { Legend, Profile } from '@/lib/types'
+import type { Legend, Match, Profile } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { AxisBar } from './axis-bar'
 import { LookYouLike } from './look-you-like'
@@ -89,7 +89,7 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
             <h1 className="display mt-5 text-4xl md:text-5xl">{s.scoresTitle}</h1>
           )}
           <p className={settle('mt-6 max-w-md text-base leading-relaxed text-muted-foreground')}>
-            {archetype ? ARCHETYPE_COPY[archetype].description : s.noPool}
+            {archetype ? ARCHETYPE_COPY[archetype][shared ? 'sharedDescription' : 'description'] : s.noPool}
           </p>
           <div className={settle('mt-8 flex flex-wrap gap-3')}>
             {!shared && (
@@ -120,10 +120,7 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
           </div>
           {close && (
             <p className="pb-6 text-sm leading-relaxed text-muted-foreground">
-              {/* Champion names read better in a sentence; two printings of one Champion need the full names. */}
-              {close[0].legend.champion === close[1].legend.champion
-                ? s.closeCall(close[0].legend.name, close[1].legend.name)
-                : s.closeCall(close[0].legend.champion, close[1].legend.champion)}
+              {(shared ? s.sharedCloseCall : s.closeCall)(...closeCallNames(close))}
             </p>
           )}
           {top.map((m, i) => (
@@ -136,6 +133,11 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
       )}
     </div>
   )
+}
+
+/** Champion names read better in a sentence; two printings of one Champion need the full names. */
+function closeCallNames([a, b]: [Match, Match]): [string, string] {
+  return a.legend.champion === b.legend.champion ? [a.legend.name, b.legend.name] : [a.legend.champion, b.legend.champion]
 }
 
 function Notice({ children }: { children: React.ReactNode }) {
