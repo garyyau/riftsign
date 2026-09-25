@@ -156,6 +156,20 @@ export function buildFit(rawProfile: Profile, pool: Legend[], legend: Legend, bu
   return Math.round(buildScore(clampToPool(rawProfile, pool), legend, build))
 }
 
+export interface BuildFit {
+  build: Build
+  fit: number
+}
+
+/** Each reviewed Build of a Legend with its own fit, best first. The first is the Match's Build and fit. */
+export function buildFits(rawProfile: Profile, pool: Legend[], legend: Legend): BuildFit[] {
+  const profile = clampToPool(rawProfile, pool)
+  return reviewedBuilds(legend)
+    .map((build) => ({ build, score: buildScore(profile, legend, build) }))
+    .sort((a, b) => b.score - a.score)
+    .map(({ build, score }) => ({ build, fit: Math.round(score) }))
+}
+
 /** How many top Matches the result page headlines: the top Build and "Also plays like you". */
 export const HEADLINE_MATCHES = 2
 

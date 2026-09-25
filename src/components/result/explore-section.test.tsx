@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
-import { buildFits } from '@/lib/explore'
+import { buildFits } from '@/lib/scoring'
 import { rankLegends } from '@/lib/scoring'
 import { STRINGS } from '@/lib/strings'
 import { build, CENTER, legend } from '@/lib/test-fixtures'
@@ -92,7 +92,7 @@ describe('ExploreSection', () => {
 
   it('switches Build and fit with the Build picker, starting on the best fit', () => {
     show()
-    const [best, other] = buildFits(profile, lux, pool)
+    const [best, other] = buildFits(profile, pool, lux)
     expect(best.build.archetype).toBe('Combo')
     expect(best.fit).toBe(matches[2].fit)
     const p = within(panel())

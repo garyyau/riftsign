@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { DomainTag } from '@/components/domain-tag'
-import { buildFits } from '@/lib/explore'
+import { buildFits } from '@/lib/scoring'
 import { STRINGS } from '@/lib/strings'
 import type { Legend, Match, Profile } from '@/lib/types'
 import { cn } from '@/lib/utils'
@@ -21,7 +21,7 @@ interface LegendPanelProps {
 export function LegendPanel({ match, rank, total, profile, pool, shared }: LegendPanelProps) {
   const s = STRINGS.explore
   const { legend } = match
-  const fits = useMemo(() => buildFits(profile, legend, pool), [profile, legend, pool])
+  const fits = useMemo(() => buildFits(profile, pool, legend), [profile, legend, pool])
   const [build, setBuild] = useState(match.build)
   const fit = fits.find((f) => f.build === build)?.fit ?? match.fit
 

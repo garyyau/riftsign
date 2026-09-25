@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { LEGENDS } from '@/data'
 import { SCORE_IDS } from './axes'
-import { axisGapLabel, buildFits, defaultExploreId, exploreStrip, gapSummary } from './explore'
-import { rankLegends } from './scoring'
+import { axisGapLabel, defaultExploreId, exploreStrip, gapSummary } from './explore'
+import { buildFits, rankLegends } from './scoring'
 import { build, CENTER, legend } from './test-fixtures'
 import type { Profile } from './types'
 
@@ -15,7 +15,7 @@ describe('buildFits', () => {
   it("puts the Match's Build first with the Match's fit, for every real Legend", () => {
     for (const profile of profiles) {
       for (const match of rankLegends(profile, LEGENDS)) {
-        const [best] = buildFits(profile, match.legend, LEGENDS)
+        const [best] = buildFits(profile, LEGENDS, match.legend)
         expect(best.build).toBe(match.build)
         expect(best.fit).toBe(match.fit)
       }
@@ -26,7 +26,7 @@ describe('buildFits', () => {
     const lux = legend('lux', 'Control', {}, undefined, {
       builds: [build('Control', { pace: 1 }), build('Combo', { pace: 9 }), build('Aggro', { pace: 10 }, { reviewed: false })],
     })
-    const fits = buildFits({ ...CENTER, pace: 9 }, lux, [lux])
+    const fits = buildFits({ ...CENTER, pace: 9 }, [lux], lux)
     expect(fits.map((f) => f.build.archetype)).toEqual(['Combo', 'Control'])
     expect(fits[0].fit).toBeGreaterThan(fits[1].fit)
   })
