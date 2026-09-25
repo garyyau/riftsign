@@ -4,7 +4,7 @@ import { Quiz } from '@/components/quiz/quiz'
 import { ResultView, type ResultSource } from '@/components/result/result-view'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { CHAMPIONS, LEGENDS, QUESTION_SET } from '@/data'
+import { LEGENDS, QUESTION_SET } from '@/data'
 import { decodeProfile, encodeProfile, type DecodedProfile } from '@/lib/profile-code'
 import { computeProfile } from '@/lib/scoring'
 import { buildShareUrl, profileFromHash } from '@/lib/share'
@@ -64,7 +64,7 @@ export default function App() {
     // Answers given against an older Question set may not line up with today's Questions.
     if (session.questionSetVersion !== currentVersion) return startFresh()
     const firstUnanswered = questions.findIndex((q) => !(q.id in session.answers))
-    show({ kind: 'quiz', step: firstUnanswered === -1 ? questions.length : firstUnanswered })
+    show({ kind: 'quiz', step: firstUnanswered === -1 ? questions.length - 1 : firstUnanswered })
   }
 
   const showStored = () => {
@@ -73,11 +73,11 @@ export default function App() {
     show({ kind: 'result', result: decoded, source: 'stored' })
   }
 
-  const finish = (skipChampions: boolean) => {
+  const finish = () => {
     const profile = computeProfile(QUESTION_SET, session.answers)
     // The version stays the one the Answers were given against, so the retake notice can fire later.
     const code = encodeProfile(profile, session.questionSetVersion)
-    updateSession((prev) => ({ favouriteChampions: skipChampions ? [] : prev.favouriteChampions, lastProfileCode: code }))
+    updateSession(() => ({ lastProfileCode: code }))
     show({ kind: 'result', result: { profile, questionSetVersion: session.questionSetVersion }, source: 'fresh' })
   }
 
@@ -100,21 +100,12 @@ export default function App() {
         {view.kind === 'quiz' && (
           <Quiz
             questions={questions}
-            champions={CHAMPIONS}
             answers={session.answers}
-            favouriteChampions={session.favouriteChampions}
             step={view.step}
             onAnswer={(questionId, answerId) =>
               updateSession((prev) => ({ answers: { ...prev.answers, [questionId]: answerId }, lastProfileCode: null }))
             }
-            onNext={() => show({ kind: 'quiz', step: Math.min(view.step + 1, questions.length) })}
-            onToggleChampion={(champion) =>
-              updateSession((prev) => ({
-                favouriteChampions: prev.favouriteChampions.includes(champion)
-                  ? prev.favouriteChampions.filter((c) => c !== champion)
-                  : [...prev.favouriteChampions, champion],
-              }))
-            }
+            onNext={() => show({ kind: 'quiz', step: view.step + 1 })}
             onBack={() => (view.step === 0 ? goHome() : setView({ kind: 'quiz', step: view.step - 1 }))}
             onFinish={finish}
           />
@@ -123,7 +114,6 @@ export default function App() {
           <ResultView
             profile={view.result.profile}
             pool={LEGENDS}
-            favouriteChampions={view.source === 'shared' ? [] : session.favouriteChampions}
             source={view.source}
             versionChanged={view.result.questionSetVersion !== currentVersion}
             shareUrl={(topLegendId) =>

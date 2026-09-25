@@ -133,7 +133,6 @@ export function clampToPool(profile: Profile, pool: Legend[]): Profile {
 
 /**
  * One Match per Legend, scored on whichever of its reviewed Builds sits closest to the Profile.
- * Favourite champions don't change fit; the result page shows them separately (ADR 0005).
  */
 export function rankLegends(rawProfile: Profile, pool: Legend[]): Match[] {
   const profile = clampToPool(rawProfile, pool)
@@ -227,12 +226,6 @@ export function domainPicks(profile: Profile, matches: Match[]): DomainPicks {
     ? matches.slice(HEADLINE_MATCHES).filter((m) => domains.every((d) => m.legend.domains.includes(d)))
     : []
   return { domains, matches: holding.slice(0, DOMAIN_PICKS_LIMIT) }
-}
-
-/** The best-fitting Match among the Player's favourite champions that the page doesn't already show. */
-export function favouritePick(matches: Match[], favouriteChampions: string[], shown: Legend[]): Match | null {
-  const skip = new Set(shown.map((l) => l.id))
-  return matches.find((m) => favouriteChampions.includes(m.legend.champion) && !skip.has(m.legend.id)) ?? null
 }
 
 /** A playstyle gap at least this big (one band) is worth telling the Player about. */

@@ -2,15 +2,13 @@ import { Check, Link2 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { PLAYSTYLE_AXIS_IDS } from '@/lib/axes'
-import { closeCall, deriveArchetype, domainPicks, favouritePick, HEADLINE_MATCHES, rankLegends } from '@/lib/scoring'
+import { closeCall, deriveArchetype, domainPicks, HEADLINE_MATCHES, rankLegends } from '@/lib/scoring'
 import { shareLegendId } from '@/lib/share'
 import { ARCHETYPE_COPY, STRINGS } from '@/lib/strings'
 import type { Legend, Match, Profile } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { AxisBar } from './axis-bar'
-import { LookYouLike } from './look-you-like'
 import { MatchCard } from './match-card'
-import { RankingList } from './ranking-list'
 import { YourDomainsSection } from './your-domains-section'
 
 export type ResultSource = 'fresh' | 'stored' | 'shared'
@@ -18,7 +16,6 @@ export type ResultSource = 'fresh' | 'stored' | 'shared'
 interface ResultViewProps {
   profile: Profile
   pool: Legend[]
-  favouriteChampions: string[]
   source: ResultSource
   /** Shown when the stored or shared run used an older Question set. */
   versionChanged: boolean
@@ -29,7 +26,7 @@ interface ResultViewProps {
 const REVEAL_STEP_MS = 380
 const COPIED_RESET_MS = 2500
 
-export function ResultView({ profile, pool, favouriteChampions, source, versionChanged, shareUrl, onRetake }: ResultViewProps) {
+export function ResultView({ profile, pool, source, versionChanged, shareUrl, onRetake }: ResultViewProps) {
   const s = STRINGS.result
   const shared = source === 'shared'
   const matches = useMemo(() => rankLegends(profile, pool), [profile, pool])
@@ -37,7 +34,6 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
   const top = matches.slice(0, HEADLINE_MATCHES)
   const close = closeCall(matches)
   const picks = useMemo(() => domainPicks(profile, matches), [profile, matches])
-  const favourite = favouritePick(matches, favouriteChampions, [...top, ...picks.matches].map((m) => m.legend))
   const shareLegend = useMemo(() => shareLegendId(profile, pool), [profile, pool])
 
   // First fresh view reveals one Axis at a time; returning and shared views skip straight to the summary.
@@ -127,8 +123,6 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
             <MatchCard key={m.legend.id} match={m} rank={i + 1} />
           ))}
           <YourDomainsSection profile={profile} picks={picks} shared={shared} />
-          <LookYouLike profile={profile} favouriteChampions={favouriteChampions} pick={favourite} />
-          <RankingList matches={matches} />
         </section>
       )}
     </div>

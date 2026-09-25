@@ -3,45 +3,31 @@ import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { STRINGS } from '@/lib/strings'
 import type { Answers, Question } from '@/lib/types'
-import { ChampionStep } from './champion-step'
 import { ProgressBar } from './progress-bar'
 import { QuestionStep } from './question-step'
 
 interface QuizProps {
   questions: Question[]
-  champions: string[]
   answers: Answers
-  favouriteChampions: string[]
-  /** 0-based; equal to questions.length on the champion step. */
+  /** 0-based index of the Question on screen. */
   step: number
   onAnswer: (questionId: string, answerId: string) => void
   onNext: () => void
-  onToggleChampion: (champion: string) => void
   onBack: () => void
-  onFinish: (skipChampions: boolean) => void
+  /** Called instead of onNext after the last Question. */
+  onFinish: () => void
 }
 
 /** How long a picked Answer stays on screen before the next Question, so the Player sees what they chose. */
 export const ANSWER_PAUSE_MS = 250
 
-export function Quiz({
-  questions,
-  champions,
-  answers,
-  favouriteChampions,
-  step,
-  onAnswer,
-  onNext,
-  onToggleChampion,
-  onBack,
-  onFinish,
-}: QuizProps) {
+export function Quiz({ questions, answers, step, onAnswer, onNext, onBack, onFinish }: QuizProps) {
   const s = STRINGS.quiz
-  // The optional champion step sits after the Questions and is left out of the count.
   const total = questions.length
-  const onChampions = step >= questions.length
-  const question = onChampions ? null : questions[step]
-  const progress = onChampions ? s.optionalStep : s.progress(step + 1, total)
+  const question = questions[step]
+  const last = step === total - 1
+  const next = last ? onFinish : onNext
+  const progress = s.progress(step + 1, total)
 
   // Leaving the step (Back, Next, or the timer itself) cancels a pending advance.
   const advance = useRef<number | undefined>(undefined)
@@ -49,12 +35,12 @@ export function Quiz({
   const select = (questionId: string, answerId: string) => {
     onAnswer(questionId, answerId)
     window.clearTimeout(advance.current)
-    advance.current = window.setTimeout(onNext, ANSWER_PAUSE_MS)
+    advance.current = window.setTimeout(next, ANSWER_PAUSE_MS)
   }
 
   return (
     <div>
-      <ProgressBar value={Math.min(step, total)} max={total} label={progress} />
+      <ProgressBar value={step} max={total} label={progress} />
       <div className="flex items-center justify-between gap-3 px-6 pt-4">
         <Button variant="link" onClick={onBack}>
           <ArrowLeft aria-hidden />
@@ -62,30 +48,20 @@ export function Quiz({
         </Button>
         <div className="flex items-center gap-3">
           <span className="small-caps text-muted-foreground">{progress}</span>
-          {question && question.id in answers && (
-            <Button size="sm" forward onClick={onNext}>
-              {s.next}
+          {question.id in answers && (
+            <Button size="sm" forward onClick={next}>
+              {last ? s.finish : s.next}
             </Button>
           )}
         </div>
       </div>
-      {question ? (
-        <QuestionStep
-          key={question.id}
-          question={question}
-          number={step + 1}
-          selected={answers[question.id]}
-          onSelect={(answerId) => select(question.id, answerId)}
-        />
-      ) : (
-        <ChampionStep
-          champions={champions}
-          selected={favouriteChampions}
-          onToggle={onToggleChampion}
-          onSkip={() => onFinish(true)}
-          onDone={() => onFinish(false)}
-        />
-      )}
+      <QuestionStep
+        key={question.id}
+        question={question}
+        number={step + 1}
+        selected={answers[question.id]}
+        onSelect={(answerId) => select(question.id, answerId)}
+      />
     </div>
   )
 }

@@ -11,8 +11,8 @@ const questions = ['one', 'two'].map((id) =>
 )
 
 function show(step: number, answers: Answers = {}) {
-  const handlers = { onAnswer: vi.fn(), onNext: vi.fn(), onBack: vi.fn() }
-  const props = { questions, champions: [], answers, favouriteChampions: [], step, onToggleChampion: () => {}, onFinish: () => {}, ...handlers }
+  const handlers = { onAnswer: vi.fn(), onNext: vi.fn(), onBack: vi.fn(), onFinish: vi.fn() }
+  const props = { questions, answers, step, ...handlers }
   const view = render(<Quiz {...props} />)
   return { ...handlers, rerender: (next: number) => view.rerender(<Quiz {...props} step={next} />) }
 }
@@ -51,12 +51,14 @@ describe('Quiz', () => {
     expect(onNext).toHaveBeenCalledTimes(1)
   })
 
-  it('counts only the Questions and labels the champion step Optional', () => {
-    show(0)
-    expect(screen.getAllByText(STRINGS.quiz.progress(1, 2)).length).toBeGreaterThan(0)
-    cleanup()
-    show(2)
-    expect(screen.getAllByText(STRINGS.quiz.optionalStep).length).toBeGreaterThan(0)
-    expect(screen.queryByText(/of 3/)).toBeNull()
+  it('finishes from the last Question instead of moving on', () => {
+    const { onNext, onFinish } = show(1, { two: 'a' })
+    expect(screen.getAllByText(STRINGS.quiz.progress(2, 2)).length).toBeGreaterThan(0)
+    fireEvent.click(screen.getByRole('button', { name: STRINGS.quiz.finish }))
+    expect(onFinish).toHaveBeenCalledTimes(1)
+    fireEvent.click(screen.getAllByRole('radio')[1])
+    act(() => vi.advanceTimersByTime(ANSWER_PAUSE_MS))
+    expect(onFinish).toHaveBeenCalledTimes(2)
+    expect(onNext).not.toHaveBeenCalled()
   })
 })

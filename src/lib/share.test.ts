@@ -5,7 +5,7 @@ import { CENTER, legend } from './test-fixtures'
 describe('shareLegendId', () => {
   it('names the top Match, the Legend a recipient sees first', () => {
     const profile = { ...CENTER, pace: 10 }
-    const pool = [legend('closest', 'Aggro', { pace: 9.9 }), legend('favourite', 'Aggro', { pace: 9.8 })]
+    const pool = [legend('closest', 'Aggro', { pace: 9.9 }), legend('runner-up', 'Aggro', { pace: 9.8 })]
     expect(shareLegendId(profile, pool)).toBe('closest')
     expect(shareLegendId(profile, [])).toBeNull()
   })

@@ -5,14 +5,13 @@ const SESSION_KEY = 'riftsign:session'
 /** What the Player's device remembers between visits. */
 export interface Session {
   answers: Answers
-  favouriteChampions: string[]
   questionSetVersion: string
   /** Encoded Profile of the last completed run, or null while in progress. */
   lastProfileCode: string | null
 }
 
 export function emptySession(questionSetVersion: string): Session {
-  return { answers: {}, favouriteChampions: [], questionSetVersion, lastProfileCode: null }
+  return { answers: {}, questionSetVersion, lastProfileCode: null }
 }
 
 export function loadSession(): Session | null {
@@ -23,7 +22,6 @@ export function loadSession(): Session | null {
     if (!parsed || typeof parsed !== 'object' || typeof parsed.questionSetVersion !== 'string') return null
     return {
       answers: parsed.answers && typeof parsed.answers === 'object' ? parsed.answers : {},
-      favouriteChampions: Array.isArray(parsed.favouriteChampions) ? parsed.favouriteChampions : [],
       questionSetVersion: parsed.questionSetVersion,
       lastProfileCode: typeof parsed.lastProfileCode === 'string' ? parsed.lastProfileCode : null,
     }

@@ -26,6 +26,3 @@ export const ALL_LEGENDS: Legend[] = Object.entries(rawLegends)
 
 /** Legends with at least one reviewed Build, carrying only those Builds. */
 export const LEGENDS: Legend[] = ALL_LEGENDS.map((l) => ({ ...l, builds: reviewedBuilds(l) })).filter((l) => l.builds.length > 0)
-
-/** Champion names for the optional favourites Question, drawn from the reviewed pool. */
-export const CHAMPIONS: string[] = [...new Set(LEGENDS.map((l) => l.champion))].sort()

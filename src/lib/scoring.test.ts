@@ -9,7 +9,6 @@ import {
   DOMAIN_PICKS_LIMIT,
   domainFeeling,
   domainPicks,
-  favouritePick,
   HEADLINE_MATCHES,
   leadingDomains,
   PLAYSTYLE_GAP_THRESHOLD,
@@ -281,21 +280,6 @@ describe('domainPicks', () => {
     const many = Array.from({ length: DOMAIN_PICKS_LIMIT + 4 }, (_, i) => legend(`f${i}`, 'Aggro', { pace: i }, ['Fury', 'Body']))
     const profile = { ...CENTER, fury: 10 }
     expect(domainPicks(profile, rankLegends(profile, many)).matches).toHaveLength(DOMAIN_PICKS_LIMIT)
-  })
-})
-
-describe('favouritePick', () => {
-  const pool = [legend('shown', 'Aggro', { pace: 10 }), legend('jinx', 'Aggro', { pace: 8 }), legend('jinx-2', 'Aggro', { pace: 2 }, undefined, { champion: 'jinx' })]
-  const matches = rankLegends({ ...CENTER, pace: 10 }, pool)
-
-  it("picks the best-fitting Legend of the Player's favourite champions that the page has not shown", () => {
-    expect(favouritePick(matches, ['jinx'], [pool[0]])?.legend.id).toBe('jinx')
-    expect(favouritePick(matches, ['jinx'], [pool[1]])?.legend.id).toBe('jinx-2')
-  })
-
-  it('returns null when every favourite is already shown, or none is named', () => {
-    expect(favouritePick(matches, ['shown'], [pool[0]])).toBeNull()
-    expect(favouritePick(matches, [], [])).toBeNull()
   })
 })
 

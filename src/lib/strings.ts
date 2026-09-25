@@ -28,14 +28,7 @@ export const STRINGS = {
     progress: (current: number, total: number) => `Question ${current} of ${total}`,
     back: 'Back',
     next: 'Next',
-    optionalStep: 'Optional',
-    championsEyebrow: 'One last thing',
-    championsPrompt: 'Any champions you already love?',
-    championsHelp:
-      "Optional. Pick any you like the look of and we'll show you their best Legend for you, with an honest note on how it plays. Skip it if the names mean nothing to you yet.",
-    championsSkip: 'Skip',
-    championsDone: 'Show my Riftsign',
-    noChampions: 'No reviewed Legends yet, so there is nothing to pick from.',
+    finish: 'Show my Legends',
   },
   result: {
     eyebrow: 'Your Riftsign',
@@ -56,7 +49,6 @@ export const STRINGS = {
     noStarter: 'No retail starter deck',
     alsoPlayed: (archetypes: string[]) => `Also played as ${archetypes.join(' or ')}`,
     deckLists: 'Deck lists on Piltover Archive',
-    fullRanking: (n: number) => `Full ranking of all ${n} Legends`,
     // "Your Domains" is worded so it reads the same on a shared Riftsign; only the title changes there.
     domainsTitle: 'Your Domains',
     sharedDomainsTitle: 'Domains',
@@ -67,12 +59,6 @@ export const STRINGS = {
     domainsCovered: 'The Legends above already cover that.',
     domainsNone:
       'No Domain pulls clearly ahead, so the Legends above were picked on playstyle alone. Any Domain pair could suit.',
-    lookTitle: 'Has the look you like',
-    lookLead: (champion: string) => `Your best fit among the champions you picked is ${champion}.`,
-    /** Playstyle gaps from the Player's scores, e.g. ["faster", "swingier"]. */
-    lookGaps: (gaps: string[]) => `It's ${gaps.join(' and ')} than you like.`,
-    lookClose: 'It plays close to how you like to play.',
-    lookCovered: 'Your favourite champions are already in the Legends above.',
     share: 'Copy share link',
     shared: 'Link copied',
     shareFailed: 'Could not copy. The link is in your address bar.',
