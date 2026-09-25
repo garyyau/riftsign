@@ -151,8 +151,126 @@ function check(ids: string[]) {
   console.log(`${flags} flag(s) across ${scope.size} Legend(s).`)
 }
 
+interface PaCard {
+  name: string
+  type: string
+  super: string | null
+  description: string | null
+  energy: number | null
+  might: number | null
+  power: number | null
+  tags: string[] | null
+}
+interface PaEntry {
+  quantity?: number
+  card: PaCard
+}
+interface CodexCard {
+  name: string
+  classification: { type: string }
+  attributes: { energy: number | null; might: number | null; power: number | null }
+  text: { plain: string }
+}
+
+const PA_API = 'https://piltoverarchive.com/api/external/v1'
+const getJson = async <T>(url: string): Promise<T> => {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`${res.status} from ${url}`)
+  return res.json() as Promise<T>
+}
+const oneLine = (s: string | null | undefined) =>
+  (s ?? '')
+    .normalize('NFKC') // errata prefixes use mathematical bold letters
+    .replace(/^Card Errata Text\s*[-–]\s*From .*?Card Errata:\s*/, '')
+    .replace(/\s*\n\s*/g, ' ')
+    .trim()
+/** Bracketed words that are cost icons, not keywords. */
+const ICONS = new Set(['rune', 'fury', 'calm', 'mind', 'body', 'chaos', 'order', 'tap', 'might', 'energy', 'exhaust'])
+const codexSearch = async (name: string) =>
+  (await getJson<{ items: CodexCard[] }>(`https://api.riftcodex.com/cards/name?fuzzy=${encodeURIComponent(name)}`)).items
+
+/**
+ * Prints one deck as a rating sheet: every card with its cost and text, then the mechanical
+ * counts the deck rubric starts from. Main deck plus the chosen Champion is the 40 the rubric scores.
+ */
+async function deck(ref: string) {
+  const uuid = ref.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i)?.[0]
+  if (!uuid) throw new Error(`no deck uuid in "${ref}"`)
+  const raw = await getJson<Record<string, unknown>>(`${PA_API}/decks/${uuid}?expand=cards`)
+  const d = (raw.data ?? raw) as {
+    name: string
+    createdAt: string
+    legend: { name: string; colors: { name: string }[] }
+    expandedCards: Record<string, PaEntry[] | null>
+  }
+  const zone = (z: string) => d.expandedCards[z] ?? []
+  const legendText = (await codexSearch(d.legend.name.replace(', ', ' - '))).find((c) => c.classification.type === 'Legend')
+  const champs = zone('champions')
+  const main = [...champs.map((e) => ({ ...e, quantity: 1 })), ...zone('maindeck')] as Required<PaEntry>[]
+  const cost = (c: PaCard) => `${c.energy ?? 0}E${c.power ? ` ${c.power}P` : ''}`
+  const n = (pred: (c: PaCard) => boolean) => main.reduce((s, e) => s + (pred(e.card) ? e.quantity : 0), 0)
+  const total = n(() => true)
+  const avg = (pred: (c: PaCard) => boolean) => {
+    const k = n(pred)
+    return k ? (main.reduce((s, e) => s + (pred(e.card) ? e.quantity * (e.card.energy ?? 0) : 0), 0) / k).toFixed(2) : '-'
+  }
+  const isUnit = (c: PaCard) => c.type === 'Unit'
+  const has = (kw: string) => (c: PaCard) => new RegExp(`\\[${kw}`, 'i').test(c.description ?? '')
+
+  const out: string[] = []
+  out.push(`Deck: ${d.name} (${d.createdAt.slice(0, 10)})  https://piltoverarchive.com/decks/view/${uuid}`)
+  out.push(`Legend: ${d.legend.name} [${d.legend.colors.map((c) => c.name).join('/')}]: ${oneLine(legendText?.text.plain) || '(text not found; run `card`)'}`)
+  for (const e of champs) out.push(`Champion: ${e.card.name} (${cost(e.card)}, ${e.card.might} might): ${oneLine(e.card.description)}`)
+  out.push(`Battlefields: ${zone('battlefields').map((e) => `${e.card.name}: ${oneLine(e.card.description)}`).join(' | ')}`)
+  out.push(`Runes: ${zone('runes').map((e) => `${e.quantity} ${e.card.name}`).join(', ')}`)
+  out.push('', `Main deck (${total} incl. Champion), by cost:`)
+  for (const e of [...main].sort((a, b) => (a.card.energy ?? 0) - (b.card.energy ?? 0) || a.card.name.localeCompare(b.card.name))) {
+    const c = e.card
+    const stats = isUnit(c) ? `, ${c.might} might` : ''
+    out.push(`  ${e.quantity}x ${c.name} [${c.super ? `${c.super} ` : ''}${c.type}, ${cost(c)}${stats}]: ${oneLine(c.description)}`)
+  }
+  const side = zone('sideboard')
+  if (side.length) out.push('', `Sideboard (not scored): ${side.map((e) => `${e.quantity} ${e.card.name}`).join(', ')}`)
+
+  const buckets = ['0-1', '2', '3', '4', '5', '6+'].map((label, i) => {
+    const lo = i === 0 ? 0 : i + 1
+    const hi = i === 0 ? 1 : i === 5 ? 99 : i + 1
+    return `${label}: ${n((c) => (c.energy ?? 0) >= lo && (c.energy ?? 0) <= hi)}`
+  })
+  const types = [...new Set(main.map((e) => e.card.type))].map((t) => `${t} ${n((c) => c.type === t)}`)
+  const keywords = new Map<string, number>()
+  for (const e of main) {
+    const found = [...(e.card.description ?? '').matchAll(/\[([A-Za-z][A-Za-z' -]*?)(?: \d+)?\]/g)].map((m) => m[1].toLowerCase())
+    for (const k of new Set(found.filter((k) => !ICONS.has(k)))) keywords.set(k, (keywords.get(k) ?? 0) + e.quantity)
+  }
+  out.push('', 'Counts (copies, main deck incl. Champion):')
+  out.push(`  Types: ${types.join(', ')}`)
+  out.push(`  Average energy cost: all ${avg(() => true)}, units ${avg(isUnit)}, non-units ${avg((c) => !isUnit(c))}`)
+  out.push(`  Energy curve: ${buckets.join(', ')}`)
+  out.push(`  Units costing 2 or less: ${n((c) => isUnit(c) && (c.energy ?? 0) <= 2)}; cards costing 5+: ${n((c) => (c.energy ?? 0) >= 5)}`)
+  out.push(`  Reaction cards: ${n(has('reaction'))}; Action cards: ${n(has('action'))}; Hidden cards: ${n(has('hidden'))}`)
+  out.push(`  Keywords: ${[...keywords].sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${v}`).join(', ')}`)
+  console.log(out.join('\n'))
+}
+
+/** Card text lookup for cards the rater doesn't know, e.g. from a set newer than the model. */
+async function card(name: string) {
+  const seen = new Set<string>()
+  for (const c of await codexSearch(name)) {
+    const base = c.name.replace(/\s*\(.*\)$/, '')
+    if (seen.has(base)) continue
+    seen.add(base)
+    const a = c.attributes
+    console.log(`${base} [${c.classification.type}, ${a.energy ?? 0}E${a.power ? ` ${a.power}P` : ''}${a.might ? `, ${a.might} might` : ''}]: ${oneLine(c.text.plain)}`)
+    if (seen.size === 5) break
+  }
+  if (!seen.size) console.log(`No Riftcodex match for "${name}". Try the card's Piltover Archive page or a web search.`)
+}
+
 const [cmd, ...rest] = process.argv.slice(2)
 if (cmd === 'targets') targets(rest)
 else if (cmd === 'apply') apply(rest[0], rest[1])
 else if (cmd === 'check') check(rest)
-else console.error('usage: tools.ts targets <id...|all> | apply <output.json> <YYYY-MM-DD> | check [id...]')
+else if (cmd === 'deck') await deck(rest[0])
+else if (cmd === 'card') await card(rest.join(' '))
+else console.error('usage: tools.ts targets <id...|all> | apply <output.json> <YYYY-MM-DD> | check [id...] | deck <url|uuid> | card <name>')
