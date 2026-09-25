@@ -254,7 +254,7 @@
 }
 
 @utility card-foil {
-  --foil: 45%;
+  --foil: 25%;
   animation: card-shimmy 6s ease-in-out infinite;
   /* The spectrum spans the whole gradient, so the card shows colour at every point of the slide. */
   &::before {
