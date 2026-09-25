@@ -85,9 +85,9 @@ export default function App() {
   const storedHasProgress = !storedIsComplete && Object.keys(session.answers).length > 0
 
   return (
-    <div className="mx-auto min-h-screen max-w-[1200px] md:border-x">
+    <div className="flex min-h-screen flex-col">
       <SiteHeader onHome={goHome} />
-      <main>
+      <main className="mx-auto w-full max-w-[1200px] flex-1">
         {view.kind === 'landing' && (
           <Landing
             hasResult={storedIsComplete}

@@ -1,21 +1,17 @@
-import { PROJECT_TITLE, STRINGS } from '@/lib/strings'
+import { RowLogo } from '@/components/brand/logo'
+import { PROJECT_TITLE } from '@/lib/strings'
 
 export function SiteHeader({ onHome }: { onHome: () => void }) {
   return (
-    <header className="flex h-14 items-center justify-between border-b px-6">
-      <button type="button" onClick={onHome} className="label-mono flex cursor-pointer items-center gap-2 text-foreground">
-        <span aria-hidden className="inline-block size-2 rotate-45 border border-primary" />
-        {PROJECT_TITLE}
-      </button>
-      <a
-        href="https://piltoverarchive.com"
-        target="_blank"
-        rel="noreferrer"
-        className="label-mono text-muted-foreground transition-colors hover:text-foreground"
+    <header className="flex h-16 items-center px-6 md:h-20 md:px-12">
+      <button
+        type="button"
+        onClick={onHome}
+        aria-label={PROJECT_TITLE}
+        className="cursor-pointer rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
       >
-        {STRINGS.header.archive}
-        <span aria-hidden className="ml-1">↗</span>
-      </a>
+        <RowLogo />
+      </button>
     </header>
   )
 }

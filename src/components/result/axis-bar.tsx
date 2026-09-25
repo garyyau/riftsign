@@ -16,24 +16,24 @@ export function AxisBar({ axis, value, shown }: AxisBarProps) {
     <div className={cn('py-5 transition-opacity duration-500', shown ? 'opacity-100' : 'opacity-0')}>
       <div className="flex items-baseline justify-between gap-4">
         <div>
-          <p className="label-mono text-muted-foreground">{def.name}</p>
+          <p className="small-caps text-muted-foreground">{def.name}</p>
           <p className="mt-1.5 text-sm text-foreground">{bandLabel(axis, value)}</p>
         </div>
-        <p className="score-mono text-2xl">
+        <p className="score">
           {value.toFixed(1)}
-          <span className="text-muted-foreground"> / {SCORE_MAX}</span>
+          <span className="font-sans text-small text-muted-foreground"> / {SCORE_MAX}</span>
         </p>
       </div>
-      <div className="relative mt-3 h-1.5 w-full bg-border">
+      <div className="relative mt-3 h-1.5 w-full overflow-hidden rounded-full bg-track">
         <div
-          className="h-full bg-primary transition-[width] duration-700 ease-out"
+          className="h-full rounded-full bg-primary transition-[width] duration-700 ease-out"
           style={{ width: shown ? `${pct}%` : '0%' }}
         />
         {[20, 40, 60, 80].map((tick) => (
           <span key={tick} aria-hidden className="absolute top-0 h-full w-px bg-background" style={{ left: `${tick}%` }} />
         ))}
       </div>
-      <div className="label-mono mt-2 flex justify-between text-muted-foreground">
+      <div className="mt-2 flex justify-between text-xs text-muted-foreground">
         <span>{def.lowLabel}</span>
         <span>{def.highLabel}</span>
       </div>

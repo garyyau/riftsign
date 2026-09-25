@@ -40,13 +40,13 @@ export function QuestionStep({ question, number, selected, onSelect }: QuestionS
                 'text-left',
                 // Statements carry their own border only on mobile; from sm the row's divide-x draws them.
                 isStatement
-                  ? 'label-mono flex-1 px-3 py-4 text-center leading-snug normal-case tracking-normal max-sm:border hover:bg-accent'
-                  : 'rounded-md border px-5 py-4 text-base leading-snug hover:border-foreground',
+                  ? 'text-small flex-1 px-3 py-4 text-center max-sm:border hover:bg-accent'
+                  : 'rounded-md border bg-surface px-5 py-4 text-answer hover:border-border-strong',
                 active
                   ? isStatement
                     ? cn(activePoint, 'max-sm:border-primary')
-                    : 'border-primary bg-primary/10 text-foreground'
-                  : 'text-foreground/90',
+                    : 'border-primary bg-selected text-foreground'
+                  : 'text-secondary-text',
               )}
             >
               {answer.text}

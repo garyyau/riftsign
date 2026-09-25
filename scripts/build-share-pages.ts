@@ -27,10 +27,13 @@ const legends: Legend[] = loadLegends()
 
 const WIDTH = 1200
 const HEIGHT = 630
-const BG = '#0a0a0c'
-const FG = '#ededed'
-const MUTED = '#8a8a90'
-const ACCENT = '#ff4d8d'
+// The Riftward foundations (src/index.css). Sharp renders with system fonts, so the faces fall back.
+const BG = '#0A0C12'
+const FG = '#ECEEF2'
+const MUTED = '#7F8797'
+const BORDER = '#222838'
+const CYAN = '#3BE8D0'
+const AMBER = '#E8B04B'
 
 const escapeXml = (s: string) =>
   s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&apos;')
@@ -43,25 +46,26 @@ function radar(cx: number, cy: number, r: number): string {
       const a = -Math.PI / 2 + (i * 2 * Math.PI) / n
       return `${(cx + Math.cos(a) * r * scale).toFixed(1)},${(cy + Math.sin(a) * r * scale).toFixed(1)}`
     }).join(' ')
-  const rings = [1, 0.66, 0.33].map((s) => `<polygon points="${pts(s)}" fill="none" stroke="#26262a" stroke-width="1"/>`)
+  const rings = [1, 0.66, 0.33].map((s) => `<polygon points="${pts(s)}" fill="none" stroke="${BORDER}" stroke-width="1"/>`)
   const seed = [0.8, 0.55, 0.7, 0.45, 0.9, 0.6, 0.75, 0.5, 0.85, 0.65]
   const shape = Array.from({ length: n }, (_, i) => {
     const a = -Math.PI / 2 + (i * 2 * Math.PI) / n
     return `${(cx + Math.cos(a) * r * seed[i % seed.length]).toFixed(1)},${(cy + Math.sin(a) * r * seed[i % seed.length]).toFixed(1)}`
   }).join(' ')
-  return `${rings.join('')}<polygon points="${shape}" fill="${ACCENT}" fill-opacity="0.12" stroke="${ACCENT}" stroke-width="2"/>`
+  return `${rings.join('')}<polygon points="${shape}" fill="${CYAN}" fill-opacity="0.12" stroke="${CYAN}" stroke-width="2"/>`
 }
 
 function overlaySvg(title: string, subtitle: string, showRadar: boolean): Buffer {
-  const lines = wrap(title, 22)
-  const titleSize = lines.length > 2 ? 56 : 68
+  // Michroma runs wide, so lines stay short enough to clear the card on the right.
+  const lines = wrap(title, 16)
+  const titleSize = lines.length > 2 ? 44 : 52
   const text = lines
-    .map((line, i) => `<text x="72" y="${300 + i * titleSize * 1.05}" font-size="${titleSize}" font-weight="700" fill="${FG}">${escapeXml(line)}</text>`)
+    .map((line, i) => `<text x="72" y="${280 + i * titleSize * 1.3}" font-size="${titleSize}" fill="${FG}" font-family="Michroma, Arial, sans-serif">${escapeXml(line)}</text>`)
     .join('')
-  return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" font-family="Space Grotesk, Inter, Arial, sans-serif">
+  return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" font-family="Manrope, Arial, sans-serif">
   <rect width="${WIDTH}" height="${HEIGHT}" fill="${BG}"/>
-  <rect x="0" y="0" width="${WIDTH}" height="4" fill="${ACCENT}"/>
-  <text x="72" y="120" font-size="22" letter-spacing="3" fill="${MUTED}" font-family="JetBrains Mono, Consolas, monospace">${escapeXml(PROJECT_TITLE.toUpperCase())} / ${escapeXml(subtitle.toUpperCase())}</text>
+  <rect x="0" y="0" width="${WIDTH}" height="4" fill="${CYAN}"/>
+  <text x="72" y="120" font-size="22" font-weight="600" letter-spacing="4" fill="${AMBER}">${escapeXml(PROJECT_TITLE.toUpperCase())} / ${escapeXml(subtitle.toUpperCase())}</text>
   ${text}
   <text x="72" y="560" font-size="20" fill="${MUTED}">${escapeXml(STRINGS.og.tagline)}</text>
   ${showRadar ? radar(960, 315, 180) : ''}

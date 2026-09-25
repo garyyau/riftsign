@@ -39,11 +39,11 @@ export function ChampionStep({ champions, selected, onToggle, onSkip, onDone }: 
         </div>
       )}
       <div className="mt-10 flex flex-wrap gap-3">
-        <Button size="lg" onClick={onDone}>
+        <Button size="lg" forward onClick={onDone}>
           {s.championsDone}
         </Button>
         {selected.length === 0 && (
-          <Button size="lg" variant="subtle" onClick={onSkip}>
+          <Button size="lg" variant="secondary" onClick={onSkip}>
             {s.championsSkip}
           </Button>
         )}

@@ -19,14 +19,14 @@ export function YourDomainsSection({ profile, picks, shared }: YourDomainsSectio
   const { domains, matches } = picks
   return (
     <section className="border-t py-8">
-      <h2 className="display text-3xl">{shared ? s.sharedDomainsTitle : s.domainsTitle}</h2>
+      <h2 className="display-m">{shared ? s.sharedDomainsTitle : s.domainsTitle}</h2>
       <div className="mt-6 grid gap-8 md:grid-cols-12">
         <ul className="divide-y md:col-span-7">
           {DOMAINS.map((d) => (
             <DomainBar key={d} domain={d} value={profile[DOMAIN_ID[d]]} highlighted={domains.includes(d)} />
           ))}
         </ul>
-        <div className="text-sm leading-relaxed text-muted-foreground md:col-span-5">
+        <div className="text-small text-muted-foreground md:col-span-5">
           {domains.length === 0 ? (
             <p>{s.domainsNone}</p>
           ) : (
@@ -36,12 +36,12 @@ export function YourDomainsSection({ profile, picks, shared }: YourDomainsSectio
               {matches.length > 0 && (
                 <ul className="mt-4 flex flex-col gap-2">
                   {matches.map((m) => (
-                    <li key={m.legend.id} className="flex items-baseline justify-between gap-3 rounded-md border px-3 py-2 text-foreground">
+                    <li key={m.legend.id} className="flex items-baseline justify-between gap-3 rounded-md border bg-surface px-3 py-2 text-foreground">
                       <span className="min-w-0">
                         {m.legend.name}
-                        <span className="label-mono ml-2 text-muted-foreground">{m.build.archetype}</span>
+                        <span className="small-caps ml-2 text-muted-foreground">{m.build.archetype}</span>
                       </span>
-                      <span className="score-mono shrink-0">{s.fit(m.fit)}</span>
+                      <span className="shrink-0 font-semibold text-amber tabular-nums">{s.fit(m.fit)}</span>
                     </li>
                   ))}
                 </ul>

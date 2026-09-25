@@ -13,9 +13,6 @@ export const LEGAL_DISCLAIMER = `${PROJECT_TITLE} was created under Riot Games' 
 const joinDomains = (domains: Domain[]) => domains.join(' and ')
 
 export const STRINGS = {
-  header: {
-    archive: 'Piltover Archive',
-  },
   landing: {
     eyebrow: 'A playstyle test for Riftbound',
     title: 'Find the Legends you were made to pilot.',
@@ -85,9 +82,6 @@ export const STRINGS = {
     versionNotice: 'The test has changed since you took it. A retake might land differently.',
     olderLinkNotice: 'This Riftsign was made with an earlier version of the test.',
     scoresTitle: 'Your scores',
-  },
-  footer: {
-    about: 'Riftsign matches your playstyle to Legends. It never rates deck strength.',
   },
   /** Open Graph copy baked into the static share pages at build time. */
   og: {

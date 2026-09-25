@@ -2,66 +2,89 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* "Signal" direction: near-black, hairline borders, one accent. Sibling of
-   riftbound-collectr-sync, not a clone: different hue, different display face, small radius. */
+/* Riftward foundations, from the Penpot library of the same name. Full-bleed dark, cyan for
+   action and progress, amber for eyebrows and ornament, one colour per Domain. */
 :root {
-  --radius: 0.25rem;
+  --radius: 6px;
 
-  --background: #0a0a0c;
-  --foreground: #ededed;
-  --card: #0a0a0c;
-  --card-foreground: #ededed;
-  --popover: #151517;
-  --popover-foreground: #ededed;
+  --background: #0a0c12;
+  --foreground: #eceef2;
+  --panel: #10131b;
+  --surface: #141822;
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
 
-  /* rift pink: the single accent. Archetype headline, primary action, focus ring, reveal glow. */
-  --primary: #ff4d8d;
-  --primary-foreground: #0a0a0c;
+  --primary: #3be8d0;
+  --primary-hover: #7af2e0;
+  --primary-foreground: #0a0c12;
+  --amber: #e8b04b;
+  --cream: #f4f1ea;
 
-  --secondary: #151517;
-  --secondary-foreground: #ededed;
-  --muted: #151517;
-  --muted-foreground: #8a8a90;
-  --accent: #1c1c1f;
-  --accent-foreground: #ededed;
-  --destructive: #ff5d5d;
-  --warning: #ffb02e;
+  --secondary: var(--surface);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface);
+  --muted-foreground: #7f8797;
+  --secondary-text: #bfc5d0;
+  --faint: #4a5366;
+  /* Unlit progress chevrons, ornament rules and disabled text links. */
+  --dim: #3a4358;
+  --accent: #1a1f2b;
+  --accent-foreground: var(--foreground);
+  --destructive: #e5484d;
+  --warning: var(--amber);
 
-  --border: #26262a;
-  --input: #2c2c30;
-  --ring: #ff4d8d;
+  --border: #222838;
+  --border-strong: #2a3142;
+  --rule: #1a1f2b;
+  /* Bar tracks and the disabled primary button. */
+  --track: #1e2430;
+  --selected: #101a1c;
+  --input: var(--border-strong);
+  --ring: var(--primary);
 
-  /* Domain colours, desaturated so six accents never compete. Badges and slider ends only. */
-  --domain-fury: #c8655a;
-  --domain-calm: #5fa8a0;
-  --domain-mind: #7b86c9;
-  --domain-body: #8faa5e;
-  --domain-chaos: #b06bbf;
-  --domain-order: #c9a85a;
+  --domain-fury: #e5484d;
+  --domain-calm: #3fbf7f;
+  --domain-mind: #4c8df6;
+  --domain-body: #f08a3c;
+  --domain-chaos: #9d5cf0;
+  --domain-order: #e8c547;
 
-  --font-display: "Space Grotesk Variable", "Inter Variable", system-ui, sans-serif;
-  --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono Variable", Consolas, ui-monospace, monospace;
+  --font-display: "Michroma", system-ui, sans-serif;
+  --font-sans: "Manrope Variable", system-ui, -apple-system, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-panel: var(--panel);
+  --color-surface: var(--surface);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
+  --color-amber: var(--amber);
+  --color-cream: var(--cream);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-secondary-text: var(--secondary-text);
+  --color-faint: var(--faint);
+  --color-dim: var(--dim);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-warning: var(--warning);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-rule: var(--rule);
+  --color-track: var(--track);
+  --color-selected: var(--selected);
   --color-input: var(--input);
   --color-ring: var(--ring);
 
@@ -72,14 +95,32 @@
   --color-domain-chaos: var(--domain-chaos);
   --color-domain-order: var(--domain-order);
 
-  --radius-sm: calc(var(--radius) - 2px);
+  --radius-sm: 2px;
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
 
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+
+  /* Manrope body sizes: text-body-l, text-body, text-answer, text-small, text-button, text-button-md, text-button-sm. */
+  --text-body-l: 18px;
+  --text-body-l--line-height: 1.56;
+  --text-body: 16px;
+  --text-body--line-height: 1.7;
+  --text-answer: 17px;
+  --text-answer--line-height: 1.4;
+  --text-small: 14px;
+  --text-small--line-height: 1.6;
+  --text-button: 16px;
+  --text-button--line-height: 1.3;
+  --text-button--font-weight: 600;
+  --text-button-md: 15px;
+  --text-button-md--line-height: 1.3;
+  --text-button-md--font-weight: 600;
+  --text-button-sm: 14px;
+  --text-button-sm--line-height: 1.3;
+  --text-button-sm--font-weight: 600;
 }
 
 @layer base {
@@ -91,7 +132,6 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-feature-settings: "ss01", "cv11";
   }
   ::selection {
     background: var(--primary);
@@ -107,32 +147,71 @@
   }
 }
 
-@utility display {
+/* Michroma ships one weight, so the display styles differ only in size and leading. */
+@utility display-xl {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
+  font-size: 44px;
+  line-height: 1.32;
   text-wrap: balance;
 }
 
-@utility label-mono {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  line-height: 1;
-  letter-spacing: 0.08em;
+@utility display-l {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+@utility display-m {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+@utility display-s {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+@utility score {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
+  color: var(--amber);
 }
 
-@utility score-mono {
-  font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
+@utility small-caps {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* The one allowed glow: the reveal moment and the Archetype headline. */
-@utility glow-primary {
-  text-shadow: 0 0 24px color-mix(in oklab, var(--primary) 55%, transparent);
+@utility tag-text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@utility wordmark {
+  font-family: var(--font-display);
+  letter-spacing: 0.25em;
+  color: var(--cream);
 }
 
 @keyframes rise-in {

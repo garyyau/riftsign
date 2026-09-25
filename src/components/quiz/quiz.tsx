@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { STRINGS } from '@/lib/strings'
@@ -56,16 +56,15 @@ export function Quiz({
     <div>
       <ProgressBar value={Math.min(step, total)} max={total} label={progress} />
       <div className="flex items-center justify-between gap-3 px-6 pt-4">
-        <Button variant="ghost" size="sm" onClick={onBack} className="-ml-3">
+        <Button variant="link" onClick={onBack}>
           <ArrowLeft aria-hidden />
           {s.back}
         </Button>
         <div className="flex items-center gap-3">
-          <span className="label-mono text-muted-foreground">{progress}</span>
+          <span className="small-caps text-muted-foreground">{progress}</span>
           {question && question.id in answers && (
-            <Button variant="ghost" size="sm" onClick={onNext} className="-mr-3">
+            <Button size="sm" forward onClick={onNext}>
               {s.next}
-              <ArrowRight aria-hidden />
             </Button>
           )}
         </div>

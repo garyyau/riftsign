@@ -79,16 +79,16 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
 
       <section className="grid gap-10 py-12 md:grid-cols-12 md:py-20">
         <div className="md:col-span-5">
-          <p className="label-mono text-muted-foreground">{shared ? s.sharedEyebrow : s.eyebrow}</p>
+          <p className="eyebrow">{shared ? s.sharedEyebrow : s.eyebrow}</p>
           {archetype ? (
-            <h1 className={settle('display mt-5 text-5xl md:text-7xl')}>
-              <span className="block text-2xl text-muted-foreground md:text-3xl">{shared ? s.sharedArchetypeLead : s.archetypeLead}</span>
-              <span className="glow-primary text-primary">{ARCHETYPE_COPY[archetype].name}</span>
+            <h1 className={settle('display-l md:display-xl mt-5')}>
+              <span className="display-s block text-muted-foreground">{shared ? s.sharedArchetypeLead : s.archetypeLead}</span>
+              <span className="text-primary">{ARCHETYPE_COPY[archetype].name}</span>
             </h1>
           ) : (
-            <h1 className="display mt-5 text-4xl md:text-5xl">{s.scoresTitle}</h1>
+            <h1 className="display-l mt-5">{s.scoresTitle}</h1>
           )}
-          <p className={settle('mt-6 max-w-md text-base leading-relaxed text-muted-foreground')}>
+          <p className={settle('mt-6 max-w-md text-body text-secondary-text')}>
             {archetype ? ARCHETYPE_COPY[archetype][shared ? 'sharedDescription' : 'description'] : s.noPool}
           </p>
           <div className={settle('mt-8 flex flex-wrap gap-3')}>
@@ -98,7 +98,7 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
                 {copied === 'done' ? s.shared : copied === 'failed' ? s.shareFailed : s.share}
               </Button>
             )}
-            <Button variant="subtle" onClick={onRetake}>
+            <Button variant="secondary" onClick={onRetake}>
               {shared ? s.takeOwn : s.retake}
             </Button>
           </div>
@@ -115,11 +115,11 @@ export function ResultView({ profile, pool, favouriteChampions, source, versionC
       {matches.length > 0 && (
         <section className={settle(settled ? 'rise-in' : undefined)}>
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-t pt-8 pb-2">
-            <h2 className="display text-3xl">{shared ? s.sharedMatchesTitle : s.matchesTitle}</h2>
-            <p className="label-mono text-muted-foreground">{s.fitNote}</p>
+            <h2 className="display-m">{shared ? s.sharedMatchesTitle : s.matchesTitle}</h2>
+            <p className="text-small text-muted-foreground">{s.fitNote}</p>
           </div>
           {close && (
-            <p className="pb-6 text-sm leading-relaxed text-muted-foreground">
+            <p className="pb-6 text-small text-muted-foreground">
               {(shared ? s.sharedCloseCall : s.closeCall)(...closeCallNames(close))}
             </p>
           )}
@@ -141,5 +141,5 @@ function closeCallNames([a, b]: [Match, Match]): [string, string] {
 }
 
 function Notice({ children }: { children: React.ReactNode }) {
-  return <p className="mt-6 rounded-md border border-warning/60 px-4 py-3 text-sm text-muted-foreground">{children}</p>
+  return <p className="mt-6 rounded-md border border-amber/60 bg-panel px-4 py-3 text-small text-secondary-text">{children}</p>
 }

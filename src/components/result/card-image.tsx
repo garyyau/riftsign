@@ -7,11 +7,11 @@ export function CardImage({ legend, className }: { legend: Legend; className?: s
   const [failed, setFailed] = useState(false)
   const src = `${import.meta.env.BASE_URL}cards/${legend.cardImage}`
   return (
-    <div className={cn('relative aspect-[5/7] w-full overflow-hidden rounded-md border bg-secondary', className)}>
+    <div className={cn('relative aspect-[5/7] w-full overflow-hidden rounded-md border bg-surface', className)}>
       {failed ? (
         <div className="flex h-full flex-col justify-end p-4">
-          <p className="label-mono text-muted-foreground">{legend.set}</p>
-          <p className="display mt-2 text-2xl">{legend.name}</p>
+          <p className="small-caps text-muted-foreground">{legend.set}</p>
+          <p className="display-s mt-2">{legend.name}</p>
         </div>
       ) : (
         <img

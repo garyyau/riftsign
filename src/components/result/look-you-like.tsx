@@ -1,4 +1,4 @@
-import { DomainBadge } from '@/components/domain-badge'
+import { DomainTag } from '@/components/domain-tag'
 import { Badge } from '@/components/ui/badge'
 import { playstyleGaps } from '@/lib/scoring'
 import { GAP_WORDS, STRINGS } from '@/lib/strings'
@@ -25,19 +25,19 @@ export function LookYouLike({ profile, favouriteChampions, pick }: LookYouLikePr
   const gaps = pick ? playstyleGaps(profile, pick.build).slice(0, MAX_GAPS) : []
   return (
     <section className="border-t py-8">
-      <h2 className="display text-3xl">{s.lookTitle}</h2>
+      <h2 className="display-m">{s.lookTitle}</h2>
       {pick ? (
         <div className="mt-6 grid gap-6 md:grid-cols-12">
           <div className="md:col-span-3 lg:col-span-2">
             <CardImage legend={pick.legend} className="max-w-[160px]" />
           </div>
           <div className="min-w-0 md:col-span-9 lg:col-span-10">
-            <p className="label-mono text-muted-foreground">{s.fit(pick.fit)}</p>
-            <h3 className="display mt-3 text-2xl">{pick.legend.name}</h3>
+            <p className="small-caps text-muted-foreground">{s.fit(pick.fit)}</p>
+            <h3 className="display-s mt-3">{pick.legend.name}</h3>
             <div className="mt-3 flex flex-wrap items-center gap-3">
-              <Badge variant="strong">{pick.build.archetype}</Badge>
+              <Badge>{pick.build.archetype}</Badge>
               {pick.legend.domains.map((d) => (
-                <DomainBadge key={d} domain={d} />
+                <DomainTag key={d} domain={d} />
               ))}
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

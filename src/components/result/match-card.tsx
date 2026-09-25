@@ -1,4 +1,4 @@
-import { DomainBadge } from '@/components/domain-badge'
+import { DomainTag } from '@/components/domain-tag'
 import { Badge } from '@/components/ui/badge'
 import { reviewedBuilds } from '@/lib/scoring'
 import { STRINGS } from '@/lib/strings'
@@ -18,29 +18,29 @@ export function MatchCard({ match, rank }: { match: Match; rank: number }) {
         <CardImage legend={legend} className="max-w-[260px]" />
       </div>
       <div className="min-w-0 md:col-span-8 lg:col-span-9">
-        <p className="label-mono text-muted-foreground">
+        <p className="eyebrow">
           <span className="text-primary">{stepNumber(rank)}</span> / {s.fit(fit)}
         </p>
-        <h3 className="display mt-3 text-3xl md:text-4xl">{legend.name}</h3>
+        <h3 className="display-m md:display-l mt-3">{legend.name}</h3>
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <Badge variant="strong">{build.archetype}</Badge>
+          <Badge>{build.archetype}</Badge>
           {legend.domains.map((d) => (
-            <DomainBadge key={d} domain={d} />
+            <DomainTag key={d} domain={d} />
           ))}
-          <Badge variant={legend.starterDeck ? 'primary' : 'default'}>
+          <Badge variant={legend.starterDeck ? 'starter' : 'default'}>
             {legend.starterDeck ? s.starter(legend.starterDeck) : s.noStarter}
           </Badge>
         </div>
         {otherArchetypes.length > 0 && (
-          <p className="label-mono mt-3 text-muted-foreground">{s.alsoPlayed(otherArchetypes)}</p>
+          <p className="mt-3 text-small text-muted-foreground">{s.alsoPlayed(otherArchetypes)}</p>
         )}
-        <dl className="mt-6 grid gap-5 text-sm leading-relaxed sm:grid-cols-2">
+        <dl className="mt-6 grid gap-5 text-body text-secondary-text sm:grid-cols-2">
           <div>
-            <dt className="label-mono text-muted-foreground">{s.howItPlays}</dt>
+            <dt className="small-caps text-muted-foreground">{s.howItPlays}</dt>
             <dd className="mt-2">{build.howItPlays}</dd>
           </div>
           <div>
-            <dt className="label-mono text-muted-foreground">{s.whyYou}</dt>
+            <dt className="small-caps text-muted-foreground">{s.whyYou}</dt>
             <dd className="mt-2">{build.whyYou}</dd>
           </div>
         </dl>
@@ -48,7 +48,7 @@ export function MatchCard({ match, rank }: { match: Match; rank: number }) {
           href={build.deckListUrl}
           target="_blank"
           rel="noreferrer"
-          className="label-mono mt-6 inline-block text-foreground underline decoration-muted-foreground underline-offset-4 hover:decoration-primary"
+          className="mt-6 inline-block text-small font-medium text-primary underline-offset-4 hover:underline"
         >
           {s.deckLists}
           <span aria-hidden className="ml-1">↗</span>
