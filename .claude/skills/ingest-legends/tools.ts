@@ -3,6 +3,8 @@
  *   pnpm tsx .claude/skills/ingest-legends/tools.ts targets <id...|all>
  *   pnpm tsx .claude/skills/ingest-legends/tools.ts apply <workflow-output.json> <YYYY-MM-DD>
  *   pnpm tsx .claude/skills/ingest-legends/tools.ts check [id...]
+ *   pnpm tsx .claude/skills/ingest-legends/tools.ts deck <piltoverarchive deck url | uuid>
+ *   pnpm tsx .claude/skills/ingest-legends/tools.ts card <name>
  */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'

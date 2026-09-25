@@ -49,15 +49,17 @@ export function ResultHero({ top, profile, pool, shared, shareLink, onRetake }: 
   const fit = isBest ? top.fit : buildFit(profile, pool, legend, shown)
   const others = builds.filter((b) => b !== shown)
   const [first, second] = legend.domains
-  const glow = (domain: string, x: number) => `${x}px 0 60px color-mix(in srgb, var(--domain-${domain}) 35%, transparent)`
+  const glow = (domain: string, x: number) =>
+    `drop-shadow(${x}px 0 60px color-mix(in srgb, var(--domain-${domain}) 35%, transparent))`
 
   return (
     <section className="grid gap-8 pt-10 pb-12 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-12 md:pt-12 md:pb-16 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-20">
       <div
-        className="w-full max-w-60 self-start rounded-[14px] md:max-w-none"
-        style={{ boxShadow: `${glow(DOMAIN_ID[first], -24)}, ${glow(DOMAIN_ID[second], 24)}` }}
+        className="w-full max-w-60 self-start md:max-w-none"
+        style={{ filter: `${glow(DOMAIN_ID[first], -24)} ${glow(DOMAIN_ID[second], 24)}` }}
       >
-        <CardImage legend={legend} className="rounded-[14px] border-0" />
+        {/* Card scans bake black corners of ~5% width; clipping just past them lets the glow trace the printed card. */}
+        <CardImage legend={legend} className="rounded-[5.5%/3.9%] border-0 motion-safe:card-foil" />
       </div>
       <div className="min-w-0 md:pt-5">
         <p className="eyebrow">
