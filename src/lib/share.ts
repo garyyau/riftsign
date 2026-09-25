@@ -1,6 +1,5 @@
 import { decodeProfile, encodeProfile, type DecodedProfile } from './profile-code'
-import { rankLegends } from './scoring'
-import type { Legend, Profile } from './types'
+import type { Profile } from './types'
 
 const HASH_KEY = 'p'
 
@@ -13,11 +12,6 @@ export function profileFromHash(hash: string): DecodedProfile | null {
 
 export function hashForProfile(code: string): string {
   return `#${HASH_KEY}=${code}`
-}
-
-/** The Legend a share link's preview should name: the top Match, which the recipient sees first too. */
-export function shareLegendId(profile: Profile, pool: Legend[]): string | null {
-  return rankLegends(profile, pool)[0]?.legend.id ?? null
 }
 
 /**

@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import { PLAYSTYLE_AXIS_IDS } from '@/lib/axes'
 import { domainPicks, rankLegends } from '@/lib/scoring'
-import { shareLegendId } from '@/lib/share'
 import { STRINGS } from '@/lib/strings'
 import type { Legend, Profile } from '@/lib/types'
 import { AlsoPlaysLikeYou } from './also-plays-like-you'
@@ -30,7 +29,6 @@ export function ResultView({ profile, pool, source, versionChanged, shareUrl, on
   const matches = useMemo(() => rankLegends(profile, pool), [profile, pool])
   const [top = null, second] = matches
   const picks = useMemo(() => domainPicks(profile, matches), [profile, matches])
-  const shareLegend = useMemo(() => shareLegendId(profile, pool), [profile, pool])
   const shownIds = [top, second, ...picks.matches].flatMap((m) => (m ? [m.legend.id] : []))
 
   return (
@@ -48,7 +46,7 @@ export function ResultView({ profile, pool, source, versionChanged, shareUrl, on
       )}
       {versionChanged && <ResultBanner>{shared ? s.olderLinkNotice : s.versionNotice}</ResultBanner>}
 
-      <ResultHero top={top} profile={profile} pool={pool} shared={shared} shareLink={() => shareUrl(shareLegend)} onRetake={onRetake} />
+      <ResultHero top={top} profile={profile} pool={pool} shared={shared} shareLink={() => shareUrl(top?.legend.id ?? null)} onRetake={onRetake} />
 
       <div className="grid gap-12 border-t border-rule py-12 md:grid-cols-2 md:gap-16 md:py-16 lg:gap-30">
         {second && <AlsoPlaysLikeYou match={second} shared={shared} />}

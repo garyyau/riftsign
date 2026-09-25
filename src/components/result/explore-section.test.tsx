@@ -96,8 +96,8 @@ describe('ExploreSection', () => {
     expect(best.build.archetype).toBe('Combo')
     expect(best.fit).toBe(matches[2].fit)
     const p = within(panel())
-    const combo = p.getByRole('radio', { name: new RegExp(`^Combo.*${s.fit(best.fit)}$`) }) as HTMLInputElement
-    const control = p.getByRole('radio', { name: new RegExp(`^Control.*${s.fit(other.fit)}$`) }) as HTMLInputElement
+    const combo = p.getByRole('radio', { name: new RegExp(`^Combo.*${STRINGS.result.fit(best.fit)}$`) }) as HTMLInputElement
+    const control = p.getByRole('radio', { name: new RegExp(`^Control.*${STRINGS.result.fit(other.fit)}$`) }) as HTMLInputElement
     expect(combo.checked).toBe(true)
     expect(p.getByText('Assemble the loop.')).toBeTruthy()
     expect(p.getByText(s.buildKey('Lux', 'Combo'))).toBeTruthy()

@@ -6,6 +6,7 @@ import type { Legend, Match, Profile } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { CardImage } from '../card-image'
 import { DeckListBox } from '../deck-list-box'
+import { PlayedAs } from '../played-as'
 import { CompareWithPlayer } from './compare-with-player'
 
 interface LegendPanelProps {
@@ -67,15 +68,13 @@ export function LegendPanel({ match, rank, total, profile, pool, shared }: Legen
                   <span className={cn('flex-1 text-[15px] font-semibold', checked ? 'text-foreground' : 'text-secondary-text')}>
                     {f.build.archetype}
                   </span>
-                  <span className={cn('text-sm font-semibold', checked ? 'text-amber' : 'text-muted-foreground')}>{s.fit(f.fit)}</span>
+                  <span className={cn('text-sm font-semibold', checked ? 'text-amber' : 'text-muted-foreground')}>{STRINGS.result.fit(f.fit)}</span>
                 </label>
               )
             })}
           </div>
         )}
-        <p className="mt-3.5 text-body text-muted-foreground">
-          {s.playedAs} <span className="font-semibold text-primary">{build.archetype}</span>
-        </p>
+        <PlayedAs archetype={build.archetype} className="mt-3.5 text-body" />
         <p className="mt-4 text-small text-secondary-text">{build.howItPlays}</p>
         <DeckListBox legend={legend} build={build} className="mt-8 bg-surface" />
       </div>
