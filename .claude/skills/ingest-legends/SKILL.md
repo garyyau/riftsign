@@ -1,21 +1,22 @@
 ---
 name: ingest-legends
-description: Ingest new Riftbound Legends, or re-rate existing ones against the current meta, as unreviewed Build drafts grounded in tournament decks.
+description: Ingest new Riftbound Legends, or re-rate existing ones, as unreviewed Build drafts grounded in rated Piltover Archive decks.
 disable-model-invocation: true
-argument-hint: "[Legend name ... | all]"
+argument-hint: "[Legend name ... | all | deck links | picks]"
 allowed-tools: Bash, Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Agent, Workflow
 ---
 
-Ingestion keeps every Legend's Builds matched to how players actually run it. Questions are never touched.
+Ingestion keeps every Legend's Builds matched to how players actually run it, each with a good, viable deck a player can discover. Questions are never touched.
 
 Argument: `$ARGUMENTS`.
 
-- Empty: **ingest** every newly released Legend.
-- One or more Legend names: **re-rate** those.
-- `all`: **re-rate** every Legend, after a ban list, a new set shifting the meta, or a major tournament. Budget: the 49-Legend pass on 2026-09-23 ran 54 agents, about 2.6M tokens and 20 minutes.
-- One or more Piltover Archive deck links: **score** those decks. Follow `deck-rubric.md` for each yourself, report the scores, Archetype, plan and deciding cards, then say which Legend Build each deck matches or would change (compare with `src/data/legends/<id>.json`). Change no Legend file unless the Maintainer asks; a change then goes through step 5 and lands `reviewed: false`.
+- Empty: **ingest** every newly released Legend, from step 1.
+- One or more Legend names: **re-rate** those, from step 1.
+- `all`: **re-rate** every Legend, after a ban list, a new set shifting the meta, or a major tournament. Budget: two agents a Legend; time a few Legends first and tell the Maintainer the estimate.
+- `picks`, or links grouped under `## <Legend>` and style names: the Maintainer has decided the deck picks; continue from step 5 with those Legends.
+- One or more Piltover Archive deck links: **score** those decks. Follow `rubric.md`, Scoring a deck, for each yourself, report each as "Reporting a deck on its own" says, then say which Legend Build each deck matches or would change (compare with `src/data/legends/<id>.json`). Change no Legend file unless the Maintainer asks; a change then goes through step 7 and lands `reviewed: false`.
 
-Everything here is in this folder: `rating-guide.md` is the bar every rating is held to, `deck-rubric.md` how one deck list becomes a playstyle position, `sources.md` the deck-source recipe, `research.workflow.js` the research fan-out, `tools.ts` the mechanical steps (run from the repo root with `pnpm tsx .claude/skills/ingest-legends/tools.ts ...`).
+Everything here is in this folder: `rubric.md` is how a deck becomes a position and how positions become Builds, `sources.md` the deck sources and how styles are picked, `candidates.ts` the deck pool, `styles.workflow.js` and `draft.workflow.js` the fan-outs, `tools.ts` the mechanical steps (run from the repo root with `pnpm tsx .claude/skills/ingest-legends/tools.ts ...`). All run output lives under `.scratch/ingest/`.
 
 ## 1. Targets
 
@@ -25,59 +26,73 @@ A candidate is new when `src/data/legends/<id>.json` is absent. The id: lowercas
 
 **Re-rate.** Turn the names into ids with the rule above, or pass `all`.
 
-Then run `tools.ts targets <id...|all>`. It reads each file, so the Builds the agents are told about are the ones on disk.
+Then run `tools.ts targets <id...|all>`. It reads each file, so the Builds the drafters are told about are the ones on disk.
 
 Done when: `targets` prints one entry per target Legend, or "nothing new" is printed and the run ends.
 
-## 2. Research
+## 2. Candidates
 
-Call Workflow with `scriptPath: ".claude/skills/ingest-legends/research.workflow.js"` and `args: { "today": "<YYYY-MM-DD>", "legends": <the targets JSON, as a JSON value> }`. A scout re-verifies `sources.md` and the ban list, one Opus agent per Legend researches its relevant decks and proposes keep, change, new or drop for each Build, and a skeptic tries to refute every proposed change and returns a corrected draft when it accepts one with fixes.
+Run `tools.ts candidates <id...|all>`. For each Legend it pulls the decks, gives each its evidence points, groups them into styles by shared cards and writes `.scratch/ingest/<id>/candidates.json` (`sources.md`, The pool). A "NEW BAN?" line means Piltover Archive knows a ban `sources.md` doesn't: add it under Bans with its date and rerun.
 
-The agents read `src/data/legends/` throughout, so the files stay untouched until the workflow reports back; `tools.ts apply` is their single writer.
+Done when: every target has a `candidates.json` from this run and no "NEW BAN?" line remains.
 
-Done when: the workflow has completed and its `failed` list is empty. Rerun failures by resuming with `resumeFromRunId`.
+## 3. Styles
 
-## 3. Apply
+Call Workflow with `scriptPath: ".claude/skills/ingest-legends/styles.workflow.js"` and `args: { "today": "<YYYY-MM-DD>", "legends": <the targets JSON, as a JSON value> }`. One agent per Legend picks its styles and decks (`sources.md`, Picking styles), then rates each picked deck with `rubric.md`. It never reads the Builds on file, so the ratings are blind to them.
 
-Run `tools.ts apply <workflow output file> <today>`, using the output file path from the completion notification. It applies each skeptic-accepted proposal (the skeptic's revision when there is one), sets every changed or new Build to `reviewed: false`, and logs every rejection with its reason. Then run `pnpm validate`; fix any draft it rejects by hand from the output file.
+Done when: the workflow has completed with an empty `failed` list. Rerun failures by resuming with `resumeFromRunId`.
 
-Done when: `pnpm validate` prints `Data OK` and the apply log accounts for every target Legend.
+## 4. Picks
 
-## 4. Sources
+Run `tools.ts picks <workflow output file> <today>`. It turns each style's tag sheets into its mean scores and label, marks each style as a **Build** or as **decks for** a Build it can't be told apart from (`rubric.md`, Distinct), writes `.scratch/ingest/picks.md`, and prints which Legends need a decision and which are ready to draft. A MISSING line is a deck the curator never scored: rerun that Legend's curation.
 
-Compare the scout brief (`scoutBrief` in the output) with `sources.md`. Rewrite any line the brief contradicts, including new bans, and update the "Last verified" date.
+Read `picks.md` as its first reviewer: every target has at least one style with a legal display deck; names are plain and match the key cards; a style's decks agree on its label or the disagreement is explained; an OUTLIER deck (1.5+ from its style's mean on an Axis) is re-read as another style or a mis-tag; each "Left out" reason holds up. Fix what you can by rerunning a Legend's curation, then rerun `picks`.
 
-Done when: `sources.md` agrees with the brief.
+Legends marked **Single style** go straight to step 5. Legends marked **Decision needed** wait: hand their sections to the Maintainer, who will check each style's archetype and decks and edit the file, then continue from step 5 with those Legends when the picks come back.
 
-## 5. First review
+Done when: every ready Legend is in a draft run, and every decision Legend is with the Maintainer or decided.
+
+## 5. Draft
+
+Call Workflow with `scriptPath: ".claude/skills/ingest-legends/draft.workflow.js"` and `args: { "today": "<YYYY-MM-DD>", "picks": ".scratch/ingest/picks.md", "legends": <the targets JSON, filtered to the Legends being drafted> }`. One agent per Legend turns its styles into keep, change, new or drop for each Build, with copy, rating any deck the Maintainer added, and checks its own numbers, card facts and copy before returning. There is no separate checker: you (step 7) and the Maintainer are the review.
+
+Done when: the workflow has completed and its `failed` list is empty.
+
+## 6. Apply
+
+Run `tools.ts apply <workflow output file> <today>`. It applies every proposal and sets each changed or new Build to `reviewed: false`. Then run `pnpm validate`; fix any draft it rejects by hand from the output file.
+
+Done when: `pnpm validate` prints `Data OK` and the apply log accounts for every drafted Legend.
+
+## 7. Review
 
 You are the first reviewer; the Maintainer should find nothing you could have caught.
 
-- Read `git diff src/data/legends` for every changed Legend and hold each changed or new Build against `rating-guide.md`, copy rules included.
-- Run `tools.ts check <changed ids>`. A self-match flag means a Build is not reachable as its own Match; a centroid flag means its label and coordinates disagree. Fix or explain each flag on a changed Build; agreeing outside labels explain one (Midrange spans wide, and Draven, Kha'Zix and LeBlanc sit near Combo on complexity and variance alone).
+- Read `git diff src/data/legends` for every changed Legend and hold each changed or new Build against `rubric.md`, Builds, copy rules included.
+- Run `tools.ts check <target ids>`. A deck-link flag means a Build still has no real deck. A self-match flag means a Build is not reachable as its own Match; a centroid flag means its label and coordinates disagree. Fix or explain each flag on a changed Build; agreeing outside labels explain one (Midrange spans wide, and Draven, Kha'Zix and LeBlanc sit near Combo on complexity and variance alone).
 - Run `pnpm vitest run`. Personas rank against drafts too, so a Persona landing on the wrong Archetype means a draft moved the pool; find which and why.
 - Run `pnpm report --all` and note any new Axis pair at |r| >= 0.7.
-- Skim each Legend's `evidenceSummary` in the output for notes on Builds the agents kept but doubted.
+- Rewrite any line of `sources.md` this run found wrong (an API change, a new event format, a threshold that misfired) and update its "Last verified" date.
 
-Done when: every changed Build meets `rating-guide.md` by your own reading, every flag on one is fixed or explained, and tests pass.
+Done when: every changed Build meets `rubric.md` by your own reading, no target has a deck-link flag, every other flag on a changed Build is fixed or explained, tests pass, and `sources.md` matches what this run saw.
 
-## 6. Images (ingest only)
+## 8. Images (ingest only)
 
 Download `media.image_url` for the standard (non-Signature) printing to `public/cards/<id>.jpg`, converting PNG to JPEG with sharp if needed (`pnpm tsx -e "..."`). When no image is reachable, leave the file absent and put the gap on the checklist.
 
 Done when: each new Legend's image exists on disk or its gap is on the checklist.
 
-## 7. Checklist
+## 9. Checklist
 
 Print, for the Maintainer:
 
 ```
 Review these Builds, then set "reviewed": true on each you approve:
   src/data/legends/<id>.json   <name>   <status> <archetype>   confidence: <level>   image: yes|MISSING
-Rejected by the skeptics:  <id> <archetype>: <one-line reason>
-Worth a look:  <doubts from step 5 about Builds left unchanged>
+Waiting on your decision:  <id>: <what picks.md asks>
+Worth a look:  <doubts from step 7 about Builds left unchanged>
 ```
 
 When the Maintainer delegates approval, set `reviewed: true` only on Builds you would defend from the evidence, and name any you held back.
 
-Done when: the checklist covers every Build changed this run and every rejection.
+Done when: the checklist covers every Build changed this run and every Legend still waiting on a decision.

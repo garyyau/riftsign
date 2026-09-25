@@ -1,18 +1,22 @@
 /**
  * Mechanical steps of the ingest-legends skill. Run from the repo root:
  *   pnpm tsx .claude/skills/ingest-legends/tools.ts targets <id...|all>
- *   pnpm tsx .claude/skills/ingest-legends/tools.ts apply <workflow-output.json> <YYYY-MM-DD>
+ *   pnpm tsx .claude/skills/ingest-legends/tools.ts candidates <id...|all> [--since=YYYY-MM-DD]
+ *   pnpm tsx .claude/skills/ingest-legends/tools.ts picks <styles-workflow-output.json> <YYYY-MM-DD>   (prints which ids need a decision)
+ *   pnpm tsx .claude/skills/ingest-legends/tools.ts style <tag-sheet.json...>
+ *   pnpm tsx .claude/skills/ingest-legends/tools.ts apply <draft-workflow-output.json> <YYYY-MM-DD>
  *   pnpm tsx .claude/skills/ingest-legends/tools.ts check [id...]
  *   pnpm tsx .claude/skills/ingest-legends/tools.ts deck <piltoverarchive deck url | uuid> [tag-sheet.json]
  *   pnpm tsx .claude/skills/ingest-legends/tools.ts card <name>
  *   pnpm tsx .claude/skills/ingest-legends/tools.ts score <tag-sheet.json...>
  */
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { DOMAIN_ID, DOMAINS, PLAYSTYLE_AXIS_IDS, type PlaystyleAxisId } from '../../../src/lib/axes'
 import { rankLegends } from '../../../src/lib/scoring'
 import type { Archetype, Build, BuildCoordinates, Legend, Profile } from '../../../src/lib/types'
 import { loadLegends } from '../../../scripts/lib/load-legends'
+import { candidates } from './candidates'
 
 const DIR = path.resolve(import.meta.dirname, '../../../src/data/legends')
 const file = (id: string) => path.join(DIR, `${id}.json`)
@@ -27,17 +31,9 @@ interface Proposal extends Draft {
   archetype: Archetype
   previousArchetype?: Archetype
 }
-interface Verdict {
-  archetype: Archetype
-  status: Status
-  accept: boolean
-  reason: string
-  revised?: Draft
-}
 interface Result {
   legend: { id: string }
   research: { starterDeck?: string | null; evidenceSummary: string; builds: Proposal[] } | null
-  verdicts: Verdict[] | null
 }
 
 /** Workflow args for these Legends, read from their files so the current Builds are never typed by hand. */
@@ -76,7 +72,7 @@ function toBuild(legend: Legend, archetype: Archetype, d: Draft): Build {
   }
 }
 
-/** The single writer: applies every skeptic-accepted proposal, preferring the skeptic's revised draft. */
+/** The single writer: applies every proposal the drafter returned. The Maintainer's review is the gate. */
 function apply(outputPath: string, today: string) {
   const raw = JSON.parse(readFileSync(outputPath, 'utf8'))
   const results: Result[] = (raw.result ?? raw).results
@@ -90,25 +86,19 @@ function apply(outputPath: string, today: string) {
     const isNew = legend.builds.length === 0
     const lines: string[] = []
     for (const p of r.research.builds.filter((p) => p.status !== 'keep')) {
-      const v = r.verdicts?.find((v) => v.archetype === p.archetype && v.status === p.status)
-      if (!v?.accept) {
-        lines.push(`  rejected ${p.status} ${p.archetype}: ${v?.reason ?? 'no verdict'}`)
-        continue
-      }
-      const draft = { ...p, ...v.revised }
       const from = p.previousArchetype ?? p.archetype
       const at = legend.builds.findIndex((b) => b.archetype === from)
-      if (p.status === 'new') legend.builds.push(toBuild(legend, p.archetype, draft))
+      if (p.status === 'new') legend.builds.push(toBuild(legend, p.archetype, p))
       else if (at < 0) {
         lines.push(`  SKIPPED ${p.status} ${from}: no such Build in the file`)
         continue
-      } else if (p.status === 'change') legend.builds[at] = toBuild(legend, p.archetype, draft)
+      } else if (p.status === 'change') legend.builds[at] = toBuild(legend, p.archetype, p)
       else if (legend.builds.length > 1) legend.builds.splice(at, 1)
       else {
         lines.push(`  SKIPPED drop ${from}: it is the last Build`)
         continue
       }
-      lines.push(`  ${p.status} ${p.status === 'change' && from !== p.archetype ? `${from} -> ` : ''}${p.archetype}${v.revised ? ' (skeptic revised)' : ''}`)
+      lines.push(`  ${p.status} ${p.status === 'change' && from !== p.archetype ? `${from} -> ` : ''}${p.archetype}`)
     }
     if (isNew) {
       legend.ingestedAt = today
@@ -131,6 +121,10 @@ function check(ids: string[]) {
   const dist = (a: number[], b: number[]) => Math.hypot(...a.map((x, i) => x - b[i]))
   let flags = 0
   for (const { l, b, v } of points.filter((p) => scope.has(p.l.id))) {
+    if (!/\/decks\/view\//.test(b.deckListUrl)) {
+      flags++
+      console.log(`deck link   ${l.id} ${b.archetype}: ${b.deckListUrl} is not a deck`)
+    }
     // A Player on the Build who loves its Legend's two Domains and has no feeling about the rest.
     const player = { ...b.coordinates, ...Object.fromEntries(DOMAINS.map((d) => [DOMAIN_ID[d], l.domains.includes(d) ? 10 : 5])) } as Profile
     const [top] = rankLegends(player, pool)
@@ -311,7 +305,7 @@ async function deck(ref: string, outPath?: string) {
   console.log(out.join('\n'))
 }
 
-// Deck rubric (deck-rubric.md). Roles and flags are the rater's judgment per card; everything
+// Deck rubric (rubric.md, Scoring a deck). Roles and flags are the rater's judgment per card; everything
 // below them is arithmetic, so two raters who tag alike score alike.
 const ROLES = ['pressure', 'defender', 'value', 'removal', 'counter', 'trick', 'flow', 'ramp', 'engine', 'finisher'] as const
 const FLAGS = ['reactive', 'setup', 'modes', 'luck', 'swing'] as const
@@ -448,12 +442,137 @@ function score(files: string[]) {
     const row = (label: string, v: Partial<Scores>) => `  ${label.padEnd(9)} ${PLAYSTYLE_AXIS_IDS.map((a) => `${a} ${v[a] ?? '-'}`).join('  ')}`
     console.log(`${s.name}\n  ${s.legend}: ${archetype}${archetype === suggested ? '' : ` (scorer suggests ${suggested})`}`)
     if (s.judged) console.log([row('final', scores), row('scorer', scorer), row('judged', s.judged)].join('\n'))
-    else console.log(`${row('scorer', scorer)}\n  No "judged" block: these are scorer-only. Write your holistic judgment first (deck-rubric.md step 5).`)
+    else console.log(`${row('scorer', scorer)}\n  No "judged" block: these are scorer-only. Write your holistic judgment first (rubric.md, Scoring a deck, step 5).`)
     const adj = PLAYSTYLE_AXIS_IDS.filter((a) => s.adjustments[a]).map((a) => `${a} ${s.adjustments[a]!.by > 0 ? '+' : ''}${s.adjustments[a]!.by} (${s.adjustments[a]!.why})`)
     console.log(`  raw ${PLAYSTYLE_AXIS_IDS.map((a) => `${a} ${raw[a].toFixed(2)}`).join('  ')}${adj.length ? `; adjustments: ${adj.join('; ')}` : ''}`)
     console.log(`  inputs per 40: ${Object.entries(inputs).map(([k, v]) => `${k} ${fmt(v)}`).join(', ')}`)
   }
 }
+
+/**
+ * A style's position from its scored decks: each Axis's mean (steadier than the median at 2 to 3
+ * decks), and the label most decks' raters gave, ties going to the scorer's suggestion.
+ */
+export function styleScore(sheets: TagSheet[]) {
+  const each = sheets.map((s) => scoreSheet(s))
+  const mean = Object.fromEntries(PLAYSTYLE_AXIS_IDS.map((a) => [a, round(each.reduce((t, e) => t + e.scores[a], 0) / each.length)])) as Scores
+  const count = (xs: Archetype[]) => xs.reduce((m, x) => m.set(x, (m.get(x) ?? 0) + 1), new Map<Archetype, number>())
+  const judged = count(each.map((e) => e.archetype))
+  const top = Math.max(...judged.values())
+  const suggested = count(each.map((e) => e.suggested))
+  const [archetype] = [...judged]
+    .filter(([, n]) => n === top)
+    .map(([a]) => a)
+    .sort((a, b) => (suggested.get(b) ?? 0) - (suggested.get(a) ?? 0))
+  return { mean, archetype, labels: each.map((e) => e.archetype), decks: each.length }
+}
+
+const uuidOf = (url: string) => url.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i)?.[0] ?? ''
+const scratch = (...p: string[]) => path.resolve(import.meta.dirname, '../../../.scratch/ingest', ...p)
+const readSheet = (id: string, url: string): TagSheet | null => {
+  const f = scratch(id, `${uuidOf(url)}.json`)
+  return existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : null
+}
+const fmtScores = (sc: Scores) => PLAYSTYLE_AXIS_IDS.map((a) => sc[a]).join('/')
+
+function style(files: string[]) {
+  const r = styleScore(files.map((f) => JSON.parse(readFileSync(f, 'utf8'))))
+  console.log(`${r.archetype} ${fmtScores(r.mean)} (${PLAYSTYLE_AXIS_IDS.join('/')}), mean of ${r.decks}; labels: ${r.labels.join(', ')}`)
+}
+
+interface CuratedStyle {
+  name: string
+  keyCards: string[]
+  bar: string
+  confidence: string
+  why: string
+  display: string
+  scored: string[]
+}
+interface Curation {
+  legendId: string
+  styles: CuratedStyle[]
+  rejected: { what: string; reason: string }[]
+  decision: string
+  notes: string
+}
+
+/**
+ * A style is its own Build when its label differs from every Build before it and it sits 2+ from
+ * each on some Axis; nearer than that, a Player can't tell them apart
+ * (docs/research/2026-09-25-rubric-spread-and-stability.md).
+ */
+const DISTINCT = 2
+
+/**
+ * The review file: every Legend's styles with their decks, scores and evidence. A Legend needs the
+ * Maintainer's decision when more than one style would be a Build or the curator named a decision;
+ * every other Legend is drafted without a pause.
+ */
+function picks(outputPath: string, today: string) {
+  const raw = JSON.parse(readFileSync(outputPath, 'utf8'))
+  const curations: Curation[] = (raw.result ?? raw).curations
+  const md: string[] = []
+  const missing: string[] = []
+  const decide: string[] = []
+  const ready: string[] = []
+  for (const c of curations) {
+    const legend = read(c.legendId)
+    const cand = JSON.parse(readFileSync(scratch(c.legendId, 'candidates.json'), 'utf8'))
+    const info = new Map<string, { name: string; author: string; why: string }>()
+    for (const st of cand.styles) for (const m of [...st.members, ...(st.fillers ?? []).map((f: { url: string; name: string; author: string }) => ({ ...f, why: 'filler: no evidence, measures the style' }))]) info.set(uuidOf(m.url), m)
+    const builds: { name: string; archetype: Archetype; mean: Scores }[] = []
+    const section = md.length
+    md.push('', `## ${legend.name} (${c.legendId})`)
+    for (const st of c.styles) {
+      const sheets = st.scored.map((u) => readSheet(c.legendId, u)).filter((s): s is TagSheet => !!s?.judged)
+      if (sheets.length < st.scored.length) missing.push(`${c.legendId} ${st.name}: ${st.scored.length - sheets.length} deck(s) unscored`)
+      const r = sheets.length ? styleScore(sheets) : null
+      // One brewer's list is never a Build (rubric.md, Played): its decks join the nearest Build.
+      const gap = (b: (typeof builds)[number]) => Math.max(...PLAYSTYLE_AXIS_IDS.map((a) => Math.abs(b.mean[a] - r!.mean[a])))
+      const nearest = r && [...builds].sort((a, b) => gap(a) - gap(b))[0]
+      const same = r && builds.find((b) => b.archetype === r.archetype || gap(b) < DISTINCT)
+      const role =
+        !r ? 'unscored'
+        : same ? `decks for ${same.name}`
+        : (st.bar === 'lone deck' || builds.length >= 3) && nearest ? `decks for ${nearest.name}`
+        : 'Build'
+      if (r && role === 'Build') builds.push({ name: st.name, archetype: r.archetype, mean: r.mean })
+      md.push(
+        `- **${st.name}**: ${r ? `${r.archetype} ${fmtScores(r.mean)} (mean of ${r.decks}; labels ${r.labels.join(', ')})` : 'no scores'}. Bar: ${st.bar}, confidence ${st.confidence}. Key cards: ${st.keyCards.join(', ')}. **${role}**`,
+        `  - Why: ${st.why}`,
+      )
+      for (const u of [st.display, ...st.scored.filter((u) => uuidOf(u) !== uuidOf(st.display))]) {
+        const d = info.get(uuidOf(u))
+        const s = readSheet(c.legendId, u)
+        const sc = s?.judged ? scoreSheet(s) : null
+        // A deck far from its style's mean may be another style, or mis-tagged.
+        const off = sc && r ? PLAYSTYLE_AXIS_IDS.filter((a) => Math.abs(sc.scores[a] - r.mean[a]) > 1.5) : []
+        md.push(`  - ${u}${d ? `  ${d.name} (${d.author}; ${d.why || 'no signals'})` : s ? `  ${s.name} (found by the curator)` : ''}${sc ? `  ${sc.archetype} ${fmtScores(sc.scores)}` : ''}${off.length ? `  OUTLIER on ${off.join(', ')}` : ''}`)
+      }
+    }
+    if (c.rejected.length) md.push(`- Left out: ${c.rejected.map((x) => `${x.what} (${x.reason})`).join('; ')}`)
+    if (c.notes) md.push(`- Notes: ${c.notes}`)
+    const why = [builds.length > 1 ? `${builds.length} Builds` : '', c.decision].filter(Boolean).join('; ')
+    ;(why ? decide : ready).push(c.legendId)
+    md.splice(section + 2, 0, why ? `**Decision needed**: ${why}` : '**Single style**: drafted without a pause.')
+  }
+  md.unshift(
+    `# Deck picks, ${today}`,
+    '',
+    'One section per Legend. A style marked **Build** becomes a Build; one marked **decks for X** adds its decks to that Build. Edit freely: delete a deck or style, fix a label or name, move a deck, or add a Piltover Archive link under a style (it is scored when drafting). The first deck under a style is the one the site shows.',
+    '',
+    `Decision needed (${decide.length}): ${decide.join(', ') || 'none'}`,
+    `Single style (${ready.length}): ${ready.join(', ') || 'none'}`,
+  )
+  const file = scratch('picks.md')
+  writeFileSync(file, md.join('\n') + '\n')
+  console.log(`Wrote ${path.relative(process.cwd(), file)} for ${curations.length} Legend(s). Scores are ${PLAYSTYLE_AXIS_IDS.join('/')}.`)
+  console.log(`  decision needed: ${decide.join(' ') || 'none'}`)
+  console.log(`  ready to draft:  ${ready.join(' ') || 'none'}`)
+  for (const m of missing) console.log(`  MISSING ${m}`)
+}
+
 
 /** Card text lookup for cards the rater doesn't know, e.g. from a set newer than the model. */
 async function card(name: string) {
@@ -483,9 +602,15 @@ const isMain = path.resolve(process.argv[1] ?? '') === path.resolve(import.meta.
 if (!isMain) {
   // imported for scoreSheet
 } else if (cmd === 'targets') targets(rest)
+else if (cmd === 'candidates') {
+  const ids = rest.filter((a) => !a.startsWith('--'))
+  const since = rest.find((a) => a.startsWith('--since='))?.slice(8)
+  await candidates(ids[0] === 'all' ? allIds() : ids, { today: new Date().toISOString().slice(0, 10), since })
+} else if (cmd === 'picks') picks(rest[0], rest[1])
+else if (cmd === 'style') style(rest)
 else if (cmd === 'apply') apply(rest[0], rest[1])
 else if (cmd === 'check') check(rest)
 else if (cmd === 'deck') await deck(rest[0], rest[1])
 else if (cmd === 'card') await card(rest.join(' '))
 else if (cmd === 'score') score(rest)
-else console.error('usage: tools.ts targets <id...|all> | apply <output.json> <YYYY-MM-DD> | check [id...] | deck <url|uuid> [out.json] | card <name> | score <tag-sheet.json...>')
+else console.error('usage: tools.ts targets <id...|all> | candidates <id...|all> [--since=YYYY-MM-DD] | picks <output.json> <YYYY-MM-DD> | style <tag-sheet.json...> | apply <output.json> <YYYY-MM-DD> | check [id...] | deck <url|uuid> [out.json] | card <name> | score <tag-sheet.json...>')

@@ -2,7 +2,7 @@
 
 Date: 2026-09-25
 Related:
-- .claude/skills/ingest-legends/deck-rubric.md (the rubric itself)
+- .claude/skills/ingest-legends/rubric.md, "Scoring a deck" (the rubric itself)
 - .claude/skills/ingest-legends/tools.ts (`deck`, `card`, `score`)
 - docs/adr/0005-six-independent-domain-scores.md (Variance means luck and bets, not assembled payoffs)
 
@@ -110,5 +110,5 @@ Eight decks is too few for these correlations to mean much, and the outside evid
 ## Using it
 
 - Score one or more decks: `/ingest-legends <piltoverarchive link> ...`, or follow `deck-rubric.md` by hand.
-- Re-rating a Legend now scores two to four of its relevant decks and takes each Axis's median (`rating-guide.md`, Coordinates).
+- Re-rating a Legend now scores 3 to 4 decks per style and takes each Axis's mean (`rating-guide.md`, Coordinates; `docs/research/2026-09-25-rubric-spread-and-stability.md`).
 - Rater sheets, outside-evidence files and the evaluation scripts from this study are in `.scratch/` (gitignored): `rate/`, `rate2/`, `rate3/`, `gt*.json`, `final.ts` (cross-round validation), `r3.ts`.
