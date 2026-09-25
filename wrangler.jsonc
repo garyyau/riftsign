@@ -1,0 +1,10 @@
+// Cloudflare Workers static assets: serves the built site at riftward.app. No Worker script.
+{
+  "name": "riftward",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [{ "pattern": "riftward.app", "custom_domain": true }]
+}

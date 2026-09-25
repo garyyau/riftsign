@@ -84,7 +84,7 @@ Vocabulary follows CONTEXT.md. Scoring model follows ADR 0001. Data and legal po
 
 Architecture
 
-- Single-page static site. Vite, React, TypeScript, Tailwind, pnpm. Deployed to GitHub Pages by a CI workflow on push to main. No server, no runtime network calls except loading the site's own assets.
+- Single-page static site. Vite, React, TypeScript, Tailwind, pnpm. Deployed by a CI workflow on push to main (GitHub Pages at first; Cloudflare Workers static assets at riftward.app since 2026-09). No server, no runtime network calls except loading the site's own assets.
 - Two data collections committed to the repository: Questions and Legends. Both validated against schemas at build time. The site imports them as typed data.
 - One pure scoring module with no React or browser dependencies. It exposes: compute a Profile from a Question set and a set of Answers; rank a Legend pool against a Profile producing ordered Matches with fit percentages; derive the primary Archetype from a Profile; encode a Profile to a compact string and decode it back. Everything Player-facing is a view over this module's output.
 

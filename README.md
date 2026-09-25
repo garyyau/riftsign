@@ -18,7 +18,7 @@ pnpm simulate     # seeded simulated Players: recovery, attractors, close calls 
 pnpm build        # validate, test, typecheck, vite build, share pages
 ```
 
-Pushing to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
+Pushing to `main` deploys to Cloudflare Workers static assets at https://riftward.app via `.github/workflows/deploy.yml` (config in `wrangler.jsonc`).
 
 ## Data
 

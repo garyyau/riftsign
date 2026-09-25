@@ -7,3 +7,4 @@ dist
 
 # Deck-rubric tag sheets and other agent scratch work
 .scratch/
+.wrangler/
