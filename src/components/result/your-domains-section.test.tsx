@@ -18,7 +18,7 @@ const pool = [
 
 function show(scores: Partial<Profile>, shared = false, legends = pool) {
   const profile = { ...CENTER, pace: 10, ...scores }
-  render(<YourDomainsSection profile={profile} picks={domainPicks(profile, rankLegends(profile, legends))} shared={shared} />)
+  render(<YourDomainsSection profile={profile} picks={domainPicks(profile, rankLegends(profile, legends))} shared={shared} legendCount={legends.length} />)
 }
 const highlighted = () => screen.getAllByRole('listitem').filter((li) => li.hasAttribute('data-highlighted'))
 
@@ -31,9 +31,19 @@ describe('YourDomainsSection', () => {
     for (const d of DOMAINS) expect(screen.getAllByText(d).length).toBeGreaterThan(0)
     expect(highlighted().map((li) => li.textContent)).toEqual([expect.stringContaining('Fury'), expect.stringContaining('Order')])
     expect(screen.getByText(s.domainsLead(['Fury', 'Order']))).toBeTruthy()
+    expect(screen.getByRole('heading', { name: s.moreInDomains(['Fury', 'Order']) })).toBeTruthy()
+    expect(screen.getByText(s.domainsLegends(['Fury', 'Order']))).toBeTruthy()
     const row = screen.getByText('pair, Test Legend').closest('li')!
-    expect(within(row).getByText(/% fit$/)).toBeTruthy()
+    expect(within(row).getByText(/^\d+%$/)).toBeTruthy()
+    expect(within(row).getByText('Midrange')).toBeTruthy()
     expect(screen.queryByText('head-1, Test Legend')).toBeNull()
+    expect(screen.getByRole('button', { name: s.seeAll(pool.length) })).toBeTruthy()
+  })
+
+  it('names a single leading Domain on its own', () => {
+    show({ fury: 9 })
+    expect(screen.getByRole('heading', { name: s.moreInDomains(['Fury']) })).toBeTruthy()
+    expect(screen.getByText(s.domainsLegends(['Fury']))).toBeTruthy()
   })
 
   it('labels each bar with the same line the highlight uses, so a bar never claims a pull the section denies', () => {
@@ -45,6 +55,8 @@ describe('YourDomainsSection', () => {
   it('hides the highlight and the list with a friendly line when no Domain clearly leads', () => {
     show({})
     expect(highlighted()).toEqual([])
+    expect(screen.getByText(s.domainsNoLead)).toBeTruthy()
+    expect(screen.getByRole('heading', { name: s.moreByDomain })).toBeTruthy()
     expect(screen.getByText(s.domainsNone)).toBeTruthy()
     expect(screen.queryByText(/best fit first/)).toBeNull()
   })
@@ -53,9 +65,10 @@ describe('YourDomainsSection', () => {
     show({ fury: 9, order: 8.5 }, false, pool.slice(0, 2))
     expect(screen.getByText(s.domainsLead(['Fury', 'Order']))).toBeTruthy()
     expect(screen.getByText(s.domainsCovered)).toBeTruthy()
+    expect(screen.queryByText(/best fit first/)).toBeNull()
   })
 
-  it('drops "Your" from the title on a shared result', () => {
+  it('says "Their Domains" on a shared result', () => {
     show({}, true)
     expect(screen.getByRole('heading', { name: s.sharedDomainsTitle })).toBeTruthy()
     expect(screen.queryByText(s.domainsTitle)).toBeNull()

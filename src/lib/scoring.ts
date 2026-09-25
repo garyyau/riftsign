@@ -131,6 +131,11 @@ export function clampToPool(profile: Profile, pool: Legend[]): Profile {
   return out
 }
 
+/** A Build's unrounded fit, 0-100, against a Profile already clamped to the pool. */
+function buildScore(profile: Profile, legend: Legend, build: Build): number {
+  return (1 - Math.sqrt(playstyleTerm(profile, build) + domainTerm(profile, legend)) / MAX_DISTANCE) * 100
+}
+
 /**
  * One Match per Legend, scored on whichever of its reviewed Builds sits closest to the Profile.
  */
@@ -138,38 +143,29 @@ export function rankLegends(rawProfile: Profile, pool: Legend[]): Match[] {
   const profile = clampToPool(rawProfile, pool)
   return pool
     .flatMap((legend) => {
-      const domain = domainTerm(profile, legend)
-      const scored = reviewedBuilds(legend).map((build) => ({ build, d: Math.sqrt(playstyleTerm(profile, build) + domain) }))
+      const scored = reviewedBuilds(legend).map((build) => ({ build, score: buildScore(profile, legend, build) }))
       if (!scored.length) return []
-      const { build, d } = scored.reduce((best, s) => (s.d < best.d ? s : best))
-      return [{ legend, build, score: (1 - d / MAX_DISTANCE) * 100 }]
+      return [{ legend, ...scored.reduce((best, s) => (s.score > best.score ? s : best)) }]
     })
     .sort((a, b) => b.score - a.score || a.legend.name.localeCompare(b.legend.name))
     .map(({ legend, build, score }) => ({ legend, build, fit: Math.round(score) }))
 }
 
-/** How many top Matches the result page headlines as "Legends that play like you". */
+/** One Build's fit on the same scale as a Match's, for a Legend's other Builds. */
+export function buildFit(rawProfile: Profile, pool: Legend[], legend: Legend, build: Build): number {
+  return Math.round(buildScore(clampToPool(rawProfile, pool), legend, build))
+}
+
+/** How many top Matches the result page headlines: the top Build and "Also plays like you". */
 export const HEADLINE_MATCHES = 2
 
-/** Top two Matches within this many fit points of each other count as a tie for the headline. */
+/** Top two Matches within this many fit points of each other count as a tie for the Archetype. */
 export const ARCHETYPE_TIE_MARGIN = 3
-
-/**
- * Top two Matches within this many fit points of each other are called a close call on the
- * result page. 0 means the same shown fit. Retune with `pnpm simulate`, separately from the tie margin.
- */
-export const CLOSE_CALL_MARGIN = 0
-
-/** The top two Matches when their fits sit within the close-call margin, else null. */
-export function closeCall(matches: Match[]): [Match, Match] | null {
-  const [first, second] = matches
-  return first && second && first.fit - second.fit <= CLOSE_CALL_MARGIN ? [first, second] : null
-}
 
 /**
  * The Archetype of the top Match, unless the top two disagree and sit within the tie
  * margin. Then the Archetype with the higher mean fit across the top five wins, which
- * keeps the headline from flipping on a one-point difference.
+ * keeps the answer from flipping on a one-point difference. The Persona checks use it.
  */
 export function deriveArchetype(matches: Match[]): Archetype | null {
   const [first, second] = matches

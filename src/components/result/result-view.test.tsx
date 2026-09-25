@@ -1,50 +1,65 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { ARCHETYPE_COPY, STRINGS } from '@/lib/strings'
-import { CENTER, legend } from '@/lib/test-fixtures'
+import { buildFit } from '@/lib/scoring'
+import { STRINGS } from '@/lib/strings'
+import { build, CENTER, legend } from '@/lib/test-fixtures'
 import type { Legend, Profile } from '@/lib/types'
 import { ResultView, type ResultSource } from './result-view'
 
 const s = STRINGS.result
 const fast: Profile = { ...CENTER, pace: 10 }
-// Both round to the same fit, so they tie on screen.
-const nearTie = [legend('closest', 'Aggro', { pace: 9.95 }), legend('runner-up', 'Aggro', { pace: 9.9 })]
-const pool = [...nearTie, legend('third', 'Tempo', { pace: 8 }), legend('slow', 'Control', { pace: 0 })]
+const top = legend('top', 'Aggro', {}, undefined, {
+  builds: [
+    build('Aggro', { pace: 10 }, { whyYou: 'Why Aggro.' }),
+    build('Control', { pace: 0 }, { whyYou: 'Why Control.' }),
+    build('Combo', { pace: 4 }, { whyYou: 'Why Combo.' }),
+  ],
+})
+const pool = [top, legend('runner-up', 'Aggro', { pace: 9 }), legend('slow', 'Control', { pace: 0 })]
 
-function show(profile: Profile, legends: Legend[], source: ResultSource = 'stored') {
+function show(profile: Profile, legends: Legend[], source: ResultSource = 'stored', versionChanged = false) {
   const shareUrl = vi.fn(() => 'url')
-  render(
-    <ResultView
-      profile={profile}
-      pool={legends}
-      source={source}
-      versionChanged={false}
-      shareUrl={shareUrl}
-      onRetake={() => {}}
-    />,
-  )
+  render(<ResultView profile={profile} pool={legends} source={source} versionChanged={versionChanged} shareUrl={shareUrl} onRetake={() => {}} />)
   return shareUrl
 }
-const cardTitles = () => screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent)
+const hero = () => within(screen.getByRole('heading', { level: 1 }).closest('section')!)
 
 describe('ResultView', () => {
   afterEach(cleanup)
 
-  it('headlines the top two Matches and shares the Legend a recipient sees first', async () => {
+  it('leads with the top Build and #2, and shares the Legend a recipient sees first', async () => {
     Object.assign(navigator, { clipboard: { writeText: vi.fn(() => Promise.resolve()) } })
     const shareUrl = show(fast, pool)
-    expect(cardTitles()).toEqual(['closest, Test Legend', 'runner-up, Test Legend'])
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('top, Test Legend')
+    // The Explore panel below also names a Legend in an h3; #2 comes first.
+    expect(screen.getAllByRole('heading', { level: 3 })[0].textContent).toBe('runner-up, Test Legend')
+    expect(hero().getByText(s.topBuild)).toBeTruthy()
+    expect(hero().getByText('Why Aggro.')).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: s.share }))
-    await waitFor(() => expect(shareUrl).toHaveBeenCalledWith('closest'))
+    await waitFor(() => expect(shareUrl).toHaveBeenCalledWith('top'))
   })
 
-  it('calls out a close call between the top two by Champion, and stays quiet for a clear winner', () => {
-    show(fast, nearTie)
-    expect(screen.getByText(s.closeCall('closest', 'runner-up'))).toBeTruthy()
-    cleanup()
-    show(fast, [nearTie[0], legend('slow', 'Control', { pace: 0 })])
-    expect(screen.queryByText(/It was close/)).toBeNull()
+  it('swaps the hero to another Build from "Also played as" and back to the best fit', () => {
+    show(fast, pool)
+    fireEvent.click(hero().getByRole('button', { name: 'Control' }))
+    expect(hero().getByText(s.otherBuild)).toBeTruthy()
+    expect(hero().getByText(s.fit(buildFit(fast, pool, top, top.builds[1])))).toBeTruthy()
+    expect(hero().getByText('Why Control.')).toBeTruthy()
+    expect(hero().queryByText('Why Aggro.')).toBeNull()
+    expect(hero().getByText(/^played as/).textContent).toBe(`${s.playedAs} Control`)
+    expect(hero().getByText(s.bestFit, { exact: false })).toBeTruthy()
+
+    fireEvent.click(hero().getByRole('button', { name: 'Aggro' }))
+    expect(hero().getByText(s.topBuild)).toBeTruthy()
+    expect(hero().getByText('Why Aggro.')).toBeTruthy()
+    expect(hero().queryByText(s.bestFit, { exact: false })).toBeNull()
+    expect(hero().getByRole('button', { name: 'Control' })).toBeTruthy()
+  })
+
+  it('hides "Also played as" for a Legend with one Build', () => {
+    show(fast, pool.slice(1))
+    expect(screen.queryByText(s.alsoPlayed, { exact: false })).toBeNull()
   })
 
   it('always shows Your Domains, with a friendly line when no Domain leads', () => {
@@ -53,11 +68,24 @@ describe('ResultView', () => {
     expect(screen.getByText(s.domainsNone)).toBeTruthy()
   })
 
-  it('uses neutral copy on a shared result', () => {
+  it('shows a shared result in the third person, with a banner and no share button', () => {
     show(fast, pool, 'shared')
-    const neutral = [s.sharedEyebrow, s.sharedMatchesTitle, s.sharedDomainsTitle, ARCHETYPE_COPY.Aggro.sharedDescription, s.sharedCloseCall('closest', 'runner-up')]
-    for (const text of neutral) expect(screen.getByText(text)).toBeTruthy()
-    const personal = [s.eyebrow, s.matchesTitle, s.domainsTitle, ARCHETYPE_COPY.Aggro.description, s.closeCall('closest', 'runner-up')]
-    for (const text of personal) expect(screen.queryByText(text)).toBeNull()
+    expect(screen.getByText(s.sharedNotice)).toBeTruthy()
+    for (const text of [s.sharedTopBuild, s.sharedAlsoPlaysTitle, s.sharedPlaystyleTitle, s.sharedDomainsTitle]) {
+      expect(screen.getByText(text)).toBeTruthy()
+    }
+    for (const text of [s.topBuild, s.alsoPlaysTitle, s.playstyleTitle, s.domainsTitle, s.retake]) {
+      expect(screen.queryByText(text)).toBeNull()
+    }
+    expect(screen.queryByRole('button', { name: s.share })).toBeNull()
+    expect(screen.getAllByRole('button', { name: s.takeOwn })).toHaveLength(2)
+  })
+
+  it('notes an older Question set in the same banner, worded for whose result it is', () => {
+    show(fast, pool, 'stored', true)
+    expect(screen.getByText(s.versionNotice)).toBeTruthy()
+    cleanup()
+    show(fast, pool, 'shared', true)
+    expect(screen.getByText(s.olderLinkNotice)).toBeTruthy()
   })
 })

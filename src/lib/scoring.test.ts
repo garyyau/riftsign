@@ -1,8 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   ARCHETYPE_TIE_MARGIN,
-  CLOSE_CALL_MARGIN,
-  closeCall,
+  buildFit,
   computeProfile,
   deriveArchetype,
   DOMAIN_HIGHLIGHT_THRESHOLD,
@@ -196,18 +195,18 @@ describe('deriveArchetype', () => {
   })
 })
 
-describe('closeCall', () => {
-  const pool = [legend('a', 'Aggro', { pace: 10 }), legend('b', 'Tempo', { pace: 9.9 }), legend('c', 'Control', { pace: 0 })]
-
-  it('names the top two when their fits sit within the margin', () => {
-    const matches = rankLegends({ ...CENTER, pace: 10 }, pool)
-    expect(matches[0].fit - matches[1].fit).toBeLessThanOrEqual(CLOSE_CALL_MARGIN)
-    expect(closeCall(matches)?.map((m) => m.legend.id)).toEqual(['a', 'b'])
+describe('buildFit', () => {
+  const lux = legend('lux', 'Control', {}, undefined, {
+    builds: [build('Control', { pace: 1, stance: 1 }), build('Combo', { pace: 9, stance: 9 })],
   })
+  const pool = [lux, legend('slow', 'Control', { pace: 0, stance: 0 }), legend('fast', 'Aggro', { pace: 10, stance: 10 })]
+  const player: Profile = { ...CENTER, pace: 10, stance: 10 }
 
-  it('stays quiet for a clear winner or a single Match', () => {
-    expect(closeCall(rankLegends({ ...CENTER, pace: 10 }, [pool[0], pool[2]]))).toBeNull()
-    expect(closeCall(rankLegends(CENTER, [pool[0]]))).toBeNull()
+  it("agrees with the Match fit on the matched Build and scores the Legend's other Builds lower", () => {
+    const match = rankLegends(player, pool).find((m) => m.legend.id === 'lux')!
+    expect(match.build.archetype).toBe('Combo')
+    expect(buildFit(player, pool, lux, match.build)).toBe(match.fit)
+    expect(buildFit(player, pool, lux, lux.builds[0])).toBeLessThan(match.fit)
   })
 })
 
