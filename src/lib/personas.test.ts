@@ -34,6 +34,8 @@ const PERSONAS: Persona[] = [
   {
     name: 'impatient aggro player',
     archetype: 'Aggro',
+    knownLegendIssue:
+      'Jinx was re-rated from its decks (2026-09-25) and no longer sits at complexity 3.5, so this Persona now lands one fit point closer to Darius, which is labelled Tempo from the template pass but sits nearer the Aggro centroid (tools.ts check). Clears when Darius is re-rated.',
     answers: {
       'say-out-loud': 'everyone-attacks',
       'perfect-win': 'over-early',
