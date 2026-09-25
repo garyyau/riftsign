@@ -14,7 +14,6 @@ import { DOMAIN_ID, DOMAIN_IDS, DOMAINS, normalize, PLAYSTYLE_AXIS_IDS, SCORE_ID
 import { validateQuestionSet } from '../src/lib/schemas'
 import {
   answersOf,
-  CLOSE_CALL_MARGIN,
   computeProfile,
   DOMAIN_HIGHLIGHT_THRESHOLD,
   DOMAIN_WEIGHT,
@@ -279,7 +278,6 @@ section('Plausible Players (every score uniform 0 to 10)')
   }
   const within = (m: number) => pct(gaps.filter((g) => g <= m).length / gaps.length)
   row('  median fit gap #1 to #2', `${median(gaps)} pts`)
-  row(`  close call (gap <= ${CLOSE_CALL_MARGIN})`, within(CLOSE_CALL_MARGIN))
   row('  gap <= 0 / 1 / 2 / 3 / 4', [0, 1, 2, 3, 4].map(within).join(' / '))
   const alternatives = items.reduce((n, item) => n + item.options.length - 1, 0)
   row('  mean single-answer flips that change #1', `${mean(flips).toFixed(1)} of ${alternatives}`)
