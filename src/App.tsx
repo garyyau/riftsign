@@ -88,40 +88,44 @@ export default function App() {
     <div className="flex min-h-screen flex-col overflow-x-clip">
       <SiteHeader onHome={goHome} />
       <main className="mx-auto w-full max-w-[1200px] flex-1">
-        {view.kind === 'landing' && (
-          <Landing
-            hasResult={storedIsComplete}
-            hasProgress={storedHasProgress}
-            onStart={startFresh}
-            onContinue={continueRun}
-            onSeeResult={showStored}
-          />
-        )}
-        {view.kind === 'quiz' && (
-          <Quiz
-            questions={questions}
-            answers={session.answers}
-            step={view.step}
-            onAnswer={(questionId, answerId) =>
-              updateSession((prev) => ({ answers: { ...prev.answers, [questionId]: answerId }, lastProfileCode: null }))
-            }
-            onNext={() => show({ kind: 'quiz', step: view.step + 1 })}
-            onBack={() => (view.step === 0 ? goHome() : setView({ kind: 'quiz', step: view.step - 1 }))}
-            onFinish={finish}
-          />
-        )}
-        {view.kind === 'result' && (
-          <ResultView
-            profile={view.result.profile}
-            pool={LEGENDS}
-            source={view.source}
-            versionChanged={view.result.questionSetVersion !== currentVersion}
-            shareUrl={(topLegendId) =>
-              buildShareUrl(window.location.origin, import.meta.env.BASE_URL, view.result.profile, view.result.questionSetVersion, topLegendId)
-            }
-            onRetake={startFresh}
-          />
-        )}
+        {/* Each page fades in when the view changes. Moving between Questions is animated inside the Quiz. */}
+        <div key={view.kind} className="page-in">
+          {view.kind === 'landing' && (
+            <Landing
+              hasResult={storedIsComplete}
+              hasProgress={storedHasProgress}
+              onStart={startFresh}
+              onContinue={continueRun}
+              onSeeResult={showStored}
+            />
+          )}
+          {view.kind === 'quiz' && (
+            <Quiz
+              questions={questions}
+              answers={session.answers}
+              step={view.step}
+              onAnswer={(questionId, answerId) =>
+                updateSession((prev) => ({ answers: { ...prev.answers, [questionId]: answerId }, lastProfileCode: null }))
+              }
+              onNext={() => show({ kind: 'quiz', step: view.step + 1 })}
+              onBack={() => (view.step === 0 ? goHome() : setView({ kind: 'quiz', step: view.step - 1 }))}
+              onJump={(step) => setView({ kind: 'quiz', step })}
+              onFinish={finish}
+            />
+          )}
+          {view.kind === 'result' && (
+            <ResultView
+              profile={view.result.profile}
+              pool={LEGENDS}
+              source={view.source}
+              versionChanged={view.result.questionSetVersion !== currentVersion}
+              shareUrl={(topLegendId) =>
+                buildShareUrl(window.location.origin, import.meta.env.BASE_URL, view.result.profile, view.result.questionSetVersion, topLegendId)
+              }
+              onRetake={startFresh}
+            />
+          )}
+        </div>
       </main>
       <SiteFooter />
     </div>

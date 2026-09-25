@@ -32,9 +32,9 @@ export const STRINGS = {
   quiz: {
     progress: (current: number, total: number) => `${current} of ${total}`,
     progressLabel: (current: number, total: number) => `Question ${current} of ${total}`,
+    jumpTo: (n: number) => `Go to Question ${n}`,
     keyHint: (answers: number) => `Press 1-${answers} to answer`,
     back: 'Back',
-    next: 'Next',
     finish: 'Show my Legends',
   },
   result: {
@@ -120,7 +120,7 @@ export const STRINGS = {
     title: PROJECT_TITLE,
     description: 'Find the Riftbound Legends that fit how you like to play.',
     tagline: 'A playstyle test for Riftbound. Fit, not tier list.',
-    defaultSubtitle: 'Riftbound playstyle test',
+    legendEyebrow: 'My top Legend',
     legendTitle: (name: string) => `${PROJECT_TITLE}: ${name}`,
     legendDescription: (name: string) => `My top Legend is ${name}. Find yours.`,
   },

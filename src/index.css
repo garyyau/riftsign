@@ -210,6 +210,34 @@
   color: var(--cream);
 }
 
+/* A new page fades up into place. Pages only animate in: the old one is gone before the new one draws.
+   Both enter animations run on their own layer. Without it, Chrome leaves a trail of stale pixels beside the
+   sliding content. Nothing inside is position: fixed, so the containing block this makes is harmless. */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@utility page-in {
+  animation: page-in 250ms ease-out both;
+  will-change: transform, opacity;
+}
+
+/* Quiz: the next Question slides in from the side the Player is moving toward. Set --step-dir to 1 (forward), -1 (back) or 0 (fade only). */
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--step-dir, 1) * 24px));
+  }
+}
+
+@utility step-in {
+  animation: step-in 250ms ease-out both;
+  will-change: transform, opacity;
+}
+
 /* Landing: the Legend card row drifts left in a seamless loop. The track holds the list twice, so -50% lands back on the start. */
 @keyframes marquee {
   to {
