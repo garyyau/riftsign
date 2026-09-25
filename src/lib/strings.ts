@@ -72,6 +72,40 @@ export const STRINGS = {
     olderLinkNotice: 'This result was made with an earlier version of the test.',
     scoresTitle: 'Your scores',
   },
+  /** "Explore other Legends" on the result page. `shared*` keys are the third-person copy for someone else's result. */
+  explore: {
+    eyebrow: 'Explore other Legends',
+    title: 'Curious about another Legend?',
+    lead: 'Every Legend, ranked by how well it fits you. Pick one to see how it plays and how far it sits from your playstyle.',
+    sharedLead:
+      'Every Legend, ranked by how well it fits them. Pick one to see how it plays and how far it sits from their playstyle.',
+    sortLabel: 'Sort Legends',
+    sortFit: 'Best fit first',
+    sortName: 'A to Z',
+    searchPlaceholder: (count: number) => `Search ${count} Legends`,
+    noResults: (query: string) => `No Legends match "${query}".`,
+    scrollBack: 'Show earlier Legends',
+    scrollForward: 'Show later Legends',
+    rank: (rank: number) => `#${rank}`,
+    portraitLabel: (rank: number, name: string) => `#${rank} ${name}`,
+    rankOf: (rank: number, total: number, fit: number) => `#${rank} of ${total}  /  ${fit}% fit`,
+    fit: (fit: number) => `${fit}% fit`,
+    playedAs: 'played as',
+    buildsLabel: 'Builds',
+    compareTitle: 'Compared with you',
+    sharedCompareTitle: 'Compared with them',
+    you: 'You',
+    them: 'Them',
+    buildKey: (champion: string, archetype: string) => `${champion} as ${archetype}`,
+    /** One Axis gap, e.g. "0.3 faster". */
+    gap: (amount: string, word: string) => `${amount} ${word}`,
+    same: 'About the same',
+    close: 'It plays close to how you like to play.',
+    sharedClose: 'It plays close to how they like to play.',
+    /** Playstyle gap words, biggest first, e.g. ["faster", "swingier"]. */
+    gaps: (words: string[]) => `It's ${words.join(' and ')} than you like.`,
+    sharedGaps: (words: string[]) => `It's ${words.join(' and ')} than they like.`,
+  },
   /** Open Graph copy baked into the static share pages at build time. */
   og: {
     title: PROJECT_TITLE,
