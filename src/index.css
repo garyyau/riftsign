@@ -228,3 +228,14 @@
 @utility rise-in {
   animation: rise-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
+
+/* Landing: the Legend card row drifts left in a seamless loop. The track holds the list twice, so -50% lands back on the start. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility marquee {
+  animation: marquee 200s linear infinite;
+}

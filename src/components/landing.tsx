@@ -1,5 +1,11 @@
+import { ColumnLogo } from '@/components/brand/logo'
 import { Button } from '@/components/ui/button'
+import { LEGENDS } from '@/data'
 import { STRINGS } from '@/lib/strings'
+import { landingOrder } from './landing/legend-order'
+import { LegendRow } from './landing/legend-row'
+
+const rowLegends = landingOrder(LEGENDS)
 
 interface LandingProps {
   /** True when a finished run is stored on this device. */
@@ -14,15 +20,16 @@ interface LandingProps {
 export function Landing({ hasResult, hasProgress, onStart, onContinue, onSeeResult }: LandingProps) {
   const s = STRINGS.landing
   return (
-    <section className="grid gap-10 px-6 py-16 md:grid-cols-12 md:py-28">
-      <div className="md:col-span-8">
-        <p className="eyebrow">{s.eyebrow}</p>
-        <h1 className="display-l md:display-xl mt-6">{s.title}</h1>
-        <p className="mt-8 max-w-xl text-body-l text-secondary-text">{s.body}</p>
-        <div className="mt-10 flex flex-wrap items-center gap-3">
+    <div className="pt-6 pb-4">
+      <section className="flex flex-col items-center px-6 text-center">
+        <ColumnLogo />
+        <p className="eyebrow mt-8">{s.eyebrow}</p>
+        <h1 className="display-l md:display-xl mt-4 max-w-[860px]">{s.title}</h1>
+        <p className="mt-5 max-w-[600px] text-body-l text-muted-foreground">{s.body}</p>
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
           {hasResult ? (
             <>
-              <Button size="lg" onClick={onSeeResult}>
+              <Button size="lg" forward onClick={onSeeResult}>
                 {s.seeResult}
               </Button>
               <Button size="lg" variant="secondary" onClick={onStart}>
@@ -31,7 +38,7 @@ export function Landing({ hasResult, hasProgress, onStart, onContinue, onSeeResu
             </>
           ) : hasProgress ? (
             <>
-              <Button size="lg" onClick={onContinue}>
+              <Button size="lg" forward onClick={onContinue}>
                 {s.continue}
               </Button>
               <Button size="lg" variant="secondary" onClick={onStart}>
@@ -43,10 +50,14 @@ export function Landing({ hasResult, hasProgress, onStart, onContinue, onSeeResu
               {s.start}
             </Button>
           )}
-          <span className="text-small text-muted-foreground">{s.time}</span>
         </div>
+        <p className="mt-4 text-small text-muted-foreground">{s.time}</p>
+      </section>
+      <p className="eyebrow mt-14 px-6 text-center">{s.rowLabel(rowLegends.length)}</p>
+      <div className="mt-6">
+        <LegendRow legends={rowLegends} />
       </div>
-      <p className="text-small self-end text-faint md:col-span-4 md:text-right">{s.fanNote}</p>
-    </section>
+      <p className="mt-9 px-6 text-xs text-faint xl:px-0">{s.fanNote}</p>
+    </div>
   )
 }

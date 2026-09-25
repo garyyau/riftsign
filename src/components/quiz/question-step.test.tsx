@@ -8,21 +8,21 @@ import { QuestionStep } from './question-step'
 describe('QuestionStep', () => {
   afterEach(cleanup)
 
-  const plain = scenario('racing', [answer('race', [{ axis: 'stance', weight: 2 }]), answer('wait', [{ axis: 'stance', weight: -2 }])], [
-    { axis: 'stance', reverse: false },
-  ])
+  const radioNames = () => screen.getAllByRole('radio').map((r) => r.getAttribute('aria-checked') + ' ' + r.textContent)
 
-  it('shows each committed scenario as one choice per Answer, each with its own copy', () => {
+  it('shows each committed scenario as one numbered choice per Answer', () => {
     for (const q of QUESTION_SET.questions) {
       if (q.kind !== 'scenario') continue
-      render(<QuestionStep question={q} number={1} selected={undefined} onSelect={() => {}} />)
-      expect(screen.getAllByRole('radio').map((r) => r.textContent), q.id).toEqual(q.answers.map((a) => a.text))
+      render(<QuestionStep question={q} selected={undefined} onSelect={() => {}} />)
+      expect(radioNames(), q.id).toEqual(q.answers.map((a, i) => `false 0${i + 1}${a.text}`))
       cleanup()
     }
   })
 
-  it('keeps an ordinary scenario as one choice per Answer', () => {
-    render(<QuestionStep question={plain} number={1} selected={undefined} onSelect={() => {}} />)
-    expect(screen.getAllByRole('radio').map((r) => r.textContent)).toEqual(['Answer race', 'Answer wait'])
+  it('marks the picked Answer as checked', () => {
+    const q = scenario('racing', [answer('race', [{ axis: 'stance', weight: 2 }]), answer('wait', [])], [{ axis: 'stance', reverse: false }])
+    render(<QuestionStep question={q} selected="wait" onSelect={() => {}} />)
+    expect(radioNames()).toEqual(['false 01Answer race', 'true 02Answer wait'])
+    expect(screen.getByRole('radio', { name: 'Answer wait' })).toBeTruthy()
   })
 })

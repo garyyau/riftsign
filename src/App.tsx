@@ -85,7 +85,7 @@ export default function App() {
   const storedHasProgress = !storedIsComplete && Object.keys(session.answers).length > 0
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-clip">
       <SiteHeader onHome={goHome} />
       <main className="mx-auto w-full max-w-[1200px] flex-1">
         {view.kind === 'landing' && (

@@ -1,9 +1,9 @@
-import { ArrowLeft } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import { answersOf } from '@/lib/scoring'
 import { STRINGS } from '@/lib/strings'
 import type { Answers, Question } from '@/lib/types'
-import { ProgressBar } from './progress-bar'
+import { ProgressTrail } from './progress-trail'
 import { QuestionStep } from './question-step'
 
 interface QuizProps {
@@ -18,50 +18,59 @@ interface QuizProps {
   onFinish: () => void
 }
 
-/** How long a picked Answer stays on screen before the next Question, so the Player sees what they chose. */
-export const ANSWER_PAUSE_MS = 250
-
 export function Quiz({ questions, answers, step, onAnswer, onNext, onBack, onFinish }: QuizProps) {
   const s = STRINGS.quiz
   const total = questions.length
   const question = questions[step]
+  const options = answersOf(question)
   const last = step === total - 1
+  const picked = question.id in answers
   const next = last ? onFinish : onNext
-  const progress = s.progress(step + 1, total)
 
-  // Leaving the step (Back, Next, or the timer itself) cancels a pending advance.
-  const advance = useRef<number | undefined>(undefined)
-  useEffect(() => () => window.clearTimeout(advance.current), [step])
-  const select = (questionId: string, answerId: string) => {
-    onAnswer(questionId, answerId)
-    window.clearTimeout(advance.current)
-    advance.current = window.setTimeout(next, ANSWER_PAUSE_MS)
-  }
+  // Number keys pick an Answer and Enter presses Next. Picking never moves on by itself.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.repeat) return
+      const target = e.target instanceof Element ? e.target : null
+      if (target?.closest('input, textarea, select, [contenteditable]')) return
+      const n = Number(e.key)
+      if (Number.isInteger(n) && n >= 1 && n <= options.length) {
+        e.preventDefault()
+        onAnswer(question.id, options[n - 1].id)
+      } else if (e.key === 'Enter' && picked) {
+        // Back and Next already answer Enter themselves; an Answer row hands it to Next.
+        if (target?.closest('a, button:not([role="radio"])')) return
+        e.preventDefault()
+        next()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [question, options, picked, next, onAnswer])
 
   return (
-    <div>
-      <ProgressBar value={step} max={total} label={progress} />
-      <div className="flex items-center justify-between gap-3 px-6 pt-4">
-        <Button variant="link" onClick={onBack}>
-          <ArrowLeft aria-hidden />
-          {s.back}
-        </Button>
-        <div className="flex items-center gap-3">
-          <span className="small-caps text-muted-foreground">{progress}</span>
-          {question.id in answers && (
-            <Button size="sm" forward onClick={next}>
+    <div className="px-6 pt-8 pb-8 md:pt-12 xl:px-0">
+      <ProgressTrail current={step + 1} total={total} />
+      <div className="mt-12 lg:mt-[106px]">
+        <QuestionStep
+          key={question.id}
+          question={question}
+          selected={answers[question.id]}
+          onSelect={(answerId) => onAnswer(question.id, answerId)}
+        >
+          <div className="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+            <Button variant="link" className="gap-1.5 justify-self-start text-small" onClick={onBack}>
+              <span aria-hidden>←</span>
+              {s.back}
+            </Button>
+            {/* Number keys mean nothing on a phone, so the hint only shows from sm up. */}
+            <p className="text-[13px] leading-[1.2] text-faint max-sm:hidden">{s.keyHint(options.length)}</p>
+            <Button size="lg" forward className="col-start-3 justify-self-end" disabled={!picked} onClick={next}>
               {last ? s.finish : s.next}
             </Button>
-          )}
-        </div>
+          </div>
+        </QuestionStep>
       </div>
-      <QuestionStep
-        key={question.id}
-        question={question}
-        number={step + 1}
-        selected={answers[question.id]}
-        onSelect={(answerId) => select(question.id, answerId)}
-      />
     </div>
   )
 }
