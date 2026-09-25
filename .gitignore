@@ -4,3 +4,6 @@ dist
 .tmp/
 .claude/settings.local.json
 .DS_Store
+
+# Deck-rubric tag sheets and other agent scratch work
+.scratch/

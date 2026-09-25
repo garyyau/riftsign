@@ -13,8 +13,9 @@ Argument: `$ARGUMENTS`.
 - Empty: **ingest** every newly released Legend.
 - One or more Legend names: **re-rate** those.
 - `all`: **re-rate** every Legend, after a ban list, a new set shifting the meta, or a major tournament. Budget: the 49-Legend pass on 2026-09-23 ran 54 agents, about 2.6M tokens and 20 minutes.
+- One or more Piltover Archive deck links: **score** those decks. Follow `deck-rubric.md` for each yourself, report the scores, Archetype, plan and deciding cards, then say which Legend Build each deck matches or would change (compare with `src/data/legends/<id>.json`). Change no Legend file unless the Maintainer asks; a change then goes through step 5 and lands `reviewed: false`.
 
-Everything here is in this folder: `rating-guide.md` is the bar every rating is held to, `sources.md` the deck-source recipe, `research.workflow.js` the research fan-out, `tools.ts` the mechanical steps (run from the repo root with `pnpm tsx .claude/skills/ingest-legends/tools.ts ...`).
+Everything here is in this folder: `rating-guide.md` is the bar every rating is held to, `deck-rubric.md` how one deck list becomes a playstyle position, `sources.md` the deck-source recipe, `research.workflow.js` the research fan-out, `tools.ts` the mechanical steps (run from the repo root with `pnpm tsx .claude/skills/ingest-legends/tools.ts ...`).
 
 ## 1. Targets
 

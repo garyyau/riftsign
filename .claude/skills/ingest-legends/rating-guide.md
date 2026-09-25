@@ -23,13 +23,13 @@ Every Legend keeps at least one Build, even a fringe Legend with no current resu
 
 ## Archetype labels
 
-The five labels are Aggro, Tempo, Midrange, Control, Combo. There is no Ramp. Decks that ramp into Dazzling Aurora are labelled by what surrounds the ramp: **Control** when the rest is removal and answers (Poppy, Miss Fortune, Garen), **Combo** when the plan runs through the one engine with little removal (Jayce, Fiora). Keep label and coordinates consistent: `tools.ts check` flags a Build that sits nearer another Archetype's average position than its own.
+The five labels are Aggro, Tempo, Midrange, Control, Combo. There is no Ramp. Decks that ramp into Dazzling Aurora are labelled by what surrounds the ramp: **Control** when the rest is removal and answers (Poppy, Miss Fortune, Garen), **Combo** when the plan runs through the one engine with little removal (Jayce, Fiora). The deck rubric's Archetype rules encode this; start from the Archetype most of the Build's scored decks get, and cross-check it with outside labels. `tools.ts check` flags a Build that sits nearer another Archetype's average position than its own.
 
 ## Coordinates
 
-- Playstyle Axes 0 to 10 in half steps, placed relative to two or three existing Builds of the same Archetype, named in the notes.
+- Score the Build's relevant decks with `deck-rubric.md` (two to four of them, strongest placements first). Its coordinates are the median of each Axis across those decks. A Build with no tournament list is scored from its starter or guide list, at confidence low.
 - A Build stores only the four playstyle Axes. Its Domains come from the Legend's `domains` (ADR 0005), and validation rejects a stored Domain coordinate.
-- `ratingNotes`: one line per Axis citing the source that supports it, then the Legend ability, then `Confidence: low | medium | high.`, then anything the reviewer should check. For a change, say what moved and why, dated.
+- `ratingNotes`: each scored deck with its link and four scores, every adjustment with its reason, the cards that decided each Axis, then the Legend ability, then `Confidence: low | medium | high.`, then anything the reviewer should check. For a change, say what moved and why, dated.
 
 ## Copy
 

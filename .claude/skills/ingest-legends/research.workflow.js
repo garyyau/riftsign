@@ -106,9 +106,11 @@ ${brief}
 </scout_brief>
 Tally how its relevant decks split across archetypes, and cross-check with guides. Cite only pages you fetched.
 
+Score two to four relevant decks per Build you keep, change or add with ${SKILL}/deck-rubric.md, writing tag sheets to .scratch/ingest/${l.id}/ (\`tools.ts deck <uuid> .scratch/ingest/${l.id}/<uuid>.json\`). A Build's coordinates are the median of its decks' scores; a keep whose stored coordinates sit 1.5+ from that median on any Axis is a change.
+
 For every change and new Build, give every draft field: pace, stance, complexity, variance, howItPlays, whyYou, guideUrls, deckListUrl, ratingNotes. A keep or drop needs only status, archetype, evidence and confidence.
 
-Your structured output is the whole deliverable; the repo stays read-only for you.`
+Your structured output is the whole deliverable. Write nothing outside .scratch/ingest/${l.id}/.`
 
 const verifyPrompt = (l, r) => `You are the skeptic for proposed Build changes to the Riftbound Legend "${l.name}" (id ${l.id}). Today is ${today}.
 
@@ -119,8 +121,8 @@ ${JSON.stringify(r, null, 2)}
 
 For each entry with status change, new or drop:
 1. Try to refute it. Fetch its cited decks and guides and search a little yourself. Accept only what clears the bar in rating-guide.md; when you cannot confirm the evidence, reject.
-2. For an accepted change or new Build, check the coordinates against comparable Builds and the copy against the copy rules (plain words, card facts matching card text, unslop). If anything needs fixing, return "revised" with every draft field, corrected. If it is right as written, omit "revised".
-Return one verdict per change, new or drop entry. The repo stays read-only for you.`
+2. For an accepted change or new Build, re-score at least one of its decks with ${SKILL}/deck-rubric.md (tag sheets under .scratch/ingest/${l.id}/verify/) and check the coordinates against that and against comparable Builds, and the copy against the copy rules (plain words, card facts matching card text, unslop). If anything needs fixing, return "revised" with every draft field, corrected. If it is right as written, omit "revised".
+Return one verdict per change, new or drop entry. Write nothing outside .scratch/ingest/${l.id}/verify/.`
 
 phase('Research')
 const results = await pipeline(
