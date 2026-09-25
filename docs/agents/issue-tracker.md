@@ -2,8 +2,8 @@
 
 Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
 
-The repo is [`garyyau/riftsign`](https://github.com/garyyau/riftsign) (public). `origin` uses SSH
-(`git@github.com:garyyau/riftsign.git`) rather than HTTPS — the `gh` OAuth token lacks the
+The repo is [`garyyau/riftward`](https://github.com/garyyau/riftward) (public). `origin` uses SSH
+(`git@github.com:garyyau/riftward.git`) rather than HTTPS — the `gh` OAuth token lacks the
 `workflow` scope, so an HTTPS push is rejected whenever a commit touches `.github/workflows/`.
 
 ## Conventions

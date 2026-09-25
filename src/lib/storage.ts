@@ -1,6 +1,6 @@
 import type { Answers } from './types'
 
-const SESSION_KEY = 'riftsign:session'
+const SESSION_KEY = 'riftward:session'
 
 /** What the Player's device remembers between visits. */
 export interface Session {

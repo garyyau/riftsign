@@ -31,7 +31,7 @@ describe('App', () => {
     expect(screen.getByRole('button', { name: STRINGS.landing.continue })).toBeTruthy()
   })
 
-  it('renders a shared Riftsign from the link fragment without taking the test', () => {
+  it('renders a shared result from the link fragment without taking the test', () => {
     window.location.hash = '#p=1.2026-09.2s0a1e0a1e1e1e'
     render(<App />)
     expect(screen.getByText(STRINGS.result.sharedNotice, { exact: false })).toBeTruthy()

@@ -124,7 +124,7 @@ for (const [name, champion, d1, d2, set, starter, notes, guide] of ROWS) {
           variance: clamp(coords.variance),
         },
         howItPlays: `${notes}. Draft only: rewrite from two or three published guides during ingestion.`,
-        whyYou: `Draft only: describe in second person why a Player with this Riftsign would enjoy piloting ${champion}.`,
+        whyYou: `Draft only: describe in second person why a Player with this Profile would enjoy piloting ${champion}.`,
         guideUrls: [guide],
         // Piltover Archive has no per-Legend filter URL (checked 2026-09-20); its browser filters client-side.
         deckListUrl: 'https://piltoverarchive.com/decks',

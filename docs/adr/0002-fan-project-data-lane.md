@@ -5,7 +5,7 @@ Status: Accepted
 
 ## Context
 
-Riftsign needs about five facts per Legend (name, Champion, two Domains, set) plus a card image. Two legal lanes exist (see docs/research/2026-09-20-licensing-and-hosting.md):
+Riftward needs about five facts per Legend (name, Champion, two Domains, set) plus a card image. Two legal lanes exist (see docs/research/2026-09-20-licensing-and-hosting.md):
 
 1. Riot Developer Portal, Riftbound policy. Requires application and approval, no published timeline, policy language disfavors small personal-audience apps. Apps on this lane may use ONLY assets served by the official API; mixing in unofficial sources is prohibited.
 2. Riot's "Legal Jibber Jabber" fan-content policy. Permits non-commercial fan projects to use card images, champion art and names, provided a verbatim disclaimer is shown and no Riot logos or trademarks appear in the project's own branding or domain.
@@ -14,7 +14,7 @@ The two lanes cannot be combined.
 
 ## Decision
 
-Riftsign is a non-commercial fan project under Legal Jibber Jabber. It never applies for or uses the official Riot API.
+Riftward is a non-commercial fan project under Legal Jibber Jabber. It never applies for or uses the official Riot API.
 
 - Legend data lives as committed files in this repository. The published site has no runtime dependency on any card database.
 - During Ingestion, the maintainer may use the unofficial Riftcodex API as a convenience to discover new Legends and confirm Domains, or may type the facts by hand. Riftcodex is credited in the README as a development tool only and is never referenced in the app.

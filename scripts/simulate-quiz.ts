@@ -287,7 +287,7 @@ section('Plausible Players (every score uniform 0 to 10)')
 
 const width = Math.max(...rows.map(([label]) => label.length))
 console.log(
-  `Riftsign simulation: ${set.questions.length} Questions (${set.version}), ${pool.length} Legends, ${builds.length} Builds, ` +
+  `Riftward simulation: ${set.questions.length} Questions (${set.version}), ${pool.length} Legends, ${builds.length} Builds, ` +
     `DOMAIN_WEIGHT ${DOMAIN_WEIGHT}, seed ${SEED}\n`,
 )
 for (const [label, value] of rows) console.log(value ? `${label.padEnd(width)}  ${value}` : label)

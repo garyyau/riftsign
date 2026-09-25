@@ -5,7 +5,7 @@ Status: Accepted. The three bipolar Domain Axes are superseded by ADR 0005 (six 
 
 ## Context
 
-Riftsign recommends Riftbound Legends to a Player based on playstyle preferences. The Legend pool is 49 today and grows by roughly 12 every quarter. Riot has already broken one assumption (Vendetta introduced Legends with opposite Domain pairs), so the pool's shape will keep changing.
+Riftward recommends Riftbound Legends to a Player based on playstyle preferences. The Legend pool is 49 today and grows by roughly 12 every quarter. Riot has already broken one assumption (Vendetta introduced Legends with opposite Domain pairs), so the pool's shape will keep changing.
 
 The hard requirement: adding a Legend must never require editing Questions. Otherwise every set release becomes a quiz rewrite.
 
@@ -18,7 +18,7 @@ Score the Player on seven fixed continuous Axes:
 - Four playstyle Axes (0 to 10): Pace, Stance (proactive vs reactive), Complexity, Variance.
 - Three bipolar Domain Axes (-5 to +5) mapping Riftbound's opposite pairs: Fury/Calm, Mind/Body, Chaos/Order.
 
-Every Legend has a fixed coordinate on all seven Axes. Domain coordinates come from the card; playstyle coordinates are drafted from published guides and reviewed by a human. Matches are ranked by weighted Euclidean distance after normalizing each Axis to a common range. The Player's Profile (their Riftsign) is the primary result; Legends are recommendations hanging off it.
+Every Legend has a fixed coordinate on all seven Axes. Domain coordinates come from the card; playstyle coordinates are drafted from published guides and reviewed by a human. Matches are ranked by weighted Euclidean distance after normalizing each Axis to a common range. The Player's Profile is the primary result; Legends are recommendations hanging off it.
 
 Legends with opposite Domain pairs sit at the midpoint of that Domain Axis. Accepted: three of 49 Legends today.
 

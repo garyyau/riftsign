@@ -1,4 +1,4 @@
-# Riftsign
+# Riftward
 
 A personality test that matches Riftbound players to a Legend. See `CONTEXT.md` for the domain glossary.
 
@@ -6,7 +6,7 @@ A personality test that matches Riftbound players to a Legend. See `CONTEXT.md` 
 
 ### Issue tracker
 
-Issues live as GitHub issues in [`garyyau/riftsign`](https://github.com/garyyau/riftsign), driven by the `gh` CLI. See `docs/agents/issue-tracker.md`.
+Issues live as GitHub issues in [`garyyau/riftward`](https://github.com/garyyau/riftward), driven by the `gh` CLI. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

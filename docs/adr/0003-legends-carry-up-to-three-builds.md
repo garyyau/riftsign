@@ -1,7 +1,7 @@
 # 0003. Legends carry up to three Builds
 
 Date: 2026-09-23
-Status: Accepted. Amends the Legend file shape in docs/specs/0001-riftsign-v1.md and ADR 0001's "every Legend has a fixed position". Since ADR 0005 a Build's coordinate covers only the four playstyle Axes; its Domains come from the Legend.
+Status: Accepted. Amends the Legend file shape in the v1 spec (docs/specs/0001-*.md) and ADR 0001's "every Legend has a fixed position". Since ADR 0005 a Build's coordinate covers only the four playstyle Axes; its Domains come from the Legend.
 
 ## Context
 

@@ -1,11 +1,11 @@
 /**
  * Every Player-facing string lives here so a future localization has one file to translate.
- * Game vocabulary follows CONTEXT.md; Players see "Riftsign" where the code says Profile.
+ * Game vocabulary follows CONTEXT.md. Riftward is the brand, never a name for the Player's result.
  */
 import type { Domain, PlaystyleAxisId } from './axes'
 import type { Archetype } from './types'
 
-export const PROJECT_TITLE = 'Riftsign'
+export const PROJECT_TITLE = 'Riftward'
 
 /** Verbatim from Riot's Legal Jibber Jabber policy, with the project title substituted. */
 export const LEGAL_DISCLAIMER = `${PROJECT_TITLE} was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.`
@@ -16,10 +16,10 @@ export const STRINGS = {
   landing: {
     eyebrow: 'A playstyle test for Riftbound',
     title: 'Find the Legends you were made to pilot.',
-    body: 'Twenty-one quick questions about how you like to play. No deck jargon, no sign-up. You get your Riftsign: how you like to play, the Domains that pull you, and the Legends that fit.',
+    body: "Twenty-one quick questions about how you like to play. No deck jargon, no sign-up. You'll see your playstyle, the Domains that pull you, and the Legends that fit.",
     start: 'Start the test',
     continue: 'Continue where you left off',
-    seeResult: 'See your Riftsign',
+    seeResult: 'See your result',
     retake: 'Retake the test',
     time: 'About five minutes',
     fanNote: 'A fan project. Not affiliated with or endorsed by Riot Games.',
@@ -31,8 +31,8 @@ export const STRINGS = {
     finish: 'Show my Legends',
   },
   result: {
-    eyebrow: 'Your Riftsign',
-    sharedEyebrow: 'A shared Riftsign',
+    eyebrow: 'Your result',
+    sharedEyebrow: 'A shared result',
     archetypeLead: 'You play',
     sharedArchetypeLead: 'They play',
     noPool: 'No Legends have been reviewed yet, so there is nothing to match against. Your scores are still yours.',
@@ -41,7 +41,7 @@ export const STRINGS = {
     sharedMatchesTitle: 'Legends that play like this',
     closeCall: (first: string, second: string) =>
       `It was close: ${first} and ${second} fit you almost equally. Start with whichever grabs you.`,
-    sharedCloseCall: (first: string, second: string) => `It was close: ${first} and ${second} fit this Riftsign almost equally.`,
+    sharedCloseCall: (first: string, second: string) => `It was close: ${first} and ${second} fit them almost equally.`,
     fit: (n: number) => `${n}% fit`,
     howItPlays: 'How it plays',
     whyYou: 'Why you might like it',
@@ -49,7 +49,7 @@ export const STRINGS = {
     noStarter: 'No retail starter deck',
     alsoPlayed: (archetypes: string[]) => `Also played as ${archetypes.join(' or ')}`,
     deckLists: 'Deck lists on Piltover Archive',
-    // "Your Domains" is worded so it reads the same on a shared Riftsign; only the title changes there.
+    // "Your Domains" is worded so it reads the same on a shared result; only the title changes there.
     domainsTitle: 'Your Domains',
     sharedDomainsTitle: 'Domains',
     domainFeeling: { pull: 'Strong pull', neutral: 'No strong pull', push: 'Not a draw' },
@@ -63,10 +63,10 @@ export const STRINGS = {
     shared: 'Link copied',
     shareFailed: 'Could not copy. The link is in your address bar.',
     retake: 'Retake the test',
-    sharedNotice: "You're looking at someone else's Riftsign. Take the test to get your own.",
+    sharedNotice: "You're looking at someone else's result. Take the test to get your own.",
     takeOwn: 'Take the test',
     versionNotice: 'The test has changed since you took it. A retake might land differently.',
-    olderLinkNotice: 'This Riftsign was made with an earlier version of the test.',
+    olderLinkNotice: 'This result was made with an earlier version of the test.',
     scoresTitle: 'Your scores',
   },
   /** Open Graph copy baked into the static share pages at build time. */
@@ -76,11 +76,11 @@ export const STRINGS = {
     tagline: 'A playstyle test for Riftbound. Fit, not tier list.',
     defaultSubtitle: 'Riftbound playstyle test',
     legendTitle: (name: string) => `${PROJECT_TITLE}: ${name}`,
-    legendDescription: (name: string) => `My Riftsign matched me with ${name}. Find yours.`,
+    legendDescription: (name: string) => `My top Legend is ${name}. Find yours.`,
   },
 } as const
 
-/** `sharedDescription` says "they", for someone viewing another Player's Riftsign. */
+/** `sharedDescription` says "they", for someone viewing another Player's result. */
 export const ARCHETYPE_COPY: Record<Archetype, { name: string; description: string; sharedDescription: string }> = {
   Aggro: {
     name: 'Aggro',

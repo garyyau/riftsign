@@ -55,7 +55,7 @@ describe('YourDomainsSection', () => {
     expect(screen.getByText(s.domainsCovered)).toBeTruthy()
   })
 
-  it('drops "Your" from the title on a shared Riftsign', () => {
+  it('drops "Your" from the title on a shared result', () => {
     show({}, true)
     expect(screen.getByRole('heading', { name: s.sharedDomainsTitle })).toBeTruthy()
     expect(screen.queryByText(s.domainsTitle)).toBeNull()

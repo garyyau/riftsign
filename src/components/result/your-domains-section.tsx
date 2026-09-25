@@ -6,7 +6,7 @@ import { DomainBar } from './domain-bar'
 interface YourDomainsSectionProps {
   profile: Profile
   picks: DomainPicks
-  /** Viewing someone else's Riftsign: the title drops "Your". */
+  /** Viewing someone else's result: the title drops "Your". */
   shared: boolean
 }
 

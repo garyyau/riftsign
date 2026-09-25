@@ -53,7 +53,7 @@ describe('ResultView', () => {
     expect(screen.getByText(s.domainsNone)).toBeTruthy()
   })
 
-  it('uses neutral copy on a shared Riftsign', () => {
+  it('uses neutral copy on a shared result', () => {
     show(fast, pool, 'shared')
     const neutral = [s.sharedEyebrow, s.sharedMatchesTitle, s.sharedDomainsTitle, ARCHETYPE_COPY.Aggro.sharedDescription, s.sharedCloseCall('closest', 'runner-up')]
     for (const text of neutral) expect(screen.getByText(text)).toBeTruthy()

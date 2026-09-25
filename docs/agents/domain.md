@@ -16,7 +16,7 @@ This repo is **single-context**: one root glossary, one ADR directory.
 
 ```
 /
-├── CONTEXT.md          ← Riftsign domain glossary (game terms + project terms)
+├── CONTEXT.md          ← Riftward domain glossary (game terms + project terms)
 ├── docs/
 │   ├── adr/            ← architectural decisions
 │   ├── specs/          ← feature specs

@@ -1,8 +1,8 @@
-# Riftsign
+# Riftward
 
-A five-minute playstyle test for Riftbound players. Answer twenty-seven questions about how you like to play, get your Riftsign (four playstyle scores and six Domain scores), a playstyle name in plain words, and the Legends that fit it. Fit is about how a Legend plays, never how strong it is.
+A five-minute playstyle test for Riftbound players. Answer twenty-one questions about how you like to play and get your result: four playstyle scores, six Domain scores, and the Legends that fit them. Fit is about how a Legend plays, never how strong it is.
 
-Static site, no server, no accounts, no analytics. Vocabulary is in `CONTEXT.md`; decisions are in `docs/adr`; the v1 spec is `docs/specs/0001-riftsign-v1.md`.
+Static site, no server, no accounts, no analytics. Vocabulary is in `CONTEXT.md`; decisions are in `docs/adr`; specs are in `docs/specs`.
 
 ## Develop
 
@@ -36,6 +36,6 @@ The 49 pre-Radiance Legends were seeded from `docs/research/2026-09-20-legend-ta
 
 ## Credits and policy
 
-Riftsign is a non-commercial fan project made under Riot Games' Legal Jibber Jabber policy. Riot Games does not endorse or sponsor this project.
+Riftward is a non-commercial fan project made under Riot Games' Legal Jibber Jabber policy. Riot Games does not endorse or sponsor this project.
 
 [Riftcodex](https://riftcodex.com) is used during ingestion, as a development tool only, to discover new Legends and confirm their Domains. It is never referenced by the site. Deck lists are linked to [Piltover Archive](https://piltoverarchive.com).

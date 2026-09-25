@@ -13,8 +13,8 @@ describe('shareLegendId', () => {
 
 describe('share links', () => {
   it('points at the top Legend page and carries the Profile in the fragment', () => {
-    const url = buildShareUrl('https://example.github.io', '/riftsign/', CENTER, '2026-09', 'jinx-loose-cannon')
-    expect(url).toBe('https://example.github.io/riftsign/r/jinx-loose-cannon/#p=2.2026-09.1e1e1e1e1e1e1e1e1e1e')
+    const url = buildShareUrl('https://example.github.io', '/riftward/', CENTER, '2026-09', 'jinx-loose-cannon')
+    expect(url).toBe('https://example.github.io/riftward/r/jinx-loose-cannon/#p=2.2026-09.1e1e1e1e1e1e1e1e1e1e')
   })
 
   it('falls back to the site root when there is no top Legend', () => {

@@ -1,4 +1,4 @@
-# Riftsign: Domain Glossary
+# Riftward: Domain Glossary
 
 Game terms below are facts about Riftbound. Project terms are decisions made in design sessions and are marked as such.
 
@@ -22,7 +22,7 @@ Game terms below are facts about Riftbound. Project terms are decisions made in 
 
 **Domain score**: How much the Player enjoys one Domain, 0 to 10, where 5 means no feeling either way. There are six, and they are independent: liking Fury says nothing about Calm. Legends have no Domain scores; their two Domains come from the card (ADR 0005).
 
-**Profile**: The Player's ten scores after finishing the test: the four Axes and the six Domain scores. The Profile, not a label, is the Player's result. Two Players matched to the same Legend can have different Profiles. In Player-facing copy the Profile is called their **Riftsign**.
+**Profile**: The Player's ten scores after finishing the test: the four Axes and the six Domain scores. The Profile, not a label, is the Player's result. Two Players matched to the same Legend can have different Profiles.
 
 **Archetype**: A named playstyle family (such as Aggro, Midrange, Control, Combo). An Archetype is a region of Axis space. Legends belong to Archetypes through their Builds; Archetypes are stable across Sets while Legends come and go.
 

@@ -1,7 +1,7 @@
 # 0004. Playstyle leads matching
 
 Date: 2026-09-23
-Status: Proposed. Amends ADR 0001's distance (weights and the midpoint rule for opposite-pair Legends), and the favourite-champion bonus and Domain lean in docs/specs/0001-riftsign-v1.md. Partly superseded by ADR 0005: Domains are six independent scores, so the opposite-pair rule, the favourite-champion bonus and the Domain lean below no longer apply. The playstyle term, the affinity cost and `DOMAIN_WEIGHT` carry over.
+Status: Proposed. Amends ADR 0001's distance (weights and the midpoint rule for opposite-pair Legends), and the favourite-champion bonus and Domain lean in the v1 spec (docs/specs/0001-*.md). Partly superseded by ADR 0005: Domains are six independent scores, so the opposite-pair rule, the favourite-champion bonus and the Domain lean below no longer apply. The playstyle term, the affinity cost and `DOMAIN_WEIGHT` carry over.
 
 ## Context
 
