@@ -57,6 +57,14 @@ describe('ResultView', () => {
     expect(hero().getByRole('button', { name: 'Control' })).toBeTruthy()
   })
 
+  it('tags the hero with its starter deck only when it has one', () => {
+    show(fast, pool)
+    expect(hero().queryByText(s.starter('Box'))).toBeNull()
+    cleanup()
+    show(fast, [{ ...top, starterDeck: 'Box' }, ...pool.slice(1)])
+    expect(hero().getByText(s.starter('Box'))).toBeTruthy()
+  })
+
   it('hides "Also played as" for a Legend with one Build', () => {
     show(fast, pool.slice(1))
     expect(screen.queryByText(s.alsoPlayed, { exact: false })).toBeNull()

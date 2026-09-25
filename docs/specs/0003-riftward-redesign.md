@@ -40,7 +40,7 @@ Take colours, type styles and components from the Penpot library. Michroma is fo
 - Number keys 1 to n pick Answers. Enter presses Next. The hint reads "Press 1-n to answer".
 - On the last Question, Next reads "Show my Legends".
 - Back on the first Question returns to the Landing page, as now.
-- Answers that move no score (`moves: []`, such as "I'm more of a quiet player, honestly") use the dashed style.
+- Answers that move no score (`moves: []`, such as "I'm more of a quiet player, honestly") look like every other Answer, so they don't draw attention. This overrides the dashed style in Penpot.
 - Progress is the chevron trail with the "n of 21" count. The chevrons shrink on narrow screens so all 21 fit.
 - The favourite-champion step is removed.
 

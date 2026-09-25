@@ -23,8 +23,6 @@ export function QuestionStep({ question, selected, onSelect, children }: Questio
         <div role="radiogroup" aria-label={question.prompt} className="flex flex-col gap-4">
           {answersOf(question).map((answer, i) => {
             const active = answer.id === selected
-            // An Answer that moves no score is the Player's way out of the Question, drawn dashed and quieter.
-            const wayOut = answer.moves.length === 0
             return (
               <button
                 key={answer.id}
@@ -34,17 +32,16 @@ export function QuestionStep({ question, selected, onSelect, children }: Questio
                 onClick={() => onSelect(answer.id)}
                 className={cn(
                   'flex min-h-[76px] w-full cursor-pointer items-center gap-4 rounded-md border px-7 py-4 text-left transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-                  wayOut ? 'mt-3 border-dashed border-border-strong hover:border-faint' : 'bg-surface hover:border-border-strong',
-                  active && 'border-solid border-primary bg-selected hover:border-primary',
+                  active ? 'border-primary bg-selected' : 'bg-surface hover:border-border-strong',
                 )}
               >
                 <span
                   aria-hidden
-                  className={cn('w-7 shrink-0 font-display text-[14px] leading-[1.2]', active ? 'text-primary' : wayOut ? 'text-faint' : 'text-amber')}
+                  className={cn('w-7 shrink-0 font-display text-[14px] leading-[1.2]', active ? 'text-primary' : 'text-amber')}
                 >
                   {stepNumber(i + 1)}
                 </span>
-                <span className={cn('text-answer', active ? 'font-medium text-foreground' : wayOut ? 'text-muted-foreground' : 'text-secondary-text')}>
+                <span className={cn('text-answer', active ? 'font-medium text-foreground' : 'text-secondary-text')}>
                   {answer.text}
                 </span>
               </button>

@@ -38,8 +38,8 @@ export function Quiz({ questions, answers, step, onAnswer, onNext, onBack, onFin
         e.preventDefault()
         onAnswer(question.id, options[n - 1].id)
       } else if (e.key === 'Enter' && picked) {
-        // Back and Next already answer Enter themselves; an Answer row hands it to Next.
-        if (target?.closest('a, button:not([role="radio"])')) return
+        // A focused button answers Enter itself: an Answer row picks that Answer, Back and Next act.
+        if (target?.closest('a, button')) return
         e.preventDefault()
         next()
       }

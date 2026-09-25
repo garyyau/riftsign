@@ -58,7 +58,10 @@ describe('Quiz', () => {
     expect(first.onNext).not.toHaveBeenCalled()
     cleanup()
     const { onNext } = show(0, { one: 'a' })
-    fireEvent.keyDown(screen.getAllByRole('radio')[0], { key: 'Enter' })
+    // On a focused Answer, Enter picks that Answer (the button's own click) rather than moving on.
+    fireEvent.keyDown(screen.getAllByRole('radio')[1], { key: 'Enter' })
+    expect(onNext).not.toHaveBeenCalled()
+    fireEvent.keyDown(window, { key: 'Enter' })
     expect(onNext).toHaveBeenCalledTimes(1)
   })
 

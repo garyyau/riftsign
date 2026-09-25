@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { DomainTag } from '@/components/domain-tag'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { DOMAIN_ID } from '@/lib/axes'
 import { buildFit, reviewedBuilds } from '@/lib/scoring'
@@ -71,6 +72,11 @@ export function ResultHero({ top, profile, pool, shared, shareLink, onRetake }: 
           ))}
         </div>
         <PlayedAs archetype={shown.archetype} className="mt-4 text-body-l" />
+        {legend.starterDeck && (
+          <Badge variant="starter" className="mt-3.5 whitespace-normal">
+            {s.starter(legend.starterDeck)}
+          </Badge>
+        )}
         <div className="max-w-[640px]">
           <p className="mt-5 text-body text-muted-foreground">{shown.whyYou}</p>
           <DeckListBox legend={legend} build={shown} className="mt-6" />
