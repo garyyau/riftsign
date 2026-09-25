@@ -6,12 +6,17 @@ import type { Domain, PlaystyleAxisId } from './axes'
 
 export const PROJECT_TITLE = 'Riftward'
 
+export const COFFEE_URL = 'https://buymeacoffee.com/garyyau'
+
 /** Verbatim from Riot's Legal Jibber Jabber policy, with the project title substituted. */
 export const LEGAL_DISCLAIMER = `${PROJECT_TITLE} was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.`
 
 const joinDomains = (domains: Domain[]) => domains.join(' and ')
 
 export const STRINGS = {
+  header: {
+    coffee: 'Buy me a coffee',
+  },
   landing: {
     eyebrow: 'A playstyle test for Riftbound',
     title: 'Find the Legends you were made to pilot.',
