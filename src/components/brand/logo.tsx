@@ -34,7 +34,7 @@ export function RowLogo({ className }: { className?: string }) {
 export function ColumnLogo({ className }: { className?: string }) {
   return (
     <div className={cn('flex flex-col items-center', className)} role="img" aria-label="Riftward">
-      <svg viewBox="0 0 400 164" width={400} height={164} fill="none" aria-hidden className="h-auto w-[min(400px,80vw)] overflow-visible">
+      <svg viewBox="113 0 174 160" width={143} height={131} fill="none" aria-hidden className="overflow-visible">
         <defs>
           <linearGradient id="riftward-beam" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor={CYAN} stopOpacity={0} />
@@ -57,8 +57,8 @@ export function ColumnLogo({ className }: { className?: string }) {
         ))}
         <path d="M170,134L230,134L242,146L230,158L170,158L158,146Z" fill="#12151F" stroke={AMBER} strokeWidth={3} />
       </svg>
-      <span className="wordmark mt-9 text-[32px] tracking-[0.25em]">RIFTWARD</span>
-      <svg viewBox="0 0 280 12" width={280} height={12} fill="none" aria-hidden className="mt-[18px]">
+      <span className="wordmark mt-5 -mr-[0.25em] text-[29px] leading-[1.2] tracking-[0.25em]">RIFTWARD</span>
+      <svg viewBox="0 0 280 12" width={236} height={10} fill="none" aria-hidden className="mt-2">
         <path d="M0,6H120M160,6H280" stroke="#3A4358" strokeWidth={1.5} />
         <path d="M140,0L146,6L140,12L134,6Z" fill={AMBER} />
       </svg>
