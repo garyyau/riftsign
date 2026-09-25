@@ -9,7 +9,7 @@ export function SiteFooter() {
         <span className="size-[7px] rotate-45 bg-amber" />
         <span className="h-px flex-1 bg-dim" />
       </div>
-      <p className="text-[11px] leading-[1.3] text-faint">{LEGAL_DISCLAIMER}</p>
+      <p className="max-w-[428px] text-[11px] leading-[1.3] text-balance text-faint">{LEGAL_DISCLAIMER}</p>
     </footer>
   )
 }

@@ -26,9 +26,7 @@ export const STRINGS = {
     seeResult: 'See your result',
     retake: 'Retake the test',
     time: 'About five minutes',
-    rowLabel: (legends: number) => `${legends} Legends · six Domains · one that fits`,
-    fanNote: 'A fan project. Not affiliated with or endorsed by Riot Games.',
-  },
+    rowLabel: (legends: number) => `${legends} Legends · six Domains · one that fits`,  },
   quiz: {
     progress: (current: number, total: number) => `${current} of ${total}`,
     progressLabel: (current: number, total: number) => `Question ${current} of ${total}`,

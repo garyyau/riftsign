@@ -57,7 +57,6 @@ export function Landing({ hasResult, hasProgress, onStart, onContinue, onSeeResu
       <div className="mt-6">
         <LegendRow legends={rowLegends} />
       </div>
-      <p className="mt-9 px-6 text-xs text-faint xl:px-0">{s.fanNote}</p>
     </div>
   )
 }
