@@ -5,6 +5,7 @@ import { STRINGS } from '@/lib/strings'
 import type { Match } from '@/lib/types'
 import { stepNumber } from '@/lib/utils'
 import { CardImage } from './card-image'
+import { DeckListBox } from './deck-list-box'
 
 export function MatchCard({ match, rank }: { match: Match; rank: number }) {
   const { legend, build, fit } = match
@@ -44,15 +45,7 @@ export function MatchCard({ match, rank }: { match: Match; rank: number }) {
             <dd className="mt-2">{build.whyYou}</dd>
           </div>
         </dl>
-        <a
-          href={build.deckListUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-6 inline-block text-small font-medium text-primary underline-offset-4 hover:underline"
-        >
-          {s.deckLists}
-          <span aria-hidden className="ml-1">↗</span>
-        </a>
+        <DeckListBox legend={legend} build={build} className="mt-6 max-w-md" />
       </div>
     </article>
   )

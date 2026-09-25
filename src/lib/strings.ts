@@ -48,7 +48,10 @@ export const STRINGS = {
     starter: (product: string) => `Starter deck: ${product}`,
     noStarter: 'No retail starter deck',
     alsoPlayed: (archetypes: string[]) => `Also played as ${archetypes.join(' or ')}`,
-    deckLists: 'Deck lists on Piltover Archive',
+    featuredDeck: (champion: string, archetype: string) => `${champion} ${archetype} deck list`,
+    openDeck: 'Open on Piltover Archive',
+    noFeaturedDeck: 'No featured deck list yet',
+    browseDecks: (champion: string) => `Browse ${champion} decks on Piltover Archive`,
     // "Your Domains" is worded so it reads the same on a shared result; only the title changes there.
     domainsTitle: 'Your Domains',
     sharedDomainsTitle: 'Domains',
