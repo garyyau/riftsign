@@ -176,7 +176,7 @@ Prior art: none, this is a new repository. Vitest is the test runner.
 - Official Riot API integration.
 - Localization beyond English. Strings are centralized to keep it possible.
 - Per-Profile dynamic share images. One static image per Legend only.
-- Accounts, analytics, or any server component.
+- Accounts or any server component. (Cookie-free page analytics were added later; see ADR 0008.)
 - Automatic or scheduled ingestion. The command is run by hand.
 - Rating the 49 existing Legends is Ingestion work performed with the command after it exists, not part of building the site. The research table is a seed only.
 

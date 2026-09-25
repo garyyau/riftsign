@@ -1,0 +1,12 @@
+# Search engines and link-preview bots are welcome. AI training crawlers are not.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: Bytespider
+Disallow: /
+
+User-agent: *
+Allow: /

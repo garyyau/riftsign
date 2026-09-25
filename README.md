@@ -2,7 +2,7 @@
 
 A five-minute playstyle test for Riftbound players. Answer twenty-one questions about how you like to play and get your result: four playstyle scores, six Domain scores, and the Legends that fit them. Fit is about how a Legend plays, never how strong it is.
 
-Static site, no server, no accounts, no analytics. Vocabulary is in `CONTEXT.md`; decisions are in `docs/adr`; specs are in `docs/specs`.
+Static site, no server, no accounts. Page analytics are cookie-free Cloudflare Web Analytics (ADR 0008). Vocabulary is in `CONTEXT.md`; decisions are in `docs/adr`; specs are in `docs/specs`.
 
 ## Develop
 
