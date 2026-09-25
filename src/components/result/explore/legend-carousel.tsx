@@ -1,9 +1,11 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { RankedMatch } from '@/lib/explore'
 import { STRINGS } from '@/lib/strings'
 import type { Legend } from '@/lib/types'
 import { cn } from '@/lib/utils'
+
+const fade = '96px'
 
 interface LegendCarouselProps {
   items: RankedMatch[]
@@ -15,7 +17,7 @@ interface LegendCarouselProps {
   onSelect: (id: string) => void
 }
 
-/** Full-bleed strip of ranked Legend portraits, scrollable by touch, trackpad or the arrow buttons. */
+/** Strip of ranked Legend portraits within the content column, scrollable by touch, trackpad or the arrow buttons. */
 export function LegendCarousel({ items, legends, selectedId, shownIds, onSelect }: LegendCarouselProps) {
   const s = STRINGS.explore
   const strip = useRef<HTMLDivElement>(null)
@@ -25,20 +27,36 @@ export function LegendCarousel({ items, legends, selectedId, shownIds, onSelect 
     return new Set([...counts].filter(([, n]) => n > 1).map(([champion]) => champion))
   }, [legends])
 
+  // Which ends still have Legends out of view; only those edges fade.
+  const [more, setMore] = useState({ back: false, forward: false })
+  const measure = () => {
+    const el = strip.current
+    if (el) setMore({ back: el.scrollLeft > 1, forward: el.scrollLeft + el.clientWidth < el.scrollWidth - 1 })
+  }
+  useEffect(() => {
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [items])
+
   const page = (direction: 1 | -1) => {
     const el = strip.current
     el?.scrollBy?.({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' })
   }
 
   return (
-    <div className="relative mx-[calc(50%_-_50vw)] w-screen">
+    <div className="relative">
       <div
         ref={strip}
+        onScroll={measure}
+        style={{
+          maskImage: `linear-gradient(to right, transparent, #000 ${more.back ? fade : '0px'}, #000 calc(100% - ${more.forward ? fade : '0px'}), transparent)`,
+        }}
         className={cn(
-          'flex snap-x snap-mandatory gap-5 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
-          // Lines the first portrait up with the 1200px content column while the strip runs to the viewport edges.
-          'px-[max(1.5rem,calc(50vw_-_600px))] scroll-px-[max(1.5rem,calc(50vw_-_600px))]',
-          '[mask-image:linear-gradient(to_right,transparent,#000_min(200px,12%),#000_calc(100%_-_min(200px,12%)),transparent)]',
+          // items-start keeps portraits top-aligned when some Legends carry a subtitle line.
+          'flex snap-x snap-mandatory items-start gap-5 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+          // Room for the focus ring without shifting the first portrait off the column edge.
+          '-mx-1 scroll-px-1 px-1',
         )}
       >
         {items.map(({ match: { legend }, rank }) => {
@@ -106,7 +124,7 @@ function ArrowButton({ side, label, onClick }: { side: 'left' | 'right'; label: 
       onClick={onClick}
       className={cn(
         'absolute top-[30px] hidden size-11 cursor-pointer items-center justify-center rounded-md border border-border-strong bg-surface text-foreground transition-colors outline-none hover:border-faint hover:bg-rule focus-visible:ring-2 focus-visible:ring-ring sm:flex',
-        side === 'left' ? 'left-12' : 'right-12',
+        side === 'left' ? 'left-0' : 'right-0',
       )}
     >
       <Icon aria-hidden className="size-5" />
