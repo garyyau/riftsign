@@ -1,11 +1,9 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef } from 'react'
 import type { RankedMatch } from '@/lib/explore'
 import { STRINGS } from '@/lib/strings'
 import type { Legend } from '@/lib/types'
 import { cn } from '@/lib/utils'
-
-const fade = '96px'
 
 interface LegendCarouselProps {
   items: RankedMatch[]
@@ -17,7 +15,7 @@ interface LegendCarouselProps {
   onSelect: (id: string) => void
 }
 
-/** Strip of ranked Legend portraits within the content column, scrollable by touch, trackpad or the arrow buttons. */
+/** Strip of ranked Legend portraits between two arrow buttons, also scrollable by touch or trackpad. */
 export function LegendCarousel({ items, legends, selectedId, shownIds, onSelect }: LegendCarouselProps) {
   const s = STRINGS.explore
   const strip = useRef<HTMLDivElement>(null)
@@ -27,36 +25,21 @@ export function LegendCarousel({ items, legends, selectedId, shownIds, onSelect 
     return new Set([...counts].filter(([, n]) => n > 1).map(([champion]) => champion))
   }, [legends])
 
-  // Which ends still have Legends out of view; only those edges fade.
-  const [more, setMore] = useState({ back: false, forward: false })
-  const measure = () => {
-    const el = strip.current
-    if (el) setMore({ back: el.scrollLeft > 1, forward: el.scrollLeft + el.clientWidth < el.scrollWidth - 1 })
-  }
-  useEffect(() => {
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
-  }, [items])
-
   const page = (direction: 1 | -1) => {
     const el = strip.current
     el?.scrollBy?.({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' })
   }
 
   return (
-    <div className="relative">
+    <div className="flex items-start gap-2">
+      <ArrowButton side="left" label={s.scrollBack} onClick={() => page(-1)} />
       <div
         ref={strip}
-        onScroll={measure}
-        style={{
-          maskImage: `linear-gradient(to right, transparent, #000 ${more.back ? fade : '0px'}, #000 calc(100% - ${more.forward ? fade : '0px'}), transparent)`,
-        }}
         className={cn(
           // items-start keeps portraits top-aligned when some Legends carry a subtitle line.
-          'flex snap-x snap-mandatory items-start gap-5 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
-          // Room for the focus ring without shifting the first portrait off the column edge.
-          '-mx-1 scroll-px-1 px-1',
+          'flex min-w-0 flex-1 snap-x snap-mandatory items-start gap-5 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+          // Portraits fade out over the 2rem padding at each edge, so they rest fully visible inside it.
+          'scroll-px-8 px-8 [mask-image:linear-gradient(to_right,transparent,#000_2rem,#000_calc(100%_-_2rem),transparent)]',
         )}
       >
         {items.map(({ match: { legend }, rank }) => {
@@ -109,12 +92,12 @@ export function LegendCarousel({ items, legends, selectedId, shownIds, onSelect 
           )
         })}
       </div>
-      <ArrowButton side="left" label={s.scrollBack} onClick={() => page(-1)} />
       <ArrowButton side="right" label={s.scrollForward} onClick={() => page(1)} />
     </div>
   )
 }
 
+/** Sits beside the strip; mt-[30px] centres it on the 96px portraits (4px strip padding + 26px). */
 function ArrowButton({ side, label, onClick }: { side: 'left' | 'right'; label: string; onClick: () => void }) {
   const Icon = side === 'left' ? ChevronLeft : ChevronRight
   return (
@@ -122,10 +105,7 @@ function ArrowButton({ side, label, onClick }: { side: 'left' | 'right'; label: 
       type="button"
       aria-label={label}
       onClick={onClick}
-      className={cn(
-        'absolute top-[30px] hidden size-11 cursor-pointer items-center justify-center rounded-md border border-border-strong bg-surface text-foreground transition-colors outline-none hover:border-faint hover:bg-rule focus-visible:ring-2 focus-visible:ring-ring sm:flex',
-        side === 'left' ? 'left-0' : 'right-0',
-      )}
+      className="mt-[30px] hidden size-11 shrink-0 cursor-pointer items-center justify-center rounded-md border border-border-strong bg-surface text-foreground transition-colors outline-none hover:border-faint hover:bg-rule focus-visible:ring-2 focus-visible:ring-ring sm:flex"
     >
       <Icon aria-hidden className="size-5" />
     </button>
