@@ -210,6 +210,35 @@
   color: var(--cream);
 }
 
+/* A new page fades up into place. Pages only animate in: the old one is gone before the new one draws. */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@utility page-in {
+  animation: page-in 250ms ease-out both;
+}
+
+/* Quiz: the next Question slides in from the side the Player is moving toward. Set --step-dir to 1 (forward), -1 (back) or 0 (fade only). */
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--step-dir, 1) * 24px));
+  }
+}
+
+/* The padding, cancelled by the margin, keeps the Answer rows off the sliding layer's edge. Chrome draws the layer at
+   fractional pixels, so an edge touching content smears 1px past it, and on Windows that sliver is never repainted:
+   it stays on screen as a trail of lines right of the rows. */
+@utility step-in {
+  animation: step-in 250ms ease-out both;
+  padding-inline: 32px;
+  margin-inline: -32px;
+}
+
 /* Landing: the Legend card row drifts left in a seamless loop. The track holds the list twice, so -50% lands back on the start. */
 @keyframes marquee {
   to {

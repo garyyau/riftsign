@@ -36,13 +36,20 @@ Take colours, type styles and components from the Penpot library. Michroma is fo
 
 ## Quiz
 
-- Picking an Answer only selects it. The quiz no longer moves on by itself. Next moves on and stays disabled until an Answer is picked.
-- Number keys 1 to n pick Answers. Enter presses Next. The hint reads "Press 1-n to answer".
-- On the last Question, Next reads "Show my Legends".
-- Back on the first Question returns to the Landing page, as now.
+- Hovering an Answer looks the same as picking it, since picking moves on straight away. Hover waits until the pointer moves, so the row under the pointer doesn't look picked when the next Question appears.
+- Picking an Answer lights it up, then moves on to the next Question after 300ms. There is no Next button. Picking the Answer already chosen, such as after going Back, also moves on.
+- The last Question doesn't move on by itself. A "Show my Legends" button sits under the Answers and stays disabled until an Answer is picked.
+- Number keys 1 to n pick Answers the same way. Enter moves on from a Question that already has an Answer. The hint reads "Press 1-n to answer" and shows on the first Question only.
+- Back sits between the progress trail and the Question, with a full-size chevron. Pressing it during the 300ms cancels the move. Back on the first Question returns to the Landing page, as now.
 - Answers that move no score (`moves: []`, such as "I'm more of a quiet player, honestly") look like every other Answer, so they don't draw attention. This overrides the dashed style in Penpot.
-- Progress is the chevron trail with the "n of 21" count. The chevrons shrink on narrow screens so all 21 fit.
+- Progress is the chevron trail with the "n of 21" count. The chevrons shrink on narrow screens so all 21 fit. Chevrons are lit up to the current Question and dimmer for answered Questions past it. Clicking a chevron jumps to that Question, for any Question up to the first unanswered one. The chevrons stay out of the tab order, since Back and Enter already do the same by keyboard.
+- The next Question slides in from the side the Player is moving toward: from the right going forward, from the left going back.
 - The favourite-champion step is removed.
+
+## Transitions
+
+- Each page (Landing, Quiz, Result) fades up into place when the view changes. Pages only animate in.
+- With reduced motion turned on, every transition finishes at once, through the global rule in `index.css`.
 
 ## Result
 

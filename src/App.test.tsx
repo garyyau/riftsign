@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
+import { ADVANCE_DELAY_MS } from './components/quiz/quiz'
 import { LEGENDS, QUESTION_SET } from './data'
 import { LEGAL_DISCLAIMER, STRINGS } from './lib/strings'
 
@@ -11,7 +12,10 @@ describe('App', () => {
     window.scrollTo = () => {}
     window.location.hash = ''
   })
-  afterEach(cleanup)
+  afterEach(() => {
+    cleanup()
+    vi.useRealTimers()
+  })
 
   it('lands on the start page with the disclaimer and starts the test in one tap', () => {
     render(<App />)
@@ -26,22 +30,20 @@ describe('App', () => {
     expect(screen.getByText(STRINGS.landing.rowLabel(LEGENDS.length))).toBeTruthy()
   })
 
-  it('waits for Next after each pick, takes number keys and Enter, and finishes from the last Question', () => {
+  it('moves on after each pick, takes number keys, and finishes from the last Question', () => {
+    vi.useFakeTimers()
     const questions = QUESTION_SET.questions
     render(<App />)
     fireEvent.click(screen.getByRole('button', { name: STRINGS.landing.start }))
-    const next = () => screen.getByRole('button', { name: STRINGS.quiz.next }) as HTMLButtonElement
-    expect(next().disabled).toBe(true)
     fireEvent.click(screen.getAllByRole('radio')[0])
     expect(screen.getByText(questions[0].prompt)).toBeTruthy()
-    expect(next().disabled).toBe(false)
-    fireEvent.click(next())
+    act(() => vi.advanceTimersByTime(ADVANCE_DELAY_MS))
     expect(screen.getByText(questions[1].prompt)).toBeTruthy()
 
     for (let i = 1; i < questions.length; i++) {
       fireEvent.keyDown(window, { key: '2' })
       expect(screen.getAllByRole('radio')[1].getAttribute('aria-checked')).toBe('true')
-      if (i < questions.length - 1) fireEvent.keyDown(window, { key: 'Enter' })
+      act(() => vi.advanceTimersByTime(ADVANCE_DELAY_MS))
     }
     expect(screen.getByText(questions[questions.length - 1].prompt)).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: STRINGS.quiz.finish }))

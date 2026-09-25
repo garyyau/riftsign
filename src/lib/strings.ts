@@ -32,9 +32,9 @@ export const STRINGS = {
   quiz: {
     progress: (current: number, total: number) => `${current} of ${total}`,
     progressLabel: (current: number, total: number) => `Question ${current} of ${total}`,
+    jumpTo: (n: number) => `Go to Question ${n}`,
     keyHint: (answers: number) => `Press 1-${answers} to answer`,
     back: 'Back',
-    next: 'Next',
     finish: 'Show my Legends',
   },
   result: {

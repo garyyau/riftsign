@@ -27,7 +27,7 @@ const buttonVariants = cva(
   },
 )
 
-/** The single chevron that marks a forward action (Start the test, Next, Show my Legends). */
+/** The single chevron that marks a forward action (Start the test, Show my Legends). */
 function ForwardChevron() {
   return (
     <svg viewBox="0 0 8 14" fill="none" aria-hidden className="h-3.5 w-2">
