@@ -65,7 +65,7 @@ export function LegendPanel({ match, rank, total, profile, pool, shared }: Legen
                   >
                     {checked && <span className="size-[7px] rounded-full bg-primary" />}
                   </span>
-                  <span className={cn('flex-1 text-[15px] font-semibold', checked ? 'text-foreground' : 'text-secondary-text')}>
+                  <span className={cn('flex-1 text-body font-semibold', checked ? 'text-foreground' : 'text-secondary-text')}>
                     {f.build.archetype}
                   </span>
                   <span className={cn('text-sm font-semibold', checked ? 'text-amber' : 'text-muted-foreground')}>{STRINGS.result.fit(f.fit)}</span>
@@ -74,8 +74,8 @@ export function LegendPanel({ match, rank, total, profile, pool, shared }: Legen
             })}
           </div>
         )}
-        <PlayedAs archetype={build.archetype} className="mt-3.5 text-body" />
-        <p className="mt-4 text-small text-secondary-text">{build.howItPlays}</p>
+        <PlayedAs archetype={build.archetype} className="mt-3.5" />
+        <p className="mt-4 text-body text-secondary-text">{build.howItPlays}</p>
         <DeckListBox legend={legend} build={build} className="mt-8 bg-surface" />
       </div>
       <div className="min-w-0 md:col-span-2 lg:col-span-1 lg:pl-7">

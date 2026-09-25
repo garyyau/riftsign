@@ -20,7 +20,7 @@ export function DeckListBox({ legend, build, className }: { legend: Legend; buil
     >
       <Layers aria-hidden className="size-5 shrink-0 text-secondary-text" />
       <span className="min-w-0">
-        <span className="block text-small font-semibold text-foreground">
+        <span className="block text-body font-semibold text-foreground">
           {featured ? s.featuredDeck(legend.champion, build.archetype) : s.noFeaturedDeck}
         </span>
         <span className="block text-xs text-primary group-hover:underline">

@@ -20,7 +20,7 @@ export function AxisBar({ axis, value, animate }: AxisBarProps) {
         </div>
         <p className="score mt-2.5 shrink-0">
           {value.toFixed(1)}
-          <span className="ml-2.5 font-sans text-small text-muted-foreground">/ {SCORE_MAX}</span>
+          <span className="ml-2.5 font-sans text-body text-muted-foreground">/ {SCORE_MAX}</span>
         </p>
       </div>
       <div className="relative mt-3 h-1.5 w-full overflow-hidden rounded-full bg-track">

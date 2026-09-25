@@ -26,14 +26,14 @@ export function AlsoPlaysLikeYou({ match, shared }: { match: Match; shared: bool
               <DomainTag key={d} domain={d} />
             ))}
           </div>
-          <PlayedAs archetype={build.archetype} className="mt-3 text-body" />
+          <PlayedAs archetype={build.archetype} className="mt-3" />
           {legend.starterDeck && (
             <Badge variant="starter" className="mt-3.5 whitespace-normal">
               {s.starter(legend.starterDeck)}
             </Badge>
           )}
           <p className="small-caps mt-5 text-muted-foreground">{s.howItPlays}</p>
-          <p className="mt-2 text-small text-secondary-text">{build.howItPlays}</p>
+          <p className="mt-2 text-body text-secondary-text">{build.howItPlays}</p>
           <DeckListBox legend={legend} build={build} className="mt-6" />
         </div>
       </div>

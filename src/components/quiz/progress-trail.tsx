@@ -25,7 +25,7 @@ export function ProgressTrail({ current, total }: { current: number; total: numb
           </svg>
         ))}
       </div>
-      <span className="text-small leading-[1.2] font-medium text-muted-foreground">{STRINGS.quiz.progress(current, total)}</span>
+      <span className="text-body leading-[1.2] font-medium text-muted-foreground">{STRINGS.quiz.progress(current, total)}</span>
     </div>
   )
 }

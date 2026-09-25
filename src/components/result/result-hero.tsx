@@ -71,17 +71,17 @@ export function ResultHero({ top, profile, pool, shared, shareLink, onRetake }: 
             <DomainTag key={d} domain={d} />
           ))}
         </div>
-        <PlayedAs archetype={shown.archetype} className="mt-4 text-body-l" />
+        <PlayedAs archetype={shown.archetype} className="mt-4" />
         {legend.starterDeck && (
           <Badge variant="starter" className="mt-3.5 whitespace-normal">
             {s.starter(legend.starterDeck)}
           </Badge>
         )}
         <div className="max-w-[640px]">
-          <p className="mt-5 text-body text-muted-foreground">{shown.whyYou}</p>
+          <p className="mt-5 text-body text-secondary-text">{shown.whyYou}</p>
           <DeckListBox legend={legend} build={shown} className="mt-6" />
           {others.length > 0 && (
-            <p className="mt-3 rounded-md border border-dashed px-5 py-4 text-[15px] text-muted-foreground">
+            <p className="mt-3 rounded-md border border-dashed px-5 py-4 text-body text-secondary-text">
               {s.alsoPlayed}{' '}
               {others.map((build, i) => (
                 <Fragment key={build.archetype}>

@@ -59,7 +59,7 @@ export function Quiz({ questions, answers, step, onAnswer, onNext, onBack, onFin
           onSelect={(answerId) => onAnswer(question.id, answerId)}
         >
           <div className="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
-            <Button variant="link" className="gap-1.5 justify-self-start text-small" onClick={onBack}>
+            <Button variant="link" className="gap-1.5 justify-self-start text-body" onClick={onBack}>
               <span aria-hidden>←</span>
               {s.back}
             </Button>

@@ -39,7 +39,7 @@ export function ExploreSection({ matches, profile, shared, shownIds }: ExploreSe
           <h2 id="explore-title" className="display-m mt-3.5">
             {s.title}
           </h2>
-          <p className="mt-3.5 text-body leading-normal text-muted-foreground">{shared ? s.sharedLead : s.lead}</p>
+          <p className="mt-3.5 text-body text-secondary-text">{shared ? s.sharedLead : s.lead}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row lg:pt-6">
           <div className="relative sm:w-[180px]">
@@ -72,7 +72,7 @@ export function ExploreSection({ matches, profile, shared, shownIds }: ExploreSe
         {items.length ? (
           <LegendCarousel items={items} legends={legends} selectedId={selectedId} shownIds={shownIds} onSelect={setPickedId} />
         ) : (
-          <p className="py-10 text-center text-small text-muted-foreground">{s.noResults(query.trim())}</p>
+          <p className="py-10 text-center text-body text-muted-foreground">{s.noResults(query.trim())}</p>
         )}
       </div>
 

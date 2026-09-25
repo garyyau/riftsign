@@ -34,7 +34,7 @@ export function YourDomainsSection({ profile, picks, shared, legendCount }: Your
       </div>
       <div>
         <h2 className="eyebrow">{domains.length ? s.moreInDomains(domains) : s.moreByDomain}</h2>
-        <p className="mt-4 text-small text-muted-foreground">
+        <p className="mt-4 text-body text-secondary-text">
           {!domains.length ? s.domainsNone : matches.length ? s.domainsLegends(domains) : s.domainsCovered}
         </p>
         {domains.length > 0 && matches.length > 0 && (
@@ -48,7 +48,7 @@ export function YourDomainsSection({ profile, picks, shared, legendCount }: Your
           <button
             type="button"
             onClick={scrollToExplore}
-            className="mt-6 cursor-pointer rounded-sm text-[15px] font-medium text-primary outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
+            className="mt-6 cursor-pointer rounded-sm text-body font-medium text-primary outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
           >
             {s.seeAll(legendCount)}
             <span aria-hidden> ↓</span>

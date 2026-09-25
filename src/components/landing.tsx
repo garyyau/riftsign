@@ -25,7 +25,7 @@ export function Landing({ hasResult, hasProgress, onStart, onContinue, onSeeResu
         <ColumnLogo />
         <p className="eyebrow mt-8">{s.eyebrow}</p>
         <h1 className="display-l md:display-xl mt-4 max-w-[860px]">{s.title}</h1>
-        <p className="mt-5 max-w-[600px] text-body-l text-muted-foreground">{s.body}</p>
+        <p className="mt-5 max-w-[600px] text-body-l text-secondary-text">{s.body}</p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           {hasResult ? (
             <>
@@ -51,7 +51,7 @@ export function Landing({ hasResult, hasProgress, onStart, onContinue, onSeeResu
             </Button>
           )}
         </div>
-        <p className="mt-4 text-small text-muted-foreground">{s.time}</p>
+        <p className="mt-4 text-body text-muted-foreground">{s.time}</p>
       </section>
       <p className="eyebrow mt-14 px-6 text-center">{s.rowLabel(rowLegends.length)}</p>
       <div className="mt-6">

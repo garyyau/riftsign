@@ -75,7 +75,7 @@ export function CompareWithPlayer({ profile, legend, build, shared }: CompareWit
           )
         })}
       </ul>
-      <p className="mt-3 text-[15px] leading-5 font-medium text-foreground">{gapSummary(profile, build, shared)}</p>
+      <p className="mt-3 text-body font-medium text-foreground">{gapSummary(profile, build, shared)}</p>
     </div>
   )
 }

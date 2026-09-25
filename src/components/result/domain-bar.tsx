@@ -27,7 +27,7 @@ export function DomainBar({ domain, value, highlighted }: DomainBarProps) {
     <li data-highlighted={highlighted || undefined}>
       <div className="flex items-center gap-3">
         <DomainTag domain={domain} quiet={!highlighted} />
-        <p className={cn('min-w-0 flex-1 text-small', highlighted ? 'font-semibold text-foreground' : 'text-muted-foreground')}>
+        <p className={cn('min-w-0 flex-1 text-body', highlighted ? 'font-semibold text-foreground' : 'text-muted-foreground')}>
           {STRINGS.result.domainFeeling[domainFeeling(value)]}
         </p>
         <p className={cn('shrink-0 font-display text-lg tabular-nums', highlighted ? 'text-foreground' : 'text-secondary-text')}>
