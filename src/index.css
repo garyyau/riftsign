@@ -254,8 +254,9 @@
 }
 
 @utility card-foil {
-  --foil: 25%;
+  --foil: 45%;
   animation: card-shimmy 6s ease-in-out infinite;
+  /* The spectrum spans the whole gradient, so the card shows colour at every point of the slide. */
   &::before {
     content: '';
     position: absolute;
@@ -263,17 +264,17 @@
     background: linear-gradient(
         125deg,
         transparent 0%,
-        color-mix(in srgb, var(--domain-fury) var(--foil), transparent) 15%,
-        color-mix(in srgb, var(--domain-body) var(--foil), transparent) 25%,
-        color-mix(in srgb, var(--domain-order) var(--foil), transparent) 35%,
-        color-mix(in srgb, var(--domain-calm) var(--foil), transparent) 45%,
-        color-mix(in srgb, var(--domain-mind) var(--foil), transparent) 55%,
-        color-mix(in srgb, var(--domain-chaos) var(--foil), transparent) 65%,
+        color-mix(in srgb, var(--domain-fury) var(--foil), transparent) 12%,
+        color-mix(in srgb, var(--domain-body) var(--foil), transparent) 26%,
+        color-mix(in srgb, var(--domain-order) var(--foil), transparent) 40%,
+        color-mix(in srgb, var(--domain-calm) var(--foil), transparent) 54%,
+        color-mix(in srgb, var(--domain-mind) var(--foil), transparent) 68%,
+        color-mix(in srgb, var(--domain-chaos) var(--foil), transparent) 82%,
         transparent 100%
       )
-      0 0 / 300% 300%;
+      0 0 / 200% 200%;
     mix-blend-mode: color-dodge;
-    opacity: 0.6;
+    opacity: 0.8;
     pointer-events: none;
     animation: card-foil 6s ease-in-out infinite;
   }
