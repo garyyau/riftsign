@@ -12,22 +12,23 @@
   "ingestedAt": "2026-09-22",
   "builds": [
     {
-      "archetype": "Tempo",
+      "archetype": "Midrange",
       "coordinates": {
-        "pace": 7.5,
-        "stance": 8,
-        "complexity": 6,
-        "variance": 6.5
+        "pace": 6,
+        "stance": 6.5,
+        "complexity": 6.5,
+        "variance": 4
       },
-      "howItPlays": "You play strong Body units early and rush to conquer a battlefield before your opponent can set up, then use Sett's ability to recall a buffed unit that would die instead of losing it for good. Every battlefield you conquer readies Sett again, so you keep protecting your best units turn after turn while you race to hold more ground than your opponent.",
-      "whyYou": "You like setting the pace instead of waiting to see what the other player does. You want to commit units early, keep the pressure on, and trust your buffs to bail your best unit out of a bad trade instead of playing it safe. This Legend suits you if you're comfortable riding a hot start and don't mind that a stalled game can turn on you fast.",
+      "howItPlays": "You buff cheap units with Pit Rookie and Showstopper, then win fights with Call to Glory, which gives a unit +3 Might this turn and costs nothing if you spend a unit's buff to play it. When a buffed unit would die, Sett lets you pay a rune to spend its buff and send it back to base instead, while Fiora, Victorious and Rengar, Trophy Hunter, a 6 Might unit you can drop onto a battlefield your opponent holds even on their turn, conquer and hold for the points.",
+      "whyYou": "You like a board of units that grow a little every turn, and you care more about winning each fight than about racing. You're always weighing whether to keep a buff so Sett can rescue a unit or spend it to make Call to Glory free, and when to hold Rengar back as a surprise for your opponent's turn. Games run into the middle turns and turn on who wins the key combat, not on a lucky draw. If sizing up every fight and keeping your best units alive through it sounds fun, Sett suits you.",
       "guideUrls": [
-        "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-guide-sett-the-boss-body-order",
-        "https://riftbound.gg/sett-the-boss-guide/"
+        "https://piltoverarchive.com/decks/view/79c6fa32-765c-48f8-9971-b13a49bd842d",
+        "https://piltoverarchive.com/decks/view/a7b53b02-2c9f-40a0-9ba3-23838b3bc74a",
+        "https://piltoverarchive.com/decks/view/d3749185-be2f-4d13-85fa-e7c83265a427"
       ],
-      "deckListUrl": "https://piltoverarchive.com/decks",
-      "reviewed": true,
-      "ratingNotes": "pace 7.5: riftbound.gg says to 'constantly be in a sort of rush, and score every turn'; cardsrealm adds the deck wants to 'play strong units early on and conquer a battlefield as soon as possible.' stance 8: cardsrealm says 'you won't let your opponent fight for the board at any point during the game,' controlling the pace rather than reacting to it. complexity 6: riftbound.gg notes it 'mix[es] disruptive cards with way[s] to ready its units,' which takes timing around rune recycling and buff-spend sequencing. variance 6.5: riftbound.gg warns 'The Boss isn't suited for a value oriented war' and that falling behind on runes leaves you 'helpless,' while also saying it's 'competitive if you are one of the bests in the world piloting that legend,' pointing to a wide gap between a good and bad piloting. Legend ability: when a buffed unit you control would die, you may pay a rune and exhaust Sett to spend its buff and recall the unit instead of losing it, and Sett readies whenever you conquer. Confidence: medium-high. Two independent guides agree on the fast, proactive shape of the deck; a reviewer should sanity-check the Tempo label against the seed's earlier Midrange framing."
+      "deckListUrl": "https://piltoverarchive.com/decks/view/79c6fa32-765c-48f8-9971-b13a49bd842d",
+      "reviewed": false,
+      "ratingNotes": "Change 2026-09-25: relabelled Tempo to Midrange. Coordinates moved from 7.5/8/6/6.5 to 6/6.5/6.5/4 (Pace -1.5, Stance -1.5, Variance -2.5). The old numbers came from guide quotes, not scored decks. The deckListUrl moved from the bare /decks page to the style's display deck, and the old cardsrealm and riftbound.gg guides were removed because neither was confirmed to describe the current list. Scored decks (pace/stance/complexity/variance): From the Top Rope https://piltoverarchive.com/decks/view/79c6fa32-765c-48f8-9971-b13a49bd842d 6/6.5/6.5/4 Midrange. Hartford RQ Best of Sett https://piltoverarchive.com/decks/view/a7b53b02-2c9f-40a0-9ba3-23838b3bc74a 6/6.5/6.5/4 Midrange. LA Sett https://piltoverarchive.com/decks/view/d3749185-be2f-4d13-85fa-e7c83265a427 5.5/6.5/7/4 Midrange. Adjustments (Top Rope and Hartford): complexity +1 because the Legend's recall needs a rune and timing on every lethal fight, and it and Monastery of Hirana spend buffs that Call to Glory also wants; variance -0.5 because Grove of the God-Willow and Monastery of Hirana draw cards. Adjustments (LA Sett): complexity +1 because the Legend's recall needs a rune and timing on every lethal fight and turns Sacrifice into a free draw, and Monastery also spends buffs; variance -0.5 because Monastery of Hirana and Sunken Temple draw cards. Formula and judgment were never 2 or more apart. Deciding cards: Pace comes from 6 to 8 cheap units (Pit Rookie, Irresistible Faefolk) set against 4 to 6 cards costing 5+ (Rengar, Trophy Hunter, Vi, Peacekeeper, Sett, Brawler). Stance comes from 19 pressure cards (Fiora, Victorious, First Mate, Cithria, Vi) against 5 to 7 answers (Sabotage, Repulse, Hidden Blade), with Punch First, Showstopper and Call to Glory as tricks. Complexity comes from 19 to 23 setup or modes cards around the buff economy (Arena Bar, Call to Glory, Kinkou Monk, Sacrifice) plus the Legend. Variance comes from about 75% of the list being 3-ofs, with no luck or swing cards. Legend ability: when a buffed unit you control would die, you may pay a rune and exhaust Sett to spend its buff and recall it exhausted instead; when you conquer, ready Sett. Also played: Challenge Brawler Sett (Two Setts to Rule them ALL, Orange Sett, Sett Yor), merged by the Maintainer because it runs the same core and differs only in flex slots (Challenge in place of Vi or Kinkou Monk, plus a splash champion). LA Sett was scored to represent the Brawler plus Sacrifice package. Confidence: low. Reviewer check: every list predates the ban, and the LA RQ results should confirm the style or make it strict. The Hartford and Top Rope sheets score the same because their lists differ by only 2 cards (Challenge against Rampage)."
     }
   ]
 }

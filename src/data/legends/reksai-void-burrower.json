@@ -12,22 +12,22 @@
   "ingestedAt": "2026-09-22",
   "builds": [
     {
-      "archetype": "Tempo",
+      "archetype": "Aggro",
       "coordinates": {
-        "pace": 6,
-        "stance": 7,
-        "complexity": 6.5,
-        "variance": 5.5
+        "pace": 7.5,
+        "stance": 7.5,
+        "complexity": 5,
+        "variance": 4.5
       },
-      "howItPlays": "You take a battlefield early with a cheap unit, and every time you win a fight there you can exhaust Rek'Sai to dig into the top of your deck, play a card straight off it, and set the rest aside. You use that early lead to keep finding new units and press your advantage before your opponent can settle in.",
-      "whyYou": "You like getting ahead early and then squeezing everything you can out of that lead rather than grinding from an even position. Digging through your deck for exactly the right card the moment you win a fight feels rewarding to you. You're comfortable taking some risk in the opening turns because you know a fast start is how this deck is supposed to work.",
+      "howItPlays": "You flood the board with cheap units and 1-Might Recruit tokens, then attack with spells like Blood Rush, which gives an attacker +2 Might, or Undertitan, which gives all your other units +2 Might on the turn it lands. Each time you conquer a battlefield, you can exhaust Rek'Sai to reveal the top two cards of your deck and play one of them, so each attack that lands sets up the next.",
+      "whyYou": "You want the game over quickly, and you like being the one who starts every fight. You would rather put three small units on the board and pump them than wait for one big threat to carry you. Each battlefield you take gives you another card off the top of your deck, and you enjoy keeping the pressure on until your opponent runs out of answers. If a fast, straightforward attacking plan that rewards pushing forward suits you, Rek'Sai is your Legend.",
       "guideUrls": [
-        "https://riftbound.gg/reksai-void-burrower-guide/",
-        "https://hextechanalytics.com/legends/reksai"
+        "https://piltoverarchive.com/decks/view/25bdb07b-5040-4d10-ba57-9c284a9900bf",
+        "https://piltoverarchive.com/decks/view/331b7c23-b05d-4431-b546-85cbd5f0898c"
       ],
-      "deckListUrl": "https://piltoverarchive.com/decks",
-      "reviewed": true,
-      "ratingNotes": "Ability: when you conquer, you may exhaust Rek'Sai to reveal the top 2 cards of your deck, play one, then recycle the rest. Pace 6: riftbound.gg calls it an 'off-tempo aggressive strategy' that wants at least nine 2-cost units to build an early lead, faster than a grinding deck but not an all-in rush. Stance 7: hextechanalytics.com calls it 'strongly proactive,' built around winning a fight to unlock the ability, and riftbound.gg agrees the deck turns controlling once it is ahead. Complexity 6.5: hextechanalytics.com calls it 'high,' citing sequencing of small units and resource allocation across battlefields, while riftbound.gg calls the early game more straightforward; I split the difference. Variance 5.5: hextechanalytics.com warns 'the Legend cannot help before you conquer, losing the early board leaves the deck dependent on the cards already in hand,' so the game can swing hard on that first fight. Confidence: high, both guides describe the same conquer-then-dig loop and the same early-game dependency. Reviewer: none major."
+      "deckListUrl": "https://piltoverarchive.com/decks/view/25bdb07b-5040-4d10-ba57-9c284a9900bf",
+      "reviewed": false,
+      "ratingNotes": "2026-09-25 re-rate: relabelled Tempo to Aggro and moved from 6/7/6.5/5.5 to 7.5/7.5/5/4.5 (Pace +1.5, Complexity -1.5, both at the move threshold). The old Build was rated from riftbound.gg and hextechanalytics guides with no deck. The picks now show a strict Aggro style (43 decks from 43 authors) and every scored deck rates Aggro. deckListUrl changed from the bare /decks page to Spuzie's list. Scored decks: Spuzie's Rek'Sai - Vendetta WiP https://piltoverarchive.com/decks/view/25bdb07b-5040-4d10-ba57-9c284a9900bf (14 likes, video, edited after the ban) 7.5/7.5/4.5/5 Aggro; Rek'sai swarm (orionsbelt) https://piltoverarchive.com/decks/view/98fc864c-245d-42ad-86a9-393def686369 7.5/7.5/5/4.5 Aggro; Best of Barcelona (Kevplayer, 13 likes, video) https://piltoverarchive.com/decks/view/331b7c23-b05d-4431-b546-85cbd5f0898c 7.5/7.5/5/4.5 Aggro. Mean from tools.ts style: 7.5/7.5/5/4.5, labels Aggro x3. Adjustments on every sheet: Pace +0.5 (the Legend plays a free card off the top after each conquest, extending early pressure); Stance +0.5 (the conquest reveal adds board presence); Variance +0.5 (the Legend reveals two unseen cards and can miss). No Axis showed a formula-to-judgment gap of 2 or more. Deciding cards: Pace from 11-12 cheap units per list (Noxus Hopeful at 2 with Legion, Faithful Manufactor, Rek'Sai, Breacher with Accelerate) and only 4-5 cards costing 5+. Stance from about 23 pressure cards against 6-7 answers (Cull the Weak, Falling Star) plus the Assault spells Blood Rush and Cleave. Complexity is low: mostly units, 4 reactive cards, no engine. Variance is low: full playsets (0.68-0.75 of cards as 3-ofs) and no luck or swing cards, raised only by the Legend's reveal. Legend: when you conquer, you may exhaust Rek'Sai to reveal the top 2 cards of your Main Deck, play one, then recycle the rest. Undertitan adds 2 energy when revealed this way. Also played: Seal of Unity Swarm https://piltoverarchive.com/decks/view/9313e6ee-f249-4285-be9a-05770a382822 https://piltoverarchive.com/decks/view/3282f1df-3936-40c7-bf28-5ded74320711 https://piltoverarchive.com/decks/view/452989ad-7b98-4aa3-8950-69868a3d48ae (heavy-Order Seal of Unity / Battering Ram / Vanguard Captain go-wide, 6.5/7/5.5/5, within 2 of this Build on every Axis); Hidden Blade Kai'Sa https://piltoverarchive.com/decks/view/00dd4967-3ab6-4761-a993-23000673846e (Singapore RQ Best of) https://piltoverarchive.com/decks/view/2332b3be-a071-4d21-9bc2-58fdadcc8a2e https://piltoverarchive.com/decks/view/7439dfc8-b16f-4cd4-8d27-cf3bf0135bf6 (7/6.5/5.5/4); Jhin Loop Combo https://piltoverarchive.com/decks/view/4262a6a7-415a-41da-a1f1-560b2ca5345a (5/5.5/8/6.5, one author, a discovery deck rather than a Build). Confidence: high. Reviewer: the Barcelona Best of title is a community claim that has not been checked against an event page. Void Queen on a Plate by Tatazo (02cd151a, guide, 9 likes) is a legal alternate display deck. The old riftbound.gg and hextechanalytics guide links were dropped because this pass did not re-read them. guideUrls are the two scored deck pages."
     }
   ]
 }

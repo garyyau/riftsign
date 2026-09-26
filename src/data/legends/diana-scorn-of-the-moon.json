@@ -14,20 +14,21 @@
     {
       "archetype": "Tempo",
       "coordinates": {
-        "pace": 7.5,
-        "stance": 6,
-        "complexity": 8,
-        "variance": 5.5
+        "pace": 6,
+        "stance": 5,
+        "complexity": 7.5,
+        "variance": 4
       },
-      "howItPlays": "You spend cheap spells to win fights over battlefields early, using Diana's ability to generate an extra Energy mid-fight so you can react with a trick your opponent didn't plan for. Once you're ahead you keep bouncing or weakening their units to stay in front on points while they struggle to mount a comeback.",
-      "whyYou": "You like winning the small fights first and using that lead to stay ahead for the rest of the game. You enjoy having a trick ready at exactly the right second, and you don't mind that Diana takes a few games to click before her timing starts to feel natural. If you want a Legend that punishes careless play and rewards reading your opponent, Diana is worth taking the time to learn.",
+      "howItPlays": "You take battlefields early with cheap units, then use Diana's extra Energy, which she can only spend during fights, on 1-cost reactions like Gust, which sends an enemy unit with 3 Might or less back to its owner's hand. Ride the Wind moves one of your units and readies it, and each time Hwei, Brooding Painter moves he draws a card, discards a card, and gets a bonus based on what you threw away.",
+      "whyYou": "You like games where each turn comes down to one fight over a battlefield, and you want to be the one holding the answer. You enjoy keeping a cheap reaction ready during your opponent's turn and moving your units in and out at just the right moment. You don't mind tracking a lot at once, and you like that a win here comes from reading your opponent and not from a lucky draw. If careful timing sounds more fun to you than raw speed, Diana is worth learning.",
       "guideUrls": [
-        "https://riftboundguide.com/2026/06/08/riftbound-diana-champion-deck-guide/",
-        "https://riftbound.gg/diana-scorn-of-the-moon-guide/"
+        "https://piltoverarchive.com/decks/view/44379da0-710a-40d9-9d18-6670d05ab829",
+        "https://piltoverarchive.com/decks/view/44f0cad2-b511-494e-9d3c-e6926bca074f",
+        "https://piltoverarchive.com/decks/view/1b9c7284-97a4-4c14-bd6d-1002f34f8f92"
       ],
-      "deckListUrl": "https://piltoverarchive.com/decks",
-      "reviewed": true,
-      "ratingNotes": "pace 7.5: riftbound.gg calls Diana 'a fast-paced legend, looking to control the pace of a match through showdown domination early on'; her meta page independently labels her a Mind/Chaos tempo legend and she went 14-0-2 to win RQ Vancouver. stance 6: she builds an early lead proactively but riftboundguide.com stresses she generates Energy specifically to hold up 'reaction spells' for the exact right moment, so the number leans proactive rather than sitting at the top of the scale. complexity 8: riftboundguide.com says Diana 'is not a beginner's first deck' and 'the first few games piloting her will feel overwhelming compared to a pre-built deck', rewarding players who 'read board states well and understand when to spend their legend-generated Energy'. variance 5.5: both guides describe outcomes turning on sequencing and reads rather than random effects, a moderate, skill-driven swing rather than a coin-flip one. Ability: Diana may exhaust as a Reaction to add 1 Energy that can only be spent during showdowns. Confidence: high, two detailed guides agree closely and a third source (her official meta page) independently confirms the tempo label and her dominant Unleashed results."
+      "deckListUrl": "https://piltoverarchive.com/decks/view/44379da0-710a-40d9-9d18-6670d05ab829",
+      "reviewed": false,
+      "ratingNotes": "Scored decks (current rubric, blind to the Build on file): Diana Hwei v100 (VEN post ban), Justice, https://piltoverarchive.com/decks/view/44379da0-710a-40d9-9d18-6670d05ab829 Tempo 6/5.5/7.5/3.5; God Save The Queen, RiftRunner91, https://piltoverarchive.com/decks/view/44f0cad2-b511-494e-9d3c-e6926bca074f Tempo 5.5/5/7.5/4.5; Diana, therealjoshmoore, https://piltoverarchive.com/decks/view/1b9c7284-97a4-4c14-bd6d-1002f34f8f92 Tempo 6/5/8/4. tools.ts style: Tempo 6/5/7.5/4, mean of 3, labels Tempo x3. Adjustment (all three decks): complexity +1, because the Legend adds 1 Energy usable only in showdowns, a timing choice every turn. Deciding cards: pace comes from 8-9 two-cost units (Ravenbloom Student, Tideturner, Traveling Merchant, Sprite Fountain) held back by 3 Hwei and other 5-costs. Stance sits near the middle because pressure bodies are balanced by 16-19 answers (Gust, Moonfall, Star-Crossed, Smoke Screen, Hard Bargain, Flash, Vex, Apathetic). Complexity comes from 15-18 reactive cards plus movement setup (Ride the Wind, Flash, Tideturner, Hwei's move trigger). Variance is low from 10-12 removal and 10-12 card-flow cards (Stupefy, Hwei, Traveling Merchant); the only luck card is Diana, Lunari. No axis had a formula/judgment gap of 2 or more. Legend ability: [Reaction] exhaust to add 1 Energy that can only be spent during showdowns. Also played: none (single style). The Maintainer chose Justice's list as the display deck over the script's God Save The Queen (tied on points, more typical of the style, 60 likes). Change 2026-09-25: the label stays Tempo, and coordinates moved from 7.5/6/8/5.5 to 6/5/7.5/4 (pace -1.5, variance -1.5; the old numbers came from guide quotes, the new ones from three scored post-ban lists). deckListUrl moved from the bare /decks page to the display deck. guideUrls: both old guides were dropped. riftboundguide.com describes the pre-ban RQ Vancouver list with 3 Stacked Deck (banned 2026-09-18). The riftbound.gg guide (updated 2026-09-14) is a generic strategy page that names none of this list's key cards. They are replaced by the three scored deck pages. howItPlays and whyYou were rewritten: the old copy called the deck fast and swingy-ish, but the lists sit at mid pace with steady card flow. Confidence: high. Reviewer: a current written guide for the post-ban Hwei list would be a better guideUrl than the deck pages if one appears."
     }
   ]
 }

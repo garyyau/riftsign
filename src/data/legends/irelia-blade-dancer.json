@@ -12,22 +12,23 @@
   "ingestedAt": "2026-09-22",
   "builds": [
     {
-      "archetype": "Control",
+      "archetype": "Tempo",
       "coordinates": {
-        "pace": 4,
-        "stance": 3.5,
-        "complexity": 7.5,
-        "variance": 3
+        "pace": 6,
+        "stance": 5.5,
+        "complexity": 8,
+        "variance": 4
       },
-      "howItPlays": "You ready a friendly unit by exhausting Irelia and paying a rune whenever you need it to act again, and once you win a fight you can spend energy to ready Irelia herself and do the same trick twice in a turn. You hold spells back to protect your best units and grind out fights until those protected units take over the game.",
-      "whyYou": "You enjoy protecting a couple of strong units and finding the exact moment to use your ready effects rather than swinging in blind. You like tracking runes and energy closely and holding your answers for whatever your opponent tries next. If a well-timed save that turns a fight around is satisfying to you, Irelia suits you.",
+      "howItPlays": "You play cheap units like Tideturner, a 2-cost unit that swaps places with one of your other units, and shift your units between battlefields, paying a rune with Irelia to ready a unit you pick so it can attack again. When a fight is close you answer on the opponent's turn with 1-cost spells like En Garde, which gives a unit +1 Might (+2 if it is alone there), and keep your best units alive with Guardian Angel so they keep scoring points.",
+      "whyYou": "You like a quick game where every fight turns on one well-timed spell, and you enjoy holding a cheap trick while your opponent works out whether to attack. You don't mind keeping track of which units to ready and when, because a turn where the same unit takes two battlefields feels earned. If you like staying one step ahead instead of just hitting harder, Irelia fits you.",
       "guideUrls": [
-        "https://riftbound.gg/irelia-blade-dancer-guide/",
-        "https://animealley.ca/blogs/the-synergy-lab/irelia-blade-dancer-riftbound-deck-guide"
+        "https://piltoverarchive.com/decks/view/0e3ffd49-7f24-43f2-930f-368610ebf871",
+        "https://piltoverarchive.com/decks/view/6522dc75-77e0-41a2-bbeb-ba72d6dc7180",
+        "https://piltoverarchive.com/decks/view/cfb771c1-7740-4719-9f25-dfdfe5fae429"
       ],
-      "deckListUrl": "https://piltoverarchive.com/decks",
-      "reviewed": true,
-      "ratingNotes": "Ability: you may exhaust Irelia and pay a rainbow rune to ready a chosen friendly unit; when you conquer, you may pay 1 energy to ready Irelia herself. Pace 4: both riftbound.gg and animealley.ca describe the main threats landing around turns 4-6, a midgame plan rather than an early or a very late one. Stance 3.5: animealley.ca calls the deck 'heavily reactive' and built around eleven reaction spells protecting its threats, while riftbound.gg calls it more balanced; I leaned reactive since both agree protection comes first. Complexity 7.5: animealley.ca calls it high complexity from rune management and knowing when to shift roles, and riftbound.gg agrees it needs careful sequencing and timing. Variance 3: animealley.ca credits a repeatable draw engine off unit movement for reducing variance and keeping the plan steady game to game. Confidence: high, both guides describe the same protect-and-punish plan and name the same key units. Reviewer: none major, this one reads clean."
+      "deckListUrl": "https://piltoverarchive.com/decks/view/0e3ffd49-7f24-43f2-930f-368610ebf871",
+      "reviewed": false,
+      "ratingNotes": "Changed 2026-09-25: relabelled Control to Tempo and moved from 4/3.5/7.5/3 to 6/5.5/8/4. The old numbers came from two guides. Scored decks now put Pace and Stance 2 higher, and every rater and the scorer say Tempo. Scored decks (pace/stance/complexity/variance): Queen Bee (Devin's Tempo Irelia) https://piltoverarchive.com/decks/view/0e3ffd49-7f24-43f2-930f-368610ebf871 6.5/6/8/4 (display; 105 likes, edited 2026-09-15, pre-ban but legal); Better Nerf Irelia (Calvus) https://piltoverarchive.com/decks/view/45135de9-a320-4bd8-976d-0e40b83bb948 6/5.5/8/4 (the style's most typical deck); Irelia (JVL) https://piltoverarchive.com/decks/view/6522dc75-77e0-41a2-bbeb-ba72d6dc7180 6/5.5/8/4 (post-ban). The mean is 6/5.5/8/4 (tools.ts style), labels Tempo x3. Adjustments on every deck: Stance +0.5 (the Legend readies units after they attack, so the same bodies pressure twice a turn); Complexity +1 (the Legend readies a chosen unit for a rune and readies itself on conquer, so nearly every spell carries a timing decision). Deciding cards: Pace comes from 6-8 two-cost units (Tideturner, Treasure Hunter, Scuttle Crab) and only one card costing 5+ (Irelia, Fervent). Stance sits mid: 13-14 answers (Defy, Not So Fast, Flash, Guardian Angel, Zhonya's Hourglass, Charm, Star-Crossed) balance 8-11 pressure cards. Complexity comes from 19-20 reaction-speed cards (En Garde, Discipline, Defiant Dance, Hidden Tideturner) and 17-20 cards with setup or modes. Variance is low: no luck or swing cards, 8-9 cards that draw. No formula-vs-judgment gap reached 2. Legend ability: when you choose a friendly unit, you may exhaust Irelia and pay a rune to ready it; when you conquer, you may pay 1 to ready Irelia. Also played: Astral Heron Irelia, the post-ban variant with 3 Astral Heron as a 7-cost top end plus Zhonya's and Switcheroo, which folds in here: Koko's Irelia post ban https://piltoverarchive.com/decks/view/cfb771c1-7740-4719-9f25-dfdfe5fae429 6/5.5/8/4, Ched's Blade Dancer https://piltoverarchive.com/decks/view/43b88226-15d3-4912-802b-c610500231bb 5.5/5.5/8/4, Irelia Over https://piltoverarchive.com/decks/view/4a3df924-3266-4990-abe0-5242b4e6d0b6 5.5/5/8/4. Confidence: high. Reviewer: the old guides are gone. riftbound.gg (updated 2026-09-08) describes a control plan that shares none of this list's key cards, and I didn't re-check animealley. The guideUrls are deck pages; Queen Bee's page has only a one-line description ('A tempo deck with a control posture...'), and its Guide and Matchups tabs looked empty when fetched. If the LA RQ goes Heron, consider switching the display deck to Koko's list, which is all post-ban."
     }
   ]
 }
