@@ -2,10 +2,7 @@
   "id": "teemo-swift-scout",
   "name": "Teemo, Swift Scout",
   "champion": "Teemo",
-  "domains": [
-    "Mind",
-    "Chaos"
-  ],
+  "domains": ["Mind", "Chaos"],
   "set": "OGN",
   "starterDeck": null,
   "cardImage": "teemo-swift-scout.jpg",
@@ -26,7 +23,7 @@
         "https://hextechanalytics.com/legends/teemo"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/54ab7032-35e0-47ca-8df6-ac73c5c7413d",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "2026-09-25 re-rate. Scored decks: Teemo 4.1 (chaix) https://piltoverarchive.com/decks/view/54ab7032-35e0-47ca-8df6-ac73c5c7413d Tempo 7/6.5/7.5/4; Blue Teemo 1v1 (Darkmatter43, pre-ban) https://piltoverarchive.com/decks/view/6381aead-50be-44dc-95fb-018151f1a94a Tempo 6/6/8/3.5; new teemo agro (Dani Timchenko, pre-ban) https://piltoverarchive.com/decks/view/682ecd86-8c84-4f48-a6f2-a09ac853d7fd Tempo 6.5/5.5/8/4.5. Mean from `tools.ts style`: Tempo 6.5/6/8/4. Adjustments on all three sheets: complexity +1 (the Legend lets you hide a card for 1 Energy instead of a rune and pick Teemos back up to replay them, a choice every turn); variance -0.5 (Grove of the God-Willow and Dusk Rose Lab or Startipped Peak give extra cards or runes). Deciding cards: Pace comes from about nine units costing 2 (Teemo, Scout; Evelynn, Entrancing; Tideturner; Windsinger; Sneaky Deckhand) against only three cards costing 5+. Stance comes from 18 pressure cards (plus Sprite Call and Sprite Fountain tokens) against 8 answers. Complexity comes from 24 Hidden or Reaction cards in 40, plus Switcheroo and Temporal Breach. Variance: no luck-flagged cards, 0.60 of the deck in 3-ofs, and Consult the Past and card-drawing battlefields for refills. Teemo, Strategist's reveal of 5 cards is the only unseen-card effect, and it runs as 1 to 3 copies. Teemo 4.1 is judged Tempo over the scorer's Aggro (pace 7 and stance 6.5 sit on the Aggro line) because 24 of its cards are Hidden or Reaction. Legend ability: you may pay 1 Energy to hide a card with Hidden instead of a rune; for 1 Energy and exhausting Teemo, you can put a Teemo unit you own into your hand from your Champion Zone or the board. What moved since the 2026-09-22 rating: variance 7 to 4. The old rating read Strategist's reveal damage as a core swing, but the reveal is one card in a deck of full playsets and steady card flow. Pace 7.5 to 6.5 and complexity 7.5 to 8 (both within 1.5). deckListUrl was the bare /decks page. I dropped the riftbound.gg guide from guideUrls: it is dated 2026-07-17, shows no decklist, and names none of this list's key cards, so I can't confirm it describes this list rather than a pre-ban Stacked Deck one. Also played: Spiderling Swarm Teemo, which hides 18 to 28 Spiderlings and flips them together. Its raters called it Midrange, 5.5/7/7.5/4, under 2 from this Build on every Axis: https://piltoverarchive.com/decks/view/f9512210-2056-439d-bb79-4f4d6d6bc458 (MipZ), https://piltoverarchive.com/decks/view/9c46250e-b875-48f5-8edb-bedf9f8d6781 (Shush), https://piltoverarchive.com/decks/view/2b751fc5-2f8c-440a-ae5e-d6d8e1cfe298 (Osteoporosis), https://piltoverarchive.com/decks/view/c9fffdae-56fe-47b7-8d46-0ee04bae131e (Gale TS, Spiderspam). Confidence: medium. Reviewer: the style's strong evidence (Entchen, Willem Manley) is all illegal pre-ban lists, and the legal decks shown carry 1 like each. Check post-ban lists from the Los Angeles RQ (2026-09-25 to 27) on a later pass. The hextechanalytics page is undated, and its featured list is from 2026-09-06 (pre-ban) and leans toward Spiderlings."
     }
   ]

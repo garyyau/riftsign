@@ -2,10 +2,7 @@
   "id": "leblanc-deceiver",
   "name": "LeBlanc, Deceiver",
   "champion": "LeBlanc",
-  "domains": [
-    "Mind",
-    "Order"
-  ],
+  "domains": ["Mind", "Order"],
   "set": "UNL",
   "starterDeck": null,
   "cardImage": "leblanc-deceiver.jpg",
@@ -28,7 +25,7 @@
         "https://riftbound.cardsrealm.com/en-us/articles/riftbound-deck-tech-deathknell-leblanc"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/d11f96ce-f2c0-49fa-9c2d-f2c57fcc9dc6",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Re-rated 2026-09-25 from the deck picks. Coordinates moved from 4.5/6/6.5/7 to 5/5/7.5/4. Variance dropped most: the old rating read guide quotes about lopsided games, while the scored lists run mostly 3-ofs, have no reveal or luck cards and draw a lot of cards. The old deckListUrl was the bare /decks page. Scored decks (pace/stance/complexity/variance): LeBlanc - No Hook Set 4 (Alex Contri) https://piltoverarchive.com/decks/view/d11f96ce-f2c0-49fa-9c2d-f2c57fcc9dc6 4.5/5/7.5/4.5 Midrange; LeBlanc Hookless (beef) https://piltoverarchive.com/decks/view/ac2afee1-695d-4b2d-8a33-08000373bcf3 5/5/7.5/4 Midrange; Deathknell Leblanc (rexosorous) https://piltoverarchive.com/decks/view/4dcc25d1-323f-4659-bad0-6ff91bc35274 5/5/7.5/3.5 Midrange. Mean (tools.ts style): Midrange 5/5/7.5/4, labels Midrange x3. Adjustments on every sheet: stance +0.5 (the Legend puts extra ready units on battlefields you already contest); complexity +1 (the Legend asks on each conquer or hold whether to discard for a Reflection and which unit to copy; Dusk Rose Lab adds a sacrifice decision each Beginning Phase). What decided each Axis: Pace, 8-9 cheap Deathknell units (Soaring Scout, Watchful Sentry, Honest Broker) against 10-11 cards costing 5+ (Glasc Mixologist, Ruined Rex, Thousand-Tailed Watcher, Rift Herald). Stance, few pressure cards (about 3), about 7-8 answers (Hidden Blade, Cull the Weak, Deathgrip) and a large own-plan share, so balance is slightly negative and lands at 5. Complexity, 24-27 setup cards (Deathknell, Mighty for Sacrifice, Mirror Image), 10-11 reactive cards and the Legend's copy choice. Variance, no luck or swing cards, 6-7 removal and 8-12 card-flow cards; Alex Contri's list has fewer 3-ofs (0.38) and sits higher at 4.5. No Axis had a formula-versus-judgment gap of 2 or more. Legend ability: when you conquer or hold, you may discard 1 and exhaust LeBlanc to play a ready Reflection token there that becomes a copy of another unit there, with Temporary. Also played: Baited Hook LeBlanc (Midrange 4/5/7.5/5.5; Baited Hook pulls free 8-cost units off the top five cards) https://piltoverarchive.com/decks/view/ae92e647-d5be-4bef-a7b9-a579fd5bbe5b https://piltoverarchive.com/decks/view/b7397c96-44ac-4859-9690-5acb2b1e2cfc https://piltoverarchive.com/decks/view/4792dab3-e5af-4893-a851-8ed1a830f441 ; Smoke and Mirrors LeBlanc (Tempo 5.5/5.5/8/3.5, cheap spells and Temporary tokens kept alive by LeBlanc, Everywhere at Once, all pre-ban) https://piltoverarchive.com/decks/view/8c91869d-c5aa-4600-a3d1-a2cd93a49e76 https://piltoverarchive.com/decks/view/05654b5e-c6ee-41b6-9234-3e3b0f251397 https://piltoverarchive.com/decks/view/0df1e857-138c-4341-bcb1-31cbc190aad6 ; Kai'Sa Spell Recursion LeBlanc (Midrange 5/5/7.5/4, one brewer, pre-ban) https://piltoverarchive.com/decks/view/4c11efa4-9409-4a33-b07e-21c4672ba375 . None is 2 apart from Hookless on any Axis, so none clears Distinct. Confidence: high. Reviewer checks: the cardsrealm deck tech is from 2026-04-24, before the 2026-09-18 ban, but its list (Karthus, Ruined Rex, Cull the Weak, Glasc Mixologist, sacrifice spells) has no banned card. I removed riftbound.gg (its key cards could not be matched to this list) and hextechanalytics (a stats page). Alex Contri's display deck runs 2 Rift Herald and 1 Harnessed Dragon but no Baited Hook."
     }
   ]

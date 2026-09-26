@@ -2,10 +2,7 @@
   "id": "yasuo-unforgiven",
   "name": "Yasuo, Unforgiven",
   "champion": "Yasuo",
-  "domains": [
-    "Calm",
-    "Chaos"
-  ],
+  "domains": ["Calm", "Chaos"],
   "set": "OGN",
   "starterDeck": null,
   "cardImage": "yasuo-unforgiven.jpg",
@@ -26,7 +23,7 @@
         "https://piltoverarchive.com/decks/view/ce6c4714-1432-4c22-aa0b-6be3d340eb97"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/6ac17736-7424-4fa1-a450-198740a11285",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from deck picks): coordinates moved from 7/7/8/6 to the mean of the Akali Windrider style's two scored decks, 6.5/6/8/4. Variance moved by 2: both lists run cheap reactions, card draw and mostly full playsets, and nothing reveals unseen cards. Label stays Tempo. deckListUrl was the bare /decks page and now points at the display deck. Both old guides are gone. The riftbound.gg guide (updated 2026-04-21) shows the older Bologna Regional list, not this Akali build. The hextechanalytics page is a stats page that doesn't describe this list. Scored decks (tools.ts style: Tempo 6.5/6/8/4, mean of 2; labels Tempo, Tempo): https://piltoverarchive.com/decks/view/6ac17736-7424-4fa1-a450-198740a11285 The Flow of the Wind (Perl) Tempo 6.5/6/7.5/3.5; https://piltoverarchive.com/decks/view/ce6c4714-1432-4c22-aa0b-6be3d340eb97 Lowkey better than Irelia (kaystno, pre-ban but legal) Tempo 6/6/8/4. Adjustments, both decks: complexity +1, because the Legend's move to or from base is a 2-energy decision every turn and a step toward Yasuo, Windrider's third-move point; pace +0.5, because the Legend moves a unit played this turn from base straight onto a battlefield. What decided each Axis. Pace: 8 to 9 two-cost units (Lonely Poro, Tideturner, Gust Monk) and few cards costing 5+. Stance: pressure from Akali, Silent and the cheap units against about 12 answers (Defy, Zhonya's Hourglass, Gust, Charm, Star-Crossed). Complexity: 20 to 21 reaction-speed cards and many move-timing setup cards (Tideturner, Switcheroo, Ride the Wind, En Garde). Variance: no luck or swing cards, plus card flow from Discipline, Lonely Poro and Fizz. No Axis had a formula-to-judgment gap of 2 or more. Legend ability: pay 2 Energy and exhaust Yasuo to move a friendly unit to or from its base. Also played: Stellacorn Herder Yasuo, a heavier movement deck built on Stellacorn Herder, Irelia, Fervent, Zhonya's Hourglass and Rebuke: https://piltoverarchive.com/decks/view/ba375652-f739-4a0d-807b-e5089492314f (Hartford RQ Best of) Tempo 5/5/7.5/3.5, https://piltoverarchive.com/decks/view/b91a6d31-7f5b-4b7b-bc02-f49c4b5819cd (wags) Midrange 5/5/7.5/4, https://piltoverarchive.com/decks/view/26246f24-cc8a-401c-b178-e7d768f0e1d8 (Mega Whyter) Midrange 5/5/7.5/4. Tornado Warrior Yasuo, a guided control list that holds battlefields behind Steel Paws and Tornado Warrior: https://piltoverarchive.com/decks/view/a9feba3a-97dd-4223-8a5b-52bf8acaef64 (fplapointe01) Control 5/4/8/3.5. Confidence: medium. Reviewer: neither deck page has written guide text, so guideUrls are the two deck pages only. Perl's list was updated about 2026-09-21. Kaystno's list is from before the ban and scores at x0.75 in the picks. The picks merged script styles 2 and 3 at distance 0.52, a grey-zone call."
     }
   ]

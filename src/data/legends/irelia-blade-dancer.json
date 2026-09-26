@@ -2,10 +2,7 @@
   "id": "irelia-blade-dancer",
   "name": "Irelia, Blade Dancer",
   "champion": "Irelia",
-  "domains": [
-    "Calm",
-    "Chaos"
-  ],
+  "domains": ["Calm", "Chaos"],
   "set": "SFD",
   "starterDeck": null,
   "cardImage": "irelia-blade-dancer.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/cfb771c1-7740-4719-9f25-dfdfe5fae429"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/0e3ffd49-7f24-43f2-930f-368610ebf871",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25: relabelled Control to Tempo and moved from 4/3.5/7.5/3 to 6/5.5/8/4. The old numbers came from two guides. Scored decks now put Pace and Stance 2 higher, and every rater and the scorer say Tempo. Scored decks (pace/stance/complexity/variance): Queen Bee (Devin's Tempo Irelia) https://piltoverarchive.com/decks/view/0e3ffd49-7f24-43f2-930f-368610ebf871 6.5/6/8/4 (display; 105 likes, edited 2026-09-15, pre-ban but legal); Better Nerf Irelia (Calvus) https://piltoverarchive.com/decks/view/45135de9-a320-4bd8-976d-0e40b83bb948 6/5.5/8/4 (the style's most typical deck); Irelia (JVL) https://piltoverarchive.com/decks/view/6522dc75-77e0-41a2-bbeb-ba72d6dc7180 6/5.5/8/4 (post-ban). The mean is 6/5.5/8/4 (tools.ts style), labels Tempo x3. Adjustments on every deck: Stance +0.5 (the Legend readies units after they attack, so the same bodies pressure twice a turn); Complexity +1 (the Legend readies a chosen unit for a rune and readies itself on conquer, so nearly every spell carries a timing decision). Deciding cards: Pace comes from 6-8 two-cost units (Tideturner, Treasure Hunter, Scuttle Crab) and only one card costing 5+ (Irelia, Fervent). Stance sits mid: 13-14 answers (Defy, Not So Fast, Flash, Guardian Angel, Zhonya's Hourglass, Charm, Star-Crossed) balance 8-11 pressure cards. Complexity comes from 19-20 reaction-speed cards (En Garde, Discipline, Defiant Dance, Hidden Tideturner) and 17-20 cards with setup or modes. Variance is low: no luck or swing cards, 8-9 cards that draw. No formula-vs-judgment gap reached 2. Legend ability: when you choose a friendly unit, you may exhaust Irelia and pay a rune to ready it; when you conquer, you may pay 1 to ready Irelia. Also played: Astral Heron Irelia, the post-ban variant with 3 Astral Heron as a 7-cost top end plus Zhonya's and Switcheroo, which folds in here: Koko's Irelia post ban https://piltoverarchive.com/decks/view/cfb771c1-7740-4719-9f25-dfdfe5fae429 6/5.5/8/4, Ched's Blade Dancer https://piltoverarchive.com/decks/view/43b88226-15d3-4912-802b-c610500231bb 5.5/5.5/8/4, Irelia Over https://piltoverarchive.com/decks/view/4a3df924-3266-4990-abe0-5242b4e6d0b6 5.5/5/8/4. Confidence: high. Reviewer: the old guides are gone. riftbound.gg (updated 2026-09-08) describes a control plan that shares none of this list's key cards, and I didn't re-check animealley. The guideUrls are deck pages; Queen Bee's page has only a one-line description ('A tempo deck with a control posture...'), and its Guide and Matchups tabs looked empty when fetched. If the LA RQ goes Heron, consider switching the display deck to Koko's list, which is all post-ban."
     }
   ]

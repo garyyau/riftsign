@@ -2,10 +2,7 @@
   "id": "azir-emperor-of-the-sands",
   "name": "Azir, Emperor of the Sands",
   "champion": "Azir",
-  "domains": [
-    "Calm",
-    "Order"
-  ],
+  "domains": ["Calm", "Order"],
   "set": "SFD",
   "starterDeck": null,
   "cardImage": "azir-emperor-of-the-sands.jpg",
@@ -28,7 +25,7 @@
         "https://riftbound.gg/azir-emperor-of-the-sands-guide/"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/eda76bcc-e64e-418d-a236-cec043c7056f",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Scored decks: Barcelona RQ #3 (MICE Squirtle) https://piltoverarchive.com/decks/view/eda76bcc-e64e-418d-a236-cec043c7056f 4.5/6/7/3.5; Azir Baltimore (mattzack) https://piltoverarchive.com/decks/view/c1824241-3193-475f-b0ad-00afd4d3bb50 4.5/6/7/3.5; PG Yvuri - Azir Sand Castle https://piltoverarchive.com/decks/view/c60ab795-7ff0-465b-973c-5787601ff321 4.5/6/7/3.5. Mean Midrange 4.5/6/7/3.5 (tools.ts style; labels Midrange x3). Adjustments on all three: pace +1 (Legend makes a 2 Might Sand Soldier every turn you play an Equipment, 16 to 17 Equipment per list); stance +1 (Legend adds a body most turns); complexity +1 (Legend needs an Equipment played first each turn, and Weaponmaster soldiers pick up gear as they enter). Deciding cards: Pace, only 2 to 3 unit cards while the Legend, Guards! (3, Hidden) and Arise! (6+1 power) make the real bodies, so formula Pace ran 3.5 to 4 against judged 5.5 (Baltimore gap is exactly 2; tags re-read and correct, the +1 adjustment is the most the gap can take). Stance, 15 to 16.5 pressure (Guards!, Arise!, Azir, Sovereign, Eye of the Herald) against 11 to 13 answers (Hidden Blade, Back Off, Defy, Doran's Shield tagged counter as Tank gear, Kennen). Complexity, 18 to 20 reactive cards plus setup gear (Soul Sword, Hand Hammer, Eye of the Herald) and Azir, Sovereign's token pull. Variance, no luck or swing cards and 75 to 82 percent of the list run as 3-ofs. Legend ability: Your Sand Soldiers have Weaponmaster; pay 1 and exhaust: play a 2 Might Sand Soldier token to base, only if you've played an Equipment this turn. Also played: Protect the Emperor Azir (Azir, Ascendant with Guardian Angel, Scuttle Crab and Stellacorn Herder protecting a few units, no Arise!), Midrange 4.5/4.5/7/3.5 over https://piltoverarchive.com/decks/view/c4e7be05-18fd-43fc-961f-9f8ca660579d (Najlaron VEN v1.05, 4.5/5/7.5/4), https://piltoverarchive.com/decks/view/1b8a0ecc-b613-4f2f-9be1-25589f4ec077 (Kylen, 131 likes and a video, 5/4.5/7/3.5; scorer suggested Tempo on 14 reactive and Pace 5, judged Midrange because its reactions protect a small board rather than back cheap attackers), https://piltoverarchive.com/decks/view/edf140be-d7e1-4dbd-90e3-d703fd4c80cd (putra_mahkota, 4/4.5/7/3.5); folded in because it shares the label and sits under 2 from this Build on every Axis. Confidence: high. Change 2026-09-25: deckListUrl moved from the bare /decks page to the Barcelona RQ #3 list; coordinates moved from 3.5/5/6.5/2.5 to the style mean 4.5/6/7/3.5 (each within 1.5, moved because the Build is re-drafted from scored decks rather than guide prose); label unchanged; copy rewritten around the Azir, Sovereign token swarm the top lists play; guideUrls replaced by the three scored deck pages plus the riftbound.gg guide (Unleashed-era, updated 2026-09-08, builds around cheap Equipment to summon Sand Soldiers and cites the Barcelona, Wuhan and Singapore results). Dropped the July riftboundguide.com and cardsrealm links: not re-read this pass. Reviewer: the three scored lists and the display were edited before the 2026-09-18 ban; none runs Ekko, Recurrent, so they stay legal. Utrecht RQ #1 (Squirtle, b89cb797) backs the style but is the same player and was not scored."
     }
   ]

@@ -2,10 +2,7 @@
   "id": "akali-rogue-assassin",
   "name": "Akali, Rogue Assassin",
   "champion": "Akali",
-  "domains": [
-    "Fury",
-    "Calm"
-  ],
+  "domains": ["Fury", "Calm"],
   "set": "VEN",
   "starterDeck": null,
   "cardImage": "akali-rogue-assassin.jpg",
@@ -29,7 +26,7 @@
         "https://piltoverarchive.com/decks/view/0209a17e-c2f9-474d-8eb2-0ccf9e3cee33"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/d269df4e-38fd-4065-b055-468904ca44ec",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Change 2026-09-25. Archetype stays Midrange. Stance moves 6 to 4.5, Variance 5 to 3.5 and Pace 5.5 to 4.5. deckListUrl moves from the bare /decks page to the Singapore RQ #1 list. The old numbers came from reading guides. The new ones are the mean of three scored decks from one picked style.\nScored decks (tools.ts style: Midrange 4.5/4.5/7/3.5, labels Midrange, Midrange, Midrange):\n- https://piltoverarchive.com/decks/view/d269df4e-38fd-4065-b055-468904ca44ec Singapore RQ #1 (Gorica), 4.5/4.5/7/3.5\n- https://piltoverarchive.com/decks/view/0209a17e-c2f9-474d-8eb2-0ccf9e3cee33 Akali 18.0 (cwprofit, guide), 4.5/4.5/7/3.5\n- https://piltoverarchive.com/decks/view/122cf65c-b6dc-4691-a81d-7cb231e5680c Akali v3.0 (Hawzo), 4.5/4.5/7.5/3.5\nAdjustments: complexity +1 on all three (the Legend's showdown recall-and-ready needs timing every combat). Pace -0.5 on Gorica and cwprofit (Forgotten Monument delays scoring there until turn three). No Axis had a formula-judgment gap of 2 or more.\nCards that decided each Axis:\n- Pace: only 5 cheap units (Mournful Witness, Mischievous Marai), against 6 cards costing 5+ (3 Astral Heron, 2 Blitzcrank, Impassive, Darius, Trifarian).\n- Stance: 17 answers against about 11 pressure cards. The answers include Defy, Not So Fast, Block, Zhonya's Hourglass, Back Off, Falling Star, Shuriken Flip and Marai. 18 reactive cards also pull it below centre.\n- Complexity: 18 reactive cards and about 17 setup or modes cards (Shuriken Flip's Flow, Mournful Witness, Stellacorn Herder, Akali, Deadly Weapon), plus the Legend.\n- Variance: no luck or swing cards, about 11 cards that draw (Back Off, Discipline, Stellacorn Herder, Kai'Sa, Survivor), 9 removal and 60% of the list run as 3-ofs.\nLegend ability: [Empower] for 3 energy, usable once. Then, on your turn, exhaust to move a friendly unit in a showdown to base, and ready it if Akali is Empowered.\nAlso played:\n- Low-curve Movement Akali, Tempo 6/5.5/7/3.5: https://piltoverarchive.com/decks/view/b9186f10-e4ff-4386-8e89-a5ab23fc4f41 , https://piltoverarchive.com/decks/view/8008154f-77f4-43cb-abdb-c8a9eb29506e , https://piltoverarchive.com/decks/view/22834cf0-8594-43fe-9259-701c9889bc61 . This style also includes the Twilight Shroud/Darius and Noxus Hopeful flex-slot variants. It is under 2 apart from this Build on every Axis, so it is not a Build of its own.\n- Gear Akali, Aggro 7/7/6.5/4.5, one brewer's list: https://piltoverarchive.com/decks/view/f6a988a5-b7ff-4505-88ce-cb5caa98511a\n- Hidden Marai Akali, Tempo 6.5/5.5/7.5/3.5, the only strong post-ban edit: https://piltoverarchive.com/decks/view/26652bee-9e4f-4715-8ffa-3602ccff7c8e\nConfidence: high.\nFor the reviewer:\n- tools.ts card could not find Astral Heron. Its copy (7 energy, 7 Might, 'When you play your first card each turn, if I'm at a battlefield, the next card you play this turn costs [2][rune][rune] less') comes from the Piltover Archive dump in the deck sheet, and hextechanalytics' guide matches it.\n- I removed the riftstorm.gg launch roundup and the riftbound.gg Vendetta legends roundup from guideUrls. They are launch-era general pages, not this list.\n- riftbound.zone's Tier A list runs Astral Heron and Zhonya's but swaps Kai'Sa and Blitzcrank for Irelia, Fervent and Scuttle Crab. It is the same plan with different flex slots.\n- Most lists predate the 2026-09-18 ban, which hit no Akali card. The Los Angeles RQ lists are not posted yet."
     }
   ]

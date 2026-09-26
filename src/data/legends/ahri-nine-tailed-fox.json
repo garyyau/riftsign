@@ -2,10 +2,7 @@
   "id": "ahri-nine-tailed-fox",
   "name": "Ahri, Nine-Tailed Fox",
   "champion": "Ahri",
-  "domains": [
-    "Calm",
-    "Mind"
-  ],
+  "domains": ["Calm", "Mind"],
   "set": "OGN",
   "starterDeck": null,
   "cardImage": "ahri-nine-tailed-fox.jpg",
@@ -28,7 +25,7 @@
         "https://hextechanalytics.com/legends/ahri"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/92128dc6-6f2f-4d74-ac78-4930ad728409",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from the deck picks, style Temporal Breach Ahri, the lead agent's merge confirmed in the picks): coordinates moved from 1.5/1.5/7/3.5 to 5/4/7/4 (pace/stance/complexity/variance), the mean of three scored decks from tools.ts style. Pace moved 3.5 and Stance 2.5. The old numbers came from guide quotes, while the current lists run 17 to 22 units and fight for the board with 4-cost holders, so they are slower than Tempo but not a pure turtle. The label stays Control, the tool's and all three raters' call. deckListUrl moved from the bare /decks page to Nova's list, the style's first deck. The riftbound.gg guide was dropped because it describes a July 2025 Kai'Sa and Viktor list. Scored decks: Nova, Ahri - Updated Frequently https://piltoverarchive.com/decks/view/92128dc6-6f2f-4d74-ac78-4930ad728409 5/3.5/7/4 (7 likes, edited 2026-09-23). rvilloutag, Ahri vendetta https://piltoverarchive.com/decks/view/6d20e6eb-b0ae-4412-9910-2308786ea8a4 4.5/4/6.5/3.5 (pre-ban; the rater judged Control where the scorer suggested Midrange, because 21 of 40 cards are answers). Luis Mendroni, Ahri medarda https://piltoverarchive.com/decks/view/1c2c2785-a4ca-4c18-869d-332af5ed9820 5/4/7/4.5 (11 likes; the rater judged Control where the scorer suggested Tempo, because the 18 reactive cards are answers protecting a held battlefield). Adjustment on every sheet: Stance -0.5, because the Legend gives every attacker at your battlefields -1 Might, a free defensive answer each turn. Deciding cards: on Pace, the 4-cost holders Sona, Harmonious, Blue Sentinel and Mel, Newly Awakened, plus the 7-cost Thousand-Tailed Watcher, against cheap walls like Mutated Mouser. Nova's formula Pace of 6 against a judged 4 comes from the formula counting 22 units as speed. On Stance, 21 answers per list (Charm, Back Off, Eclipse, Mesmerize, Defy, Zhonya's Hourglass, Fox-Fire, Janna, Savior) against 3 to 7 pressure cards. On Complexity, 17 to 18 reactive cards, the Hidden Temporal Breach, Mel's Empower, and Sona's end-of-turn rune readying, which needs her at a battlefield. On Variance, no luck or swing cards, 9 removal and 12 to 13 card-flow cards. Legend ability: when an enemy unit attacks a battlefield you control, it gets -1 Might this turn, to a minimum of 1. Also played: Plundering Poro Tempo https://piltoverarchive.com/decks/view/fc6efde8-3dbd-46e0-aa34-79ef2470308b https://piltoverarchive.com/decks/view/572de16b-3253-4591-b334-53a195b95d8d https://piltoverarchive.com/decks/view/e5649b0f-2021-44da-847e-08e696179e7e (Tempo 5.5/5/6.5/4.5; conquers with 2-cost units, then moves Hwei and Akali in). Frigid Jewel Ahri https://piltoverarchive.com/decks/view/56f7486c-3c68-452b-87de-6669edc9b632 https://piltoverarchive.com/decks/view/d8ebbee6-5794-4835-ae36-65b1ae396abd https://piltoverarchive.com/decks/view/2545b83e-1244-4684-8eb9-2d1db3c3d974 (Tempo 6/5.5/7/3.5). Alluring Hold Ahri https://piltoverarchive.com/decks/view/35a75c72-ce24-4ab7-9418-859187834569 https://piltoverarchive.com/decks/view/cbd69e91-8ced-463a-ab9b-b6273f13ee12 https://piltoverarchive.com/decks/view/3f41a2b6-7edd-4760-9241-ceb95fb71a81 (Control 4.5/3.5/6.5/4.5; Ahri, Alluring with Blue Sentinel for 3 points a hold). The picks judged the two Tempo styles too close to this Build, within 1 to 1.5 on every Axis, to stand as a second Build. Confidence: high. Reviewer check: whether a Tempo Build (Poro or Jewel) should stand on its own. Its label differs from this Build's, but no Axis is 2 or more apart, so it fails Distinct as the picks decided."
     }
   ]

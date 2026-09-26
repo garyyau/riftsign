@@ -2,10 +2,7 @@
   "id": "khazix-voidreaver",
   "name": "Kha'Zix, Voidreaver",
   "champion": "Kha'Zix",
-  "domains": [
-    "Body",
-    "Chaos"
-  ],
+  "domains": ["Body", "Chaos"],
   "set": "UNL",
   "starterDeck": null,
   "cardImage": "khazix-voidreaver.jpg",
@@ -27,7 +24,7 @@
         "https://hextechanalytics.com/legends/khazix"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/1ed527e6-b1df-4b60-a685-4e881b542f91",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from the Maintainer's deck picks, style \"Void Assault Kha'Zix\"). The label stays Midrange. Coordinates move from 5/6/7/6.5 to 6/6.5/7/4 (pace/stance/complexity/variance). The big move is Variance, 6.5 to 4: the old number came from guides that tied luck to drawing the movers, but the scored lists run full playsets and no luck or swing cards. deckListUrl was the bare /decks page and is now sharlie's list. I dropped riftbound.gg from guideUrls because I did not re-read it in this pass. hextechanalytics was re-read: it describes the same Faefolk, Void Assault and Mutating Horror plan.\nScored decks (tools.ts style: Midrange 6/6.5/7/4, mean of 3, labels Midrange x3):\n- https://piltoverarchive.com/decks/view/1ed527e6-b1df-4b60-a685-4e881b542f91 Kha'zix Vendetta post ban (sharlie; 41 likes, guide) Midrange 6.5/6.5/7/4. The scorer suggested Aggro; the rater judged Midrange because many slots go to interaction and flex tricks.\n- https://piltoverarchive.com/decks/view/00615075-422d-4394-8ef7-39db5e45d7ce Kha'Zix Midrange Sett (jarno; 11 likes, pre-ban, x0.75) Midrange 5.5/6/7/4\n- https://piltoverarchive.com/decks/view/e41ee260-bb11-4d3d-84f0-9e5842132988 Kha'Zix (Mainezz; guide, edited post-ban) Midrange 6/6.5/7/4\nAdjustments (all three sheets): complexity +1 (the Legend's XP abilities, buff or pull an exhausted unit home, need a target and timing every turn). No Axis had a formula-judgment gap of 2 or more.\nDeciding cards:\n- Pace: 9 units costing 2 or less (Irresistible Faefolk, Traveling Merchant, Shadow Order Disciple, Kinkou Initiate) against 3 to 6 cards costing 5+ (Rengar, Trophy Hunter, Baron Nashor in jarno's list).\n- Stance: about 20 pressure cards against 8 to 9 answers (Star-Crossed, Sabotage, Vex, Apathetic, Hard Bargain, Rampage).\n- Complexity: 23 to 25 setup or modes cards (the movers, Void Assault, Grim Resolve, Ride the Wind, Up from the Deep) and 6 to 10 reactive cards (Star-Crossed, Rengar, Mutating Horror's Ambush), plus the Legend.\n- Variance: 60 to 68% of cards as 3-ofs, and no luck or swing cards.\nLegend ability: when you win a combat, gain 1 XP. Spend 1 XP and exhaust to Buff a unit. Spend 2 XP and exhaust to move an exhausted friendly unit from a battlefield to its base.\nOutside labels: sharlie's guide calls the deck \"a tempo deck\", and the old notes read riftbound.gg and hextechanalytics as Midrange. That is a split, so the label stays Midrange with the unanimous raters.\nAlso played: Illaoi Tentacles https://piltoverarchive.com/decks/view/7b410767-964c-4f48-bda9-dc421796799d (Laranj0, Midrange 4.5/5.5/7/5) and https://piltoverarchive.com/decks/view/f6c4bdbc-6bdf-4d5e-bac6-4a74046170b4 (dantes, 5/5.5/7/5), which ramp into Illaoi and Baron Nashor over tentacle tokens. Untouchable Baron https://piltoverarchive.com/decks/view/69cc1282-7160-439a-a991-7b931a0095af (Packybara, 5/5.5/7/5.5), which uses Here to Help and Dragonsoul Sage for threats spells can't target. Hidden Evelynn https://piltoverarchive.com/decks/view/dcb32166-23ef-4362-ab1d-ce981bbeccad (Hartford RQ Best of, June 2026, 6.5/6.5/8/4), which runs three Hidden Evelynn and three Switcheroo.\nConfidence: high.\nReviewer check: hextechanalytics' featured list (Demacian Diplomat, First Mate, Qiyana) differs from the scored lists in its flex slots but runs the same engine. Void Assault has no Action or Reaction tag, so the copy keeps it on your own turn."
     }
   ]

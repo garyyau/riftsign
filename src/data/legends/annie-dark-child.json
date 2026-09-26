@@ -2,10 +2,7 @@
   "id": "annie-dark-child",
   "name": "Annie, Dark Child",
   "champion": "Annie",
-  "domains": [
-    "Fury",
-    "Chaos"
-  ],
+  "domains": ["Fury", "Chaos"],
   "set": "OGS",
   "starterDeck": "Origins Proving Grounds",
   "cardImage": "annie-dark-child.jpg",
@@ -26,7 +23,7 @@
         "https://piltoverarchive.com/decks/view/bc90cf43-c71a-45e4-9df1-febc27bf4348"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/d90aca5c-0158-441a-b384-9e69c03d70b5",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from deck picks): coordinates moved from 7/7/6/5 to the mean of the style's three scored decks, 6.5/6.5/7/4. No Axis moved 1.5 or more, and the label stays Tempo. What changed is the links: deckListUrl was the bare /decks page and now points at the display deck, and the three old guides are gone. The cardsrealm deck tech is the Houston RQ Stacked Deck list (Stacked Deck is banned), and neither riftbound.gg guide lists the current Inferna/Rengar build. Scored decks: https://piltoverarchive.com/decks/view/d90aca5c-0158-441a-b384-9e69c03d70b5 Are You Okay Annie? (bananaramanama, Vendetta Skirmish 2nd per its description) Tempo 6.5/6.5/7/3.5; https://piltoverarchive.com/decks/view/bc90cf43-c71a-45e4-9df1-febc27bf4348 Annie - Aggro Tempo (VEN) (noxiangrandgeneral, 11 likes) Tempo 6.5/6.5/7/4.5; https://piltoverarchive.com/decks/view/3b7664c3-d4da-43fc-aa9b-1a66bf5834b3 Annie (Psycarya, post-ban filler) Tempo 6.5/6.5/7/4.5. Adjustment on all three: complexity +1, because the Legend readies 2 runes at end of turn and every turn is planned around what to hold up for the opponent's turn. The raters judged Tempo over the scorer's Aggro on the first deck, since 18 of its cards are reactive. Deciding cards: pace from cheap two-drops (Inferna, Traveling Merchant) and Noxus Hopeful's Legion discount; stance from reaction-speed threats (Inferna's Ambush, Rengar, Pouncing, Grim Apothecary, Long Sword's Quick-Draw) plus Flash, Star-Crossed and Hard Bargain; complexity from choosing what to hold up with the readied runes; variance stays low because the threats are redundant cheap bodies, not one big payoff turn. The style's evidence is ten decks from ten authors. The Hartford RQ #7 list (also Utrecht RQ #8) vouches for it but is illegal now (Stacked Deck, The Arena's Greatest), so it can't be shown. Both linked deck pages were fetched on 2026-09-25 and contain neither banned card. Legend ability: at the end of your turn, ready 2 runes. Also played: https://piltoverarchive.com/decks/view/09714955-4450-428d-a6a5-649b8cf9d477 (Backpack Annie, Tropickyle, Control 5/4.5/7.5/3.5, 79 likes, post-ban, one brewer's list); https://piltoverarchive.com/decks/view/489d0a23-ea48-4efb-8d82-5a75c561a76c, https://piltoverarchive.com/decks/view/7c188b8d-3d4c-4a82-8d2e-86967517685d, https://piltoverarchive.com/decks/view/1c84504c-efbd-40de-887d-beddcb609cff (Tentacle Illaoi Annie, Midrange about 5/5.5/7/4.5); https://piltoverarchive.com/decks/view/190b9f61-7337-4c24-a100-97f50b7c6390 (Brynhir Lock Annie, Combo 4.5/5/8/6.5). Confidence: high. Reviewer check: no written guide for the current Ambush list was found, so guideUrls holds only the two deck pages. Backpack Annie is the most-liked Annie deck, but the picks kept it as other decks for this Build, not a Build of its own."
     }
   ]

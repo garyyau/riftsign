@@ -2,10 +2,7 @@
   "id": "lux-lady-of-luminosity",
   "name": "Lux, Lady of Luminosity",
   "champion": "Lux",
-  "domains": [
-    "Mind",
-    "Order"
-  ],
+  "domains": ["Mind", "Order"],
   "set": "OGS",
   "starterDeck": "Origins Proving Grounds",
   "cardImage": "lux-lady-of-luminosity.jpg",
@@ -30,7 +27,7 @@
         "https://hextechanalytics.com/legends/lux"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/8249612b-0856-42ef-a7a7-140609a1c87f",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Re-rated 2026-09-25 from the Maintainer's deck picks (style Jhin Gold Control; the Maintainer kept the tool's Control label). Scored decks (pace/stance/complexity/variance): landaucalrisian, Lux Control https://piltoverarchive.com/decks/view/8249612b-0856-42ef-a7a7-140609a1c87f 2.5/3/6/4 (7 likes, video, pre-Vendetta, halved); tingfw, Best of Vancouver 2026 RQ https://piltoverarchive.com/decks/view/b5b6a719-bd89-46de-91f0-d07e5413b919 3/3.5/6.5/4 (3 likes, video, pre-Vendetta, halved); kevin nguyen, Lux (Unleashed) https://piltoverarchive.com/decks/view/4367024c-be2c-434b-a16d-75e3e809f740 2.5/3.5/6.5/4.5 (guide, pre-Vendetta, halved); Sam Little, sam lux post ekko ban v2 https://piltoverarchive.com/decks/view/3e40de59-6c98-4f08-95f4-31b8e53290c5 3/4/6/3.5 (filler with no results, included so a post-ban list is measured). Mean from tools.ts style: 3/3.5/6.5/4, all four raters Control. Rater adjustments: variance -0.5 to -1 on every deck because the Legend draws off each 5+ spell (11 to 14 per list); complexity +0.5 on three decks for sequencing big spells and spending Lux, Crownguard's spell-only mana and Gold on the right turn; pace -0.5 on three decks for slowing battlefields (Rockfall Path, Vilemaw's Lair, Frozen Fortress, Forbidding Waste). Deciding cards: pace from the ramp-to-big-spell curve (Progress Day 6, Singularity 6, Unchecked Power 7, The Ruination 9, Time Warp 10) against cheap Gold makers (Honest Broker, Plundering Poro); stance from the Hidden and reaction removal (Hidden Blade, Wages of Pain, Stupefy, Cull the Weak) plus wipes, offset by proactive Sprite Burst, Sprite Fountain and Plundering Poro; complexity from Gold and Crownguard mana timing and a free Jhin, Meticulous Killer after a 4+ spell; variance from the Legend's draw and Progress Day smoothing a deck that needs removal early and a big spell late. What moved: stored 2/3/7.5/5 becomes 3/3.5/6.5/4 (pace +1, stance +0.5, complexity -1, variance -1). Each shift is under 1.5, so on its own none would have forced a move; they are taken because the Build is rescored from its decks under the current rubric. deckListUrl changes from the bare /decks page to landaucalrisian's list. Copy rewritten around the Gold package: the old howItPlays named Final Spark, which none of the four scored lists runs. Dropped https://riftbound.gg/origins-proving-grounds/ from guideUrls because it covers the starter deck, not this list. Legend ability: when you play a spell that costs 5 or more, draw 1. Also played: https://piltoverarchive.com/decks/view/4280111e-109a-4de9-b1c0-8a4712b99dd8 (Altar Wheel Lux, bernandon; scored Midrange 1.5/3.5/6/5.5, an Altar of Memories / Blood Money / Sprite Queen / Atakhan engine with the same Progress Day / Time Warp top end); https://piltoverarchive.com/decks/view/902c906f-ba59-4467-a4e7-b08772f067fe, https://piltoverarchive.com/decks/view/b23cbe97-6b78-48a6-9f4b-f3f2cadfb76a, https://piltoverarchive.com/decks/view/d4d9f140-bc05-4e9b-a93f-c51e200716c1 (Vanguard Armory Control, Control 1.5/2.5/5.5/5: Vanguard Armory, Seal of Unity, Imperial Decree, Falling Comet, Drag Under in place of the Progress Day engine). Confidence: low. Reviewer: the bar was only loosened after widening the pool to 2026-05-08, every deck with results predates Vendetta, and the only post-ban list is a filler. Recheck after the Los Angeles RQ (2026-09-25 to 27) posts. All the combo styles (Ekko, Recurrent / Aspirant's Climb infinite, Lecturing Yordle, Portal Rescue) are dead, so no Combo Build."
     }
   ]

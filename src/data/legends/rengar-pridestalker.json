@@ -2,10 +2,7 @@
   "id": "rengar-pridestalker",
   "name": "Rengar, Pridestalker",
   "champion": "Rengar",
-  "domains": [
-    "Fury",
-    "Body"
-  ],
+  "domains": ["Fury", "Body"],
   "set": "UNL",
   "starterDeck": null,
   "cardImage": "rengar-pridestalker.jpg",
@@ -28,7 +25,7 @@
         "https://hextechanalytics.com/legends/rengar"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/df02f7a2-d27c-4075-9f6e-5419582e5135",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Re-rated 2026-09-25 from three scored decks. Moved: Variance 5.5 to 3.5, because the deck plays full sets of units and runs no reveal or luck cards. Pace 8 to 7 and Stance 8.5 to 8, both small moves. The deckListUrl on file was the bare /decks page and now points to the display deck. Label unchanged. Scored decks: https://piltoverarchive.com/decks/view/df02f7a2-d27c-4075-9f6e-5419582e5135 (Barcelona RQ #6, DSG Prismaticism, also placed Singapore Best of and Ottawa Showdown 1st) Aggro 7/8/6/3.5; https://piltoverarchive.com/decks/view/7d4d21dd-4099-46ca-9fb2-38dfad736c1b (uch1haa13x) Aggro 7/8/6/3.5; https://piltoverarchive.com/decks/view/73580835-c6b6-412e-bd8b-75c20b30c688 (HeebieJeebie, Ambush the Meta, 43 likes) Aggro 7/7.5/6/4. tools.ts style: Aggro 7/8/6/3.5, mean of 3, labels Aggro x3. Adjustments, the same on every sheet: Stance +0.5 (the Legend pumps a unit every time you play one, so every unit is also a combat buff); Complexity +0.5 (the Legend's +1 Might needs a target on every unit played, often mid-combat through Ambush). Deciding cards: Pace, about 29-30 units with 9 costing 2 or less (Inferna, Irresistible Faefolk, Pit Rookie) and only 3-4 cards costing 5+. Stance, 27-30 pressure cards against 4-6 answers (Rampage, Sabotage). Complexity, 12-14 reactive cards (Inferna, Thrill of the Hunt, Grim Apothecary, Nidalee, Cat Form) plus setup units (Kinkou Initiate, Noxus Hopeful). Variance, 60-68% of cards as 3-ofs, with no luck or swing cards. Judgment and formula stayed within 1 on every Axis. Legend ability: when you play a unit, give a unit +1 Might this turn. Also played: https://piltoverarchive.com/decks/view/4b68127b-fd88-4d7c-947e-c737f2138090 (mom sky, Rengar Vendetta, a post-ban list in the same style, not scored because the slots were full). The picks found 15 decks from 15 authors in this style and no second live style. Confidence: high. Reviewer: riftbound.gg's guide (updated 2026-08-30) cites the Barcelona RQ top 8 but lists cards by set code, so I couldn't match it card for card. hextechanalytics features a 2026-09-13 Skirmish 2nd-place list and says the deck runs on Thrill of the Hunt replays, which agrees with this Build."
     }
   ]

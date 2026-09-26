@@ -2,10 +2,7 @@
   "id": "renekton-butcher-of-the-sands",
   "name": "Renekton, Butcher of the Sands",
   "champion": "Renekton",
-  "domains": [
-    "Fury",
-    "Body"
-  ],
+  "domains": ["Fury", "Body"],
   "set": "VEN",
   "starterDeck": null,
   "cardImage": "renekton-butcher-of-the-sands.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/e0e31af2-d363-4871-a8b7-2efe0f7bfcff"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/106d4061-5d29-47e2-ba48-8b58dc7df185",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from the Maintainer's deck picks, style \"Ambush Renekton\", which merges picks styles 1 and 4): label stays Aggro, and coordinates moved from 8.5/9/4.5/7 to 7/7/5.5/4 (pace/stance/complexity/variance), the mean of three scored decks. The old numbers came from launch-era guides (riftboundguide.com, riftstorm.gg, riftbound.gg), not scored lists. Variance fell the most, from 7 to 4: these lists run full sets of cheap units and pump spells, with no reveal or luck cards, so the 'high-roll' reading from launch does not describe them. I dropped those three guideUrls because they describe the launch/starter-era deck, not this list, and replaced them with the scored deck pages. deckListUrl was the bare /decks page and now points to the display deck. The style name comes from the picks.\nScored decks: https://piltoverarchive.com/decks/view/106d4061-5d29-47e2-ba48-8b58dc7df185 (MaskofMomentum, Barcelona RQ Best of Renekton, also reposted as Best of Singapore; pre-ban, x0.75) Aggro 7/7.5/5.5/4; https://piltoverarchive.com/decks/view/3c84d571-de16-4d6c-a34d-a3afa0000381 (Joe Cilo) Aggro 7/7/5.5/4; https://piltoverarchive.com/decks/view/e0e31af2-d363-4871-a8b7-2efe0f7bfcff (sugarbomb, Best Renekton, 5 likes, posted after the ban; swaps Kinkou Initiate, Pit Rookie, Irresistible Faefolk and Nidalee for Cleave, Mischievous Marai, Pyke and Falling Star) Aggro 6.5/6.5/6/4.5. tools.ts style: Aggro 7/7/5.5/4, mean of 3, labels Aggro x3.\nAdjustments, the same on every sheet: Pace +1 (the Legend turns two runes into 2 energy for units, so units land a turn early); Stance +0.5 (that energy can only play units, which pushes the deck onto the board); Complexity +0.5 (the Legend trades long-term runes for tempo, and Renekton, Rage Fueled and Protective Sands want 4 or fewer runes, so you manage your rune count every turn).\nDeciding cards: Pace, from cheap units (Inferna, Pit Rookie, Irresistible Faefolk, Mischievous Marai) and Noxus Hopeful (Legion, costs 2 less). Stance, from Punch First, Rampage and Cleave pumps plus Rengar, Trophy Hunter, who can be played to a battlefield with enemy units. Complexity, from Ambush timing (Inferna, Nidalee, Rengar) and rune management. Variance stays low with full sets of units and pump spells.\nLegend ability: Reaction. Spend two runes and exhaust Renekton to add 2 energy, usable only to play units or pay for units' activated abilities.\nAlso played: https://piltoverarchive.com/decks/view/94d21e5d-8df3-4b9b-8003-c4a8cb885040 (Dragon Ramp Renekton, ratchetash, Midrange 2/4/6/7; Seals, Mobilize and Herald of Scales ramp into a Dragon curve); https://piltoverarchive.com/decks/view/92bc38cb-2a1b-445e-b5fa-fa8ac4fd74e9 (Low-Rune Brute Renekton, eriidanos's Sobek, Midrange 5.5/6.5/6.5/5.5; keeps fewer runes than the opponent to power up Forsaken Baccai, Oasis Raider and Renekton, Brute); https://piltoverarchive.com/decks/view/b5c67f08-647b-4e7c-968d-0405d8784efb (Seal Ramp Renekton, Riftlab's Vendetta guide list, Midrange 5/6/6/5; Seals pay for colours so it can sit on few runes and still land Eclipse Dragon).\nConfidence: medium. Only one deck has strong evidence (MaskofMomentum's Best of list), and the other two are fair.\nReviewer: the three 'decks for' styles are Midrange and at least 2 from this Build on some Axis. The lead agent kept them as discovery decks rather than a second Build because each is a lone deck. If more low-rune lists show up, they may be worth a second Build."
     }
   ]

@@ -2,10 +2,7 @@
   "id": "jayce-defender-of-tomorrow",
   "name": "Jayce, Defender of Tomorrow",
   "champion": "Jayce",
-  "domains": [
-    "Mind",
-    "Body"
-  ],
+  "domains": ["Mind", "Body"],
   "set": "VEN",
   "starterDeck": null,
   "cardImage": "jayce-defender-of-tomorrow.jpg",
@@ -27,7 +24,7 @@
         "https://riftbound.gg/jayce-defender-of-tomorrow-guide/"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/80ef4860-8530-4d76-ac3c-060211e44477",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Change 2026-09-25. The Archetype stays Combo. Pace moves 3.5 to 1, Stance 5 to 3 and Complexity 7.5 to 7. Variance stays at 6. deckListUrl moves from the bare /decks page to the Best of Singapore RQ list. The old numbers came from reading two guides. The new ones are the mean of three scored decks from the picked style Dazzling Aurora Jayce (tools.ts style: Combo 1/3/7/6, labels Combo, Combo, Combo). riftboundguide.com's champion deck guide is dropped from guideUrls because it covers the older gear-combo framing, not this list.\nScored decks (pace/stance/complexity/variance):\n- https://piltoverarchive.com/decks/view/80ef4860-8530-4d76-ac3c-060211e44477 Best of Singapore RQ (justmilkey), 1/3/7/6\n- https://piltoverarchive.com/decks/view/b31f49fc-65be-4647-afce-d8793a46d3d6 Best of Barcelona RQ (Cramo), 1/3.5/7/5.5\n- https://piltoverarchive.com/decks/view/11c926a0-8d34-4cf8-b760-970b17ad2d45 Best of Jayce, Auckland 10K (Thun), 1/3/7/6.5\nAdjustments on all three: complexity +1 (the Legend readies gear such as Platewyrm Egg every turn and must be Empowered at the right time); pace -0.5 (Forgotten Monument delays scoring on one battlefield; on Cramo's list The Papertree also ramps both players).\nCards that decided each Axis:\n- Pace: 4 units and none cheap, against 14 to 15 cards costing 5+ (Elder Dragon, Dazzling Aurora, Clairvoyance, Promising Future). The formula floors at 0 to 0.5 against a judged 2. That 2-point gap was re-read on every sheet and the tags stand.\n- Stance: 7 to 9 answers (Bellows Breath, Flurry of Blades, Deadly Flourish, Rocket Barrage, Sabotage) against 2 to 3 pressure cards (Sprite Burst), inside a list of 28 to 31 own-plan cards.\n- Complexity: 6 engine cards (Aurora, Elder Dragon), 10 to 12 cards that give extra runes (Mobilize, Catalyst of Aeons, Platewyrm Egg), and 15 to 16 card-flow cards (Clairvoyance, Dredge Up, Garbage Grabber).\n- Variance: Promising Future's top-five play (luck, swing) and ramping into payoffs push it up. Heavy card flow pulls it back.\nLegend ability: Empower for 2 energy plus 2 runes, once. 1 energy and exhaust: ready a gear. Once Empowered: ready 2 gear.\nAlso played: https://piltoverarchive.com/decks/view/e058b301-48f1-455e-a892-b9d7097cc799 (Mega Time Warp Ramp-Control, Poro Party TCG, Control 3/4/6/4.5) and https://piltoverarchive.com/decks/view/631f5d15-8770-4757-92ee-c20a1c30d5fd (Energy Jayce, squak, Control 2/4/6.5/5), from the Time Warp Ramp Jayce style: ramp into sweepers and Time Warp in place of Aurora.\nConfidence: high.\nReviewer check: all three scored lists predate the 2026-09-18 ban, but that ban touches no card in them. riftbound.gg names cards only by code (OGN-160 and OGN-115 put UNL-118 into play for free). I read that as Aurora plus Promising Future into Elder Dragon, but did not confirm the codes."
     },
     {
@@ -45,7 +42,7 @@
         "https://piltoverarchive.com/decks/view/f1dd3644-a5f1-44c6-b91c-5f4d3c1f5623"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/4ab8612e-c2cb-4dce-a4ae-411f12b092bd",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "New 2026-09-25, from the picked style Pit Crew Gear Jayce (script style 1 merged with style 4). tools.ts style: Midrange 6/6.5/6.5/4, labels Midrange, Midrange, Midrange.\nScored decks (pace/stance/complexity/variance):\n- https://piltoverarchive.com/decks/view/4ab8612e-c2cb-4dce-a4ae-411f12b092bd Patchy & Jayce (Pleakley | Menda), 6/6.5/6.5/4\n- https://piltoverarchive.com/decks/view/f1dd3644-a5f1-44c6-b91c-5f4d3c1f5623 Jayce (yourselvs), 6/6.5/6.5/3.5\n- https://piltoverarchive.com/decks/view/92944a1e-44ac-496f-ac29-22de09cbd95b Gearslop jayce (Senntis, Man of Progress Champion), 6/6.5/6.5/4.5\nAdjustments on all three: complexity +1 (the Legend readies gear every turn, such as Tools of Empire twice or Orb of Regret and Platewyrm Egg on Senntis's list, so timing matters); stance +0.5 (the Legend readies Tools of Empire for extra pumps in fights). No Axis had a formula-judgment gap of 2 or more.\nCards that decided each Axis:\n- Pace: 8 cheap units per 40 (Plundering Poro, Patched Porobot, Irresistible Faefolk), 15 to 21 units in all, and only 3 to 7 cards costing 5+.\n- Stance: 17.5 to 24 pressure (Pit Crew, First Mate, Hwei, Sprite Fountain) against 6 to 9 answers (Challenge, Eclipse, Cloth Armor).\n- Complexity: 16 to 21 setup or modes cards (First Mate, Pit Crew, Tools of Empire, Acceleration Gate) and 7 to 8 reactive cards.\n- Variance: no luck or swing cards, and 53 to 75 percent of each list run as 3-ofs.\nLegend ability: Empower for 2 energy plus 2 runes, once. 1 energy and exhaust: ready a gear. Once Empowered: ready 2 gear.\nAlso played: https://piltoverarchive.com/decks/view/01200e47-da91-445c-ba95-9bfd6970a035 (Combat Control - Full Guide, Rifeli, Midrange 5.5/6/7/4), from the Applied Researchers Kai'Sa Jayce style: cheap combat spells through Applied Researchers, replayed with Kai'Sa.\nConfidence: high.\nReviewer check: the evidence behind this style is likes and guide pages, not tournament placings. Menda's and yourselvs's Piltover Archive guide sections read empty when fetched. All scored lists predate the 2026-09-18 ban, but that ban touches no card in them."
     }
   ]

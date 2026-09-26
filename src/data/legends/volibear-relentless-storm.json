@@ -2,10 +2,7 @@
   "id": "volibear-relentless-storm",
   "name": "Volibear, Relentless Storm",
   "champion": "Volibear",
-  "domains": [
-    "Fury",
-    "Body"
-  ],
+  "domains": ["Fury", "Body"],
   "set": "OGN",
   "starterDeck": null,
   "cardImage": "volibear-relentless-storm.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/1dff4ac3-4ea4-42c8-a8cb-ff6b97447752"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/8f47e3fc-8569-4989-9d36-1bfe4e5fbb4c",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Change 2026-09-25. Relabelled Control to Midrange. Coordinates move from 2/2.5/5/8 to 2.5/4/5/4.5: Variance -3.5, Stance +1.5, Pace +0.5. deckListUrl moves from the bare /decks page to Zach_M's Dragon Voli set 4. The old numbers came from reading guides (riftbound.gg, riftstorm.gg, cardsrealm) that describe a generic ramp plan with no deck behind it. The new ones are the mean of three scored decks from the picked Dragons style. The old guide URLs were not re-read against this list, so they are left out, and guideUrls now point to the three scored deck pages.\nScored decks (pace/stance/complexity/variance; tools.ts style: Midrange 2.5/4/5/4.5, labels Midrange, Midrange, Midrange):\n- https://piltoverarchive.com/decks/view/8f47e3fc-8569-4989-9d36-1bfe4e5fbb4c Dragon Voli set 4 (Zach_M), 2.5/4/4.5/4.5, Midrange\n- https://piltoverarchive.com/decks/view/09b6bfc3-55d5-4970-94fc-5bcd095ba965 Skirmish Voli (mollemecka), 2.5/4/5/5, Midrange\n- https://piltoverarchive.com/decks/view/1dff4ac3-4ea4-42c8-a8cb-ff6b97447752 No Aurora Dragon Volibear (lotuz), 2.5/4/5/4.5, Midrange\nAdjustments: none on any sheet.\nCards that decided each Axis:\n- Pace: only 3 cheap units per 40 (Dragonsoul Sage and a couple of 2-drops) against 22 to 25 cards costing 5+ (Direwing, Gentle Gemdragon, Kadregrin the Infernal, Elder Dragon, Dune Drake, Volibear, Furious, Rengar, Trophy Hunter).\n- Stance: about 6 pressure cards (Dune Drake, Blazing Scorcher) against 8 to 9 answers (Sky Splitter, Challenge, Falling Star, Stormbringer, Sabotage, Repulse) and 25 to 26 own-plan cards (9 ramp plus the Dragon finishers).\n- Complexity: 7 to 9 setup cards (Direwing's enter-ready condition, Kadregrin, Show of Strength, Stormbringer), 4 to 7 reactive cards, 9 ramp.\n- Variance: no luck or swing cards, 68 to 90 percent of each list run as 3-ofs. 9 ramp cards pull it up and the removal pulls it down.\nFormula against judgment: Stance on Zach_M's list is 3 against a judged 5. The formula counts the 7+ Might Dragons as own-plan finishers rather than attackers, so it underrates how hard these decks press the board once they land. Tags stand. The other gaps are below 2.\nLegend ability: when you play a Mighty unit (5+ Might), you may exhaust Volibear to channel 1 rune exhausted. It was not given a Complexity or Pace adjustment on any sheet. The reviewer may want to check that.\nAlso played: Dazzling Aurora Volibear, a ramp-into-Dazzling Aurora Control list (style mean about 1/3/5/6): https://piltoverarchive.com/decks/view/2f70a6db-647c-4239-ab7e-7bff1a1beff8 (Sultan), https://piltoverarchive.com/decks/view/254b5e4d-3a79-4bdd-ab77-48503f9a7b9d (Alessandro Tassini), https://piltoverarchive.com/decks/view/c12b05db-b306-47e0-82e5-0d1657f33ef7 (ghostnapp). Its only results are the Hartford and Utrecht RQ Best of Volibear lists, now illegal (Aspirant's Climb, banned 2026-07-24). No Axis is 2 apart from Dragons, so it folds in here.\nConfidence: high.\nReviewer check: all three scored lists are pre-ban (weighted x0.75). caliburnus's post-ban Volibear Dragons (VEN) guide list (770c1902) could replace the display if Zach_M's list goes stale after the LA RQ. The lead agent recorded the decision to keep Aurora as a discovery deck, reading the recent 'No Aurora' deck titles as players moving off it. The Maintainer should confirm that reading."
     }
   ]

@@ -2,10 +2,7 @@
   "id": "jhin-virtuoso",
   "name": "Jhin, Virtuoso",
   "champion": "Jhin",
-  "domains": [
-    "Fury",
-    "Mind"
-  ],
+  "domains": ["Fury", "Mind"],
   "set": "UNL",
   "starterDeck": null,
   "cardImage": "jhin-virtuoso.jpg",
@@ -26,7 +23,7 @@
         "https://hextechanalytics.com/legends/jhin"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/09e3f2c9-8460-40b9-a22f-73a9209018dd",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25: relabelled Combo to Midrange, complexity 9 to 6.5, variance 6 to 3.5 (pace and stance unchanged), and deckListUrl changed from the bare /decks page to the display deck. The old rating came from guide prose, not a scored list. The current lists carry 0 engine cards and 13-14 answers, so the Combo branch doesn't fire and Stance 4 is above the Control cutoff. The old riftbound.gg guide (updated 2026-07-17, before the ban) was dropped from guideUrls because it wasn't confirmed to describe this list. Scored decks: https://piltoverarchive.com/decks/view/09e3f2c9-8460-40b9-a22f-73a9209018dd (shoxbad, Art requires a certain... cruelty) 3.5/4/6.5/3.5; https://piltoverarchive.com/decks/view/7b7db633-df5a-48fa-84ec-39e9a8e3174f (Riftlab Jibbs, Best Of Jhin Singapore, pre-ban) 3.5/4/6.5/3.5; https://piltoverarchive.com/decks/view/cfa530ac-d7f9-4922-8a8e-cfc626adba2e (ahahlo) 3.5/4/6.5/3.5. Adjustments (same on all three): pace -0.5 (the Legend's payoff is a late ramp into Time Warp, and Frozen Fortress and Rockfall Path slow the board); complexity +1 (the Legend asks whether to banish each 4+ spell and you count to four for the rune burst). Deciding cards: Pace, 13 cards costing 5+ (Singularity, Unchecked Power, Thousand-Tailed Watcher, Time Warp) against 6 cheap units (Plundering Poro, Forecaster, Noxus Hopeful). Stance, 13-14 removal cards (Deadly Flourish, Curtain Call, Singularity, Unchecked Power, Frigid Touch, Orb of Regret) roughly balance 13 pressure cards, so balance is about 0. Complexity, 8 reactive cards (Stupefy, Orb of Regret) and 11 setup/modes cards (Curtain Call's Repeat, Jhin, Meticulous Killer). Variance, 14 cards that draw or look, 14 removal, 0 luck, 1-2 swing, 60-68% of slots as 3-ofs. Formula and judgment differed by at most 1.5 (Pace 2.5 formula against 4 judged on two sheets). Legend: when you play a spell after spending 4 or more on it, you may banish it; at four banished, trash them, channel 4 runes and draw 1. Also played: Temporal Breach Control, https://piltoverarchive.com/decks/view/3f96c1e4-782c-4d1c-9feb-fcd7c432f2ab (Rifeli's Swing Control guide, Control 3.5/3.5/7/4), https://piltoverarchive.com/decks/view/a34a1cdb-032a-490d-b766-8df71e51d20c (jibijaba, Control 3.5/3.5/7/3.5), https://piltoverarchive.com/decks/view/8c2932ad-6644-4e91-b3ee-62cfff6feec8 (Team Shake N Bake, Control 3/3.5/6.5/3.5), folded in because it sits under 2 away on every Axis. Gutter Palace, https://piltoverarchive.com/decks/view/f8288a3f-381f-486f-95ec-061af7262b6d (Ayorea, Combo 1.5/3.5/8/6.5), https://piltoverarchive.com/decks/view/4f92661e-75d9-49fe-b8e1-f576537aa05f (Minguel Pintero, Control 2/3/7/6), with one evidenced author, whose Best of list ran the banned Ekko, Recurrent. Murderous Artist Ganking, https://piltoverarchive.com/decks/view/8843365c-f0f8-49d4-b898-fa6f995a21e5 (Caleb Longoria, Midrange 4.5/4.5/7/4; the 94% winrate claim can't be checked and earned nothing). Storm Rampage's 'Get me to turn FOUR.' (style 3) is merged in and only swaps flex slots. Confidence: high. Reviewer check: shoxbad's written guide is short (card choices, 2nd at Speyer). hextechanalytics' featured list (Trick4Jhin, Lucca 2026-09-12) matches this shell (Singularity, Curtain Call, Deadly Flourish, Watcher, Time Warp, Unchecked Power) and adds Mel."
     }
   ]

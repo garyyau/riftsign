@@ -115,6 +115,8 @@ const PERSONAS: Persona[] = [
   {
     name: 'patient control player',
     archetype: 'Control',
+    knownLegendIssue:
+      'The 2026-09-25 deck re-rate moved Nasus and Shen from Control to Midrange (their current lists score Stance 4 to 4.5, above the 3.5 Control cutoff), so this Persona tops out on Nasus. Clears when the Maintainer settles those labels on review.',
     answers: {
       'say-out-loud': 'draw-a-few-more',
       'perfect-win': 'long-and-full',
@@ -199,6 +201,7 @@ const PERSONAS: Persona[] = [
   {
     name: 'Calm and Order tactician (leading Domains)',
     archetype: 'Control',
+    knownLegendIssue: 'Tops out on Shen, relabelled Midrange by the 2026-09-25 re-rate; see the patient control player.',
     leadingDomains: ['Calm', 'Order'],
     answers: {
       'say-out-loud': 'quiet-player',

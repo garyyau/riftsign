@@ -2,10 +2,7 @@
   "id": "jax-grandmaster-at-arms",
   "name": "Jax, Grandmaster At Arms",
   "champion": "Jax",
-  "domains": [
-    "Calm",
-    "Body"
-  ],
+  "domains": ["Calm", "Body"],
   "set": "SFD",
   "starterDeck": null,
   "cardImage": "jax-grandmaster-at-arms.jpg",
@@ -27,7 +24,7 @@
         "https://hextechanalytics.com/legends/jax"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/9434ddc4-8b72-4872-afdb-b543546f0ab1",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Scored decks: https://piltoverarchive.com/decks/view/9434ddc4-8b72-4872-afdb-b543546f0ab1 (Best of Jax Hartford, Edward Jones) 5/5/7.5/3.5 Tempo; https://piltoverarchive.com/decks/view/0ee4fe49-a5f7-4d71-afd0-257116daec39 (Singapore RQ Best of, Kudos) 5/5/7/4 Tempo; https://piltoverarchive.com/decks/view/3d46c5e3-0f2b-43e0-a82d-17317c4d819e (fatboyyy124 guide) 5/5/7/4 Tempo. Mean 5/5/7/4, labels Tempo x3 (tools.ts style). Adjustments (all three sheets): complexity +1, because the Legend re-attaches Equipment every turn and you decide each turn which unit carries the gear. No Axis had a formula-judgment gap of 2 or more. Deciding cards: Pace comes from cheap units (First Mate, Lonely Poro, Scuttle Crab) weighed against 5-cost Jax, Unmatched and Rengar. Stance sits in the middle because pressure bodies (Lucian, Merciless, Irelia) are balanced by answers and protection (Counter Strike, Defy, Guardian Angel, Challenge, Rampage). Complexity is high from many reaction-speed cards (Equipment given Quick-Draw by Jax, Unmatched, plus Counter Strike, Defy, Discipline, En Garde) and setup cards (Brutalizer's attached-this-turn bonus, Stellacorn Herder drawing on move). Variance is low because of full playsets, no luck cards and card draw from Counter Strike and Herder. Legend ability: [1], Exhaust: attach a detached Equipment you control to a unit you control; Exhaust: move an attached Equipment you control to another unit you control (SFD). Re-attaching Brutalizer each turn re-triggers its +2 Might. Also played: https://piltoverarchive.com/decks/view/ea89dfa4-1e74-4e06-ac7b-e40bbe7f5230 (sirterm 'jax bvest of', Dazzling Aurora Control 1.5/2.5/6.5/5: ramp spells, then free Elder Dragon or Vilemaw off Dazzling Aurora, no Equipment. It stands in for the Utrecht RQ Best of, which is illegal because of its banned battlefield, Aspirant's Climb). uzisam's Jax, Unrelenting 'Protect the Camel' list is merged into this style by the curator. Confidence: high. Change 2026-09-25: relabeled Midrange to Tempo (all three raters) and moved coordinates from 5/6/7/5.5 to 5/5/7/4 (Variance fell 1.5 because the scored lists run full playsets and card draw and have no luck cards). deckListUrl changed from the bare /decks page to the Hartford display. Dropped riftbound.gg/jax-grandmaster-at-arms-guide because it dates from 2026-02-11 and names none of this list's key cards. Reviewer check: hextechanalytics labels its 2026-09-12 Showdown Jax equipment list Midrange, so outside labels and this rating split. Tempo stands on the deck evidence. The Hartford list is frozen; its author points to a live 'VEN JAX TESTING' list (39af8f87) in the same style. The LA RQ will bring the first post-ban lists."
     }
   ]

@@ -2,10 +2,7 @@
   "id": "ezreal-prodigal-explorer",
   "name": "Ezreal, Prodigal Explorer",
   "champion": "Ezreal",
-  "domains": [
-    "Mind",
-    "Chaos"
-  ],
+  "domains": ["Mind", "Chaos"],
   "set": "SFD",
   "starterDeck": null,
   "cardImage": "ezreal-prodigal-explorer.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/72d44405-bb49-400e-8a2a-0a5f90321c6f"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/0d9d1242-9aa9-49b9-aa32-f8cf0852b4ed",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from the deck picks, style \"Pack of Wonders Ezreal\"): coordinates moved from 3/3/6.5/4 to 3/3/7/3 (pace/stance/complexity/variance), the mean of three scored decks. Complexity moved 0.5 and variance 1: the current lists run 17 to 19 removal spells, mostly as playsets, with nothing luck-based. deckListUrl moved from the bare /decks page to Ez Post Bans, the style's first deck. I dropped both stored guideUrls. riftmana.com returned 403 and could not be read. The magicalmeta.ink guide is a Spiritforged-era article built around Arcane Shift, and its decklist doesn't load, so it doesn't describe this list. The three scored deck pages replace them. The label stays Control: all three raters gave Control, and the scorer suggests Control on each sheet. The Build takes the picks' style name. Scored decks: Ez Post Bans (total; 3 likes) https://piltoverarchive.com/decks/view/0d9d1242-9aa9-49b9-aa32-f8cf0852b4ed Control 3/3/7/3. pack ez (matty) https://piltoverarchive.com/decks/view/aab6c444-2b45-45c3-805f-f57559f1e9d9 Control 3/3/7/3. Convergence #3 Top 16 | 1st - berkun (Axikyo; the result claim is unverified) https://piltoverarchive.com/decks/view/72d44405-bb49-400e-8a2a-0a5f90321c6f Control 3/3/7.5/2.5. Adjustments on every sheet: complexity +1, because the Legend's draw needs two enemy targets in a turn, so spells are sequenced around it every turn; variance -1, because the Legend draws a card most turns. Cards that decided each Axis. Pace: no units costing 2 or less, and 3 to 4 cards costing 5+ (Thousand-Tailed Watcher, Singularity, Mindsplitter). Stance: 24 to 26 answers (Gust, Wages of Pain, Deadly Flourish, Bellows Breath, Star-Crossed, The List, Vex, Bewitching Spirit) against one pressure card (Sprite Fountain), balance -0.57 to -0.63. Complexity: 11 to 13 reactive cards (Gust, Stupefy, Star-Crossed, Wages of Pain, Hard Bargain), 12 setup/modes cards (Pack of Wonders, The List, Fizz, Bellows Breath), plus the Legend adjustment. Variance: 17 to 19 removal spells, no luck or swing cards, 60 to 75% of the list as 3-ofs. No Axis gap between formula and judgment reached 2; the largest was stance, 3.8 formula against 2.5 judged. Legend ability: exhaust Ezreal as a Reaction to draw 1, usable only once you've chosen enemy units and/or gear twice that turn with spells or unit abilities. Also played: Temporal Breach Bounce (replays entry-effect units through blink spells) https://piltoverarchive.com/decks/view/d8b24e31-0d82-40ed-ac02-f5c18d777719 Midrange 5/4.5/8/5; Treasure Hunter Tempo (cheap movers and reaction-speed bounce, no gear engine) https://piltoverarchive.com/decks/view/8dd4c2db-5cd7-49f4-8369-66a8373ff024 Tempo 5/4/7.5/3 and https://piltoverarchive.com/decks/view/a94dac22-e6d4-4fe2-9c5e-7cca6bddaa95 Tempo 5.5/5/7.5/3; Plundering Poro (cheap units that grow off spells or make Gold) https://piltoverarchive.com/decks/view/af9dbc10-f29e-47ee-b923-3ed35925cea7 Midrange 5/4.5/7/3, https://piltoverarchive.com/decks/view/0e5ddfc0-350f-4c3b-994f-75cc013b2922 Control 4.5/4/7/2.5 and https://piltoverarchive.com/decks/view/120dbd88-5635-43d5-a809-752d4ba94cf1 Midrange 5.5/5/7/3. Each of these is a lone list or thin evidence, so none clears the Played bar alone. Confidence: high. For the reviewer: the Applied Researchers spell style (Zuno D Viko, Filosseno) is left out as dead because every list runs the banned Stacked Deck, and it was not merged into Poro. If a legal version appears, reconsider merging it with the Poro style into a second, faster Build."
     }
   ]

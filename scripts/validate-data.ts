@@ -33,6 +33,9 @@ for (const { file, result } of legendFiles) {
   }
 }
 
+// The site ranks reviewed Builds only, so with none it would deploy a quiz that matches nobody.
+if (legendFiles.length && !reviewedBuildCount) failures.push('no Build is reviewed: the site would have no Legends to match. Approve Builds before deploying.')
+
 if (failures.length) {
   console.error(`Data validation failed with ${failures.length} issue(s):`)
   for (const f of failures) console.error(`  ${f}`)

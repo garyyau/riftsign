@@ -2,10 +2,7 @@
   "id": "master-yi-wuju-bladesman",
   "name": "Master Yi, Wuju Bladesman",
   "champion": "Master Yi",
-  "domains": [
-    "Calm",
-    "Body"
-  ],
+  "domains": ["Calm", "Body"],
   "set": "OGS",
   "starterDeck": "Origins Proving Grounds",
   "cardImage": "master-yi-wuju-bladesman.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/ec8de33e-0b5b-4c07-8b32-48c2c6d44e13"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/b2221281-45c4-46d3-b922-01de58ad6bcf",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Scored decks: Singapore RQ #3 (Ekpilot) https://piltoverarchive.com/decks/view/b2221281-45c4-46d3-b922-01de58ad6bcf 5/4.5/6/3.5 (display deck; the scorer suggests Tempo, with 14 reactive cards at Pace 5, but judged Midrange because those cards are defensive pumps and counters that protect a unit holding a battlefield, not cheap threats backed by interaction); Koko_Lopez's PG list https://piltoverarchive.com/decks/view/03863fc2-649b-4864-8527-d231d2f26258 5/4.5/6/3; Barcelona RQ #8 (Hisoka) https://piltoverarchive.com/decks/view/ec8de33e-0b5b-4c07-8b32-48c2c6d44e13 5/4.5/6/3.5. All three raters labelled it Midrange. Adjustments on each sheet: Stance -0.5 (the Legend pays off only while a unit defends alone); Complexity +0.5 (the Legend rewards keeping exactly one unit per battlefield, and Star Spring and Emperor's Dais add positioning choices). Deciding cards: Pace from 2-cost units (Pit Rookie, Lonely Poro, Scuttle Crab) against five 5+ cards (Rengar, Ruin Runner); Stance from about 18 answers (Defy, Charm, Sabotage, Zhonya's Hourglass, Not So Fast, Rampage, Lonely Poro, Ruin Runner) against 9 pressure cards; Complexity from 13 to 14 reaction-speed cards (Discipline, En Garde, Defy, Zhonya's, Rengar's Ambush) and setup cards (En Garde, First Mate, Master Yi, Tempered); Variance low from mostly 3-ofs, no luck or swing cards, and card flow from Discipline and Scuttle Crab. No Axis had a formula-to-judgment gap of 2 or more. Legend ability: while a friendly unit defends alone, it gets +2 Might. Also played: none (single style). Confidence: high. Changed 2026-09-25: coordinates moved from 3.5/4.5/2.5/2 to 5/4.5/6/3.5 on three freshly scored legal RQ-era lists. The old rating came from guide descriptions of a slower solo-hold list; today's list is a 2-cost curve with First Mate plus a lot of reaction-speed pumps and protection, so it is faster and has more moving parts. deckListUrl moved from the bare /decks page to Singapore #3. Both old guides were removed: riftbound.gg is now a general Legend guide for newer players with no list, and riftboundguide.com describes a Master Yi, Honed / Stalwart Poro / Qiyana list, not this one. Label unchanged (Midrange). Reviewer: none of the post-ban lists (edited after 2026-09-18) has more than 2 likes yet, so recheck against LA RQ lists (2026-09-25 to 27) once they are posted. The Hartford RQ #1 list is illegal (The Arena's Greatest, banned 2026-07-24) and was not used."
     }
   ]

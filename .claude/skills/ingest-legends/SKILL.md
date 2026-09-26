@@ -70,11 +70,11 @@ You are the first reviewer; the Maintainer should find nothing you could have ca
 
 - Read `git diff src/data/legends` for every changed Legend and hold each changed or new Build against `rubric.md`, Builds, copy rules included.
 - Run `tools.ts check <target ids>`. A deck-link flag means a Build still has no real deck. A self-match flag means a Build is not reachable as its own Match; a centroid flag means its label and coordinates disagree. Fix or explain each flag on a changed Build; agreeing outside labels explain one (Midrange spans wide, and Draven, Kha'Zix and LeBlanc sit near Combo on complexity and variance alone).
-- Run `pnpm vitest run`. Personas rank against drafts too, so a Persona landing on the wrong Archetype means a draft moved the pool; find which and why.
+- Run `pnpm vitest run`; the deploy build runs the same tests, so a red test blocks the site. Personas rank against drafts too, so a Persona landing on the wrong Archetype means a draft moved the pool; find which and why, then fix the draft or, when the rubric stands behind it, mark the Persona `knownLegendIssue` with the Builds and the reason.
 - Run `pnpm report --all` and note any new Axis pair at |r| >= 0.7.
 - Rewrite any line of `sources.md` this run found wrong (an API change, a new event format, a threshold that misfired) and update its "Last verified" date.
 
-Done when: every changed Build meets `rubric.md` by your own reading, no target has a deck-link flag, every other flag on a changed Build is fixed or explained, tests pass, and `sources.md` matches what this run saw.
+Done when: every changed Build meets `rubric.md` by your own reading, no target has a deck-link flag, every other flag on a changed Build is fixed or explained, `pnpm vitest run` is green, and `sources.md` matches what this run saw.
 
 ## 8. Images (ingest only)
 
@@ -92,6 +92,8 @@ Review these Builds, then set "reviewed": true on each you approve:
 Waiting on your decision:  <id>: <what picks.md asks>
 Worth a look:  <doubts from step 7 about Builds left unchanged>
 ```
+
+Apply replaces reviewed Builds with unreviewed drafts, and the site shows reviewed Builds only, so say how many Legends the site would show if this were pushed now (`pnpm validate` prints it; with none reviewed it fails). Push only after the Maintainer approves.
 
 When the Maintainer delegates approval, set `reviewed: true` only on Builds you would defend from the evidence, and name any you held back.
 

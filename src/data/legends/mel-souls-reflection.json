@@ -2,10 +2,7 @@
   "id": "mel-souls-reflection",
   "name": "Mel, Soul's Reflection",
   "champion": "Mel",
-  "domains": [
-    "Mind",
-    "Chaos"
-  ],
+  "domains": ["Mind", "Chaos"],
   "set": "VEN",
   "starterDeck": null,
   "cardImage": "mel-souls-reflection.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/ca132f5e-c806-4801-8cc2-6bdf6330d3f6"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/e50f4f3e-aa9e-4ac9-9155-06f23b13b9a3",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Re-rated 2026-09-25 from scored decks. The earlier Control 3.5/2.5/6/2.5 came from guide summaries and linked the bare /decks page. It now sits at the mean of three scored decks, and every Axis moved 1.5 or more (Pace +1.5, Stance +1.5, Complexity +1.5, Variance +1.5). The label moves to Tempo, which two of the three raters gave (the third said Control). Each deck's formula suggested Midrange, but the raters read cheap spell-fed units backed by reaction-speed counters and removal. Outside labels were split before (riftboundguide.com Control, skillshotzgaming.com 'Tempo/Control'). Scored decks: Grapplr Mel (dubusmcbernik) https://piltoverarchive.com/decks/view/e50f4f3e-aa9e-4ac9-9155-06f23b13b9a3 Tempo 5.5/4.5/7.5/4; Tidal Control 1.3 (Nono) https://piltoverarchive.com/decks/view/ca132f5e-c806-4801-8cc2-6bdf6330d3f6 Control 4.5/4/7.5/4; Skill Gap Simulator (lucaqualunque, legal post-ban, guide and matchups) https://piltoverarchive.com/decks/view/f35947f8-974d-43e0-8cdc-2a6d8f117208 Tempo 4.5/4/7.5/4. Adjustments on every sheet: complexity +1 (the Legend's Disempower -2 Might has to be timed every turn and is recharged by empowering other cards); stance -0.5 (the Legend is a repeatable -2 Might answer at any battlefield). Deciding cards: Pace, from 6-8 cheap units (Ravenbloom Student, Traveling Merchant, Gust Monk) against 4-8 cards costing 5+ (Thousand-Tailed Watcher, Singularity, Time Warp). Stance, from 17 answers (Shock Blast, Star-Crossed, Smoke Screen, Singularity, Rebuttal, Vex, Apathetic) against about 9 pressure cards (a balance of -0.2). Complexity, from 11-12 reactive cards, Applied Researchers' empower and Shock Blast's empowered discount, plus the Legend. Variance, from no luck cards, one swing card (Mel, Defiant Soul) and mostly 2-3 copies. No gap between formula and judgment reached 2. Legend ability: when you empower something else, Mel becomes empowered; disempower and exhaust her to give a unit at a battlefield -2 Might this turn. Also played: Hwei Tideturner Mel, which moves Hwei, Brooding Painter with Tideturner, Ride the Wind and Flash to draw and pump him (Tempo 5/4/8/4, within 1 on every Axis): https://piltoverarchive.com/decks/view/45666743-e6e1-4fdc-8f32-f2c0c421eeca (Gardial's post-ban list, claimed Top 8 at a 20-player Skirmish), https://piltoverarchive.com/decks/view/8ca15a5c-d78e-40be-80a4-9bf40411ed55, https://piltoverarchive.com/decks/view/2ef4418f-d02a-4667-a35a-22818f42c26f. Also Newly Awakened Empower Mel, zsquar3d's Unlimited Power! (16 likes, 6,180 views), with 3 Mel, Newly Awakened, many empower units and reaction-speed -Might spells (Control 4.5/3.5/8.5/5, one brewer's list): https://piltoverarchive.com/decks/view/8e2dabf7-d2d6-441d-ac27-e14d23673bfd. Skill Gap Simulator finishes with Time Warp (10 energy, an extra turn); the picks treat it as a finish, not a separate plan. Confidence: medium. Reviewer should check: nearly all the style's strong evidence (Barcelona and Singapore Best of, Rifeli, yatatcg) is from pre-ban lists that ran Stacked Deck, banned 2026-09-18. Gardial's post-ban guide says Mel is no longer very viable. The only legal lists with real evidence are Skill Gap Simulator and a few 1-point lists, so watch the Los Angeles RQ (2026-09-25 to 27). The old guideUrls (riftbound.gg, riftboundguide.com, skillshotzgaming.com) were dropped: they were not re-read for this pass and describe the pre-ban or launch version. guideUrls are now the three scored deck pages, and I took their content from the picks pass rather than fetching them again this run."
     }
   ]

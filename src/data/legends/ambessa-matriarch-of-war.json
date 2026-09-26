@@ -2,10 +2,7 @@
   "id": "ambessa-matriarch-of-war",
   "name": "Ambessa, Matriarch of War",
   "champion": "Ambessa",
-  "domains": [
-    "Body",
-    "Order"
-  ],
+  "domains": ["Body", "Order"],
   "set": "VEN",
   "starterDeck": null,
   "cardImage": "ambessa-matriarch-of-war.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/0f7ce5f8-e5e1-46ea-9124-8a818f664b80"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/7358ba07-c17c-4349-a545-f2a44f71212b",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "2026-09-25 re-rate: relabelled Aggro to Midrange, and coordinates moved from 7.5/8/5.5/5.5 to 6/6/6.5/4 (pace -1.5, stance -2, complexity +1, variance -1.5). The old numbers came from two guide articles with no deck behind them, and deckListUrl pointed at the bare /decks page. The new Build is the picked Kennen Stun Ambessa style, scored from three decks under the current rubric. Scored decks (pace/stance/complexity/variance): https://piltoverarchive.com/decks/view/7358ba07-c17c-4349-a545-f2a44f71212b Katchouze AMBESSA_UPDATED, edited 2026-09-23 after the ban, 6/6/7/3.5, judged Tempo (16 reactive cards); https://piltoverarchive.com/decks/view/f4a97c37-850a-4ad5-bf45-6f619185a9f0 Best of Singapore RQ, CBL Dags, 6.5/6.5/6.5/4.5, Midrange (the scorer suggested Aggro, but the list leans on Rampage, Hidden Blade and reactions rather than racing); https://piltoverarchive.com/decks/view/0f7ce5f8-e5e1-46ea-9124-8a818f664b80 SargonVito Ambessa Midrange, 6/6/6.5/4, Midrange (the scorer suggested Tempo on 14 reactive cards; the plan is empowered board presence). Mean: Midrange 6/6/6.5/4, labels Tempo, Midrange, Midrange (tools.ts style). Adjustments: complexity +1 on every sheet, because the Legend empowers itself off every other empower and spends that to ready a unit, a choice to time every turn. What decided each Axis: pace comes from 8 or 9 cheap units per 40 (Pit Rookie, Legion Marauder, Irresistible Faefolk), held back by 3 to 5 cards costing 5+ (Vi, Peacekeeper, Rengar, Ambessa, Respected and Feared). Stance comes from 22 to 25 pressure against 11 to 13 answers (Hidden Blade, Rampage, Public Execution, Sabotage, Tactical Retreat, Repulse), with 12 to 16 reactive cards pulling it toward the middle. Complexity comes from setup on empower units (Kayle, Justified, Legion Marauder, Guttural Roar), reaction-speed Kennen, Nidalee and Vi, and the Legend. Variance is low: there are no luck or swing cards, 6 to 8 removal and mostly 3-ofs. No Axis showed a 2+ gap between formula and judgment. Legend: 'When you empower something else, empower me. Disempower me, [Rune], [Tap]: Ready a unit.' Also played: Escaped Grayback style https://piltoverarchive.com/decks/view/b205a5c6-914b-4a52-b315-2a22b3e42fb9 (6/6/6.5/4.5), https://piltoverarchive.com/decks/view/22420c3f-1463-477c-9d24-70b4cfb6157c, https://piltoverarchive.com/decks/view/109de9db-fb81-4a13-a905-b6b865edb452. Aurok General style https://piltoverarchive.com/decks/view/f1074984-f28e-4fb8-8fc7-31538844ad93 (5.5/6/6.5/5), https://piltoverarchive.com/decks/view/e59c2b9c-5f7b-4a0f-851a-5cccef67f3fa, https://piltoverarchive.com/decks/view/e306a0e4-716f-435d-8bf7-d6b9746ed61d. Ruin Runner style https://piltoverarchive.com/decks/view/4db43a44-772a-4cbf-a271-648783014aea (5/5.5/6.5/4.5), https://piltoverarchive.com/decks/view/e7beaa03-cd3f-4f1b-badd-a56b9539bf87, https://piltoverarchive.com/decks/view/3b248ed0-cdbf-4f03-bce5-ad7d9ac52d00. All three are Midrange and within 1.5 of this Build on every Axis. Confidence: high. Reviewer: the old guideUrls were removed. riftboundguide.com's piece is a July Champion Deck guide, and riftbound.gg's guide (updated 2026-08-14) offers no list and names none of this Build's key cards; guideUrls are now the three scored deck pages. Nearly every list predates the 2026-09-18 ban (no Ambessa list uses a banned card), so recheck after the Los Angeles RQ (2026-09-25 to 27)."
     }
   ]

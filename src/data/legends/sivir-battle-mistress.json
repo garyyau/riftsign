@@ -2,10 +2,7 @@
   "id": "sivir-battle-mistress",
   "name": "Sivir, Battle Mistress",
   "champion": "Sivir",
-  "domains": [
-    "Body",
-    "Chaos"
-  ],
+  "domains": ["Body", "Chaos"],
   "set": "SFD",
   "starterDeck": null,
   "cardImage": "sivir-battle-mistress.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/6103991d-40bc-4094-b8f1-5dd8d8f45fdb"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/72414274-4dd0-4172-b1e1-1cab164776f9",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from deck picks, style 'Dazzling Aurora Sivir'). The label stays Combo. Coordinates moved from 4.5/4.5/6.5/7.5 to 2/4/7/5.5 (pace/stance/complexity/variance), the mean of three scored decks from tools.ts style. Pace moved 2.5 and variance moved 2. The old numbers came from guide quotes that mixed a dragon/Aurora shell with a faster Miracle/Rhasa shell, while every current list plays no units costing 2 or less and steadies its draws with card flow. deckListUrl was the bare /decks page and now points at the display deck. Both old guides are gone: the riftbound.gg guide (updated 2026-05-18) lists OGN-183, Stacked Deck, which was banned on 2026-09-18, and the cardsrealm Miracle Sivir deck tech covers the Rhasa list, a different build. Scored decks: Best of Sivir CCS Houston (curator find; claimed CCS $25k Qualifier #5 Houston, placement unconfirmed; legal after the ban) https://piltoverarchive.com/decks/view/72414274-4dd0-4172-b1e1-1cab164776f9 Combo 2/4/7/5.5; Sivir (curator find; edited 2026-09-24) https://piltoverarchive.com/decks/view/618cc3ff-e6c6-4870-9da4-65a36efa7ead Combo 2/4/7/5; Aurora (themightythorge; filler with no evidence, it measures the style) https://piltoverarchive.com/decks/view/6103991d-40bc-4094-b8f1-5dd8d8f45fdb Combo 2/4/7/5.5. Adjustments on all three: complexity +0.5, because the Legend turns rune recycling into Gold and readies on enemy deaths, so Power payments and removal are timed around it; pace -0.5, because Forgotten Monument blocks scoring there until turn three. Deciding cards. Pace: no units costing 2 or less and 9 cards costing 5+ (Dazzling Aurora, Elder Dragon, Baron Nashor, The Harrowing, Mindsplitter). Stance: a single pressure unit (Sivir, Mercenary) against 5-8 removal and 9-11 reactive cards (Flurry of Blades, Gust, Lunar Boon). Complexity: 9 engine cards (Dazzling Aurora, Elder Dragon, The Harrowing loops) and 7-9 setup cards (Platewyrm Egg, Scryer's Bloom). Variance: Aurora's reveal-a-unit is the luck card, and 9-11 ramp pieces plus 3-8 card-flow cards (Lunar Boon, Scryer's Bloom) keep it moderate. Legend ability: when you recycle a rune, you may exhaust Sivir to play a Gold gear token exhausted; when one or more enemy units die, ready her. Also played: none. Confidence: low. For the reviewer: nearly all of the style's evidence is pre-ban and illegal through Stacked Deck or Aspirant's Climb, so post-ban results (for example the LA RQ) should confirm that Aurora Sivir is still played. The Houston placement is unverified."
     },
     {
@@ -45,7 +42,7 @@
         "https://piltoverarchive.com/decks/view/99e12474-fbdc-4154-8bb2-0e896015104f"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/530dcf9c-5806-4cf9-a3d6-05e54aa099c7",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "New 2026-09-25 (re-rate from deck picks, style 'Rengar Ambush Sivir', script styles 5 and 6 merged). Scored decks: Super Sivir (tsyco; 5 likes, 1,944 views; pre-ban, x0.75) https://piltoverarchive.com/decks/view/530dcf9c-5806-4cf9-a3d6-05e54aa099c7 Tempo 6/6.5/7/4; Warwick Rengar Ambush (fplapointe01; 2 likes, guide in the deck description; pre-ban, x0.75) https://piltoverarchive.com/decks/view/99e12474-fbdc-4154-8bb2-0e896015104f Tempo 6/6/7.5/4.5. tools.ts style: Tempo 6/6.5/7.5/4.5, mean of 2. Adjustment on both: complexity +0.5, because the Legend readies on enemy deaths and turns rune recycling into Gold, which rewards timing kills and Power payments. Deciding cards. Pace: 7-9 units costing 2 or less (Treasure Hunter, Irresistible Faefolk, Tideturner, Dragonsoul Sage) and only 3-5 cards costing 5+ (Rengar, Trophy Hunter; Warwick, Hunter). Stance: 14-17 pressure cards and 7-10 tricks (Punch First, Ride the Wind, On the Hunt), with Ambush threats played into fights. Complexity: 18-19 reactive cards (Ambush from Nidalee, Cat Form and Kha'Zix, Mutating Horror; Hidden on Tideturner; Abandon; Flurry of Blades) and 16-19 setup cards (movement from Ride the Wind, First Mate, Flash). Variance: low, since the list is redundant bodies and tricks with no reveal or random cards. Legend ability: when you recycle a rune, you may exhaust Sivir to play a Gold gear token exhausted; when one or more enemy units die, ready her. Also played: Spiderling Swarm Sivir, the most copied Sivir list since the ban (about 10 exact reposts and roughly 20 close lists). It floods 18-19 Spiderlings face down to win fights or hold The Grand Plaza with 7 units, and it sits next to this Build (6/6/7.5/5): https://piltoverarchive.com/decks/view/bd922580-b62a-4f2c-b494-db305fbedf89 (sawadika, mylo_tcg, 36 likes), https://piltoverarchive.com/decks/view/9967677a-3f80-41bc-9261-0b51e45553b2 (Spider-Sivir, dergermane050), https://piltoverarchive.com/decks/view/e32ee055-218a-4ec9-b3d8-50553459192d (Spider Sivir, alvl88pikachu). Fizz Star-Crossed Sivir (Tempo 5/5/7/4.5): https://piltoverarchive.com/decks/view/d59bea74-a606-4a73-a8ea-1b2ec01adc1e (Sivir Tempo v3, Gybis, 5 likes, edited 2026-09-23 after the ban). Confidence: low. For the reviewer: both scored decks are pre-ban (legal, weighted x0.75), and there are only two of them, so post-ban results should confirm the style. The Spiderling decks show formula-vs-judgment gaps of 2.5 or more on complexity and variance; they are listed here only as another way to play, not averaged into these coordinates."
     }
   ]

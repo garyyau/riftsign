@@ -2,10 +2,7 @@
   "id": "master-yi-wuju-master",
   "name": "Master Yi, Wuju Master",
   "champion": "Master Yi",
-  "domains": [
-    "Calm",
-    "Body"
-  ],
+  "domains": ["Calm", "Body"],
   "set": "UNL",
   "starterDeck": null,
   "cardImage": "master-yi-wuju-master.jpg",
@@ -27,7 +24,7 @@
         "https://hextechanalytics.com/legends/master-yi-unleashed"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/c9df2923-3c4c-47f2-8e99-8bfb0a550cab",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Change 2026-09-25: coordinates moved from 5/5.5/6/5.5 to 5/5/6.5/3.5. Variance dropped by 2 and the other Axes by 0.5. The old numbers were based on quotes from two guides, while the new ones come from scored tournament decks. The label stays Midrange. The deckListUrl moved from the bare /decks page to the display deck. The riftbound.gg guide (2026-07-17) was removed: it prints no list and predates the latest set. Scored decks (pace/stance/complexity/variance), mean from tools.ts style = Midrange 5/5/6.5/3.5, labels Midrange x3: Best of Singapore RQ (Psyc0w, 40-card repost by Arcane Academy, display) https://piltoverarchive.com/decks/view/c9df2923-3c4c-47f2-8e99-8bfb0a550cab 5.5/5/6.5/3.5 Midrange; Best of Barcelona RQ (Shouks17, claimed result not verified, pre-ban but legal) https://piltoverarchive.com/decks/view/baaac5da-5fd0-47fb-889e-16c31e776e4b 5/5/6.5/4 Midrange; Hartford RQ Best of (Chairman) https://piltoverarchive.com/decks/view/8c4cedf4-aea7-4022-8cab-a7962c7308f3 5/5/6.5/3.5 Midrange. Adjustment (all three sheets): complexity +0.5, because the Legend's Level 6 and 11 thresholds plus Gardens of Becoming make XP a resource you count and time every turn. No Axis had a formula-to-judgment gap of 2 or more. Deciding cards: Pace comes from about 8 cheap Hunt units (Wuju Apprentice, Gemhand Hunter, Master Yi, Tempered at 4) against 7 to 9 cards costing 5 or more (Master Yi, Unstoppable, Voracious Gromp, Herald of Spring at 5 total). Stance is balanced because about 14 pressure cards meet 12 to 13 answers (Zhonya's Hourglass, Defy, Back Off, Emperor's Divide) plus reaction-speed Discipline. Complexity comes from the setup flags on the Level and Hunt cards, 13 reactive cards and Concentrate getting cheaper with Level. Variance is low: no luck or swing cards, mostly 3-ofs, and card flow from Concentrate, Discipline and Scuttle Crab. Legend ability: [Level 6] your units have +1 Might; [Level 11] your units enter ready. Also played: Anivia Ramp Yi https://piltoverarchive.com/decks/view/32b47132-db31-47e3-b7e2-7df0d88a8a74 3/4.5/6.5/4 Midrange (ramps into Anivia, Primal and Unstoppable with Svellsongur copying Hunt text); Rengar Hunt Yi https://piltoverarchive.com/decks/view/9a0e9549-0b82-4612-b79b-cf07de6a170b 5.5/5.5/5.5/4.5 Midrange (swaps the Zhonya's/Back Off/Concentrate shell for Alpha Strike, Rengar, Trophy Hunter and Astral Heron). The Utrecht RQ Best of (Narutak) 6ceb228c counts toward the bar but was not scored. Confidence: medium. Singapore is the only strong result, and the Barcelona claim is not verified. Reviewer: XP Yi splits loosely into a Voracious Gromp/Skyward Strike list (Hartford, Barcelona) and an Alpha Strike/Herald/Poppy list (Singapore). The copy names only cards in both. The hextechanalytics page (2026-09-12, Lucca Showdown list) describes the same Herald/Gromp/Unstoppable plan."
     }
   ]

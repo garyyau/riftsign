@@ -2,10 +2,7 @@
   "id": "sett-the-boss",
   "name": "Sett, The Boss",
   "champion": "Sett",
-  "domains": [
-    "Body",
-    "Order"
-  ],
+  "domains": ["Body", "Order"],
   "set": "OGN",
   "starterDeck": null,
   "cardImage": "sett-the-boss.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/d3749185-be2f-4d13-85fa-e7c83265a427"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/79c6fa32-765c-48f8-9971-b13a49bd842d",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Change 2026-09-25: relabelled Tempo to Midrange. Coordinates moved from 7.5/8/6/6.5 to 6/6.5/6.5/4 (Pace -1.5, Stance -1.5, Variance -2.5). The old numbers came from guide quotes, not scored decks. The deckListUrl moved from the bare /decks page to the style's display deck, and the old cardsrealm and riftbound.gg guides were removed because neither was confirmed to describe the current list. Scored decks (pace/stance/complexity/variance): From the Top Rope https://piltoverarchive.com/decks/view/79c6fa32-765c-48f8-9971-b13a49bd842d 6/6.5/6.5/4 Midrange. Hartford RQ Best of Sett https://piltoverarchive.com/decks/view/a7b53b02-2c9f-40a0-9ba3-23838b3bc74a 6/6.5/6.5/4 Midrange. LA Sett https://piltoverarchive.com/decks/view/d3749185-be2f-4d13-85fa-e7c83265a427 5.5/6.5/7/4 Midrange. Adjustments (Top Rope and Hartford): complexity +1 because the Legend's recall needs a rune and timing on every lethal fight, and it and Monastery of Hirana spend buffs that Call to Glory also wants; variance -0.5 because Grove of the God-Willow and Monastery of Hirana draw cards. Adjustments (LA Sett): complexity +1 because the Legend's recall needs a rune and timing on every lethal fight and turns Sacrifice into a free draw, and Monastery also spends buffs; variance -0.5 because Monastery of Hirana and Sunken Temple draw cards. Formula and judgment were never 2 or more apart. Deciding cards: Pace comes from 6 to 8 cheap units (Pit Rookie, Irresistible Faefolk) set against 4 to 6 cards costing 5+ (Rengar, Trophy Hunter, Vi, Peacekeeper, Sett, Brawler). Stance comes from 19 pressure cards (Fiora, Victorious, First Mate, Cithria, Vi) against 5 to 7 answers (Sabotage, Repulse, Hidden Blade), with Punch First, Showstopper and Call to Glory as tricks. Complexity comes from 19 to 23 setup or modes cards around the buff economy (Arena Bar, Call to Glory, Kinkou Monk, Sacrifice) plus the Legend. Variance comes from about 75% of the list being 3-ofs, with no luck or swing cards. Legend ability: when a buffed unit you control would die, you may pay a rune and exhaust Sett to spend its buff and recall it exhausted instead; when you conquer, ready Sett. Also played: Challenge Brawler Sett (Two Setts to Rule them ALL, Orange Sett, Sett Yor), merged by the Maintainer because it runs the same core and differs only in flex slots (Challenge in place of Vi or Kinkou Monk, plus a splash champion). LA Sett was scored to represent the Brawler plus Sacrifice package. Confidence: low. Reviewer check: every list predates the ban, and the LA RQ results should confirm the style or make it strict. The Hartford and Top Rope sheets score the same because their lists differ by only 2 cards (Challenge against Rampage)."
     }
   ]

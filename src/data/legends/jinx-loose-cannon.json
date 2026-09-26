@@ -2,10 +2,7 @@
   "id": "jinx-loose-cannon",
   "name": "Jinx, Loose Cannon",
   "champion": "Jinx",
-  "domains": [
-    "Fury",
-    "Chaos"
-  ],
+  "domains": ["Fury", "Chaos"],
   "set": "OGN",
   "starterDeck": "Origins Champion Deck",
   "cardImage": "jinx-loose-cannon.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/8f9cd085-cce2-4651-b602-a95da1a0e9fc"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/653feb68-93c1-4949-84ee-f1bd72b69753",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from the Maintainer's deck picks, style \"Tempo Jinx\"): coordinates moved from 8.5/8.5/3.5/7 to 7/6.5/6/5 (pace/stance/complexity/variance), the mean of three scored decks; the old numbers came from Origins Champion Deck guides, not current lists. deckListUrl was the bare /decks page and is now Devin's list. Archetype stays Aggro: the raters split Tempo, Aggro, Aggro and tools.ts style gives Aggro. The Maintainer named the style \"Tempo Jinx\" but did not override the label; the picks line gives Aggro. Old guideUrls (riftbound.gg, riftboundguide.com, animealley.ca) were dropped because they describe the starter deck, not this list. Scored decks: One False Move (Devin's Tempo Jinx, deuceishiphop; 272 likes, guide, video, matchups) https://piltoverarchive.com/decks/view/653feb68-93c1-4949-84ee-f1bd72b69753 Tempo 6.5/5.5/6.5/4.5. Meuktwo's Terrible Jinx Discard Trash (meuktwo; guide) https://piltoverarchive.com/decks/view/0c7188d0-bf55-4096-af7a-322eb826c045 Aggro 7/7/5.5/5. Meta Killer Jinx (Trystan's Better Tempo Jinx, Trying2Stand; 18 likes) https://piltoverarchive.com/decks/view/8f9cd085-cce2-4651-b602-a95da1a0e9fc Aggro 7/6.5/5.5/5.5. Mean 7/6.5/6/5. Adjustments: complexity +0.5 on all three (the Legend and Dunebreaker reward timing discards to land on one card in hand); variance -0.5 on all three (the Legend draws most turns once the hand is empty; Zaun Warrens loots on conquer); pace +0.5 on Meuktwo's list (the Legend rewards dumping cards fast). Deciding cards: pace from a wall of 2-cost units (Punching Poro, Traveling Merchant, Shadow Order Disciple, Vi, Destructive, Chemtech Enforcer), Flame Chompers (3 cost, playable for one Fury when discarded) and Dunebreaker entering ready; stance from bounce and burn (Gust, Falling Star, Rebuke, Star-Crossed, Super Mega Death Rocket!) used to clear blockers rather than attacking blindly, which keeps it below the old 8.5; complexity from discard outlets (Poro's Empower, Zed, From the Shadows, Get Excited!, Jinx, Rebel readying on discard) timed against the Legend draw; variance from the Legend refill and recurring Super Mega Death Rocket!. Champion splits between Jinx, Rebel (Devin, Meuktwo) and Jinx, Demolitionist with Rhasa the Sunderer (Trystan). Legend ability: at the start of your Beginning Phase, draw 1 if you have one or fewer cards in your hand. Also played: Hidden Jinx (Jinx, Demolitionist with Hidden units Evelynn, Pyke, Returned and Rengar, Unseen carrying Edge of Night, Long Sword and Blighted Battleaxe; scored Aggro 7.5/7/7/5, two RQ Best of Jinx lists from June plus a 2026-09-23 list) https://piltoverarchive.com/decks/view/7b6ba13e-d084-407a-9c76-1f1d54d268ed https://piltoverarchive.com/decks/view/adf5d38e-4c4b-4797-94a5-a8ab67eca140 https://piltoverarchive.com/decks/view/eb745f5b-8b1a-4d08-953a-f19b1851de81 https://piltoverarchive.com/decks/view/7012fabb-bdfe-4b74-ba67-0a960b0d42f9. Detonator Jinx (Jinx, Rebel making gear for Detonate, Battering Ram and Rhasa; Midrange 5/5.5/6.5/3.5, one deck) https://piltoverarchive.com/decks/view/d1534d48-4f33-4553-91e9-ca061ea7ce1e. Confidence: medium. Check: only 3 legal decks in the style. The Hidden Jinx RQ lists predate Vendetta, and the post-ban Los Angeles RQ (2026-09-25 to 27) may shift the picture. Devin's list reads Tempo on its own; if outside labels agree on Tempo, a relabel is worth a look."
     }
   ]

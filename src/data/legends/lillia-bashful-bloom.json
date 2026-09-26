@@ -2,10 +2,7 @@
   "id": "lillia-bashful-bloom",
   "name": "Lillia, Bashful Bloom",
   "champion": "Lillia",
-  "domains": [
-    "Calm",
-    "Mind"
-  ],
+  "domains": ["Calm", "Mind"],
   "set": "UNL",
   "starterDeck": null,
   "cardImage": "lillia-bashful-bloom.jpg",
@@ -26,7 +23,7 @@
         "https://piltoverarchive.com/decks/view/4d170254-ac68-4236-b55f-8711e4d3aecc"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/03373976-ef5b-4193-af89-a67e942b9cb8",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Changed 2026-09-25 (re-rate from deck picks): relabelled Midrange to Tempo and moved from 4/5/7/3.5 to 6/6/7/3.5, the tools.ts style mean of the style's three scored decks (labels Tempo, Tempo, Tempo). Pace moved 2. deckListUrl was the bare /decks page and now points at the display deck. The old guides are gone: the riftbound.gg guide (updated 2026-07-12) describes an older value list without Sprite Fountain, Sprite Burst, Lonely Poro or Mask of Foresight, and hextechanalytics is a stats page, not this list. Scored decks: https://piltoverarchive.com/decks/view/03373976-ef5b-4193-af89-a67e942b9cb8 Lilina Gaming (wags; 157 likes, guide, video, edited 2026-09-18) Tempo 6/6/7/3.5; https://piltoverarchive.com/decks/view/6e1ac783-3958-424e-911b-748dccf72166 best of Lillia Barcelona (slodkibartus; Barcelona RQ Best of repost, pre-ban but legal) Tempo 6/6.5/6.5/3.5; https://piltoverarchive.com/decks/view/4d170254-ac68-4236-b55f-8711e4d3aecc BEST DECK IN FORMAT (Karthussy Goat; guide, matchups, edited 2026-09-25) Tempo 6/6/7/3.5. Adjustments, the same on all three: pace +0.5 (Legend makes a ready 3 Might Sprite every turn, cheaper with more Temporary units); stance +1 (Legend adds an attacker each turn); complexity +1 (sequencing Sprite makers before the Legend matters every turn). No Axis had a 2+ gap between formula and judgment. Deciding cards: Pace, from Ravenbloom Student, Lonely Poro, Sprite Fountain and Lillia, Fae Fawn (Accelerate), and Sprite Burst (5) as nearly the only expensive card. Stance, from 15 to 16 bodies of pressure (Sprite Fountain and Sprite Burst count as bodies) against Defy, Charm, Smoke Screen/Eclipse and Janna. Complexity, from 17 to 19 reactive cards (Defy, Discipline, En Garde, Stupefy, Smoke and Mirrors) plus setup on Mask of Foresight, Lonely Poro and Smoke and Mirrors. Variance, from full playsets, no luck cards and heavy card flow (Stupefy, Discipline, Smoke and Mirrors draw). Legend ability: [4], exhaust: play a ready 3 Might Sprite token with Temporary; costs 1 less for each friendly Temporary unit. Also played: Frigid Jewel Hwei Lillia, where a second card drawn each turn lets Frigid Jewel pump Hwei and Akali: https://piltoverarchive.com/decks/view/92bbc71d-e5c3-46d6-9281-1e697585d1af (cass) Tempo 5.5/6/7/4, https://piltoverarchive.com/decks/view/339f181d-e65f-4505-9f38-bc902becd682 (mylo_tcg) Midrange 5/6/7/4, https://piltoverarchive.com/decks/view/b0f8af9a-0806-4558-a72a-9dc7cb8db65d (jarosław Stasiak) Tempo 5/6/7.5/3.5; Swain Signpost Lillia, where Forgotten Signpost moves Hwei and Swain, Visionary scores a bonus point: https://piltoverarchive.com/decks/view/6cc658f9-1cb0-4a4a-a411-852f42961852 (noxiangrandgeneral) Tempo 5.5/6/7.5/4. Neither is 2+ from Sprite Swarm on any Axis. Confidence: high. Reviewer check: guideUrls are the two deck pages. wags's text is short ('list has not changed much with Vendetta'), and Karthussy Goat's describes going aggressive early with Sprite tokens and the Legend's ability. Rifeli's HyperAggro guide (c4d2736d) was not fetched and may be a fuller guide to add."
     }
   ]

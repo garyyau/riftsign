@@ -2,10 +2,7 @@
   "id": "diana-scorn-of-the-moon",
   "name": "Diana, Scorn of the Moon",
   "champion": "Diana",
-  "domains": [
-    "Mind",
-    "Chaos"
-  ],
+  "domains": ["Mind", "Chaos"],
   "set": "UNL",
   "starterDeck": null,
   "cardImage": "diana-scorn-of-the-moon.jpg",
@@ -27,7 +24,7 @@
         "https://piltoverarchive.com/decks/view/1b9c7284-97a4-4c14-bd6d-1002f34f8f92"
       ],
       "deckListUrl": "https://piltoverarchive.com/decks/view/44379da0-710a-40d9-9d18-6670d05ab829",
-      "reviewed": false,
+      "reviewed": true,
       "ratingNotes": "Scored decks (current rubric, blind to the Build on file): Diana Hwei v100 (VEN post ban), Justice, https://piltoverarchive.com/decks/view/44379da0-710a-40d9-9d18-6670d05ab829 Tempo 6/5.5/7.5/3.5; God Save The Queen, RiftRunner91, https://piltoverarchive.com/decks/view/44f0cad2-b511-494e-9d3c-e6926bca074f Tempo 5.5/5/7.5/4.5; Diana, therealjoshmoore, https://piltoverarchive.com/decks/view/1b9c7284-97a4-4c14-bd6d-1002f34f8f92 Tempo 6/5/8/4. tools.ts style: Tempo 6/5/7.5/4, mean of 3, labels Tempo x3. Adjustment (all three decks): complexity +1, because the Legend adds 1 Energy usable only in showdowns, a timing choice every turn. Deciding cards: pace comes from 8-9 two-cost units (Ravenbloom Student, Tideturner, Traveling Merchant, Sprite Fountain) held back by 3 Hwei and other 5-costs. Stance sits near the middle because pressure bodies are balanced by 16-19 answers (Gust, Moonfall, Star-Crossed, Smoke Screen, Hard Bargain, Flash, Vex, Apathetic). Complexity comes from 15-18 reactive cards plus movement setup (Ride the Wind, Flash, Tideturner, Hwei's move trigger). Variance is low from 10-12 removal and 10-12 card-flow cards (Stupefy, Hwei, Traveling Merchant); the only luck card is Diana, Lunari. No axis had a formula/judgment gap of 2 or more. Legend ability: [Reaction] exhaust to add 1 Energy that can only be spent during showdowns. Also played: none (single style). The Maintainer chose Justice's list as the display deck over the script's God Save The Queen (tied on points, more typical of the style, 60 likes). Change 2026-09-25: the label stays Tempo, and coordinates moved from 7.5/6/8/5.5 to 6/5/7.5/4 (pace -1.5, variance -1.5; the old numbers came from guide quotes, the new ones from three scored post-ban lists). deckListUrl moved from the bare /decks page to the display deck. guideUrls: both old guides were dropped. riftboundguide.com describes the pre-ban RQ Vancouver list with 3 Stacked Deck (banned 2026-09-18). The riftbound.gg guide (updated 2026-09-14) is a generic strategy page that names none of this list's key cards. They are replaced by the three scored deck pages. howItPlays and whyYou were rewritten: the old copy called the deck fast and swingy-ish, but the lists sit at mid pace with steady card flow. Confidence: high. Reviewer: a current written guide for the post-ban Hwei list would be a better guideUrl than the deck pages if one appears."
     }
   ]
